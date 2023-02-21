@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="irreversible">你确定吗？此操作无法撤销！</string>
+    <string name="nothing_here">这里空无一物</string>
+    <string name="record_sound">录制声音</string>
+    <string name="choose_dir">选择目录</string>
+    <string name="okay">好的</string>
+    <string name="app_name">Record You</string>
+    <string name="format">格式</string>
+    <string name="rename">重命名</string>
+    <string name="recordings">录音列表</string>
+    <string name="cancel">取消</string>
+    <string name="file_name">文件名</string>
+    <string name="delete">删除</string>
+    <string name="directory">目录</string>
+</resources>
