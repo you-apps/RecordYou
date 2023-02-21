@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="directory">Cartella</string>
+    <string name="choose_dir">Scegli la cartella</string>
+    <string name="record_sound">Registra il suono</string>
+    <string name="format">Formato</string>
+    <string name="okay">Ok</string>
+    <string name="cancel">Annulla</string>
+    <string name="recordings">Registrazioni</string>
+    <string name="rename">Rinomina</string>
+    <string name="file_name">Nome del file</string>
+    <string name="nothing_here">Non c\'è niente qui</string>
+    <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata!</string>
+    <string name="delete">Elimina</string>
+    <string name="app_name">Registra You</string>
+</resources>
