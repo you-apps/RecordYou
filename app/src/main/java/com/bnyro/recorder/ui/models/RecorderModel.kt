@@ -3,7 +3,6 @@ package com.bnyro.recorder.ui.models
 import android.Manifest
 import android.content.Context
 import android.media.MediaRecorder
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -40,7 +39,7 @@ class RecorderModel : ViewModel() {
             setAudioEncoder(audioFormat.codec)
 
             val file = StorageHelper.getOutputFile(context, audioFormat.extension)
-            fileDescriptor = context.contentResolver.openFileDescriptor(Uri.fromFile(file), "w")
+            fileDescriptor = context.contentResolver.openFileDescriptor(file.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 
             runCatching {

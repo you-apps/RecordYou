@@ -24,16 +24,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.DialogButton
 import com.bnyro.recorder.ui.models.PlayerModel
-import java.io.File
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecordingItem(recordingFile: File) {
+fun RecordingItem(recordingFile: DocumentFile) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
 
@@ -59,7 +59,7 @@ fun RecordingItem(recordingFile: File) {
             }
             Text(
                 modifier = Modifier.weight(1f),
-                text = recordingFile.name
+                text = recordingFile.name.orEmpty()
             )
             ClickableIcon(
                 imageVector = if (playing) Icons.Default.Pause else Icons.Default.PlayArrow
@@ -85,7 +85,7 @@ fun RecordingItem(recordingFile: File) {
 
     if (showRenameDialog) {
         var fileName by remember {
-            mutableStateOf(recordingFile.name)
+            mutableStateOf(recordingFile.name.orEmpty())
         }
 
         AlertDialog(
@@ -97,7 +97,7 @@ fun RecordingItem(recordingFile: File) {
             },
             text = {
                 OutlinedTextField(
-                    value = fileName,
+                    value = fileName.orEmpty(),
                     onValueChange = {
                         fileName = it
                     },
@@ -108,11 +108,10 @@ fun RecordingItem(recordingFile: File) {
             },
             confirmButton = {
                 DialogButton(stringResource(R.string.okay)) {
-                    val newFile = File(recordingFile.parent.orEmpty(), fileName)
+                    recordingFile.renameTo(fileName)
                     val index = playerModel.files.indexOf(recordingFile)
-                    recordingFile.renameTo(newFile)
                     playerModel.files.removeAt(index)
-                    playerModel.files.add(index, newFile)
+                    playerModel.files.add(index, recordingFile)
                     showRenameDialog = false
                 }
             },

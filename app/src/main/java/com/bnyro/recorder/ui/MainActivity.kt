@@ -1,4 +1,4 @@
-package com.bnyro.recorder
+package com.bnyro.recorder.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

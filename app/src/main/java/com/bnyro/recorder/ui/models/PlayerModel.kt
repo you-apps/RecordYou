@@ -3,13 +3,12 @@ package com.bnyro.recorder.ui.models
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bnyro.recorder.util.StorageHelper
-import java.io.File
 import java.io.IOException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +16,7 @@ import kotlinx.coroutines.withContext
 
 class PlayerModel : ViewModel() {
     private var player: MediaPlayer? = null
-    val files = mutableStateListOf<File>()
+    val files = mutableStateListOf<DocumentFile>()
     private var onFinish: () -> Unit = {}
 
     fun loadFiles(context: Context) {
@@ -30,7 +29,7 @@ class PlayerModel : ViewModel() {
         }
     }
 
-    fun startPlaying(context: Context, file: File, onEnded: () -> Unit) {
+    fun startPlaying(context: Context, file: DocumentFile, onEnded: () -> Unit) {
         onFinish.invoke()
         onFinish = onEnded
 
@@ -38,7 +37,7 @@ class PlayerModel : ViewModel() {
 
         player = getMediaPlayer().apply {
             try {
-                context.contentResolver.openFileDescriptor(Uri.fromFile(file), "r")?.use {
+                context.contentResolver.openFileDescriptor(file.uri, "r")?.use {
                     setDataSource(it.fileDescriptor)
                 }
                 prepare()
@@ -57,8 +56,8 @@ class PlayerModel : ViewModel() {
         player = null
     }
 
-    private fun getAvailableFiles(context: Context): List<File> {
-        return StorageHelper.getOutputDir(context).listFiles().orEmpty().toList()
+    private fun getAvailableFiles(context: Context): List<DocumentFile> {
+        return StorageHelper.getOutputDir(context).listFiles().toList()
     }
 
     private fun getMediaPlayer(): MediaPlayer {
