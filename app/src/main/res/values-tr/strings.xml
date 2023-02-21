@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Record You</string>
+    <string name="format">Biçim</string>
+    <string name="recordings">Kayıtlar</string>
+    <string name="okay">Tamam</string>
+    <string name="cancel">İptal</string>
+    <string name="rename">Yeniden adlandır</string>
+    <string name="file_name">Dosya adı</string>
+    <string name="delete">Sil</string>
+    <string name="irreversible">Emin misin\? Bu geri alınamaz!</string>
+    <string name="nothing_here">Burada bir şey yok</string>
+    <string name="record_sound">Ses kaydet</string>
+    <string name="directory">Dizin</string>
+    <string name="choose_dir">Dizin seç</string>
+</resources>
