@@ -40,6 +40,9 @@ fun RecordingItem(recordingFile: File) {
     var showRenameDialog by remember {
         mutableStateOf(false)
     }
+    var showDeleteDialog by remember {
+        mutableStateOf(false)
+    }
 
     ElevatedCard(
         modifier = Modifier.padding(vertical = 5.dp)
@@ -75,9 +78,7 @@ fun RecordingItem(recordingFile: File) {
                 showRenameDialog = true
             }
             ClickableIcon(imageVector = Icons.Default.Delete) {
-                playerModel.stopPlaying()
-                recordingFile.delete()
-                playerModel.files.remove(recordingFile)
+                showDeleteDialog = true
             }
         }
     }
@@ -118,6 +119,33 @@ fun RecordingItem(recordingFile: File) {
             dismissButton = {
                 DialogButton(stringResource(R.string.cancel)) {
                     showRenameDialog = false
+                }
+            }
+        )
+    }
+
+    if (showDeleteDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showDeleteDialog = false
+            },
+            title = {
+                Text(stringResource(R.string.delete))
+            },
+            text = {
+                Text(stringResource(R.string.irreversible))
+            },
+            confirmButton = {
+                DialogButton(stringResource(R.string.okay)) {
+                    playerModel.stopPlaying()
+                    recordingFile.delete()
+                    playerModel.files.remove(recordingFile)
+                    showDeleteDialog = false
+                }
+            },
+            dismissButton = {
+                DialogButton(stringResource(R.string.cancel)) {
+                    showDeleteDialog = false
                 }
             }
         )

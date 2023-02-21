@@ -8,4 +8,6 @@
     <string name="cancel">Cancel</string>
     <string name="rename">Rename</string>
     <string name="file_name">File name</string>
+    <string name="delete">Delete</string>
+    <string name="irreversible">Are you sure? This can\'t be undone!</string>
 </resources>
