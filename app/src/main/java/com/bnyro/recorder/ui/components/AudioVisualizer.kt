@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.core.math.MathUtils.clamp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.ui.models.RecorderModel
 
@@ -22,6 +23,7 @@ fun AudioVisualizer(
 ) {
     val viewModel: RecorderModel = viewModel()
     val state = rememberLazyListState()
+    val maxAmplitude = 3000
 
     LazyRow(
         modifier = modifier,
@@ -29,7 +31,7 @@ fun AudioVisualizer(
         verticalAlignment = Alignment.CenterVertically
     ) {
         items(viewModel.recordedAmplitudes) {
-            val height = maxOf(5f, (150 * (it.toFloat() / 2000)))
+            val height = clamp(5f, (150 * (it.toFloat() / maxAmplitude)), 150f)
             Box(
                 modifier = Modifier
                     .width(3.dp)

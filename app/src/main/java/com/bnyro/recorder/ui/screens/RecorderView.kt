@@ -32,8 +32,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioOptionsSheet
 import com.bnyro.recorder.ui.components.AudioVisualizer
@@ -58,11 +60,22 @@ fun RecorderView() {
                 .fillMaxSize()
                 .padding(pV)
         ) {
-            AudioVisualizer(
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .padding(bottom = 50.dp)
-            )
+            if (recorderModel.recordedAmplitudes.isNotEmpty()) {
+                AudioVisualizer(
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .padding(bottom = 80.dp)
+                )
+            } else {
+                Text(
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(top = 200.dp),
+                    text = stringResource(R.string.record_sound),
+                    fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                    fontWeight = MaterialTheme.typography.headlineLarge.fontWeight
+                )
+            }
 
             Column(
                 modifier = Modifier
