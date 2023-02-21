@@ -3,4 +3,9 @@
 
     <string name="format">Format</string>
     <string name="recordings">Recordings</string>
+
+    <string name="okay">Okay</string>
+    <string name="cancel">Cancel</string>
+    <string name="rename">Rename</string>
+    <string name="file_name">File name</string>
 </resources>
