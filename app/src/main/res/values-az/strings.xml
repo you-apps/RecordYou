@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="format">Format</string>
+    <string name="recordings">Səsyazmalar</string>
+    <string name="okay">Oldu</string>
+    <string name="cancel">Ləğv et</string>
+    <string name="rename">Adı dəyiş</string>
+    <string name="file_name">Fayl adı</string>
+    <string name="nothing_here">Bura boşdur</string>
+    <string name="record_sound">Səs yaz</string>
+    <string name="directory">Kataloq</string>
+    <string name="choose_dir">Kataloq seç</string>
+    <string name="app_name">Record You</string>
+    <string name="delete">Sil</string>
+    <string name="irreversible">Siz əminsiniz\? Bu geri qaytarıla bilməz!</string>
+</resources>
