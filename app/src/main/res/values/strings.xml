@@ -2,5 +2,5 @@
     <string name="app_name">Record You</string>
 
     <string name="format">Format</string>
-    <string name="codec">Codec</string>
+    <string name="recordings">Recordings</string>
 </resources>

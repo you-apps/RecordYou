@@ -44,19 +44,19 @@ fun PlayerView(
     }
 
     if (playerModel.files.isNotEmpty()) {
-        ElevatedCard(
+        LazyColumn(
             modifier = modifier
         ) {
-            LazyColumn(
-                modifier = Modifier.padding(15.dp)
-            ) {
-                items(playerModel.files) {
+            items(playerModel.files) {
+                ElevatedCard(
+                    modifier = Modifier.padding(vertical = 5.dp)
+                ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.Start,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 5.dp)
+                            .padding(vertical = 8.dp, horizontal = 10.dp)
                     ) {
                         var playing by remember {
                             mutableStateOf(false)

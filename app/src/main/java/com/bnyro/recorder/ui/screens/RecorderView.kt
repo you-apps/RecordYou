@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AudioFile
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
@@ -35,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioOptionsSheet
-import com.bnyro.recorder.ui.components.PlayerView
 import com.bnyro.recorder.ui.models.PlayerModel
 import com.bnyro.recorder.ui.models.RecorderModel
 
@@ -49,6 +49,9 @@ fun RecorderView() {
     var showBottomSheet by remember {
         mutableStateOf(false)
     }
+    var showPlayerScreen by remember {
+        mutableStateOf(false)
+    }
 
     Scaffold { pV ->
         Box(
@@ -56,12 +59,6 @@ fun RecorderView() {
                 .fillMaxSize()
                 .padding(pV)
         ) {
-            PlayerView(
-                modifier = Modifier.padding(
-                    horizontal = 20.dp,
-                    vertical = 30.dp
-                )
-            )
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -92,7 +89,6 @@ fun RecorderView() {
                                 recorderModel.startRecording(context)
                             } else {
                                 recorderModel.stopRecording()
-                                playerModel.loadFiles(context)
                             }
                         }
                     ) {
@@ -114,13 +110,25 @@ fun RecorderView() {
                                 recorderModel.pauseRecording()
                             }
                         }
+                    } else {
+                        ClickableIcon(
+                            imageVector = Icons.Default.AudioFile
+                        ) {
+                            showPlayerScreen = true
+                        }
                     }
                 }
             }
         }
+
         if (showBottomSheet) {
             AudioOptionsSheet {
                 showBottomSheet = false
+            }
+        }
+        if (showPlayerScreen) {
+            PlayerScreen {
+                showPlayerScreen = false
             }
         }
     }
