@@ -17,7 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
@@ -48,7 +50,7 @@ fun AudioOptionsSheet(
     ) {
         Column(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(vertical = 10.dp, horizontal = 20.dp)
                 .padding(bottom = 10.dp)
         ) {
             ChipSelector(
@@ -63,6 +65,12 @@ fun AudioOptionsSheet(
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = stringResource(R.string.directory),
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
+            )
+            Spacer(modifier = Modifier.height(5.dp))
             Button(
                 onClick = {
                     val lastDir = App.preferences.getString(App.targetFolderKey, "")

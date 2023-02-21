@@ -13,7 +13,7 @@ class App : Application() {
     companion object {
         private const val PREF_FILE_NAME = "RecordYou"
         lateinit var preferences: SharedPreferences
-        val editor get() = preferences.edit()
+        val editor: SharedPreferences.Editor get() = preferences.edit()
 
         const val targetFolderKey = "targetFolder"
         const val audioFormatKey = "audioFormat"
