@@ -12,4 +12,5 @@
     <string name="irreversible">Are you sure? This can\'t be undone!</string>
     <string name="nothing_here">Nothing here</string>
     <string name="record_sound">Record sound</string>
+    <string name="choose_dir">Choose directory</string>
 </resources>

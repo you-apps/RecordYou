@@ -3,6 +3,7 @@ package com.bnyro.recorder.obj
 import android.media.MediaRecorder
 import android.os.Build
 import androidx.annotation.RequiresApi
+import com.bnyro.recorder.App
 
 data class AudioFormat(
     val format: Int,
@@ -11,7 +12,7 @@ data class AudioFormat(
     val extension: String
 ) {
     companion object {
-        val m4a = AudioFormat(
+        private val m4a = AudioFormat(
             MediaRecorder.OutputFormat.MPEG_4,
             MediaRecorder.AudioEncoder.AAC,
             "M4A",
@@ -41,5 +42,9 @@ data class AudioFormat(
         val formats = mutableListOf(m4a, aac, tgp).also {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) it.add(opus)
         }
+
+        fun getCurrent() = formats.firstOrNull {
+            it.name == App.preferences.getString(App.audioFormatKey, m4a.name)
+        } ?: m4a
     }
 }

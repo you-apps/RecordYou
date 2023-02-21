@@ -27,7 +27,7 @@ class RecorderModel : ViewModel() {
     val recordedAmplitudes = mutableStateListOf<Int>()
 
     private var fileDescriptor: ParcelFileDescriptor? = null
-    var audioFormat = AudioFormat.m4a
+    var audioFormat = AudioFormat.getCurrent()
     private val handler = Handler(Looper.getMainLooper())
 
     fun startRecording(context: Context) {

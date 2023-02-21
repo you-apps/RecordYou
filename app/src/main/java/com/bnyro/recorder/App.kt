@@ -15,6 +15,7 @@ class App : Application() {
         lateinit var preferences: SharedPreferences
         val editor get() = preferences.edit()
 
-        val targetFolderKey = "targetFolder"
+        const val targetFolderKey = "targetFolder"
+        const val audioFormatKey = "audioFormat"
     }
 }

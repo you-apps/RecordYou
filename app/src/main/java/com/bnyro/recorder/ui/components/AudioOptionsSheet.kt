@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
@@ -45,7 +46,10 @@ fun AudioOptionsSheet(
                 values = AudioFormat.formats.map { it.format },
                 selections = listOf(audioFormat.format)
             ) { index, newValue ->
-                if (newValue) audioFormat = AudioFormat.formats[index]
+                if (newValue) {
+                    audioFormat = AudioFormat.formats[index]
+                    App.editor.putString(App.audioFormatKey, audioFormat.name).apply()
+                }
             }
         }
     }
