@@ -36,14 +36,13 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioOptionsSheet
-import com.bnyro.recorder.ui.models.PlayerModel
+import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.models.RecorderModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecorderView() {
     val recorderModel: RecorderModel = viewModel()
-    val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
 
     var showBottomSheet by remember {
@@ -59,6 +58,12 @@ fun RecorderView() {
                 .fillMaxSize()
                 .padding(pV)
         ) {
+            AudioVisualizer(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(bottom = 50.dp)
+            )
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()

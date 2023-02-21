@@ -10,6 +10,7 @@ import android.os.Looper
 import android.os.ParcelFileDescriptor
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.os.postDelayed
@@ -24,6 +25,7 @@ class RecorderModel : ViewModel() {
     var isRecording: Boolean by mutableStateOf(false)
     var recordedTime by mutableStateOf<Long?>(null)
     var isPaused by mutableStateOf(false)
+    val recordedAmplitudes = mutableStateListOf<Int>()
 
     private var fileDescriptor: ParcelFileDescriptor? = null
     var audioFormat = AudioFormat.m4a
@@ -50,6 +52,7 @@ class RecorderModel : ViewModel() {
         isRecording = true
         recordedTime = 0L
         handler.postDelayed(this::updateTime, 1000)
+        handler.postDelayed(this::updateAmplitude, 100)
     }
 
     fun stopRecording() {
@@ -61,6 +64,7 @@ class RecorderModel : ViewModel() {
         recorder = null
         isRecording = false
         recordedTime = null
+        recordedAmplitudes.clear()
         fileDescriptor?.close()
     }
 
@@ -75,6 +79,7 @@ class RecorderModel : ViewModel() {
         isPaused = false
         recorder?.resume()
         handler.postDelayed(this::updateTime, 1000)
+        handler.postDelayed(this::updateAmplitude, 100)
     }
 
     private fun newRecorder(context: Context): MediaRecorder {
@@ -90,5 +95,16 @@ class RecorderModel : ViewModel() {
         if (!isRecording || isPaused) return
         recordedTime = recordedTime?.plus(1)
         handler.postDelayed(this::updateTime, 1000)
+    }
+
+    private fun updateAmplitude() {
+        if (!isRecording || isPaused) return
+
+        recorder?.maxAmplitude?.let {
+            if (recordedAmplitudes.size >= 90) recordedAmplitudes.removeAt(0)
+            recordedAmplitudes.add(it)
+        }
+
+        handler.postDelayed(this::updateAmplitude, 100)
     }
 }
