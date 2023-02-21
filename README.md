@@ -32,7 +32,7 @@
 
 ## Translation
 <a href="https://hosted.weblate.org/projects/you-apps/record-you/">
-<img src="https://hosted.weblate.org/widgets/you-apps/-/287x66-grey.png" alt="Translation status" />
+<img src="https://hosted.weblate.org/widgets/you-apps/-/record-you/287x66-grey.png" alt="Translation status" />
 </a>
 
 ## License
