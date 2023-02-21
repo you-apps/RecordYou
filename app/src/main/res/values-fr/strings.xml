@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Record You</string>
+    <string name="file_name">Nom de fichier</string>
+    <string name="delete">Supprimer</string>
+    <string name="irreversible">Êtes vous sûr \? Cela ne peut pas être annulé !</string>
+    <string name="nothing_here">Rien ici</string>
+    <string name="record_sound">Enregistrer le son</string>
+    <string name="directory">Répertoire</string>
+    <string name="choose_dir">Choisissez le répertoire</string>
+    <string name="format">Format</string>
+    <string name="recordings">Enregistrements</string>
+    <string name="okay">D\'accord</string>
+    <string name="cancel">Annuler</string>
+    <string name="rename">Renommer</string>
+</resources>
