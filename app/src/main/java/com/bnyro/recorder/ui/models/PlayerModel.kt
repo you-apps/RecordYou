@@ -57,7 +57,7 @@ class PlayerModel : ViewModel() {
     }
 
     private fun getAvailableFiles(context: Context): List<DocumentFile> {
-        return StorageHelper.getOutputDir(context).listFiles().toList()
+        return StorageHelper.getOutputDir(context).listFiles().filter { it.isFile }.toList()
     }
 
     private fun getMediaPlayer(): MediaPlayer {
