@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="format">Формат</string>
+    <string name="recordings">Записи</string>
+    <string name="rename">Перейменувати</string>
+    <string name="app_name">Record You</string>
+    <string name="delete">Видалити</string>
+    <string name="okay">Добре</string>
+    <string name="cancel">Скасувати</string>
+    <string name="file_name">Назва файлу</string>
+    <string name="irreversible">Ви впевнені\? Це не можна відмінити!</string>
+    <string name="nothing_here">Тут нічого немає</string>
+    <string name="record_sound">Записати звук</string>
+    <string name="directory">Каталог</string>
+    <string name="choose_dir">Виберіть каталог</string>
+</resources>
