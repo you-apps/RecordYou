@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="format">Format</string>
+    <string name="rename">Gi nytt navn</string>
+    <string name="delete">Slett</string>
+    <string name="file_name">Filnavn</string>
+    <string name="recordings">Opptak</string>
+    <string name="nothing_here">Ingenting her</string>
+    <string name="record_sound">Ta opp lyd</string>
+    <string name="directory">Mappe</string>
+    <string name="choose_dir">Velg mappe</string>
+    <string name="irreversible">Utfør uten mulighet for angring\?</string>
+    <string name="app_name">Record You</string>
+    <string name="okay">OK</string>
+    <string name="cancel">Avbryt</string>
+</resources>
