@@ -8,7 +8,7 @@
     <string name="record_sound">Enregistrer le son</string>
     <string name="directory">Répertoire</string>
     <string name="choose_dir">Choisissez le répertoire</string>
-    <string name="format">Format</string>
+    <string name="audio_format">Format</string>
     <string name="recordings">Enregistrements</string>
     <string name="okay">D\'accord</string>
     <string name="cancel">Annuler</string>

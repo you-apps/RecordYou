@@ -3,7 +3,7 @@
     <string name="directory">Cartella</string>
     <string name="choose_dir">Scegli la cartella</string>
     <string name="record_sound">Registra il suono</string>
-    <string name="format">Formato</string>
+    <string name="audio_format">Formato</string>
     <string name="okay">Ok</string>
     <string name="cancel">Annulla</string>
     <string name="recordings">Registrazioni</string>
@@ -12,5 +12,4 @@
     <string name="nothing_here">Non c\'è niente qui</string>
     <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata!</string>
     <string name="delete">Elimina</string>
-    <string name="app_name">Record You</string>
 </resources>

@@ -54,7 +54,7 @@ fun AudioOptionsSheet(
                 .padding(bottom = 10.dp)
         ) {
             ChipSelector(
-                title = stringResource(R.string.format),
+                title = stringResource(R.string.audio_format),
                 entries = AudioFormat.formats.map { it.name },
                 values = AudioFormat.formats.map { it.format },
                 selections = listOf(audioFormat.format)

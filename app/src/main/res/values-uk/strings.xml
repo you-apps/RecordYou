@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="format">Формат</string>
+    <string name="audio_format">Формат</string>
     <string name="recordings">Записи</string>
     <string name="rename">Перейменувати</string>
-    <string name="app_name">Record You</string>
     <string name="delete">Видалити</string>
     <string name="okay">Добре</string>
     <string name="cancel">Скасувати</string>

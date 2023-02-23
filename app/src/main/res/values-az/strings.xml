@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="format">Format</string>
+    <string name="audio_format">Format</string>
     <string name="recordings">Səsyazmalar</string>
     <string name="okay">Oldu</string>
     <string name="cancel">Ləğv et</string>
@@ -10,7 +10,6 @@
     <string name="record_sound">Səs yaz</string>
     <string name="directory">Kataloq</string>
     <string name="choose_dir">Kataloq seç</string>
-    <string name="app_name">Record You</string>
     <string name="delete">Sil</string>
     <string name="irreversible">Siz əminsiniz\? Bu geri qaytarıla bilməz!</string>
 </resources>

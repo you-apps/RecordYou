@@ -5,8 +5,7 @@
     <string name="record_sound">录制声音</string>
     <string name="choose_dir">选择目录</string>
     <string name="okay">好的</string>
-    <string name="app_name">Record You</string>
-    <string name="format">格式</string>
+    <string name="audio_format">格式</string>
     <string name="rename">重命名</string>
     <string name="recordings">录音列表</string>
     <string name="cancel">取消</string>
