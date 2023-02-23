@@ -13,4 +13,8 @@
     <string name="record_sound">Record sound</string>
     <string name="directory">Directory</string>
     <string name="choose_dir">Choose directory</string>
+    <string name="screen_recorder">Screen recorder</string>
+    <string name="recording_screen">Recording screen …</string>
+    <string name="record_screen">Record screen</string>
+    <string name="stop">Stop</string>
 </resources>

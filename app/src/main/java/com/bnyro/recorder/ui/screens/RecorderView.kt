@@ -1,7 +1,13 @@
 package com.bnyro.recorder.ui.screens
 
+import android.app.Activity.RESULT_OK
+import android.content.Context
+import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,11 +19,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AudioFile
+import androidx.compose.material.icons.filled.ExpandLess
+import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Stop
+import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -46,12 +55,23 @@ import com.bnyro.recorder.ui.models.RecorderModel
 fun RecorderView() {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
+    val mProjectionManager = context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
 
     var showBottomSheet by remember {
         mutableStateOf(false)
     }
     var showPlayerScreen by remember {
         mutableStateOf(false)
+    }
+    var recordScreenMode by remember {
+        mutableStateOf(false)
+    }
+
+    val requestRecording = rememberLauncherForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode != RESULT_OK) return@rememberLauncherForActivityResult
+        recorderModel.startVideoRecorder(context, result)
     }
 
     Scaffold { pV ->
@@ -71,7 +91,9 @@ fun RecorderView() {
                     modifier = Modifier
                         .align(Alignment.TopCenter)
                         .padding(top = 200.dp),
-                    text = stringResource(R.string.record_sound),
+                    text = stringResource(
+                        if (recordScreenMode) R.string.record_screen else R.string.record_sound
+                    ),
                     fontSize = MaterialTheme.typography.headlineLarge.fontSize,
                     fontWeight = MaterialTheme.typography.headlineLarge.fontWeight
                 )
@@ -81,7 +103,7 @@ fun RecorderView() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 60.dp),
+                    .padding(bottom = 25.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 recorderModel.recordedTime?.let {
@@ -101,19 +123,35 @@ fun RecorderView() {
 
                     Spacer(modifier = Modifier.width(20.dp))
 
-                    FloatingActionButton(
-                        onClick = {
-                            if (!recorderModel.isRecording) {
-                                recorderModel.startRecording(context)
-                            } else {
-                                recorderModel.stopRecording()
+                    Crossfade(targetState = recordScreenMode) {
+                        when (it) {
+                            true -> FloatingActionButton(
+                                onClick = {
+                                    requestRecording.launch(
+                                        mProjectionManager.createScreenCaptureIntent()
+                                    )
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Videocam,
+                                    contentDescription = null
+                                )
+                            }
+                            false -> FloatingActionButton(
+                                onClick = {
+                                    if (!recorderModel.isRecording) {
+                                        recorderModel.startAudioRecorder(context)
+                                    } else {
+                                        recorderModel.stopRecording()
+                                    }
+                                }
+                            ) {
+                                Icon(
+                                    imageVector = if (recorderModel.isRecording) Icons.Default.Stop else Icons.Default.Mic,
+                                    contentDescription = null
+                                )
                             }
                         }
-                    ) {
-                        Icon(
-                            imageVector = if (recorderModel.isRecording) Icons.Default.Stop else Icons.Default.Mic,
-                            contentDescription = null
-                        )
                     }
 
                     Spacer(modifier = Modifier.width(20.dp))
@@ -135,6 +173,13 @@ fun RecorderView() {
                             showPlayerScreen = true
                         }
                     }
+                }
+
+                Spacer(modifier = Modifier.height(5.dp))
+                ClickableIcon(
+                    imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess
+                ) {
+                    recordScreenMode = !recordScreenMode
                 }
             }
         }

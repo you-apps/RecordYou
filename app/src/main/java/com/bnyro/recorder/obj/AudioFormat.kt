@@ -28,7 +28,7 @@ data class AudioFormat(
             MediaRecorder.OutputFormat.THREE_GPP,
             MediaRecorder.AudioEncoder.AAC,
             "3GP",
-            ".3gp"
+            "3gp"
         )
 
         @RequiresApi(Build.VERSION_CODES.Q)
@@ -36,7 +36,7 @@ data class AudioFormat(
             MediaRecorder.OutputFormat.OGG,
             MediaRecorder.AudioEncoder.OPUS,
             "OPUS",
-            ".ogg"
+            "ogg"
         )
 
         val formats = mutableListOf(m4a, aac, tgp).also {

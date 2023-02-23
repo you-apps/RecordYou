@@ -1,36 +1,62 @@
 package com.bnyro.recorder.ui.models
 
 import android.Manifest
+import android.content.ComponentName
 import android.content.Context
+import android.content.Intent
+import android.content.ServiceConnection
 import android.media.MediaRecorder
 import android.os.Build
 import android.os.Handler
+import android.os.IBinder
 import android.os.Looper
 import android.os.ParcelFileDescriptor
+import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.os.postDelayed
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.AudioFormat
+import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.StorageHelper
 
 class RecorderModel : ViewModel() {
     private val permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO)
     private var recorder: MediaRecorder? = null
+
     var isRecording: Boolean by mutableStateOf(false)
     var recordedTime by mutableStateOf<Long?>(null)
     var isPaused by mutableStateOf(false)
     val recordedAmplitudes = mutableStateListOf<Int>()
+    private var activityResult: ActivityResult? = null
 
     private var fileDescriptor: ParcelFileDescriptor? = null
     var audioFormat = AudioFormat.getCurrent()
     private val handler = Handler(Looper.getMainLooper())
 
-    fun startRecording(context: Context) {
+    private val connection = object : ServiceConnection {
+        override fun onServiceConnected(className: ComponentName, service: IBinder) {
+            val binder = service as ScreenRecorderService.LocalBinder
+            binder.getService().preInit(activityResult!!)
+        }
+
+        override fun onServiceDisconnected(arg0: ComponentName) {}
+    }
+
+    fun startVideoRecorder(context: Context, result: ActivityResult) {
+        activityResult = result
+        val serviceIntent = Intent(context, ScreenRecorderService::class.java)
+        context.stopService(serviceIntent)
+        ContextCompat.startForegroundService(context, serviceIntent)
+        context.bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE)
+    }
+
+    fun startAudioRecorder(context: Context) {
         if (!PermissionHelper.checkPermissions(context, permissions)) return
 
         recorder = newRecorder(context).apply {
@@ -79,15 +105,6 @@ class RecorderModel : ViewModel() {
         recorder?.resume()
         handler.postDelayed(this::updateTime, 1000)
         handler.postDelayed(this::updateAmplitude, 100)
-    }
-
-    private fun newRecorder(context: Context): MediaRecorder {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            MediaRecorder(context)
-        } else {
-            @Suppress("DEPRECATION")
-            MediaRecorder()
-        }
     }
 
     private fun updateTime() {
