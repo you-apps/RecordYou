@@ -1,1 +1,1 @@
-Modern voice recorder app using Material Design 3 (You) and Jetpack Compose
+Material Design 3 (You) voice and screen recorder app

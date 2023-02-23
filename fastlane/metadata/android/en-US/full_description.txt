@@ -1,4 +1,4 @@
-<i>Record You</i> is a voice recorder app built with <a href="https://m3.material.io/">Material Design 3 (You)</a>.
+<i>Record You</i> is a voice and screen recorder app built with <a href="https://m3.material.io/">Material Design 3 (You)</a>.
 
 It supports multiple audio formats and codecs, such as M4A, AAC and OPUS.
 
