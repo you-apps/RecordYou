@@ -79,7 +79,7 @@ class ScreenRecorderService : Service() {
     }
 
     private fun startNotification() {
-        val intent = Intent(getIntentActon())
+        val intent = Intent(STOP_INTENT_ACTION)
         val pendingIntent = PendingIntent.getBroadcast(
             this,
             2,
@@ -113,7 +113,7 @@ class ScreenRecorderService : Service() {
             startForeground(NotificationHelper.RECORDING_NOTIFICATION_ID, notification.build())
         }
 
-        registerReceiver(receiver, IntentFilter(getIntentActon()))
+        registerReceiver(receiver, IntentFilter(STOP_INTENT_ACTION))
     }
 
     private fun startRecording() {
@@ -165,12 +165,12 @@ class ScreenRecorderService : Service() {
         }
     }
 
-    private fun getIntentActon(): String {
-        return "$packageName.STOP"
-    }
-
     inner class LocalBinder : Binder() {
         // Return this instance of [BackgroundMode] so clients can call public methods
         fun getService(): ScreenRecorderService = this@ScreenRecorderService
+    }
+
+    companion object {
+        const val STOP_INTENT_ACTION = "com.bnyro.recorder.STOP"
     }
 }

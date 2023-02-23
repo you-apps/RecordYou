@@ -1,7 +1,10 @@
 package com.bnyro.recorder.ui.screens
 
 import android.app.Activity.RESULT_OK
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
@@ -45,6 +48,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.components.SettingsBottomSheet
@@ -66,12 +70,25 @@ fun RecorderView() {
     var recordScreenMode by remember {
         mutableStateOf(false)
     }
+    var isRecordingScreen by remember {
+        mutableStateOf(false)
+    }
+    val stopReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            isRecordingScreen = false
+        }
+    }
 
     val requestRecording = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode != RESULT_OK) return@rememberLauncherForActivityResult
         recorderModel.startVideoRecorder(context, result)
+        context.registerReceiver(
+            stopReceiver,
+            IntentFilter(ScreenRecorderService.STOP_INTENT_ACTION)
+        )
+        isRecordingScreen = true
     }
 
     Scaffold { pV ->
@@ -127,13 +144,22 @@ fun RecorderView() {
                         when (it) {
                             true -> FloatingActionButton(
                                 onClick = {
-                                    requestRecording.launch(
-                                        mProjectionManager.createScreenCaptureIntent()
-                                    )
+                                    if (!isRecordingScreen) {
+                                        requestRecording.launch(
+                                            mProjectionManager.createScreenCaptureIntent()
+                                        )
+                                    } else {
+                                        context.unregisterReceiver(stopReceiver)
+                                        val stopIntent = Intent(
+                                            ScreenRecorderService.STOP_INTENT_ACTION
+                                        )
+                                        context.sendBroadcast(stopIntent)
+                                        isRecordingScreen = false
+                                    }
                                 }
                             ) {
                                 Icon(
-                                    imageVector = Icons.Default.Videocam,
+                                    imageVector = if (!isRecordingScreen) Icons.Default.Videocam else Icons.Default.Stop,
                                     contentDescription = null
                                 )
                             }
