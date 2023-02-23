@@ -42,7 +42,7 @@ class RecorderModel : ViewModel() {
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             val binder = service as ScreenRecorderService.LocalBinder
-            binder.getService().preInit(activityResult!!)
+            binder.getService().startRecording(activityResult!!)
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {}

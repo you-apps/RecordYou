@@ -46,8 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
-import com.bnyro.recorder.ui.components.AudioOptionsSheet
 import com.bnyro.recorder.ui.components.AudioVisualizer
+import com.bnyro.recorder.ui.components.SettingsBottomSheet
 import com.bnyro.recorder.ui.models.RecorderModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -185,7 +185,7 @@ fun RecorderView() {
         }
 
         if (showBottomSheet) {
-            AudioOptionsSheet {
+            SettingsBottomSheet {
                 showBottomSheet = false
             }
         }

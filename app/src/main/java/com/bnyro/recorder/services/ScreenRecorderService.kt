@@ -22,7 +22,9 @@ import androidx.activity.result.ActivityResult
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
+import com.bnyro.recorder.App
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.VideoResolution
 import com.bnyro.recorder.util.NotificationHelper
@@ -62,7 +64,7 @@ class ScreenRecorderService : Service() {
 
     override fun onBind(intent: Intent?): IBinder = binder
 
-    fun preInit(result: ActivityResult) {
+    fun startRecording(result: ActivityResult) {
         this.activityResult = result
         initMediaProjection()
         startRecording()
@@ -72,7 +74,7 @@ class ScreenRecorderService : Service() {
         val mProjectionManager = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
         mediaProjection = mProjectionManager.getMediaProjection(
             Activity.RESULT_OK,
-            activityResult!!.data!!
+            activityResult?.data!!
         )
     }
 
@@ -117,15 +119,27 @@ class ScreenRecorderService : Service() {
     private fun startRecording() {
         val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
         val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
+        val audioSource = AudioSource.fromInt(App.preferences.getInt(App.audioSourceKey, 0))
 
         recorder = newRecorder(this).apply {
             val resolution = VideoResolution.resolutions[2]
 
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
+
+            if (audioSource == AudioSource.MICROPHONE) {
+                setAudioSource(MediaRecorder.AudioSource.MIC)
+            }
+
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP)
+
+            if (audioSource == AudioSource.MICROPHONE) {
+                setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
+            }
+
             setVideoSize(resolution.width, resolution.height)
             setVideoFrameRate(display.refreshRate.toInt())
+
             virtualDisplay = mediaProjection!!.createVirtualDisplay(
                 getString(R.string.app_name),
                 resolution.width,

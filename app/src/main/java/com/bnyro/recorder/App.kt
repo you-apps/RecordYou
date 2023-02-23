@@ -19,5 +19,6 @@ class App : Application() {
 
         const val targetFolderKey = "targetFolder"
         const val audioFormatKey = "audioFormat"
+        const val audioSourceKey = "audioSource"
     }
 }

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.models.RecorderModel
@@ -30,12 +31,17 @@ import com.bnyro.recorder.util.PickFolderContract
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AudioOptionsSheet(
+fun SettingsBottomSheet(
     onDismissRequest: () -> Unit
 ) {
     val recorderModel: RecorderModel = viewModel()
     var audioFormat by remember {
         mutableStateOf(recorderModel.audioFormat)
+    }
+    var screenAudioSource by remember {
+        mutableStateOf(
+            AudioSource.fromInt(App.preferences.getInt(App.audioSourceKey, 0))
+        )
     }
     val directoryPicker = rememberLauncherForActivityResult(PickFolderContract()) {
         it ?: return@rememberLauncherForActivityResult
@@ -79,6 +85,21 @@ fun AudioOptionsSheet(
                 }
             ) {
                 Text(stringResource(R.string.choose_dir))
+            }
+            Spacer(modifier = Modifier.height(5.dp))
+            val audioValues = AudioSource.values().map { it.value }
+            ChipSelector(
+                title = stringResource(R.string.screen_recorder),
+                entries = listOf(R.string.no_audio, R.string.microphone).map {
+                    stringResource(it)
+                },
+                values = audioValues,
+                selections = listOf(screenAudioSource.value)
+            ) { index, newValue ->
+                if (newValue) {
+                    screenAudioSource = AudioSource.fromInt(audioValues[index])
+                    App.editor.putInt(App.audioSourceKey, audioValues[index]).apply()
+                }
             }
         }
     }
