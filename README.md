@@ -2,7 +2,7 @@
 <div align="center">
   <img width="200" height="200"src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">
   <h1>Record You</h1>
-<p>Modern voice recorder app using <a href="https://m3.material.io/">Material Design 3 (You)</a> and Jetpack Compose.</p>
+<p><a href="https://m3.material.io/">Material Design 3 (You)</a> voice and screen recorder app</p>
 
 <!-- ---------- Badges ---------- -->
   <div align="center">
@@ -20,6 +20,7 @@
 
 - [x] Material Design 3 (You)
 - [x] Dark and light theme
+- [X] Support for audio and screen recording
 - [X] Different available formats and codecs
 - [X] In-app recordings player
 - [X] SAF (Storage Access Framework) support
