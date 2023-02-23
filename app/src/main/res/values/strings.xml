@@ -17,7 +17,6 @@
     <string name="recording_screen">Recording screen …</string>
     <string name="record_screen">Record screen</string>
     <string name="stop">Stop</string>
-    <string name="device_audio">Device audio</string>
     <string name="microphone">Microphone</string>
     <string name="no_audio">No audio</string>
 </resources>
