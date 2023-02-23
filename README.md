@@ -31,6 +31,15 @@
 
 [<img src="ghbadge.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/recordyou/releases)
 
+<!-- ---------- Screenshots ---------- -->
+## Screenshots
+<div style="display: flex">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1-audio-recorder.png" width="24%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2-screen-recorder.png" width="24%">  
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3-recordings.png" width="24%">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-settings.png" width="24%">
+</div>
+
 ## Translation
 <a href="https://hosted.weblate.org/projects/you-apps/record-you/">
 <img src="https://hosted.weblate.org/widgets/you-apps/-/record-you/287x66-grey.png" alt="Translation status" />
