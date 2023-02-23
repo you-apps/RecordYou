@@ -29,7 +29,12 @@
 <!-- ---------- Download ---------- -->
 ## Download
 
-[<img src="ghbadge.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/recordyou/releases)
+<div align="center">
+
+[<img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height="80">](https://apt.izzysoft.de/fdroid/index/apk/com.bnyro.recorder)
+[<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/RecordYou/releases)
+
+</div>
 
 <!-- ---------- Screenshots ---------- -->
 ## Screenshots
