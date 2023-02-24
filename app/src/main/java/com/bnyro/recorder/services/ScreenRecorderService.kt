@@ -54,7 +54,7 @@ class ScreenRecorderService : Service() {
     override fun onDestroy() {
         NotificationManagerCompat.from(this).cancel(NotificationHelper.RECORDING_NOTIFICATION_ID)
 
-        recorder?.apply {
+        recorder?.runCatching {
             stop()
             release()
         }
@@ -121,6 +121,9 @@ class ScreenRecorderService : Service() {
             startForeground(NotificationHelper.RECORDING_NOTIFICATION_ID, notification.build())
         }
 
+        runCatching {
+            unregisterReceiver(receiver)
+        }
         registerReceiver(receiver, IntentFilter(STOP_INTENT_ACTION))
     }
 

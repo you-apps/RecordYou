@@ -86,7 +86,7 @@ class RecorderModel : ViewModel() {
     }
 
     fun stopRecording() {
-        recorder?.apply {
+        recorder?.runCatching {
             stop()
             release()
         }
