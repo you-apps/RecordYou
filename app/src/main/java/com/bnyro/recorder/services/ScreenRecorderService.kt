@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.ServiceInfo
+import android.content.res.Resources
 import android.hardware.display.DisplayManager
 import android.hardware.display.VirtualDisplay
 import android.media.MediaRecorder
@@ -19,6 +20,7 @@ import android.os.IBinder
 import android.os.ParcelFileDescriptor
 import android.util.Log
 import android.view.Display
+import android.view.Surface
 import androidx.activity.result.ActivityResult
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -130,7 +132,7 @@ class ScreenRecorderService : Service() {
         )
 
         recorder = PlayerHelper.newRecorder(this).apply {
-            val resolution = VideoResolution.resolutions[2]
+            val resolution = getScreenResolution()
 
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
 
@@ -139,7 +141,7 @@ class ScreenRecorderService : Service() {
             }
 
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP)
+            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
 
             if (audioSource == AudioSource.MICROPHONE) {
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
@@ -152,7 +154,7 @@ class ScreenRecorderService : Service() {
                 getString(R.string.app_name),
                 resolution.width,
                 resolution.height,
-                resources.displayMetrics.densityDpi,
+                resolution.density,
                 DisplayManager.VIRTUAL_DISPLAY_FLAG_AUTO_MIRROR,
                 null,
                 null,
@@ -171,6 +173,27 @@ class ScreenRecorderService : Service() {
 
             virtualDisplay?.surface = surface
         }
+    }
+
+    private fun getScreenResolution(): VideoResolution {
+        val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
+        val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
+
+        val metrics = Resources.getSystem().displayMetrics
+
+        val orientationOnStart = display.rotation
+
+        val screenHeightNormal: Int
+        val screenWidthNormal: Int
+        if (orientationOnStart == Surface.ROTATION_90 || orientationOnStart == Surface.ROTATION_270) {
+            screenWidthNormal = metrics.heightPixels
+            screenHeightNormal = metrics.widthPixels
+        } else {
+            screenWidthNormal = metrics.widthPixels
+            screenHeightNormal = metrics.heightPixels
+        }
+
+        return VideoResolution(screenWidthNormal, screenHeightNormal, metrics.densityDpi)
     }
 
     inner class LocalBinder : Binder() {
