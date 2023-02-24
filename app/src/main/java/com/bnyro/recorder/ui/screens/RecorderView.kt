@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.res.Configuration
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
@@ -44,6 +45,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -64,6 +66,7 @@ fun RecorderView(
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
     val mProjectionManager = context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+    val orientation = LocalConfiguration.current.orientation
 
     var showBottomSheet by remember {
         mutableStateOf(false)
@@ -131,7 +134,9 @@ fun RecorderView(
                 Text(
                     modifier = Modifier
                         .align(Alignment.TopCenter)
-                        .padding(top = 200.dp),
+                        .padding(
+                            top = if (orientation == Configuration.ORIENTATION_LANDSCAPE) 50.dp else 200.dp
+                        ),
                     text = stringResource(
                         if (recordScreenMode) R.string.record_screen else R.string.record_sound
                     ),

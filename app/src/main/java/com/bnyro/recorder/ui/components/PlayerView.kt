@@ -55,7 +55,7 @@ fun PlayerView(
                     selectedTab = 0
                 },
                 text = {
-                    Text(text = stringResource(R.string.audio))
+                    Text(stringResource(R.string.audio))
                 }
             )
             Tab(
