@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.ServiceInfo
-import android.content.res.Resources
 import android.hardware.display.DisplayManager
 import android.hardware.display.VirtualDisplay
 import android.media.MediaRecorder
@@ -18,6 +17,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
 import android.view.Surface
@@ -182,7 +182,9 @@ class ScreenRecorderService : Service() {
         val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
         val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
 
-        val metrics = Resources.getSystem().displayMetrics
+        // TODO Use the window API instead on newer devices
+        val metrics = DisplayMetrics()
+        display.getRealMetrics(metrics)
 
         val orientationOnStart = display.rotation
 
