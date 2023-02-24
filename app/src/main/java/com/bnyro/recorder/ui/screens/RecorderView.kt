@@ -37,6 +37,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,6 +49,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.Recorder
 import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
@@ -56,7 +58,9 @@ import com.bnyro.recorder.ui.models.RecorderModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecorderView() {
+fun RecorderView(
+    initialRecorder: Recorder
+) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
     val mProjectionManager = context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
@@ -89,6 +93,26 @@ fun RecorderView() {
             IntentFilter(ScreenRecorderService.STOP_INTENT_ACTION)
         )
         isRecordingScreen = true
+    }
+
+    fun requestScreenRecording() {
+        if (!recorderModel.hasScreenRecordingPermissions(context)) return
+        requestRecording.launch(
+            mProjectionManager.createScreenCaptureIntent()
+        )
+    }
+
+    LaunchedEffect(Unit) {
+        when (initialRecorder) {
+            Recorder.AUDIO -> {
+                recorderModel.startAudioRecorder(context)
+            }
+            Recorder.SCREEN -> {
+                recordScreenMode = true
+                requestScreenRecording()
+            }
+            Recorder.NONE -> {}
+        }
     }
 
     Scaffold { pV ->
@@ -145,10 +169,7 @@ fun RecorderView() {
                             true -> FloatingActionButton(
                                 onClick = {
                                     if (!isRecordingScreen) {
-                                        if (!recorderModel.hasScreenRecordingPermissions(context)) return@FloatingActionButton
-                                        requestRecording.launch(
-                                            mProjectionManager.createScreenCaptureIntent()
-                                        )
+                                        requestScreenRecording()
                                     } else {
                                         context.unregisterReceiver(stopReceiver)
                                         val stopIntent = Intent(
