@@ -13,4 +13,15 @@
     <string name="record_sound">Ton aufnehmen</string>
     <string name="directory">Verzeichnis</string>
     <string name="choose_dir">Ordner Wählen</string>
+    <string name="screen_recorder">Bildschirm Aufnahme</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Ohne Ton</string>
+    <string name="share">Teilen</string>
+    <string name="open">Öffnen</string>
+    <string name="video">Video</string>
+    <string name="audio_format">Audio Format</string>
+    <string name="record_screen">Bildschirm Aufnehmen</string>
+    <string name="stop">Stopp</string>
+    <string name="recording_screen">Bildschirm wird aufgenommen …</string>
+    <string name="audio">Ton</string>
 </resources>
