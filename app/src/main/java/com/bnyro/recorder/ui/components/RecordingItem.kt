@@ -54,7 +54,7 @@ fun RecordingItem(recordingFile: DocumentFile) {
     var showPlayer by remember {
         mutableStateOf(false)
     }
-    var playing by remember {
+    var isPlaying by remember {
         mutableStateOf(false)
     }
 
@@ -73,20 +73,19 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 text = recordingFile.name.orEmpty()
             )
             ClickableIcon(
-                imageVector = if (playing) Icons.Default.Pause else Icons.Default.PlayArrow
+                imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow
             ) {
-                if (!playing) {
-                    if (recordingFile.name.orEmpty().endsWith(".mp4")) {
-                        showPlayer = true
-                    } else {
-                        playerModel.startPlaying(context, recordingFile) {
-                            playing = false
-                        }
+                if (!isPlaying && recordingFile.name.orEmpty().endsWith(".mp4")) {
+                    showPlayer = true
+                } else if (!isPlaying) {
+                    playerModel.startPlaying(context, recordingFile) {
+                        isPlaying = false
                     }
+                    isPlaying = true
                 } else {
                     playerModel.stopPlaying()
+                    isPlaying = false
                 }
-                playing = !playing
             }
             Box {
                 ClickableIcon(imageVector = Icons.Default.MoreVert) {
@@ -213,7 +212,6 @@ fun RecordingItem(recordingFile: DocumentFile) {
         FullscreenDialog(
             title = recordingFile.name.orEmpty().substringBeforeLast("."),
             onDismissRequest = {
-                playing = false
                 showPlayer = false
             }
         ) {
