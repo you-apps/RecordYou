@@ -16,6 +16,7 @@ fun VideoView(videoUri: Uri) {
     val context = LocalContext.current
 
     val exoPlayer = ExoPlayer.Builder(context)
+        .setUsePlatformDiagnostics(false)
         .build()
         .also { exoPlayer ->
             val mediaItem = MediaItem.Builder()
