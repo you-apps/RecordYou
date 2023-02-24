@@ -21,4 +21,6 @@
     <string name="no_audio">No audio</string>
     <string name="share">Share</string>
     <string name="open">Open</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
 </resources>
