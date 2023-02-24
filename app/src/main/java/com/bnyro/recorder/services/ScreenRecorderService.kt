@@ -22,12 +22,12 @@ import androidx.activity.result.ActivityResult
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
-import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.VideoResolution
 import com.bnyro.recorder.util.NotificationHelper
+import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
 class ScreenRecorderService : Service() {
@@ -119,7 +119,9 @@ class ScreenRecorderService : Service() {
     private fun startRecording() {
         val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
         val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
-        val audioSource = AudioSource.fromInt(App.preferences.getInt(App.audioSourceKey, 0))
+        val audioSource = AudioSource.fromInt(
+            Preferences.prefs.getInt(Preferences.audioSourceKey, 0)
+        )
 
         recorder = newRecorder(this).apply {
             val resolution = VideoResolution.resolutions[2]

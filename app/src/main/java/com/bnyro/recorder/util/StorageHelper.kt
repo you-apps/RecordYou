@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
-import com.bnyro.recorder.App
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -20,7 +19,7 @@ object StorageHelper {
     }
 
     fun getOutputDir(context: Context): DocumentFile {
-        val prefDir = App.preferences.getString(App.targetFolderKey, "")
+        val prefDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
         val audioDir = when {
             prefDir.isNullOrBlank() -> {
                 val dir = context.getExternalFilesDir(null) ?: context.filesDir

@@ -7,7 +7,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.documentfile.provider.DocumentFile
-import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import java.io.File
 
@@ -36,7 +35,7 @@ object IntentHelper {
     }
 
     private fun getFileUri(context: Context, file: DocumentFile): Uri {
-        return when (App.preferences.getString(App.targetFolderKey, "")) {
+        return when (Preferences.prefs.getString(Preferences.targetFolderKey, "")) {
             "", null -> {
                 val rawFile = File(
                     context.getExternalFilesDir(null) ?: context.filesDir,

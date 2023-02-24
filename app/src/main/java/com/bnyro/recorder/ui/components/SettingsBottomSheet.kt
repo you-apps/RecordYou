@@ -21,13 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.models.RecorderModel
 import com.bnyro.recorder.util.PickFolderContract
+import com.bnyro.recorder.util.Preferences
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,12 +40,12 @@ fun SettingsBottomSheet(
     }
     var screenAudioSource by remember {
         mutableStateOf(
-            AudioSource.fromInt(App.preferences.getInt(App.audioSourceKey, 0))
+            AudioSource.fromInt(Preferences.prefs.getInt(Preferences.audioSourceKey, 0))
         )
     }
     val directoryPicker = rememberLauncherForActivityResult(PickFolderContract()) {
         it ?: return@rememberLauncherForActivityResult
-        App.editor.putString(App.targetFolderKey, it.toString()).apply()
+        Preferences.edit { putString(Preferences.targetFolderKey, it.toString()) }
     }
 
     ModalBottomSheet(
@@ -67,7 +67,7 @@ fun SettingsBottomSheet(
             ) { index, newValue ->
                 if (newValue) {
                     audioFormat = AudioFormat.formats[index]
-                    App.editor.putString(App.audioFormatKey, audioFormat.name).apply()
+                    Preferences.edit { putString(Preferences.audioFormatKey, audioFormat.name) }
                 }
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -79,7 +79,7 @@ fun SettingsBottomSheet(
             Spacer(modifier = Modifier.height(5.dp))
             Button(
                 onClick = {
-                    val lastDir = App.preferences.getString(App.targetFolderKey, "")
+                    val lastDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
                         .takeIf { !it.isNullOrBlank() }
                     directoryPicker.launch(lastDir?.let { Uri.parse(it) })
                 }
@@ -98,7 +98,7 @@ fun SettingsBottomSheet(
             ) { index, newValue ->
                 if (newValue) {
                     screenAudioSource = AudioSource.fromInt(audioValues[index])
-                    App.editor.putInt(App.audioSourceKey, audioValues[index]).apply()
+                    Preferences.edit { putInt(Preferences.audioSourceKey, audioValues[index]) }
                 }
             }
         }

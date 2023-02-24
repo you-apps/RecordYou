@@ -3,7 +3,7 @@ package com.bnyro.recorder.obj
 import android.media.MediaRecorder
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.bnyro.recorder.App
+import com.bnyro.recorder.util.Preferences
 
 data class AudioFormat(
     val format: Int,
@@ -44,7 +44,7 @@ data class AudioFormat(
         }
 
         fun getCurrent() = formats.firstOrNull {
-            it.name == App.preferences.getString(App.audioFormatKey, m4a.name)
+            it.name == Preferences.prefs.getString(Preferences.audioFormatKey, m4a.name)
         } ?: m4a
     }
 }
