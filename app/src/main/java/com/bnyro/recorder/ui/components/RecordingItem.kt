@@ -32,6 +32,7 @@ import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.DialogButton
 import com.bnyro.recorder.ui.models.PlayerModel
+import com.bnyro.recorder.util.IntentHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -87,6 +88,26 @@ fun RecordingItem(recordingFile: DocumentFile) {
                     expanded = showDropDown,
                     onDismissRequest = { showDropDown = false }
                 ) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(stringResource(R.string.open))
+                        },
+                        onClick = {
+                            playerModel.stopPlaying()
+                            IntentHelper.openFile(context, recordingFile)
+                            showDropDown = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(stringResource(R.string.share))
+                        },
+                        onClick = {
+                            playerModel.stopPlaying()
+                            IntentHelper.shareFile(context, recordingFile)
+                            showDropDown = false
+                        }
+                    )
                     DropdownMenuItem(
                         text = {
                             Text(stringResource(R.string.rename))
