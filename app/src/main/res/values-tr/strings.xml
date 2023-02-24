@@ -12,4 +12,14 @@
     <string name="record_sound">Ses kaydet</string>
     <string name="directory">Dizin</string>
     <string name="choose_dir">Dizin seç</string>
+    <string name="recording_screen">Ekran kaydediliyor…</string>
+    <string name="record_screen">Ekranı kaydet</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Ses yok</string>
+    <string name="open">Aç</string>
+    <string name="audio">Ses</string>
+    <string name="video">Video</string>
+    <string name="screen_recorder">Ekran kaydedici</string>
+    <string name="stop">Durdur</string>
+    <string name="share">Paylaş</string>
 </resources>
