@@ -19,4 +19,6 @@
     <string name="stop">Stop</string>
     <string name="microphone">Microphone</string>
     <string name="no_audio">No audio</string>
+    <string name="share">Share</string>
+    <string name="open">Open</string>
 </resources>

@@ -1,15 +1,17 @@
 package com.bnyro.recorder.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
@@ -43,6 +45,9 @@ fun RecordingItem(recordingFile: DocumentFile) {
     var showDeleteDialog by remember {
         mutableStateOf(false)
     }
+    var showDropDown by remember {
+        mutableStateOf(false)
+    }
 
     ElevatedCard(
         modifier = Modifier.padding(vertical = 5.dp)
@@ -73,12 +78,36 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 }
                 playing = !playing
             }
-            ClickableIcon(imageVector = Icons.Default.Edit) {
-                playerModel.stopPlaying()
-                showRenameDialog = true
-            }
-            ClickableIcon(imageVector = Icons.Default.Delete) {
-                showDeleteDialog = true
+            Box {
+                ClickableIcon(imageVector = Icons.Default.MoreVert) {
+                    showDropDown = true
+                }
+
+                DropdownMenu(
+                    expanded = showDropDown,
+                    onDismissRequest = { showDropDown = false }
+                ) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(stringResource(R.string.rename))
+                        },
+                        onClick = {
+                            playerModel.stopPlaying()
+                            showRenameDialog = true
+                            showDropDown = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = {
+                            Text(stringResource(R.string.delete))
+                        },
+                        onClick = {
+                            playerModel.stopPlaying()
+                            showDeleteDialog = true
+                            showDropDown = false
+                        }
+                    )
+                }
             }
         }
     }
@@ -97,7 +126,7 @@ fun RecordingItem(recordingFile: DocumentFile) {
             },
             text = {
                 OutlinedTextField(
-                    value = fileName.orEmpty(),
+                    value = fileName,
                     onValueChange = {
                         fileName = it
                     },
