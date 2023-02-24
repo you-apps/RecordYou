@@ -125,15 +125,12 @@ class ScreenRecorderService : Service() {
     }
 
     private fun startRecording() {
-        val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
-        val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
         val audioSource = AudioSource.fromInt(
             Preferences.prefs.getInt(Preferences.audioSourceKey, 0)
         )
+        val resolution = getScreenResolution()
 
         recorder = PlayerHelper.newRecorder(this).apply {
-            val resolution = getScreenResolution()
-
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
 
             if (audioSource == AudioSource.MICROPHONE) {
@@ -142,13 +139,16 @@ class ScreenRecorderService : Service() {
 
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
             setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+            setVideoEncodingBitRate(
+                (BPP * resolution.frameRate * resolution.width * resolution.height).toInt()
+            )
 
             if (audioSource == AudioSource.MICROPHONE) {
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             }
 
             setVideoSize(resolution.width, resolution.height)
-            setVideoFrameRate(display.refreshRate.toInt())
+            setVideoFrameRate(resolution.frameRate)
 
             virtualDisplay = mediaProjection!!.createVirtualDisplay(
                 getString(R.string.app_name),
@@ -193,7 +193,12 @@ class ScreenRecorderService : Service() {
             screenHeightNormal = metrics.heightPixels
         }
 
-        return VideoResolution(screenWidthNormal, screenHeightNormal, metrics.densityDpi)
+        return VideoResolution(
+            screenWidthNormal,
+            screenHeightNormal,
+            metrics.densityDpi,
+            display.refreshRate.toInt()
+        )
     }
 
     inner class LocalBinder : Binder() {
@@ -203,5 +208,6 @@ class ScreenRecorderService : Service() {
 
     companion object {
         const val STOP_INTENT_ACTION = "com.bnyro.recorder.STOP"
+        private const val BPP = 0.25f
     }
 }
