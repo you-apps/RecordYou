@@ -1,13 +1,13 @@
 package com.bnyro.recorder.ui.models
 
 import android.content.Context
-import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.util.Log
 import androidx.compose.runtime.mutableStateListOf
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.StorageHelper
 import java.io.IOException
 import kotlinx.coroutines.Dispatchers
@@ -62,12 +62,7 @@ class PlayerModel : ViewModel() {
 
     private fun getMediaPlayer(): MediaPlayer {
         return MediaPlayer().apply {
-            setAudioAttributes(
-                AudioAttributes.Builder()
-                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                    .setUsage(AudioAttributes.USAGE_MEDIA)
-                    .build()
-            )
+            setAudioAttributes(PlayerHelper.getAudioAttributes())
         }
     }
 }

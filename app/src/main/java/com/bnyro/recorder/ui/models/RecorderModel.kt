@@ -20,10 +20,10 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.bnyro.recorder.enums.AudioSource
-import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
+import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
@@ -61,7 +61,7 @@ class RecorderModel : ViewModel() {
     fun startAudioRecorder(context: Context) {
         if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 
-        recorder = newRecorder(context).apply {
+        recorder = PlayerHelper.newRecorder(context).apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)

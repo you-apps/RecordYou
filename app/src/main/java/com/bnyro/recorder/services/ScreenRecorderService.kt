@@ -24,9 +24,9 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
-import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.VideoResolution
 import com.bnyro.recorder.util.NotificationHelper
+import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
@@ -123,7 +123,7 @@ class ScreenRecorderService : Service() {
             Preferences.prefs.getInt(Preferences.audioSourceKey, 0)
         )
 
-        recorder = newRecorder(this).apply {
+        recorder = PlayerHelper.newRecorder(this).apply {
             val resolution = VideoResolution.resolutions[2]
 
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
