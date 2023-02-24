@@ -17,6 +17,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
+import android.util.Log
 import android.view.Display
 import androidx.activity.result.ActivityResult
 import androidx.core.app.NotificationCompat
@@ -72,10 +73,15 @@ class ScreenRecorderService : Service() {
 
     private fun initMediaProjection() {
         val mProjectionManager = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
-        mediaProjection = mProjectionManager.getMediaProjection(
-            Activity.RESULT_OK,
-            activityResult?.data!!
-        )
+        try {
+            mediaProjection = mProjectionManager.getMediaProjection(
+                Activity.RESULT_OK,
+                activityResult?.data!!
+            )
+        } catch (e: Exception) {
+            Log.e("Media Projection Error", e.toString())
+            onDestroy()
+        }
     }
 
     private fun startNotification() {

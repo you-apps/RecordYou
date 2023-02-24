@@ -53,7 +53,10 @@ class RecorderModel : ViewModel() {
     fun startVideoRecorder(context: Context, result: ActivityResult) {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
-        context.stopService(serviceIntent)
+        runCatching {
+            context.unbindService(connection)
+            context.stopService(serviceIntent)
+        }
         ContextCompat.startForegroundService(context, serviceIntent)
         context.bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE)
     }
