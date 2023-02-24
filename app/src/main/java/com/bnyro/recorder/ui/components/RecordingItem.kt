@@ -31,7 +31,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.DialogButton
+import com.bnyro.recorder.ui.common.FullscreenDialog
 import com.bnyro.recorder.ui.models.PlayerModel
+import com.bnyro.recorder.ui.views.VideoView
 import com.bnyro.recorder.util.IntentHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -49,6 +51,12 @@ fun RecordingItem(recordingFile: DocumentFile) {
     var showDropDown by remember {
         mutableStateOf(false)
     }
+    var showPlayer by remember {
+        mutableStateOf(false)
+    }
+    var playing by remember {
+        mutableStateOf(false)
+    }
 
     ElevatedCard(
         modifier = Modifier.padding(vertical = 5.dp)
@@ -60,9 +68,6 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 .fillMaxWidth()
                 .padding(vertical = 8.dp, horizontal = 10.dp)
         ) {
-            var playing by remember {
-                mutableStateOf(false)
-            }
             Text(
                 modifier = Modifier.weight(1f),
                 text = recordingFile.name.orEmpty()
@@ -71,8 +76,12 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 imageVector = if (playing) Icons.Default.Pause else Icons.Default.PlayArrow
             ) {
                 if (!playing) {
-                    playerModel.startPlaying(context, recordingFile) {
-                        playing = false
+                    if (recordingFile.name.orEmpty().endsWith(".mp4")) {
+                        showPlayer = true
+                    } else {
+                        playerModel.startPlaying(context, recordingFile) {
+                            playing = false
+                        }
                     }
                 } else {
                     playerModel.stopPlaying()
@@ -198,5 +207,17 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 }
             }
         )
+    }
+
+    if (showPlayer) {
+        FullscreenDialog(
+            title = recordingFile.name.orEmpty().substringBeforeLast("."),
+            onDismissRequest = {
+                playing = false
+                showPlayer = false
+            }
+        ) {
+            VideoView(videoUri = recordingFile.uri)
+        }
     }
 }
