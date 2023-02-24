@@ -145,6 +145,7 @@ fun RecorderView() {
                             true -> FloatingActionButton(
                                 onClick = {
                                     if (!isRecordingScreen) {
+                                        if (!recorderModel.hasScreenRecordingPermissions(context)) return@FloatingActionButton
                                         requestRecording.launch(
                                             mProjectionManager.createScreenCaptureIntent()
                                         )

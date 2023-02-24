@@ -19,6 +19,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import com.bnyro.recorder.App
+import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.ext.newRecorder
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.services.ScreenRecorderService
@@ -26,7 +28,7 @@ import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.StorageHelper
 
 class RecorderModel : ViewModel() {
-    private val permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO)
+    private val audioPermission = arrayOf(Manifest.permission.RECORD_AUDIO)
     private var recorder: MediaRecorder? = null
 
     var isRecording: Boolean by mutableStateOf(false)
@@ -57,7 +59,7 @@ class RecorderModel : ViewModel() {
     }
 
     fun startAudioRecorder(context: Context) {
-        if (!PermissionHelper.checkPermissions(context, permissions)) return
+        if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 
         recorder = newRecorder(context).apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)
@@ -122,5 +124,20 @@ class RecorderModel : ViewModel() {
         }
 
         handler.postDelayed(this::updateAmplitude, 100)
+    }
+
+    fun hasScreenRecordingPermissions(context: Context): Boolean {
+        val requiredPermissions = arrayListOf<String>()
+
+        val recordAudio = App.preferences.getInt(App.audioSourceKey, 0) == AudioSource.MICROPHONE.value
+
+        if (recordAudio) requiredPermissions.add(Manifest.permission.RECORD_AUDIO)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            requiredPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        if (requiredPermissions.isEmpty()) return true
+
+        return PermissionHelper.checkPermissions(context, requiredPermissions.toTypedArray())
     }
 }
