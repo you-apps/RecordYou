@@ -10,4 +10,16 @@
     <string name="audio_format">অডিও ফর্ম্যাট</string>
     <string name="okay">আচ্ছা</string>
     <string name="nothing_here">কিছুই নেই</string>
+    <string name="irreversible">আপনি নিশ্চিত\? এটি পূর্বাবস্থায় ফেরত নেয়া সম্ভব হবে না!</string>
+    <string name="share">শেয়ার</string>
+    <string name="screen_recorder">স্ক্রিন রেকর্ডার</string>
+    <string name="recording_screen">স্ক্রিন রেকর্ড করা হচ্ছে …</string>
+    <string name="record_screen">স্ক্রিনরেকর্ড করুন</string>
+    <string name="stop">থামুন</string>
+    <string name="microphone">মাইক্রোফোন</string>
+    <string name="no_audio">শব্দহীন</string>
+    <string name="open">খুলুন</string>
+    <string name="audio">শব্দ</string>
+    <string name="directory">ডাইরেক্টরি</string>
+    <string name="video">ভিডিও</string>
 </resources>
