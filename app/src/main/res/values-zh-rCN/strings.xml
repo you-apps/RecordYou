@@ -7,9 +7,19 @@
     <string name="okay">好的</string>
     <string name="audio_format">格式</string>
     <string name="rename">重命名</string>
-    <string name="recordings">录音列表</string>
+    <string name="recordings">录制列表</string>
     <string name="cancel">取消</string>
     <string name="file_name">文件名</string>
     <string name="delete">删除</string>
     <string name="directory">目录</string>
+    <string name="screen_recorder">屏幕录制器</string>
+    <string name="recording_screen">录屏中 …</string>
+    <string name="record_screen">录屏</string>
+    <string name="stop">停止</string>
+    <string name="microphone">麦克风</string>
+    <string name="no_audio">无音频</string>
+    <string name="share">分享</string>
+    <string name="open">打开</string>
+    <string name="audio">音频</string>
+    <string name="video">视频</string>
 </resources>
