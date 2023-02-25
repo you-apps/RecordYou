@@ -1,76 +1,40 @@
 package com.bnyro.recorder.services
 
 import android.app.Activity
-import android.app.PendingIntent
-import android.app.Service
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.ServiceInfo
 import android.hardware.display.DisplayManager
 import android.hardware.display.VirtualDisplay
 import android.media.MediaRecorder
 import android.media.projection.MediaProjection
 import android.media.projection.MediaProjectionManager
-import android.os.Binder
 import android.os.Build
-import android.os.IBinder
-import android.os.ParcelFileDescriptor
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
 import android.view.Surface
 import androidx.activity.result.ActivityResult
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.ServiceCompat
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.obj.VideoResolution
-import com.bnyro.recorder.util.NotificationHelper
 import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
-class ScreenRecorderService : Service() {
-    private val binder = LocalBinder()
-
-    private var recorder: MediaRecorder? = null
+class ScreenRecorderService : RecorderService() {
     private var virtualDisplay: VirtualDisplay? = null
-    private var fileDescriptor: ParcelFileDescriptor? = null
     private var mediaProjection: MediaProjection? = null
     private var activityResult: ActivityResult? = null
-    private val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            onDestroy()
+    override val fgServiceType: Int?
+        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
+        } else {
+            null
         }
-    }
 
-    override fun onCreate() {
-        startNotification()
-    }
-
-    override fun onDestroy() {
-        NotificationManagerCompat.from(this).cancel(NotificationHelper.RECORDING_NOTIFICATION_ID)
-
-        recorder?.runCatching {
-            stop()
-            release()
-        }
-        virtualDisplay?.release()
-        recorder = null
-
-        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
-        super.onDestroy()
-    }
-
-    override fun onBind(intent: Intent?): IBinder = binder
-
-    fun startRecording(result: ActivityResult) {
-        this.activityResult = result
+    fun prepare(data: ActivityResult) {
+        this.activityResult = data
         initMediaProjection()
-        startRecording()
     }
 
     private fun initMediaProjection() {
@@ -86,48 +50,7 @@ class ScreenRecorderService : Service() {
         }
     }
 
-    private fun startNotification() {
-        val intent = Intent(STOP_INTENT_ACTION)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            2,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE
-        )
-        val stopAction = NotificationCompat.Action.Builder(
-            null,
-            getString(R.string.stop),
-            pendingIntent
-        )
-
-        val notification = NotificationCompat.Builder(
-            this,
-            NotificationHelper.RECORDING_NOTIFICATION_CHANNEL
-        )
-            .setContentTitle(getString(R.string.recording_screen))
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setOngoing(true)
-            .addAction(stopAction.build())
-            .setUsesChronometer(true)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(
-                NotificationHelper.RECORDING_NOTIFICATION_ID,
-                notification.build(),
-                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION
-            )
-        } else {
-            startForeground(NotificationHelper.RECORDING_NOTIFICATION_ID, notification.build())
-        }
-
-        runCatching {
-            unregisterReceiver(receiver)
-        }
-        registerReceiver(receiver, IntentFilter(STOP_INTENT_ACTION))
-    }
-
-    private fun startRecording() {
+    override fun start() {
         val audioSource = AudioSource.fromInt(
             Preferences.prefs.getInt(Preferences.audioSourceKey, 0)
         )
@@ -176,8 +99,9 @@ class ScreenRecorderService : Service() {
 
             virtualDisplay?.surface = surface
         }
-    }
 
+        super.start()
+    }
     private fun getScreenResolution(): VideoResolution {
         val displayManager = getSystemService(Context.DISPLAY_SERVICE) as DisplayManager
         val display = displayManager.getDisplay(Display.DEFAULT_DISPLAY)
@@ -206,13 +130,12 @@ class ScreenRecorderService : Service() {
         )
     }
 
-    inner class LocalBinder : Binder() {
-        // Return this instance of [BackgroundMode] so clients can call public methods
-        fun getService(): ScreenRecorderService = this@ScreenRecorderService
+    override fun onDestroy() {
+        super.onDestroy()
+        virtualDisplay?.release()
     }
 
     companion object {
-        const val STOP_INTENT_ACTION = "com.bnyro.recorder.STOP"
         private const val BPP = 0.25f
     }
 }

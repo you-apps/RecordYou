@@ -1,16 +1,15 @@
 package com.bnyro.recorder.ui.models
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.media.MediaRecorder
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.os.ParcelFileDescriptor
 import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
@@ -20,108 +19,101 @@ import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.bnyro.recorder.enums.AudioSource
-import com.bnyro.recorder.obj.AudioFormat
+import com.bnyro.recorder.enums.RecorderState
+import com.bnyro.recorder.services.AudioRecorderService
+import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
-import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
-import com.bnyro.recorder.util.StorageHelper
 
 class RecorderModel : ViewModel() {
     private val audioPermission = arrayOf(Manifest.permission.RECORD_AUDIO)
-    private var recorder: MediaRecorder? = null
 
-    var isRecording: Boolean by mutableStateOf(false)
+    var recorderState by mutableStateOf(RecorderState.IDLE)
     var recordedTime by mutableStateOf<Long?>(null)
-    var isPaused by mutableStateOf(false)
     val recordedAmplitudes = mutableStateListOf<Int>()
     private var activityResult: ActivityResult? = null
 
-    private var fileDescriptor: ParcelFileDescriptor? = null
-    var audioFormat = AudioFormat.getCurrent()
     private val handler = Handler(Looper.getMainLooper())
+
+    @SuppressLint("StaticFieldLeak")
+    private var recorderService: RecorderService? = null
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
-            val binder = service as ScreenRecorderService.LocalBinder
-            binder.getService().startRecording(activityResult!!)
+            recorderService = (service as RecorderService.LocalBinder).getService()
+            recorderService?.onRecorderStateChanged = {
+                recorderState = it
+            }
+            (recorderService as? ScreenRecorderService)?.prepare(activityResult!!)
+            recorderService?.start()
         }
 
-        override fun onServiceDisconnected(arg0: ComponentName) {}
+        override fun onServiceDisconnected(arg0: ComponentName) {
+            recorderService = null
+        }
     }
 
     fun startVideoRecorder(context: Context, result: ActivityResult) {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
-        runCatching {
-            context.unbindService(connection)
-            context.stopService(serviceIntent)
-        }
-        ContextCompat.startForegroundService(context, serviceIntent)
-        context.bindService(serviceIntent, connection, Context.BIND_AUTO_CREATE)
+        startRecorderService(context, serviceIntent)
     }
 
     fun startAudioRecorder(context: Context) {
         if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 
-        recorder = PlayerHelper.newRecorder(context).apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
-            setOutputFormat(audioFormat.format)
-            setAudioEncoder(audioFormat.codec)
-
-            val file = StorageHelper.getOutputFile(context, audioFormat.extension)
-            fileDescriptor = context.contentResolver.openFileDescriptor(file.uri, "w")
-            setOutputFile(fileDescriptor?.fileDescriptor)
-
-            runCatching {
-                prepare()
-            }
-
-            start()
-        }
-        isRecording = true
+        val serviceIntent = Intent(context, AudioRecorderService::class.java)
+        startRecorderService(context, serviceIntent)
         recordedTime = 0L
         handler.postDelayed(this::updateTime, 1000)
         handler.postDelayed(this::updateAmplitude, 100)
     }
 
-    fun stopRecording() {
-        recorder?.runCatching {
-            stop()
-            release()
+    private fun startRecorderService(context: Context, intent: Intent) {
+        runCatching {
+            context.unbindService(connection)
         }
-        isPaused = false
-        recorder = null
-        isRecording = false
+        listOf(AudioRecorderService::class.java, ScreenRecorderService::class.java).forEach {
+            runCatching {
+                context.stopService(Intent(context, it))
+            }
+        }
+        ContextCompat.startForegroundService(context, intent)
+        context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
+    }
+
+    fun stopRecording() {
+        recorderService?.onDestroy()
         recordedTime = null
         recordedAmplitudes.clear()
-        fileDescriptor?.close()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun pauseRecording() {
-        isPaused = true
-        recorder?.pause()
+        recorderService?.pause()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun resumeRecording() {
-        isPaused = false
-        recorder?.resume()
-        handler.postDelayed(this::updateTime, 1000)
-        handler.postDelayed(this::updateAmplitude, 100)
+        recorderService?.resume()
+        if (recorderService is AudioRecorderService) {
+            handler.postDelayed(this::updateTime, 1000)
+            handler.postDelayed(this::updateAmplitude, 100)
+        }
     }
 
     private fun updateTime() {
-        if (!isRecording || isPaused) return
+        if (recorderState != RecorderState.ACTIVE) return
+
         recordedTime = recordedTime?.plus(1)
         handler.postDelayed(this::updateTime, 1000)
     }
 
     private fun updateAmplitude() {
-        if (!isRecording || isPaused) return
+        if (recorderState != RecorderState.ACTIVE) return
 
-        recorder?.maxAmplitude?.let {
+        recorderService?.recorder?.maxAmplitude?.let {
             if (recordedAmplitudes.size >= 90) recordedAmplitudes.removeAt(0)
             recordedAmplitudes.add(it)
         }

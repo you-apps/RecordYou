@@ -20,12 +20,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
-import com.bnyro.recorder.ui.models.RecorderModel
 import com.bnyro.recorder.util.PickFolderContract
 import com.bnyro.recorder.util.Preferences
 
@@ -34,9 +32,8 @@ import com.bnyro.recorder.util.Preferences
 fun SettingsBottomSheet(
     onDismissRequest: () -> Unit
 ) {
-    val recorderModel: RecorderModel = viewModel()
     var audioFormat by remember {
-        mutableStateOf(recorderModel.audioFormat)
+        mutableStateOf(AudioFormat.getCurrent())
     }
     var screenAudioSource by remember {
         mutableStateOf(
@@ -50,7 +47,6 @@ fun SettingsBottomSheet(
 
     ModalBottomSheet(
         onDismissRequest = {
-            recorderModel.audioFormat = audioFormat
             onDismissRequest.invoke()
         }
     ) {

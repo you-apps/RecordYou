@@ -1,17 +1,13 @@
 package com.bnyro.recorder.ui.screens
 
 import android.app.Activity.RESULT_OK
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.res.Configuration
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -52,7 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.Recorder
-import com.bnyro.recorder.services.ScreenRecorderService
+import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.components.SettingsBottomSheet
@@ -65,7 +61,8 @@ fun RecorderView(
 ) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
-    val mProjectionManager = context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+    val mProjectionManager =
+        context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     val orientation = LocalConfiguration.current.orientation
 
     var showBottomSheet by remember {
@@ -77,25 +74,12 @@ fun RecorderView(
     var recordScreenMode by remember {
         mutableStateOf(false)
     }
-    var isRecordingScreen by remember {
-        mutableStateOf(false)
-    }
-    val stopReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            isRecordingScreen = false
-        }
-    }
 
     val requestRecording = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode != RESULT_OK) return@rememberLauncherForActivityResult
         recorderModel.startVideoRecorder(context, result)
-        context.registerReceiver(
-            stopReceiver,
-            IntentFilter(ScreenRecorderService.STOP_INTENT_ACTION)
-        )
-        isRecordingScreen = true
     }
 
     fun requestScreenRecording() {
@@ -110,10 +94,12 @@ fun RecorderView(
             Recorder.AUDIO -> {
                 recorderModel.startAudioRecorder(context)
             }
+
             Recorder.SCREEN -> {
                 recordScreenMode = true
                 requestScreenRecording()
             }
+
             Recorder.NONE -> {}
         }
     }
@@ -169,51 +155,36 @@ fun RecorderView(
 
                     Spacer(modifier = Modifier.width(20.dp))
 
-                    Crossfade(targetState = recordScreenMode) {
-                        when (it) {
-                            true -> FloatingActionButton(
-                                onClick = {
-                                    if (!isRecordingScreen) {
-                                        requestScreenRecording()
-                                    } else {
-                                        context.unregisterReceiver(stopReceiver)
-                                        val stopIntent = Intent(
-                                            ScreenRecorderService.STOP_INTENT_ACTION
-                                        )
-                                        context.sendBroadcast(stopIntent)
-                                        isRecordingScreen = false
-                                    }
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = if (!isRecordingScreen) Icons.Default.Videocam else Icons.Default.Stop,
-                                    contentDescription = null
-                                )
-                            }
-                            false -> FloatingActionButton(
-                                onClick = {
-                                    if (!recorderModel.isRecording) {
-                                        recorderModel.startAudioRecorder(context)
-                                    } else {
-                                        recorderModel.stopRecording()
-                                    }
-                                }
-                            ) {
-                                Icon(
-                                    imageVector = if (recorderModel.isRecording) Icons.Default.Stop else Icons.Default.Mic,
-                                    contentDescription = null
-                                )
+                    FloatingActionButton(
+                        onClick = {
+                            when {
+                                recorderModel.recorderState == RecorderState.ACTIVE -> recorderModel.stopRecording()
+                                recordScreenMode -> requestScreenRecording()
+                                else -> recorderModel.startAudioRecorder(context)
                             }
                         }
+                    ) {
+                        Icon(
+                            imageVector = when {
+                                recorderModel.recorderState == RecorderState.ACTIVE -> Icons.Default.Stop
+                                recordScreenMode -> Icons.Default.Videocam
+                                else -> Icons.Default.Mic
+                            },
+                            contentDescription = null
+                        )
                     }
 
                     Spacer(modifier = Modifier.width(20.dp))
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && recorderModel.isRecording) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && recorderModel.recorderState != RecorderState.IDLE) {
                         ClickableIcon(
-                            imageVector = if (recorderModel.isPaused) Icons.Default.PlayArrow else Icons.Default.Pause
+                            imageVector = if (recorderModel.recorderState == RecorderState.PAUSED) {
+                                Icons.Default.PlayArrow
+                            } else {
+                                Icons.Default.Pause
+                            }
                         ) {
-                            if (recorderModel.isPaused) {
+                            if (recorderModel.recorderState == RecorderState.PAUSED) {
                                 recorderModel.resumeRecording()
                             } else {
                                 recorderModel.pauseRecording()
@@ -236,16 +207,16 @@ fun RecorderView(
                 }
             }
         }
+    }
 
-        if (showBottomSheet) {
-            SettingsBottomSheet {
-                showBottomSheet = false
-            }
+    if (showBottomSheet) {
+        SettingsBottomSheet {
+            showBottomSheet = false
         }
-        if (showPlayerScreen) {
-            PlayerScreen {
-                showPlayerScreen = false
-            }
+    }
+    if (showPlayerScreen) {
+        PlayerScreen {
+            showPlayerScreen = false
         }
     }
 }
