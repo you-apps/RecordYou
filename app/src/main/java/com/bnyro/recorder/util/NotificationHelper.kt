@@ -6,7 +6,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.bnyro.recorder.R
 
 object NotificationHelper {
-    const val RECORDING_NOTIFICATION_CHANNEL = "recording_screen"
+    const val RECORDING_NOTIFICATION_CHANNEL = "active_recording"
     const val RECORDING_NOTIFICATION_ID = 1
 
     fun buildNotificationChannels(context: Context) {
@@ -16,7 +16,7 @@ object NotificationHelper {
             RECORDING_NOTIFICATION_CHANNEL,
             NotificationManagerCompat.IMPORTANCE_HIGH
         )
-            .setName(context.getString(R.string.screen_recorder))
+            .setName(context.getString(R.string.active_recording))
             .setLightsEnabled(true)
             .setShowBadge(true)
             .setVibrationEnabled(true)
