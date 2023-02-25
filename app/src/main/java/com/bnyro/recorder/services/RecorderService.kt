@@ -13,7 +13,6 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -42,7 +41,6 @@ abstract class RecorderService : Service() {
                     if (recorderState == RecorderState.ACTIVE) pause() else resume()
                 }
             }
-            Log.e("action", intent?.getStringExtra("action").toString())
         }
     }
 
