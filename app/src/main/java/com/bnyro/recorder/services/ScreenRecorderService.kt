@@ -22,6 +22,9 @@ import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
 class ScreenRecorderService : RecorderService() {
+    override val notificationTitle: String
+        get() = getString(R.string.recording_audio)
+
     private var virtualDisplay: VirtualDisplay? = null
     private var mediaProjection: MediaProjection? = null
     private var activityResult: ActivityResult? = null

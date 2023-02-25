@@ -20,6 +20,8 @@ import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.util.NotificationHelper
 
 abstract class RecorderService : Service() {
+    abstract val notificationTitle: String
+
     private val binder = LocalBinder()
     var recorder: MediaRecorder? = null
     var fileDescriptor: ParcelFileDescriptor? = null
@@ -61,7 +63,7 @@ abstract class RecorderService : Service() {
             this,
             NotificationHelper.RECORDING_NOTIFICATION_CHANNEL
         )
-            .setContentTitle(getString(R.string.recording_screen))
+            .setContentTitle(notificationTitle)
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(true)
