@@ -25,4 +25,6 @@
     <string name="audio">Audio</string>
     <string name="video">Video</string>
     <string name="active_recording">Active recording</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
 </resources>

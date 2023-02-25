@@ -20,7 +20,7 @@ object PermissionHelper {
         return true
     }
 
-    private fun hasPermission(context: Context, permission: String): Boolean {
+    fun hasPermission(context: Context, permission: String): Boolean {
         return ActivityCompat.checkSelfPermission(
             context,
             permission

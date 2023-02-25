@@ -1,5 +1,7 @@
 package com.bnyro.recorder.services
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
@@ -11,6 +13,7 @@ import android.os.Binder
 import android.os.Build
 import android.os.IBinder
 import android.os.ParcelFileDescriptor
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -18,6 +21,7 @@ import androidx.core.app.ServiceCompat
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.util.NotificationHelper
+import com.bnyro.recorder.util.PermissionHelper
 
 abstract class RecorderService : Service() {
     abstract val notificationTitle: String
@@ -27,10 +31,18 @@ abstract class RecorderService : Service() {
     var fileDescriptor: ParcelFileDescriptor? = null
     var onRecorderStateChanged: (RecorderState) -> Unit = {}
     open val fgServiceType: Int? = null
+    private var recorderState: RecorderState = RecorderState.IDLE
 
     private val receiver = object : BroadcastReceiver() {
+        @SuppressLint("NewApi")
         override fun onReceive(context: Context?, intent: Intent?) {
-            onDestroy()
+            when (intent?.getStringExtra("action")) {
+                STOP_ACTION -> onDestroy()
+                PAUSE_RESUME_ACTION -> {
+                    if (recorderState == RecorderState.ACTIVE) pause() else resume()
+                }
+            }
+            Log.e("action", intent?.getStringExtra("action").toString())
         }
     }
 
@@ -42,34 +54,7 @@ abstract class RecorderService : Service() {
     }
 
     override fun onCreate() {
-        startNotification()
-    }
-
-    private fun startNotification() {
-        val intent = Intent(STOP_INTENT_ACTION)
-        val pendingIntent = PendingIntent.getBroadcast(
-            this,
-            2,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE
-        )
-        val stopAction = NotificationCompat.Action.Builder(
-            null,
-            getString(R.string.stop),
-            pendingIntent
-        )
-
-        val notification = NotificationCompat.Builder(
-            this,
-            NotificationHelper.RECORDING_NOTIFICATION_CHANNEL
-        )
-            .setContentTitle(notificationTitle)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
-            .setOngoing(true)
-            .addAction(stopAction.build())
-            .setUsesChronometer(true)
-
+        val notification = buildNotification()
         if (fgServiceType != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(
                 NotificationHelper.RECORDING_NOTIFICATION_ID,
@@ -83,34 +68,96 @@ abstract class RecorderService : Service() {
         runCatching {
             unregisterReceiver(receiver)
         }
-        registerReceiver(receiver, IntentFilter(STOP_INTENT_ACTION))
+        registerReceiver(receiver, IntentFilter(RECORDER_INTENT_ACTION))
     }
+
+    private fun buildNotification(): NotificationCompat.Builder {
+        val stopIntent = Intent(RECORDER_INTENT_ACTION).apply {
+            putExtra("action", STOP_ACTION)
+        }
+        val stopAction = NotificationCompat.Action.Builder(
+            null,
+            getString(R.string.stop),
+            getPendingIntent(stopIntent, 2)
+        )
+
+        val resumeOrPauseIntent = Intent(RECORDER_INTENT_ACTION).apply {
+            putExtra("action", PAUSE_RESUME_ACTION)
+        }
+        val resumeOrPauseAction = NotificationCompat.Action.Builder(
+            null,
+            if (recorderState == RecorderState.ACTIVE) getString(R.string.pause) else getString(
+                R.string.resume
+            ),
+            getPendingIntent(resumeOrPauseIntent, 3)
+        )
+
+        return NotificationCompat.Builder(
+            this,
+            NotificationHelper.RECORDING_NOTIFICATION_CHANNEL
+        )
+            .setContentTitle(notificationTitle)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setOngoing(recorderState == RecorderState.ACTIVE)
+            .addAction(stopAction.build())
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) addAction(
+                    resumeOrPauseAction.build()
+                )
+            }
+            .setUsesChronometer(true)
+    }
+
+    @SuppressLint("MissingPermission")
+    fun updateNotification() {
+        if (!PermissionHelper.hasPermission(this, Manifest.permission.POST_NOTIFICATIONS)) return
+        val notification = buildNotification().build()
+        NotificationManagerCompat.from(this).notify(
+            NotificationHelper.RECORDING_NOTIFICATION_ID,
+            notification
+        )
+    }
+
+    private fun getPendingIntent(intent: Intent, requestCode: Int): PendingIntent = PendingIntent.getBroadcast(
+        this,
+        requestCode,
+        intent,
+        PendingIntent.FLAG_IMMUTABLE
+    )
 
     open fun start() {
         runCatching {
-            onRecorderStateChanged(RecorderState.ACTIVE)
+            recorderState = RecorderState.ACTIVE
+            onRecorderStateChanged(recorderState)
         }
+        updateNotification()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     open fun pause() {
         recorder?.pause()
         runCatching {
-            onRecorderStateChanged(RecorderState.PAUSED)
+            recorderState = RecorderState.PAUSED
+            onRecorderStateChanged(recorderState)
         }
+        updateNotification()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     open fun resume() {
         recorder?.resume()
         runCatching {
-            onRecorderStateChanged(RecorderState.ACTIVE)
+            recorderState = RecorderState.ACTIVE
+            onRecorderStateChanged(recorderState)
         }
+        updateNotification()
     }
 
     override fun onDestroy() {
         runCatching {
-            onRecorderStateChanged(RecorderState.IDLE)
+            recorderState = RecorderState.IDLE
+            onRecorderStateChanged(recorderState)
         }
 
         NotificationManagerCompat.from(this)
@@ -128,6 +175,8 @@ abstract class RecorderService : Service() {
     }
 
     companion object {
-        const val STOP_INTENT_ACTION = "com.bnyro.recorder.STOP"
+        const val RECORDER_INTENT_ACTION = "com.bnyro.recorder.RECORDER_ACTION"
+        const val STOP_ACTION = "STOP"
+        const val PAUSE_RESUME_ACTION = "PR"
     }
 }
