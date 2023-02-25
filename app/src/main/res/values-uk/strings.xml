@@ -12,4 +12,14 @@
     <string name="record_sound">Записати звук</string>
     <string name="directory">Каталог</string>
     <string name="choose_dir">Виберіть каталог</string>
+    <string name="screen_recorder">Запис екрану</string>
+    <string name="recording_screen">Запис екрану …</string>
+    <string name="record_screen">Запис екрану</string>
+    <string name="stop">Стоп</string>
+    <string name="microphone">Мікрофон</string>
+    <string name="share">Поділитися</string>
+    <string name="open">Відкрити</string>
+    <string name="audio">Аудіо</string>
+    <string name="video">Відео</string>
+    <string name="no_audio">Немає звуку</string>
 </resources>

@@ -12,4 +12,14 @@
     <string name="nothing_here">Non c\'è niente qui</string>
     <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata!</string>
     <string name="delete">Elimina</string>
+    <string name="record_screen">Registra schermo</string>
+    <string name="no_audio">Nessun audio</string>
+    <string name="share">Condividi</string>
+    <string name="open">Apri</string>
+    <string name="video">Video</string>
+    <string name="screen_recorder">Registratore dello schermo</string>
+    <string name="recording_screen">Registrazione dello schermo…</string>
+    <string name="stop">Ferma</string>
+    <string name="microphone">Microfono</string>
+    <string name="audio">Audio</string>
 </resources>
