@@ -13,4 +13,5 @@
     <string name="record_sound">Записать</string>
     <string name="directory">Папка</string>
     <string name="choose_dir">Выбрать папку</string>
+    <string name="share">Поделиться</string>
 </resources>

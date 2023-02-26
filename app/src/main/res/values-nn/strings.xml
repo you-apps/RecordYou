@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="cancel">Avbryt</string>
+    <string name="recordings">Opptak</string>
+    <string name="okay">Greitt</string>
+    <string name="rename">Nemn om</string>
+    <string name="file_name">Filnamn</string>
+    <string name="delete">Slett</string>
+    <string name="nothing_here">Ingenting her</string>
+    <string name="irreversible">Er du viss\? Dette kan ikkje verta angra.</string>
+    <string name="record_sound">Tak opp ljod</string>
+    <string name="directory">Mappe</string>
+    <string name="choose_dir">Vel mappe</string>
+    <string name="screen_recorder">Skjermopptak</string>
+    <string name="recording_screen">Tek opp skjermen …</string>
+    <string name="record_screen">Tak opp skjermen</string>
+    <string name="stop">Stans</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Ingen ljod</string>
+    <string name="share">Del</string>
+    <string name="open">Opne</string>
+    <string name="audio_format">Format</string>
+    <string name="audio">Ljod</string>
+    <string name="video">Video</string>
+</resources>
