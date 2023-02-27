@@ -22,4 +22,8 @@
     <string name="audio">Аудіо</string>
     <string name="video">Відео</string>
     <string name="no_audio">Немає звуку</string>
+    <string name="recording_audio">Запис аудіо …</string>
+    <string name="active_recording">Активний запис</string>
+    <string name="pause">Пауза</string>
+    <string name="resume">Відновити</string>
 </resources>
