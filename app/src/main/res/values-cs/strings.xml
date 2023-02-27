@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="audio_format">Formát zvuku</string>
+    <string name="recordings">Záznamy</string>
+    <string name="file_name">Název souboru</string>
+    <string name="irreversible">Opravdu\? Tato akce je nevratná!</string>
+    <string name="delete">Odstranit</string>
+    <string name="nothing_here">Nic zde není</string>
+    <string name="screen_recorder">Záznam obrazovky</string>
+    <string name="recording_screen">Záznam obrazovky …</string>
+    <string name="record_screen">Záznam obrazovky</string>
+    <string name="recording_audio">Záznam zvuku …</string>
+    <string name="stop">Zastavit</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="audio">Zvuk</string>
+    <string name="video">Video</string>
+    <string name="active_recording">Aktivní záznam</string>
+    <string name="pause">Pozastavit</string>
+    <string name="resume">Pokračovat</string>
+    <string name="choose_dir">Vybrat adresář</string>
+    <string name="cancel">Zrušit</string>
+    <string name="share">Sdílet</string>
+    <string name="okay">Okay</string>
+    <string name="directory">Adresář</string>
+    <string name="record_sound">Záznam zvuku</string>
+    <string name="rename">Přejmenovat</string>
+    <string name="open">Otevřít</string>
+    <string name="no_audio">Žádný zvuk</string>
+</resources>
