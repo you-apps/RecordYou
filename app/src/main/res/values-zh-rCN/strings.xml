@@ -22,4 +22,8 @@
     <string name="open">打开</string>
     <string name="audio">音频</string>
     <string name="video">视频</string>
+    <string name="active_recording">活动录制</string>
+    <string name="pause">暂停</string>
+    <string name="recording_audio">录音中…</string>
+    <string name="resume">继续</string>
 </resources>
