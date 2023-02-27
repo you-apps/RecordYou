@@ -22,4 +22,8 @@
     <string name="screen_recorder">Ekran kaydedici</string>
     <string name="stop">Durdur</string>
     <string name="share">Paylaş</string>
+    <string name="active_recording">Etkin kayıt</string>
+    <string name="pause">Duraklat</string>
+    <string name="resume">Devam et</string>
+    <string name="recording_audio">Ses kaydediliyor…</string>
 </resources>

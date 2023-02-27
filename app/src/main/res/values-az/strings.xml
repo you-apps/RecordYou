@@ -12,4 +12,18 @@
     <string name="choose_dir">Kataloq seç</string>
     <string name="delete">Sil</string>
     <string name="irreversible">Siz əminsiniz\? Bu geri qaytarıla bilməz!</string>
+    <string name="screen_recorder">Ekran yazıcı</string>
+    <string name="recording_screen">Ekran yazılır …</string>
+    <string name="record_screen">Görüntünü saxla</string>
+    <string name="stop">Dayan</string>
+    <string name="no_audio">Səs yoxdur</string>
+    <string name="share">Paylaş</string>
+    <string name="open">Aç</string>
+    <string name="audio">Səs</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="video">Video</string>
+    <string name="recording_audio">Səs yazılır …</string>
+    <string name="active_recording">Aktiv qeyd</string>
+    <string name="pause">Fasilə et</string>
+    <string name="resume">Davam et</string>
 </resources>
