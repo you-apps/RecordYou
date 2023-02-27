@@ -22,4 +22,8 @@
     <string name="stop">Ferma</string>
     <string name="microphone">Microfono</string>
     <string name="audio">Audio</string>
+    <string name="active_recording">Registrazione attiva</string>
+    <string name="pause">Pausa</string>
+    <string name="resume">Riprendi</string>
+    <string name="recording_audio">Registrazione audio…</string>
 </resources>
