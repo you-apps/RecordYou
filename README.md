@@ -45,6 +45,14 @@
   <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/4-settings.png" width="24%">
 </div>
 
+<!-- ---------- Contribution ---------- -->
+## Feedback and contributions
+***All contributions are very welcome!***
+
+* Feel free to join the [Matrix room](https://matrix.to/#/#you-apps:matrix.org) for discussions about the app.
+* Bug reports and feature requests can be submitted [here](https://github.com/Bnyro/RecordYou/issues) (please make sure to fill out all the requested information properly!).
+* If you are a developer and wish to contribute to the app, please **fork** the project and submit a [**pull request**](https://help.github.com/articles/about-pull-requests/).
+
 ## Translation
 <a href="https://hosted.weblate.org/projects/you-apps/record-you/">
 <img src="https://hosted.weblate.org/widgets/you-apps/-/record-you/287x66-grey.png" alt="Translation status" />
