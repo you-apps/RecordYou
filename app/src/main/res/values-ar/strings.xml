@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="audio_format">تنسيق الصوت</string>
+    <string name="recordings">التسجيلات</string>
+    <string name="okay">حسنًا</string>
+    <string name="file_name">اسم الملف</string>
+    <string name="record_sound">تسجيل الصوت</string>
+    <string name="cancel">إلغاء</string>
+    <string name="rename">إعادة تسمية</string>
+    <string name="delete">حذف</string>
+    <string name="irreversible">أمتأكِّد؟ لا يمكن التراجع عن هذا!</string>
+    <string name="nothing_here">لا يوجد شيء هنا</string>
+</resources>
