@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Record You</string>
-    <string name="format">Формат</string>
     <string name="recordings">Записи</string>
     <string name="okay">Ввод</string>
     <string name="cancel">Отменить</string>
