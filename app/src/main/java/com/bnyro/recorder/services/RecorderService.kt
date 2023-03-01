@@ -84,9 +84,13 @@ abstract class RecorderService : Service() {
         }
         val resumeOrPauseAction = NotificationCompat.Action.Builder(
             null,
-            if (recorderState == RecorderState.ACTIVE) getString(R.string.pause) else getString(
-                R.string.resume
-            ),
+            if (recorderState == RecorderState.ACTIVE) {
+                getString(R.string.pause)
+            } else {
+                getString(
+                    R.string.resume
+                )
+            },
             getPendingIntent(resumeOrPauseIntent, 3)
         )
 
@@ -100,9 +104,11 @@ abstract class RecorderService : Service() {
             .setOngoing(recorderState == RecorderState.ACTIVE)
             .addAction(stopAction.build())
             .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) addAction(
-                    resumeOrPauseAction.build()
-                )
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    addAction(
+                        resumeOrPauseAction.build()
+                    )
+                }
             }
             .setUsesChronometer(true)
     }

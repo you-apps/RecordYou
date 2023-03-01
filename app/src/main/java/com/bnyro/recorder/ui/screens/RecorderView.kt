@@ -8,6 +8,7 @@ import android.os.Build
 import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -200,10 +201,13 @@ fun RecorderView(
                 }
 
                 Spacer(modifier = Modifier.height(5.dp))
-                ClickableIcon(
-                    imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess
-                ) {
-                    recordScreenMode = !recordScreenMode
+
+                AnimatedVisibility(recorderModel.recorderState != RecorderState.ACTIVE) {
+                    ClickableIcon(
+                        imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess
+                    ) {
+                        recordScreenMode = !recordScreenMode
+                    }
                 }
             }
         }
