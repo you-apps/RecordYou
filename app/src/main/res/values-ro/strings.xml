@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="record_screen">Ecranul Înregistrare</string>
+    <string name="audio_format">Format audio</string>
+    <string name="recordings">Înregistrări</string>
+    <string name="okay">Bine</string>
+    <string name="cancel">Anulează</string>
+    <string name="rename">Redenumire</string>
+    <string name="file_name">Nume de fișier</string>
+    <string name="delete">Șterge</string>
+    <string name="irreversible">Eşti sigur\? Acest lucru nu poate fi anulat!</string>
+    <string name="nothing_here">Nimic aici</string>
+    <string name="record_sound">Înregistrare sunet</string>
+    <string name="directory">Director</string>
+    <string name="choose_dir">Alegeți directorul</string>
+    <string name="screen_recorder">Înregistrator de ecran</string>
+    <string name="recording_screen">Înregistrarea ecranului …</string>
+    <string name="recording_audio">Se înregistrează audio…</string>
+    <string name="stop">Opreşte</string>
+    <string name="no_audio">Fără sunet</string>
+    <string name="share">Partajați</string>
+    <string name="open">Deschide</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="active_recording">Înregistrare activă</string>
+    <string name="pause">Pauză</string>
+    <string name="resume">Relua</string>
+    <string name="microphone">Microfon</string>
+</resources>
