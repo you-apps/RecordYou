@@ -32,9 +32,7 @@ import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.models.PlayerModel
 
 @Composable
-fun PlayerView(
-    modifier: Modifier = Modifier
-) {
+fun PlayerView(showVideoModeInitially: Boolean) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
 
@@ -42,11 +40,13 @@ fun PlayerView(
         playerModel.loadFiles(context)
     }
     var selectedTab by remember {
-        mutableStateOf(0)
+        mutableStateOf(
+            if (showVideoModeInitially) 1 else 0
+        )
     }
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize()
     ) {
         TabRow(selectedTabIndex = selectedTab) {
             Tab(

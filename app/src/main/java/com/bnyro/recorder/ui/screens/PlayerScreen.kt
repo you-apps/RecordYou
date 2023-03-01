@@ -17,7 +17,10 @@ import com.bnyro.recorder.ui.common.FullscreenDialog
 import com.bnyro.recorder.ui.components.PlayerView
 
 @Composable
-fun PlayerScreen(onDismissRequest: () -> Unit) {
+fun PlayerScreen(
+    showVideoModeInitially: Boolean,
+    onDismissRequest: () -> Unit
+) {
     val orientation = LocalConfiguration.current.orientation
 
     FullscreenDialog(
@@ -43,7 +46,7 @@ fun PlayerScreen(onDismissRequest: () -> Unit) {
                 )
                 Spacer(modifier = Modifier.height(15.dp))
             }
-            PlayerView()
+            PlayerView(showVideoModeInitially)
         }
     }
 }

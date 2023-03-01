@@ -219,7 +219,7 @@ fun RecorderView(
         }
     }
     if (showPlayerScreen) {
-        PlayerScreen {
+        PlayerScreen(recordScreenMode) {
             showPlayerScreen = false
         }
     }
