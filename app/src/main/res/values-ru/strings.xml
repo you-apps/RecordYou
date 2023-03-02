@@ -13,4 +13,18 @@
     <string name="directory">Папка</string>
     <string name="choose_dir">Выбрать папку</string>
     <string name="share">Поделиться</string>
+    <string name="audio_format">Аудиоформат</string>
+    <string name="screen_recorder">Запись экрана</string>
+    <string name="recording_screen">Запись экрана …</string>
+    <string name="record_screen">Экран записи</string>
+    <string name="audio">Аудио</string>
+    <string name="video">Видео</string>
+    <string name="recording_audio">Запись звука …</string>
+    <string name="stop">Остановить</string>
+    <string name="microphone">Микрофон</string>
+    <string name="no_audio">Нет звука</string>
+    <string name="open">Открыть</string>
+    <string name="active_recording">Активная запись</string>
+    <string name="pause">Пауза</string>
+    <string name="resume">Продолжить</string>
 </resources>

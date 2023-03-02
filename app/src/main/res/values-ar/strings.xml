@@ -10,4 +10,20 @@
     <string name="delete">حذف</string>
     <string name="irreversible">أمتأكِّد؟ لا يمكن التراجع عن هذا!</string>
     <string name="nothing_here">لا يوجد شيء هنا</string>
+    <string name="microphone">ميكروفون</string>
+    <string name="screen_recorder">مسجل الشاشة</string>
+    <string name="record_screen">تسجيل الشاشة</string>
+    <string name="audio">صوت</string>
+    <string name="recording_screen">يتم تسجيل الشاشة …</string>
+    <string name="directory">الدليل</string>
+    <string name="stop">إيقاف</string>
+    <string name="share">مشاركة</string>
+    <string name="active_recording">التسجيل النشط</string>
+    <string name="pause">ايقاف</string>
+    <string name="choose_dir">اختر مجلَّدًا</string>
+    <string name="recording_audio">تسجيل الصوت …</string>
+    <string name="no_audio">لا يوجد صوت</string>
+    <string name="open">فتح</string>
+    <string name="video">فيديو</string>
+    <string name="resume">إستئناف</string>
 </resources>
