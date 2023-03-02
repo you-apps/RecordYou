@@ -90,8 +90,8 @@ class ScreenRecorderService : RecorderService() {
                 null
             )
 
-            val file = StorageHelper.getOutputFile(this@ScreenRecorderService, "mp4")
-            fileDescriptor = contentResolver.openFileDescriptor(file.uri, "w")
+            outputFile = StorageHelper.getOutputFile(this@ScreenRecorderService, "mp4")
+            fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 
             runCatching {

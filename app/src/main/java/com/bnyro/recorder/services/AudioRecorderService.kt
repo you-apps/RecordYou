@@ -18,8 +18,11 @@ class AudioRecorderService : RecorderService() {
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 
-            val file = StorageHelper.getOutputFile(this@AudioRecorderService, audioFormat.extension)
-            fileDescriptor = contentResolver.openFileDescriptor(file.uri, "w")
+            outputFile = StorageHelper.getOutputFile(
+                this@AudioRecorderService,
+                audioFormat.extension
+            )
+            fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 
             runCatching {
