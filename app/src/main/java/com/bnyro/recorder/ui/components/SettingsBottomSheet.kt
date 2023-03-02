@@ -52,21 +52,9 @@ fun SettingsBottomSheet(
     ) {
         Column(
             modifier = Modifier
-                .padding(vertical = 10.dp, horizontal = 20.dp)
-                .padding(bottom = 10.dp)
+                .padding(horizontal = 20.dp)
+                .padding(bottom = 20.dp)
         ) {
-            ChipSelector(
-                title = stringResource(R.string.audio_format),
-                entries = AudioFormat.formats.map { it.name },
-                values = AudioFormat.formats.map { it.format },
-                selections = listOf(audioFormat.format)
-            ) { index, newValue ->
-                if (newValue) {
-                    audioFormat = AudioFormat.formats[index]
-                    Preferences.edit { putString(Preferences.audioFormatKey, audioFormat.name) }
-                }
-            }
-            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = stringResource(R.string.directory),
                 fontWeight = FontWeight.Bold,
@@ -82,7 +70,19 @@ fun SettingsBottomSheet(
             ) {
                 Text(stringResource(R.string.choose_dir))
             }
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(10.dp))
+            ChipSelector(
+                title = stringResource(R.string.audio_format),
+                entries = AudioFormat.formats.map { it.name },
+                values = AudioFormat.formats.map { it.format },
+                selections = listOf(audioFormat.format)
+            ) { index, newValue ->
+                if (newValue) {
+                    audioFormat = AudioFormat.formats[index]
+                    Preferences.edit { putString(Preferences.audioFormatKey, audioFormat.name) }
+                }
+            }
+            Spacer(modifier = Modifier.height(10.dp))
             val audioValues = AudioSource.values().map { it.value }
             ChipSelector(
                 title = stringResource(R.string.screen_recorder),
