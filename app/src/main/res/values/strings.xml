@@ -28,4 +28,9 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="recording_finished">Recording finished</string>
+    <string name="settings">Settings</string>
+    <string name="record">Record</string>
+    <string name="play">Play</string>
+    <string name="options">Options</string>
+    <string name="back">Back</string>
 </resources>

@@ -15,6 +15,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -31,7 +36,8 @@ fun ChipSelector(
     Text(
         text = title,
         fontWeight = FontWeight.Bold,
-        fontSize = 18.sp
+        fontSize = 18.sp,
+        modifier = Modifier.semantics { heading() }
     )
     Spacer(modifier = Modifier.height(5.dp))
     LazyRow(
@@ -39,7 +45,12 @@ fun ChipSelector(
     ) {
         itemsIndexed(entries) { index, entry ->
             ElevatedFilterChip(
-                modifier = Modifier.padding(end = 10.dp),
+                modifier = Modifier
+                    .padding(end = 10.dp)
+                    .clearAndSetSemantics { // We need to suppress calculated contentDescription that contains word selected or not selected based off of the selected state
+                        contentDescription = entry
+                        selected = selections.contains(values[index])
+                    },
                 label = {
                     Text(entry)
                 },

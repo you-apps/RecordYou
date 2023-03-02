@@ -11,8 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.bnyro.recorder.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,7 +37,10 @@ fun FullscreenDialog(
                         Text(title)
                     },
                     navigationIcon = {
-                        ClickableIcon(imageVector = Icons.Default.ArrowBack) {
+                        ClickableIcon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = stringResource(R.string.back)
+                        ) {
                             onDismissRequest.invoke()
                         }
                     },
