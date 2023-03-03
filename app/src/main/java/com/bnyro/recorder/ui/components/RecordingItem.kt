@@ -74,7 +74,8 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 text = recordingFile.name.orEmpty()
             )
             ClickableIcon(
-                imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow
+                imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
+                contentDescription = stringResource(if (isPlaying) R.string.pause else R.string.play)
             ) {
                 if (!isPlaying && recordingFile.name.orEmpty().endsWith(".mp4")) {
                     showPlayer = true
@@ -89,7 +90,10 @@ fun RecordingItem(recordingFile: DocumentFile) {
                 }
             }
             Box {
-                ClickableIcon(imageVector = Icons.Default.MoreVert) {
+                ClickableIcon(
+                    imageVector = Icons.Default.MoreVert,
+                    contentDescription = stringResource(R.string.options)
+                ) {
                     showDropDown = true
                 }
 
