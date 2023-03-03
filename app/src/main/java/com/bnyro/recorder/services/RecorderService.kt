@@ -101,7 +101,7 @@ abstract class RecorderService : Service() {
             NotificationHelper.RECORDING_NOTIFICATION_CHANNEL
         )
             .setContentTitle(notificationTitle)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .setOngoing(recorderState == RecorderState.ACTIVE)
             .addAction(stopAction.build())
@@ -221,7 +221,7 @@ abstract class RecorderService : Service() {
         )
             .setContentTitle(getString(R.string.recording_finished))
             .setContentText(outputFile?.name)
-            .setSmallIcon(R.drawable.ic_launcher_foreground)
+            .setSmallIcon(R.drawable.ic_notification)
             .addAction(deleteAction.build())
             // / .addAction(shareAction.build())
             .setContentIntent(getActivityIntent())
