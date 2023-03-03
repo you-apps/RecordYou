@@ -32,4 +32,5 @@
     <string name="source_code">Source code</string>
     <string name="author">Author</string>
     <string name="translation">Translation</string>
+    <string name="delete_all">Delete all</string>
 </resources>

@@ -32,6 +32,7 @@ import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.DialogButton
 import com.bnyro.recorder.ui.common.FullscreenDialog
+import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 import com.bnyro.recorder.ui.views.VideoView
 import com.bnyro.recorder.util.IntentHelper
@@ -182,30 +183,14 @@ fun RecordingItem(recordingFile: DocumentFile) {
     }
 
     if (showDeleteDialog) {
-        AlertDialog(
-            onDismissRequest = {
-                showDeleteDialog = false
-            },
-            title = {
-                Text(stringResource(R.string.delete))
-            },
-            text = {
-                Text(stringResource(R.string.irreversible))
-            },
-            confirmButton = {
-                DialogButton(stringResource(R.string.okay)) {
-                    playerModel.stopPlaying()
-                    recordingFile.delete()
-                    playerModel.files.remove(recordingFile)
-                    showDeleteDialog = false
-                }
-            },
-            dismissButton = {
-                DialogButton(stringResource(R.string.cancel)) {
-                    showDeleteDialog = false
-                }
-            }
-        )
+        ConfirmationDialog(
+            title = R.string.delete,
+            onDismissRequest = { showDeleteDialog = false }
+        ) {
+            playerModel.stopPlaying()
+            recordingFile.delete()
+            playerModel.files.remove(recordingFile)
+        }
     }
 
     if (showPlayer) {
