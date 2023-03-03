@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -30,8 +30,8 @@
 
         <service
             android:name=".services.ScreenRecorderService"
-            android:foregroundServiceType="mediaProjection"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
 
         <service
             android:name=".services.AudioRecorderService"
@@ -51,6 +51,33 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <service
+            android:name=".services.AudioRecorderTile"
+            android:exported="true"
+            android:icon="@drawable/ic_audio"
+            android:label="@string/record_sound"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+
+        </service>
+
+        <service
+            android:name=".services.ScreenRecorderTile"
+            android:exported="true"
+            android:icon="@drawable/ic_screen"
+            android:label="@string/record_screen"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+
+        </service>
+
     </application>
 
 </manifest>

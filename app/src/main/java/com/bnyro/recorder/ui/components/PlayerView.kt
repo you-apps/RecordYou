@@ -29,10 +29,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 
 @Composable
-fun PlayerView(showVideoModeInitially: Boolean) {
+fun PlayerView(
+    showVideoModeInitially: Boolean,
+    showDeleteAllDialog: Boolean,
+    onDeleteAllDialogDismissed: () -> Unit
+) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
 
@@ -43,6 +48,11 @@ fun PlayerView(showVideoModeInitially: Boolean) {
         mutableStateOf(
             if (showVideoModeInitially) 1 else 0
         )
+    }
+
+    val files = playerModel.files.filter {
+        val videoCriteria = it.name.orEmpty().endsWith(".mp4")
+        if (selectedTab == 0) !videoCriteria else videoCriteria
     }
 
     Column(
@@ -67,10 +77,6 @@ fun PlayerView(showVideoModeInitially: Boolean) {
                     Text(text = stringResource(R.string.video))
                 }
             )
-        }
-        val files = playerModel.files.filter {
-            val videoCriteria = it.name.orEmpty().endsWith(".mp4")
-            if (selectedTab == 0) !videoCriteria else videoCriteria
         }
         val icon = when (selectedTab) {
             0 -> Icons.Default.AudioFile
@@ -100,6 +106,18 @@ fun PlayerView(showVideoModeInitially: Boolean) {
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(text = stringResource(R.string.nothing_here))
                 }
+            }
+        }
+    }
+
+    if (showDeleteAllDialog) {
+        ConfirmationDialog(
+            title = R.string.delete_all,
+            onDismissRequest = onDeleteAllDialogDismissed
+        ) {
+            files.forEach {
+                it.delete()
+                playerModel.files.remove(it)
             }
         }
     }

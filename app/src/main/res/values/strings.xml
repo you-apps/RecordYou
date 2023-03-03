@@ -33,4 +33,9 @@
     <string name="play">Play</string>
     <string name="options">Options</string>
     <string name="back">Back</string>
+    <string name="about">About</string>
+    <string name="source_code">Source code</string>
+    <string name="author">Author</string>
+    <string name="translation">Translation</string>
+    <string name="delete_all">Delete all</string>
 </resources>
