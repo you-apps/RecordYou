@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import com.bnyro.recorder.R
 import java.io.File
@@ -46,6 +47,11 @@ object IntentHelper {
             }
             else -> file.uri
         }
+    }
+
+    fun openHref(context: Context, url: String) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, url.toUri())
+        startActivity(context, browserIntent)
     }
 
     private fun startActivity(context: Context, intent: Intent) {

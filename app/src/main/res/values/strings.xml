@@ -28,4 +28,8 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="recording_finished">Recording finished</string>
+    <string name="about">About</string>
+    <string name="source_code">Source code</string>
+    <string name="author">Author</string>
+    <string name="translation">Translation</string>
 </resources>
