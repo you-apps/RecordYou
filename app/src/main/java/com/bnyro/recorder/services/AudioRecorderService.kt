@@ -14,7 +14,7 @@ class AudioRecorderService : RecorderService() {
         val audioFormat = AudioFormat.getCurrent()
 
         recorder = PlayerHelper.newRecorder(this).apply {
-            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setAudioSource(MediaRecorder.AudioSource.DEFAULT)
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 

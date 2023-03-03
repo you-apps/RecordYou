@@ -150,7 +150,10 @@ fun RecorderView(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    ClickableIcon(imageVector = Icons.Default.Settings, contentDescription = stringResource(R.string.settings)) {
+                    ClickableIcon(
+                        imageVector = Icons.Default.Settings,
+                        contentDescription = stringResource(R.string.settings)
+                    ) {
                         showBottomSheet = true
                     }
 
@@ -171,11 +174,13 @@ fun RecorderView(
                                 recordScreenMode -> Icons.Default.Videocam
                                 else -> Icons.Default.Mic
                             },
-                            contentDescription = stringResource(if (recorderModel.recorderState == RecorderState.ACTIVE) {
-                                R.string.stop
-                            } else {
-                                R.string.record
-                            })
+                            contentDescription = stringResource(
+                                if (recorderModel.recorderState == RecorderState.ACTIVE) {
+                                    R.string.stop
+                                } else {
+                                    R.string.record
+                                }
+                            )
                         )
                     }
 
@@ -188,11 +193,13 @@ fun RecorderView(
                             } else {
                                 Icons.Default.Pause
                             },
-                            contentDescription = stringResource(if (recorderModel.recorderState == RecorderState.PAUSED) {
-                                R.string.resume
-                            } else {
-                                R.string.pause
-                            })
+                            contentDescription = stringResource(
+                                if (recorderModel.recorderState == RecorderState.PAUSED) {
+                                    R.string.resume
+                                } else {
+                                    R.string.pause
+                                }
+                            )
                         ) {
                             if (recorderModel.recorderState == RecorderState.PAUSED) {
                                 recorderModel.resumeRecording()
@@ -215,7 +222,9 @@ fun RecorderView(
                 AnimatedVisibility(recorderModel.recorderState != RecorderState.ACTIVE) {
                     ClickableIcon(
                         imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess,
-                        contentDescription = stringResource(if (recordScreenMode) R.string.record_sound else R.string.record_screen)
+                        contentDescription = stringResource(
+                            if (recordScreenMode) R.string.record_sound else R.string.record_screen
+                        )
                     ) {
                         recordScreenMode = !recordScreenMode
                     }

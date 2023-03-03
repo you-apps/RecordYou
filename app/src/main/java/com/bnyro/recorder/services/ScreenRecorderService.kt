@@ -63,7 +63,7 @@ class ScreenRecorderService : RecorderService() {
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
 
             if (audioSource == AudioSource.MICROPHONE) {
-                setAudioSource(MediaRecorder.AudioSource.MIC)
+                setAudioSource(MediaRecorder.AudioSource.DEFAULT)
             }
 
             setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)

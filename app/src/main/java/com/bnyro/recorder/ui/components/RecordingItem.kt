@@ -75,7 +75,9 @@ fun RecordingItem(recordingFile: DocumentFile) {
             )
             ClickableIcon(
                 imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                contentDescription = stringResource(if (isPlaying) R.string.pause else R.string.play)
+                contentDescription = stringResource(
+                    if (isPlaying) R.string.pause else R.string.play
+                )
             ) {
                 if (!isPlaying && recordingFile.name.orEmpty().endsWith(".mp4")) {
                     showPlayer = true
