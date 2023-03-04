@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name" translatable="false">Record You</string>
+
     <string name="audio_format">Audio format</string>
     <string name="recordings">Recordings</string>
     <string name="okay">Okay</string>
@@ -10,6 +11,8 @@
     <string name="delete">Delete</string>
     <string name="irreversible">Are you sure? This can\'t be undone!</string>
     <string name="nothing_here">Nothing here</string>
+
+    <!-- Action -->
     <string name="record_sound">Record sound</string>
     <string name="directory">Directory</string>
     <string name="choose_dir">Choose directory</string>
@@ -33,9 +36,17 @@
     <string name="play">Play</string>
     <string name="options">Options</string>
     <string name="back">Back</string>
+
+    <!-- About -->
     <string name="about">About</string>
     <string name="source_code">Source code</string>
     <string name="author">Author</string>
     <string name="translation">Translation</string>
     <string name="delete_all">Delete all</string>
+
+    <!-- Theme -->
+    <string name="theme">Theme</string>
+    <string name="system">System</string>
+    <string name="dark">Dark</string>
+    <string name="light">Light</string>
 </resources>

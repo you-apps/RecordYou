@@ -4,10 +4,12 @@ import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,12 +26,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
+import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.common.ClickableIcon
+import com.bnyro.recorder.ui.common.SelectionDialog
 import com.bnyro.recorder.ui.dialogs.AboutDialog
+import com.bnyro.recorder.ui.models.ThemeModel
 import com.bnyro.recorder.util.PickFolderContract
 import com.bnyro.recorder.util.Preferences
 
@@ -38,6 +44,8 @@ import com.bnyro.recorder.util.Preferences
 fun SettingsBottomSheet(
     onDismissRequest: () -> Unit
 ) {
+    val themeModel: ThemeModel = viewModel()
+
     var audioFormat by remember {
         mutableStateOf(AudioFormat.getCurrent())
     }
@@ -53,6 +61,9 @@ fun SettingsBottomSheet(
     var showAbout by remember {
         mutableStateOf(false)
     }
+    var showThemePref by remember {
+        mutableStateOf(false)
+    }
 
     ModalBottomSheet(
         onDismissRequest = {
@@ -60,12 +71,21 @@ fun SettingsBottomSheet(
         }
     ) {
         Box {
-            ClickableIcon(
-                modifier = Modifier.align(Alignment.TopEnd),
-                imageVector = Icons.Default.Info,
-                contentDescription = stringResource(R.string.about)
+            Row(
+                modifier = Modifier.align(Alignment.TopEnd)
             ) {
-                showAbout = true
+                ClickableIcon(
+                    imageVector = Icons.Default.DarkMode,
+                    contentDescription = stringResource(R.string.theme)
+                ) {
+                    showThemePref = true
+                }
+                ClickableIcon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = stringResource(R.string.about)
+                ) {
+                    showAbout = true
+                }
             }
             Column(
                 modifier = Modifier
@@ -115,6 +135,19 @@ fun SettingsBottomSheet(
                     }
                 }
             }
+        }
+    }
+
+    if (showThemePref) {
+        SelectionDialog(
+            onDismissRequest = { showThemePref = false },
+            title = stringResource(R.string.theme),
+            entries = listOf(R.string.system, R.string.light, R.string.dark).map {
+                stringResource(it)
+            }
+        ) {
+            themeModel.themeMode = ThemeMode.values()[it]
+            Preferences.edit { putString(Preferences.themeModeKey, themeModel.themeMode.name) }
         }
     }
 
