@@ -35,4 +35,6 @@
     <string name="delete_all">删除全部</string>
     <string name="recording_finished">录制完毕</string>
     <string name="author">作者</string>
+    <string name="options">选项</string>
+    <string name="about">关于</string>
 </resources>
