@@ -16,7 +16,7 @@
     <string name="audio_format">Аудиоформат</string>
     <string name="screen_recorder">Запись экрана</string>
     <string name="recording_screen">Запись экрана …</string>
-    <string name="record_screen">Экран записи</string>
+    <string name="record_screen">Записать экран</string>
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>
     <string name="recording_audio">Запись звука …</string>
@@ -27,4 +27,15 @@
     <string name="active_recording">Активная запись</string>
     <string name="pause">Пауза</string>
     <string name="resume">Продолжить</string>
+    <string name="options">Опции</string>
+    <string name="about">Информация</string>
+    <string name="source_code">Исходный код</string>
+    <string name="translation">Перевод</string>
+    <string name="settings">Настройки</string>
+    <string name="delete_all">Удалить все</string>
+    <string name="author">Автор</string>
+    <string name="back">Назад</string>
+    <string name="play">Играть</string>
+    <string name="recording_finished">Запись завершена</string>
+    <string name="record">Записать</string>
 </resources>
