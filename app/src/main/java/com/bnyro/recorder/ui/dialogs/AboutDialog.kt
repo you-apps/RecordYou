@@ -68,7 +68,7 @@ fun AboutDialog(onDismissRequest: () -> Unit) {
                     Icon(
                         modifier = Modifier.size(50.dp),
                         painter = painterResource(R.drawable.ic_launcher_foreground),
-                        contentDescription = stringResource(R.string.app_name)
+                        contentDescription = null
                     )
                     Text(stringResource(R.string.app_name))
                     Badge(
@@ -90,7 +90,7 @@ fun AboutDialog(onDismissRequest: () -> Unit) {
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(it.icon, stringResource(it.title))
+                            Icon(it.icon, null)
                             Spacer(modifier = Modifier.width(10.dp))
                             Text(stringResource(it.title))
                         }
