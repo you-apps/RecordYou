@@ -20,7 +20,7 @@ data class AudioFormat(
         )
         private val aac = AudioFormat(
             MediaRecorder.OutputFormat.AAC_ADTS,
-            MediaRecorder.AudioEncoder.AAC_ELD,
+            MediaRecorder.AudioEncoder.AAC,
             "AAC",
             "aac"
         )
