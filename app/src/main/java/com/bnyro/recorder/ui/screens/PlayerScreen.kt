@@ -45,7 +45,7 @@ fun PlayerScreen(
         actions = {
             ClickableIcon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = stringResource(R.string.delete)
+                contentDescription = stringResource(R.string.delete_all)
             ) {
                 showDeleteAllDialog = true
             }
