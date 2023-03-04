@@ -12,7 +12,6 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
-import android.view.Surface
 import androidx.activity.result.ActivityResult
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
@@ -125,21 +124,9 @@ class ScreenRecorderService : RecorderService() {
         val metrics = DisplayMetrics()
         display.getRealMetrics(metrics)
 
-        val orientationOnStart = display.rotation
-
-        val screenHeightNormal: Int
-        val screenWidthNormal: Int
-        if (orientationOnStart == Surface.ROTATION_90 || orientationOnStart == Surface.ROTATION_270) {
-            screenWidthNormal = metrics.heightPixels
-            screenHeightNormal = metrics.widthPixels
-        } else {
-            screenWidthNormal = metrics.widthPixels
-            screenHeightNormal = metrics.heightPixels
-        }
-
         return VideoResolution(
-            screenWidthNormal,
-            screenHeightNormal,
+            metrics.widthPixels,
+            metrics.heightPixels,
             metrics.densityDpi,
             display.refreshRate.toInt()
         )
