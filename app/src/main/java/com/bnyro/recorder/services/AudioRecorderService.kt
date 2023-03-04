@@ -4,6 +4,7 @@ import android.media.MediaRecorder
 import com.bnyro.recorder.R
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.util.PlayerHelper
+import com.bnyro.recorder.util.Preferences
 import com.bnyro.recorder.util.StorageHelper
 
 class AudioRecorderService : RecorderService() {
@@ -15,6 +16,12 @@ class AudioRecorderService : RecorderService() {
 
         recorder = PlayerHelper.newRecorder(this).apply {
             setAudioSource(MediaRecorder.AudioSource.DEFAULT)
+
+            Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }?.let {
+                setAudioSamplingRate(it)
+                setAudioEncodingBitRate(it * 32 * 2)
+            }
+
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 

@@ -66,20 +66,27 @@ class ScreenRecorderService : RecorderService() {
 
             if (audioSource == AudioSource.MICROPHONE) {
                 setAudioSource(MediaRecorder.AudioSource.DEFAULT)
+                Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf {
+                    it > 0
+                }?.let {
+                    setAudioSamplingRate(it)
+                    setAudioEncodingBitRate(it * 32 * 2)
+                }
             }
 
             setOutputFormat(videoFormat.format)
+            setVideoFrameRate(resolution.frameRate)
             setVideoEncoder(videoFormat.codec)
-            setVideoEncodingBitRate(
-                (BPP * resolution.frameRate * resolution.width * resolution.height).toInt()
-            )
+
+            val bitratePref = Preferences.prefs.getInt(Preferences.videoBitrateKey, -1)
+            val autoBitrate = (BPP * resolution.frameRate * resolution.width * resolution.height).toInt()
+            setVideoEncodingBitRate(bitratePref.takeIf { it > 0 } ?: autoBitrate)
 
             if (audioSource == AudioSource.MICROPHONE) {
                 setAudioEncoder(MediaRecorder.AudioEncoder.AAC)
             }
 
             setVideoSize(resolution.width, resolution.height)
-            setVideoFrameRate(resolution.frameRate)
 
             virtualDisplay = mediaProjection!!.createVirtualDisplay(
                 getString(R.string.app_name),

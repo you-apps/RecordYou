@@ -34,6 +34,7 @@ import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.common.ClickableIcon
+import com.bnyro.recorder.ui.common.CustomNumInputPref
 import com.bnyro.recorder.ui.common.SelectionDialog
 import com.bnyro.recorder.ui.dialogs.AboutDialog
 import com.bnyro.recorder.ui.models.ThemeModel
@@ -124,6 +125,11 @@ fun SettingsBottomSheet(
                         Preferences.edit { putString(Preferences.audioFormatKey, audioFormat.name) }
                     }
                 }
+                CustomNumInputPref(
+                    key = Preferences.audioSampleRateKey,
+                    title = stringResource(R.string.sample_rate),
+                    defValue = 44_100
+                )
                 Spacer(modifier = Modifier.height(10.dp))
                 val audioValues = AudioSource.values().map { it.value }
                 ChipSelector(
@@ -149,6 +155,12 @@ fun SettingsBottomSheet(
                         Preferences.edit { putInt(Preferences.videoCodecKey, videoEncoder.codec) }
                     }
                 }
+                Spacer(modifier = Modifier.height(10.dp))
+                CustomNumInputPref(
+                    key = Preferences.videoBitrateKey,
+                    title = stringResource(R.string.bitrate),
+                    defValue = 1_200_000
+                )
             }
         }
     }
