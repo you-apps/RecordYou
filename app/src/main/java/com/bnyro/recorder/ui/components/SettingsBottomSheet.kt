@@ -30,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.ThemeMode
+import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.common.ClickableIcon
@@ -54,6 +55,10 @@ fun SettingsBottomSheet(
             AudioSource.fromInt(Preferences.prefs.getInt(Preferences.audioSourceKey, 0))
         )
     }
+    var videoEncoder by remember {
+        mutableStateOf(VideoFormat.getCurrent())
+    }
+
     val directoryPicker = rememberLauncherForActivityResult(PickFolderContract()) {
         it ?: return@rememberLauncherForActivityResult
         Preferences.edit { putString(Preferences.targetFolderKey, it.toString()) }
@@ -132,6 +137,16 @@ fun SettingsBottomSheet(
                     if (newValue) {
                         screenAudioSource = AudioSource.fromInt(audioValues[index])
                         Preferences.edit { putInt(Preferences.audioSourceKey, audioValues[index]) }
+                    }
+                }
+                ChipSelector(
+                    entries = VideoFormat.codecs.map { it.name },
+                    values = VideoFormat.codecs.map { it.codec },
+                    selections = listOf(videoEncoder.codec)
+                ) { index, newValue ->
+                    if (newValue) {
+                        videoEncoder = VideoFormat.codecs[index]
+                        Preferences.edit { putInt(Preferences.videoCodecKey, videoEncoder.codec) }
                     }
                 }
             }

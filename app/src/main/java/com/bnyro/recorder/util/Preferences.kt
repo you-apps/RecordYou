@@ -10,6 +10,7 @@ object Preferences {
     const val targetFolderKey = "targetFolder"
     const val audioFormatKey = "audioFormat"
     const val audioSourceKey = "audioSource"
+    const val videoCodecKey = "videoCodec"
     const val themeModeKey = "themeMode"
 
     fun init(context: Context) {

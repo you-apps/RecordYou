@@ -16,6 +16,7 @@ import android.view.Surface
 import androidx.activity.result.ActivityResult
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioSource
+import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.VideoResolution
 import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
@@ -58,6 +59,7 @@ class ScreenRecorderService : RecorderService() {
             Preferences.prefs.getInt(Preferences.audioSourceKey, 0)
         )
         val resolution = getScreenResolution()
+        val videoFormat = VideoFormat.getCurrent()
 
         recorder = PlayerHelper.newRecorder(this).apply {
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
@@ -66,8 +68,8 @@ class ScreenRecorderService : RecorderService() {
                 setAudioSource(MediaRecorder.AudioSource.DEFAULT)
             }
 
-            setOutputFormat(MediaRecorder.OutputFormat.MPEG_4)
-            setVideoEncoder(MediaRecorder.VideoEncoder.H264)
+            setOutputFormat(videoFormat.format)
+            setVideoEncoder(videoFormat.codec)
             setVideoEncodingBitRate(
                 (BPP * resolution.frameRate * resolution.width * resolution.height).toInt()
             )
@@ -90,7 +92,10 @@ class ScreenRecorderService : RecorderService() {
                 null
             )
 
-            outputFile = StorageHelper.getOutputFile(this@ScreenRecorderService, "mp4")
+            outputFile = StorageHelper.getOutputFile(
+                this@ScreenRecorderService,
+                videoFormat.extension
+            )
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 

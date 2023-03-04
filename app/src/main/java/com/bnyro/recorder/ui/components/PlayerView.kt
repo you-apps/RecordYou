@@ -29,6 +29,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 
@@ -50,8 +51,8 @@ fun PlayerView(
         )
     }
 
-    val files = playerModel.files.filter {
-        val videoCriteria = it.name.orEmpty().endsWith(".mp4")
+    val files = playerModel.files.filter { file ->
+        val videoCriteria = VideoFormat.codecs.any { file.name.orEmpty().endsWith(it.extension) }
         if (selectedTab == 0) !videoCriteria else videoCriteria
     }
 
@@ -88,7 +89,7 @@ fun PlayerView(
                 modifier = Modifier.padding(top = 10.dp)
             ) {
                 items(files) {
-                    RecordingItem(recordingFile = it)
+                    RecordingItem(recordingFile = it, selectedTab == 1)
                 }
             }
         } else {

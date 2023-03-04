@@ -39,7 +39,10 @@ import com.bnyro.recorder.util.IntentHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecordingItem(recordingFile: DocumentFile) {
+fun RecordingItem(
+    recordingFile: DocumentFile,
+    isVideo: Boolean
+) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
 
@@ -79,7 +82,7 @@ fun RecordingItem(recordingFile: DocumentFile) {
                     if (isPlaying) R.string.pause else R.string.play
                 )
             ) {
-                if (!isPlaying && recordingFile.name.orEmpty().endsWith(".mp4")) {
+                if (!isPlaying && isVideo) {
                     showPlayer = true
                 } else if (!isPlaying) {
                     playerModel.startPlaying(context, recordingFile) {

@@ -27,18 +27,20 @@ import androidx.compose.ui.unit.sp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChipSelector(
-    title: String,
+    title: String? = null,
     entries: List<String>,
     values: List<Int>,
     selections: List<Int>,
     onSelectionChanged: (Int, Boolean) -> Unit
 ) {
-    Text(
-        text = title,
-        fontWeight = FontWeight.Bold,
-        fontSize = 18.sp,
-        modifier = Modifier.semantics { heading() }
-    )
+    title?.let {
+        Text(
+            text = it,
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+            modifier = Modifier.semantics { heading() }
+        )
+    }
     Spacer(modifier = Modifier.height(5.dp))
     LazyRow(
         verticalAlignment = Alignment.CenterVertically
