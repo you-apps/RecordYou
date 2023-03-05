@@ -37,4 +37,11 @@
     <string name="author">Autor</string>
     <string name="back">Zpět</string>
     <string name="source_code">Zdrojový kód</string>
+    <string name="system">Systémový</string>
+    <string name="sample_rate">Vzorkovací frekvence</string>
+    <string name="auto">Automaticky</string>
+    <string name="bitrate">Datový tok</string>
+    <string name="dark">Tmavý</string>
+    <string name="theme">Motiv</string>
+    <string name="light">Světlý</string>
 </resources>
