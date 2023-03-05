@@ -162,7 +162,7 @@ fun RecorderView(
                     FloatingActionButton(
                         onClick = {
                             when {
-                                recorderModel.recorderState == RecorderState.ACTIVE -> recorderModel.stopRecording()
+                                recorderModel.recorderState != RecorderState.IDLE -> recorderModel.stopRecording()
                                 recordScreenMode -> requestScreenRecording()
                                 else -> recorderModel.startAudioRecorder(context)
                             }
@@ -170,12 +170,12 @@ fun RecorderView(
                     ) {
                         Icon(
                             imageVector = when {
-                                recorderModel.recorderState == RecorderState.ACTIVE -> Icons.Default.Stop
+                                recorderModel.recorderState != RecorderState.IDLE -> Icons.Default.Stop
                                 recordScreenMode -> Icons.Default.Videocam
                                 else -> Icons.Default.Mic
                             },
                             contentDescription = stringResource(
-                                if (recorderModel.recorderState == RecorderState.ACTIVE) {
+                                if (recorderModel.recorderState != RecorderState.IDLE) {
                                     R.string.stop
                                 } else {
                                     R.string.record
@@ -219,7 +219,7 @@ fun RecorderView(
 
                 Spacer(modifier = Modifier.height(5.dp))
 
-                AnimatedVisibility(recorderModel.recorderState != RecorderState.ACTIVE) {
+                AnimatedVisibility(recorderModel.recorderState == RecorderState.IDLE) {
                     ClickableIcon(
                         imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess,
                         contentDescription = stringResource(
