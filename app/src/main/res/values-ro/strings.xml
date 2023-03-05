@@ -26,4 +26,22 @@
     <string name="pause">Pauză</string>
     <string name="resume">Relua</string>
     <string name="microphone">Microfon</string>
+    <string name="record">Înregistrează</string>
+    <string name="play">Redă</string>
+    <string name="options">Opțiuni</string>
+    <string name="sample_rate">Rata simpla</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="auto">Auto</string>
+    <string name="about">Despre</string>
+    <string name="source_code">Cod sursa</string>
+    <string name="author">Autor</string>
+    <string name="translation">Traducere</string>
+    <string name="delete_all">Sterge tot</string>
+    <string name="dark">Întunecat</string>
+    <string name="light">Luminat</string>
+    <string name="recording_finished">Înregistrare terminată</string>
+    <string name="back">Înainte</string>
+    <string name="settings">Setări</string>
+    <string name="theme">Temă</string>
+    <string name="system">Sistem</string>
 </resources>
