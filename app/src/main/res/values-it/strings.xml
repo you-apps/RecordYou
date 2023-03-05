@@ -37,4 +37,11 @@
     <string name="delete_all">Elimina tutto</string>
     <string name="recording_finished">Registrazione terminata</string>
     <string name="play">Riproduci</string>
+    <string name="theme">Tema</string>
+    <string name="system">Sistema</string>
+    <string name="dark">Scuro</string>
+    <string name="light">Chiaro</string>
+    <string name="bitrate">Velocità in bit</string>
+    <string name="auto">Automatico</string>
+    <string name="sample_rate">Frequenza di campionamento</string>
 </resources>
