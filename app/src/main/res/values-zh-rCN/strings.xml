@@ -37,4 +37,11 @@
     <string name="author">作者</string>
     <string name="options">选项</string>
     <string name="about">关于</string>
+    <string name="auto">自动</string>
+    <string name="system">跟随系统</string>
+    <string name="dark">暗色</string>
+    <string name="bitrate">比特率</string>
+    <string name="sample_rate">采样率</string>
+    <string name="theme">主题</string>
+    <string name="light">浅色</string>
 </resources>
