@@ -37,4 +37,11 @@
     <string name="delete_all">Tümünü sil</string>
     <string name="play">Oynat</string>
     <string name="record">Kaydet</string>
+    <string name="theme">Tema</string>
+    <string name="system">Sistem</string>
+    <string name="dark">Koyu</string>
+    <string name="light">Açık</string>
+    <string name="sample_rate">Örnekleme hızı</string>
+    <string name="auto">Otomatik</string>
+    <string name="bitrate">Bit hızı</string>
 </resources>
