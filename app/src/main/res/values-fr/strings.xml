@@ -29,7 +29,7 @@
     <string name="share">Partager</string>
     <string name="audio">Son</string>
     <string name="video">Vidéo</string>
-    <string name="recording_audio">Enregistrement de l\'audio…</string>
+    <string name="recording_audio">Enregistrement du son…</string>
     <string name="active_recording">Enregistrement actif</string>
     <string name="pause">Pause</string>
     <string name="resume">Reprendre</string>
