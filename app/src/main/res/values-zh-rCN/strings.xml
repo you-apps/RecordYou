@@ -42,4 +42,6 @@
     <string name="dark">暗色</string>
     <string name="bitrate">比特率</string>
     <string name="sample_rate">采样率</string>
+    <string name="theme">主题</string>
+    <string name="light">浅色</string>
 </resources>
