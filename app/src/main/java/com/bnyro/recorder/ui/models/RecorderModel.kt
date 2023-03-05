@@ -58,6 +58,8 @@ class RecorderModel : ViewModel() {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
         startRecorderService(context, serviceIntent)
+
+        startElapsedTimeCounter()
     }
 
     fun startAudioRecorder(context: Context) {
@@ -65,8 +67,8 @@ class RecorderModel : ViewModel() {
 
         val serviceIntent = Intent(context, AudioRecorderService::class.java)
         startRecorderService(context, serviceIntent)
-        recordedTime = 0L
-        handler.postDelayed(this::updateTime, 1000)
+
+        startElapsedTimeCounter()
         handler.postDelayed(this::updateAmplitude, 100)
     }
 
@@ -97,8 +99,8 @@ class RecorderModel : ViewModel() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun resumeRecording() {
         recorderService?.resume()
+        handler.postDelayed(this::updateTime, 1000)
         if (recorderService is AudioRecorderService) {
-            handler.postDelayed(this::updateTime, 1000)
             handler.postDelayed(this::updateAmplitude, 100)
         }
     }
@@ -119,6 +121,11 @@ class RecorderModel : ViewModel() {
         }
 
         handler.postDelayed(this::updateAmplitude, 100)
+    }
+
+    private fun startElapsedTimeCounter() {
+        recordedTime = 0L
+        handler.postDelayed(this::updateTime, 1000)
     }
 
     fun hasScreenRecordingPermissions(context: Context): Boolean {

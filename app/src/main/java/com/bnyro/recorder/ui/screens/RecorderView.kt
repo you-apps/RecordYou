@@ -105,6 +105,13 @@ fun RecorderView(
         }
     }
 
+    LaunchedEffect(recorderModel.recorderState) {
+        // update the UI when the recorder gets destroyed by the notification
+        if (recorderModel.recorderState == RecorderState.IDLE) {
+            recorderModel.stopRecording()
+        }
+    }
+
     Scaffold { pV ->
         Box(
             modifier = Modifier
