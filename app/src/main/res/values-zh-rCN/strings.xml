@@ -2,21 +2,21 @@
 <resources>
     <string name="irreversible">你确定吗？此操作无法撤销！</string>
     <string name="nothing_here">这里空无一物</string>
-    <string name="record_sound">录制声音</string>
+    <string name="record_sound">录音</string>
     <string name="choose_dir">选择目录</string>
     <string name="okay">好的</string>
-    <string name="audio_format">格式</string>
+    <string name="audio_format">音频格式</string>
     <string name="rename">重命名</string>
     <string name="recordings">录制列表</string>
     <string name="cancel">取消</string>
     <string name="file_name">文件名</string>
     <string name="delete">删除</string>
     <string name="directory">目录</string>
-    <string name="screen_recorder">屏幕录制器</string>
-    <string name="recording_screen">录屏中 …</string>
+    <string name="screen_recorder">屏幕录制器选项</string>
+    <string name="recording_screen">正在录屏 …</string>
     <string name="record_screen">录屏</string>
     <string name="stop">停止</string>
-    <string name="microphone">麦克风</string>
+    <string name="microphone">麦克风音频</string>
     <string name="no_audio">无音频</string>
     <string name="share">分享</string>
     <string name="open">打开</string>
@@ -24,6 +24,17 @@
     <string name="video">视频</string>
     <string name="active_recording">活动录制</string>
     <string name="pause">暂停</string>
-    <string name="recording_audio">录音中…</string>
-    <string name="resume">继续</string>
+    <string name="recording_audio">正在录音…</string>
+    <string name="resume">恢复录制</string>
+    <string name="settings">设置</string>
+    <string name="record">记录</string>
+    <string name="play">播放</string>
+    <string name="back">返回</string>
+    <string name="source_code">源代码</string>
+    <string name="translation">翻译</string>
+    <string name="delete_all">删除全部</string>
+    <string name="recording_finished">录制完毕</string>
+    <string name="author">作者</string>
+    <string name="options">选项</string>
+    <string name="about">关于</string>
 </resources>

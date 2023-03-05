@@ -26,4 +26,5 @@
     <string name="video">Vídeo</string>
     <string name="recording_audio">Gravar áudio …</string>
     <string name="active_recording">Gravação activa</string>
+    <string name="about">Sobre</string>
 </resources>

@@ -26,4 +26,15 @@
     <string name="open">فتح</string>
     <string name="video">فيديو</string>
     <string name="resume">إستئناف</string>
+    <string name="about">حول التطبيق</string>
+    <string name="recording_finished">تم الانتهاء من التسجيل</string>
+    <string name="settings">الاعدادات</string>
+    <string name="record">تسجبل</string>
+    <string name="play">تشغيل</string>
+    <string name="options">خيارات</string>
+    <string name="back">العودة</string>
+    <string name="source_code">الكود المصدري</string>
+    <string name="author">المؤلِّف</string>
+    <string name="translation">الترجمة</string>
+    <string name="delete_all">حذف الكل</string>
 </resources>

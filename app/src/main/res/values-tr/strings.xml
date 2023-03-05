@@ -26,4 +26,15 @@
     <string name="pause">Duraklat</string>
     <string name="resume">Devam et</string>
     <string name="recording_audio">Ses kaydediliyor…</string>
+    <string name="recording_finished">Kayıt bitti</string>
+    <string name="settings">Ayarlar</string>
+    <string name="options">Seçenekler</string>
+    <string name="back">Geri</string>
+    <string name="about">Hakkında</string>
+    <string name="source_code">Kaynak kodu</string>
+    <string name="author">Geliştirici</string>
+    <string name="translation">Çeviri</string>
+    <string name="delete_all">Tümünü sil</string>
+    <string name="play">Oynat</string>
+    <string name="record">Kaydet</string>
 </resources>

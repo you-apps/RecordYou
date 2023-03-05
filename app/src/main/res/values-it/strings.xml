@@ -26,4 +26,15 @@
     <string name="pause">Pausa</string>
     <string name="resume">Riprendi</string>
     <string name="recording_audio">Registrazione audio…</string>
+    <string name="settings">Impostazioni</string>
+    <string name="record">Registra</string>
+    <string name="options">Opzioni</string>
+    <string name="back">Indietro</string>
+    <string name="about">Informazioni</string>
+    <string name="source_code">Codice sorgente</string>
+    <string name="author">Autore</string>
+    <string name="translation">Traduzione</string>
+    <string name="delete_all">Elimina tutto</string>
+    <string name="recording_finished">Registrazione terminata</string>
+    <string name="play">Riproduci</string>
 </resources>

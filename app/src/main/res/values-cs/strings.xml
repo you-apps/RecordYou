@@ -26,4 +26,15 @@
     <string name="rename">Přejmenovat</string>
     <string name="open">Otevřít</string>
     <string name="no_audio">Žádný zvuk</string>
+    <string name="recording_finished">Nahrávání dokončeno</string>
+    <string name="settings">Nastavení</string>
+    <string name="record">Nahrát</string>
+    <string name="play">Přehrát</string>
+    <string name="options">Možnosti</string>
+    <string name="translation">Překlad</string>
+    <string name="delete_all">Odstranit vše</string>
+    <string name="about">O aplikaci</string>
+    <string name="author">Autor</string>
+    <string name="back">Zpět</string>
+    <string name="source_code">Zdrojový kód</string>
 </resources>
