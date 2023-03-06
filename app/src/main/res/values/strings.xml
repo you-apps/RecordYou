@@ -41,6 +41,11 @@
     <string name="sample_rate">Sample rate</string>
     <string name="bitrate">Bitrate</string>
     <string name="auto">Auto</string>
+    <string name="default_audio">Default</string>
+    <string name="camcorder">Camcorder</string>
+    <string name="unprocessed">Unprocessed</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
 
     <!-- About -->
     <string name="about">About</string>

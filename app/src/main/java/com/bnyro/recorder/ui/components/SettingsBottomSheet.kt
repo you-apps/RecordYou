@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
@@ -125,11 +126,19 @@ fun SettingsBottomSheet(
                         Preferences.edit { putString(Preferences.audioFormatKey, audioFormat.name) }
                     }
                 }
-                CustomNumInputPref(
-                    key = Preferences.audioSampleRateKey,
-                    title = stringResource(R.string.sample_rate),
-                    defValue = 44_100
-                )
+                Row {
+                    CustomNumInputPref(
+                        key = Preferences.audioSampleRateKey,
+                        title = stringResource(R.string.sample_rate),
+                        defValue = 44_100
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    CustomNumInputPref(
+                        key = Preferences.audioBitrateKey,
+                        title = stringResource(R.string.bitrate),
+                        defValue = 192_000
+                    )
+                }
                 Spacer(modifier = Modifier.height(10.dp))
                 val audioValues = AudioSource.values().map { it.value }
                 ChipSelector(

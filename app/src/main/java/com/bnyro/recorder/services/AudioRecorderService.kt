@@ -22,6 +22,10 @@ class AudioRecorderService : RecorderService() {
                 setAudioEncodingBitRate(it * 32 * 2)
             }
 
+            Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
+                setAudioEncodingBitRate(it)
+            }
+
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 
