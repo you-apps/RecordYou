@@ -14,7 +14,7 @@ data class AudioFormat(
     companion object {
         private val m4a = AudioFormat(
             MediaRecorder.OutputFormat.MPEG_4,
-            MediaRecorder.AudioEncoder.AAC,
+            MediaRecorder.AudioEncoder.HE_AAC,
             "M4A",
             "m4a"
         )
