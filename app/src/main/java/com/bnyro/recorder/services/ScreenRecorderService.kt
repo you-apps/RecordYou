@@ -75,6 +75,9 @@ class ScreenRecorderService : RecorderService() {
                 Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
                     setAudioEncodingBitRate(it)
                 }
+                Preferences.prefs.getInt(Preferences.audioChannelsKey, 1).takeIf { it > 1 }?.let {
+                    setAudioChannels(it)
+                }
             }
 
             setOutputFormat(videoFormat.format)

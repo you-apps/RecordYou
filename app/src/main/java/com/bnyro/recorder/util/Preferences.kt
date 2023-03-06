@@ -12,6 +12,7 @@ object Preferences {
     const val audioSourceKey = "audioSource"
     const val audioSampleRateKey = "audioSampleRate"
     const val audioBitrateKey = "audioBitrate"
+    const val audioChannelsKey = "audioChannels"
     const val videoCodecKey = "videoCodec"
     const val videoBitrateKey = "videoBitrate"
     const val themeModeKey = "themeMode"
