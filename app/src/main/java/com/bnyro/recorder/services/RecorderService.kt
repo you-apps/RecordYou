@@ -103,6 +103,7 @@ abstract class RecorderService : Service() {
             .setContentTitle(notificationTitle)
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_LOW)
+            .setSilent(true)
             .setOngoing(recorderState == RecorderState.ACTIVE)
             .addAction(stopAction.build())
             .apply {
