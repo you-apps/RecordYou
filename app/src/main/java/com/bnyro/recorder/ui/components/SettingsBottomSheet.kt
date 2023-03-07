@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.AudioChannels
+import com.bnyro.recorder.enums.AudioDeviceSource
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.enums.VideoFormat
@@ -54,6 +56,16 @@ fun SettingsBottomSheet(
 
     var audioFormat by remember {
         mutableStateOf(AudioFormat.getCurrent())
+    }
+    var audioChannels by remember {
+        mutableStateOf(
+            AudioChannels.fromInt(Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value))
+        )
+    }
+    var audioDeviceSource by remember {
+        mutableStateOf(
+            AudioDeviceSource.fromInt(Preferences.prefs.getInt(Preferences.audioDeviceSourceKey, AudioDeviceSource.DEFAULT.value))
+        )
     }
     var screenAudioSource by remember {
         mutableStateOf(
@@ -150,6 +162,33 @@ fun SettingsBottomSheet(
                         title = stringResource(R.string.bitrate),
                         defValue = 192_000
                     )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    val audioChannelsValues = AudioChannels.values().map { it.value }
+                    ChipSelector(
+                        entries = listOf(R.string.mono, R.string.stereo).map {
+                            stringResource(it)
+                        },
+                        values = audioChannelsValues,
+                        selections = listOf(audioChannels.value)
+                    ) { index, newValue ->
+                        if (newValue) {
+                            audioChannels = AudioChannels.fromInt(audioChannelsValues[index])
+                            Preferences.edit { putInt(Preferences.audioChannelsKey, audioChannelsValues[index]) }
+                        }
+                    }
+                }
+                val audioDeviceSourceValues = AudioDeviceSource.values().map { it.value }
+                ChipSelector(
+                    entries = listOf(R.string.default_audio, R.string.microphone, R.string.camcorder, R.string.unprocessed).map {
+                        stringResource(it)
+                    },
+                    values = audioDeviceSourceValues,
+                    selections = listOf(audioDeviceSource.value)
+                ) { index, newValue ->
+                    if (newValue) {
+                    audioDeviceSource = AudioDeviceSource.fromInt(audioDeviceSourceValues[index])
+                    Preferences.edit { putInt(Preferences.audioDeviceSourceKey, audioDeviceSourceValues[index]) }
+                    }
                 }
                 Spacer(modifier = Modifier.height(10.dp))
                 val audioValues = AudioSource.values().map { it.value }

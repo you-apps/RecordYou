@@ -14,6 +14,8 @@ import android.util.Log
 import android.view.Display
 import androidx.activity.result.ActivityResult
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.AudioChannels
+import com.bnyro.recorder.enums.AudioDeviceSource
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.VideoResolution
@@ -64,7 +66,10 @@ class ScreenRecorderService : RecorderService() {
             setVideoSource(MediaRecorder.VideoSource.SURFACE)
 
             if (audioSource == AudioSource.MICROPHONE) {
-                setAudioSource(MediaRecorder.AudioSource.DEFAULT)
+                Preferences.prefs.getInt(Preferences.audioDeviceSourceKey, AudioDeviceSource.DEFAULT.value).let {
+                    setAudioSource(it)
+                }
+
                 Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf {
                     it > 0
                 }?.let {
@@ -74,6 +79,9 @@ class ScreenRecorderService : RecorderService() {
 
                 Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
                     setAudioEncodingBitRate(it)
+                }
+                Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).takeIf { it > AudioChannels.MONO.value }?.let {
+                    setAudioChannels(it)
                 }
             }
 
