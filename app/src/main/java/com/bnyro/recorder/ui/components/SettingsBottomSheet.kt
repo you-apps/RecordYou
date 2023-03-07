@@ -2,6 +2,7 @@ package com.bnyro.recorder.ui.components
 
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Info
@@ -72,6 +75,8 @@ fun SettingsBottomSheet(
         mutableStateOf(false)
     }
 
+    val scrollState = rememberScrollState()
+
     ModalBottomSheet(
         onDismissRequest = {
             onDismissRequest.invoke()
@@ -81,23 +86,30 @@ fun SettingsBottomSheet(
             Row(
                 modifier = Modifier.align(Alignment.TopEnd)
             ) {
-                ClickableIcon(
-                    imageVector = Icons.Default.DarkMode,
-                    contentDescription = stringResource(R.string.theme)
-                ) {
-                    showThemePref = true
-                }
-                ClickableIcon(
-                    imageVector = Icons.Default.Info,
-                    contentDescription = stringResource(R.string.about)
-                ) {
-                    showAbout = true
+                AnimatedVisibility(visible = scrollState.value < 50) {
+                    Row {
+                        ClickableIcon(
+                            imageVector = Icons.Default.DarkMode,
+                            contentDescription = stringResource(R.string.theme)
+                        ) {
+                            showThemePref = true
+                        }
+                        ClickableIcon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = stringResource(R.string.about)
+                        ) {
+                            showAbout = true
+                        }
+                    }
                 }
             }
+
             Column(
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
                     .padding(bottom = 20.dp)
+                    .height(300.dp)
+                    .verticalScroll(scrollState)
             ) {
                 Text(
                     text = stringResource(R.string.directory),
