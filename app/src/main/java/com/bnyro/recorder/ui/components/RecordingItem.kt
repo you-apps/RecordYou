@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
@@ -41,7 +40,8 @@ import com.bnyro.recorder.util.IntentHelper
 @Composable
 fun RecordingItem(
     recordingFile: DocumentFile,
-    isVideo: Boolean
+    isVideo: Boolean,
+    startPlayingAudio: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
@@ -56,9 +56,6 @@ fun RecordingItem(
         mutableStateOf(false)
     }
     var showPlayer by remember {
-        mutableStateOf(false)
-    }
-    var isPlaying by remember {
         mutableStateOf(false)
     }
 
@@ -77,21 +74,13 @@ fun RecordingItem(
                 text = recordingFile.name.orEmpty()
             )
             ClickableIcon(
-                imageVector = if (isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                contentDescription = stringResource(
-                    if (isPlaying) R.string.pause else R.string.play
-                )
+                imageVector = Icons.Default.PlayArrow,
+                contentDescription = stringResource(R.string.play)
             ) {
-                if (!isPlaying && isVideo) {
+                if (isVideo) {
                     showPlayer = true
-                } else if (!isPlaying) {
-                    playerModel.startPlaying(context, recordingFile) {
-                        isPlaying = false
-                    }
-                    isPlaying = true
                 } else {
-                    playerModel.stopPlaying()
-                    isPlaying = false
+                    startPlayingAudio.invoke()
                 }
             }
             Box {

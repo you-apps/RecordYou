@@ -3,7 +3,10 @@ package com.bnyro.recorder.ui.models
 import android.content.Context
 import android.media.MediaPlayer
 import android.util.Log
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,9 +18,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class PlayerModel : ViewModel() {
-    private var player: MediaPlayer? = null
+    var isPlaying by mutableStateOf(false)
+    var player by mutableStateOf<MediaPlayer?>(null)
+    var currentPlayingFile by mutableStateOf<DocumentFile?>(null)
+
     val files = mutableStateListOf<DocumentFile>()
-    private var onFinish: () -> Unit = {}
 
     fun loadFiles(context: Context) {
         viewModelScope.launch {
@@ -29,12 +34,10 @@ class PlayerModel : ViewModel() {
         }
     }
 
-    fun startPlaying(context: Context, file: DocumentFile, onEnded: () -> Unit) {
-        onFinish.invoke()
-        onFinish = onEnded
-
+    fun startPlaying(context: Context, file: DocumentFile) {
         stopPlaying()
 
+        currentPlayingFile = file
         player = getMediaPlayer().apply {
             try {
                 context.contentResolver.openFileDescriptor(file.uri, "r")?.use {
@@ -47,13 +50,26 @@ class PlayerModel : ViewModel() {
             }
         }
         player?.setOnCompletionListener {
-            onFinish.invoke()
+            stopPlaying()
         }
+        isPlaying = true
     }
 
     fun stopPlaying() {
+        currentPlayingFile = null
         player?.release()
         player = null
+        isPlaying = false
+    }
+
+    fun pausePlaying() {
+        player?.pause()
+        isPlaying = false
+    }
+
+    fun resumePlaying() {
+        player?.start()
+        isPlaying = true
     }
 
     private fun getAvailableFiles(context: Context): List<DocumentFile> {
