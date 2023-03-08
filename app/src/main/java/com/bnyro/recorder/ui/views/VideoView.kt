@@ -15,7 +15,8 @@ import com.google.android.exoplayer2.ui.StyledPlayerView
 fun VideoView(videoUri: Uri) {
     val context = LocalContext.current
 
-    val exoPlayer = ExoPlayer.Builder(context)
+    val exoPlayer = remember(context) {
+        ExoPlayer.Builder(context)
         .setUsePlatformDiagnostics(false)
         .build()
         .also { exoPlayer ->
@@ -26,7 +27,7 @@ fun VideoView(videoUri: Uri) {
             exoPlayer.prepare()
             exoPlayer.playWhenReady = true
         }
-
+    }
     DisposableEffect(
         AndroidView(
             modifier = Modifier.fillMaxSize(),
