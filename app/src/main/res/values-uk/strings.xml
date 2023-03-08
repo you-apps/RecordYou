@@ -44,4 +44,9 @@
     <string name="auto">Авто</string>
     <string name="system">Системна</string>
     <string name="dark">Темна</string>
+    <string name="default_audio">За замовчуванням</string>
+    <string name="camcorder">Відеокамера</string>
+    <string name="unprocessed">Не оброблено</string>
+    <string name="mono">Моно</string>
+    <string name="stereo">Стерео</string>
 </resources>
