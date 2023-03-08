@@ -44,4 +44,9 @@
     <string name="bitrate">Velocità in bit</string>
     <string name="auto">Automatico</string>
     <string name="sample_rate">Frequenza di campionamento</string>
+    <string name="unprocessed">Non processato</string>
+    <string name="mono">Mono</string>
+    <string name="camcorder">Videocamera</string>
+    <string name="default_audio">Predefinito</string>
+    <string name="stereo">Stereo</string>
 </resources>
