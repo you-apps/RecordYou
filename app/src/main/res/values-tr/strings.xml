@@ -44,4 +44,9 @@
     <string name="sample_rate">Örnekleme hızı</string>
     <string name="auto">Otomatik</string>
     <string name="bitrate">Bit hızı</string>
+    <string name="default_audio">Öntanımlı</string>
+    <string name="camcorder">Kayıt kamerası</string>
+    <string name="unprocessed">İşlenmemiş</string>
+    <string name="mono">Tek kanal</string>
+    <string name="stereo">Stereo</string>
 </resources>
