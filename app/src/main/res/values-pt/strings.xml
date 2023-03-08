@@ -27,4 +27,7 @@
     <string name="recording_audio">Gravar áudio …</string>
     <string name="active_recording">Gravação activa</string>
     <string name="about">Sobre</string>
+    <string name="theme">Tema</string>
+    <string name="light">Claro</string>
+    <string name="translation">Tradução</string>
 </resources>

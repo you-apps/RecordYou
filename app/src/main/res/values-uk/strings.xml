@@ -30,11 +30,18 @@
     <string name="settings">Налаштування</string>
     <string name="record">Записати</string>
     <string name="play">Відтворити</string>
-    <string name="about">Про додаток</string>
-    <string name="options">Опції</string>
+    <string name="about">Про застосунок</string>
+    <string name="options">Параметри</string>
     <string name="back">Назад</string>
     <string name="source_code">Вихідний код</string>
     <string name="author">Автор</string>
     <string name="translation">Переклад</string>
     <string name="delete_all">Видалити все</string>
+    <string name="theme">Тема</string>
+    <string name="light">Світла</string>
+    <string name="sample_rate">Частота дискретизації</string>
+    <string name="bitrate">Бітрейт</string>
+    <string name="auto">Авто</string>
+    <string name="system">Системна</string>
+    <string name="dark">Темна</string>
 </resources>
