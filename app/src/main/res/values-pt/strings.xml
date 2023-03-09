@@ -30,4 +30,23 @@
     <string name="theme">Tema</string>
     <string name="light">Claro</string>
     <string name="translation">Tradução</string>
+    <string name="recording_finished">Gravação terminada</string>
+    <string name="system">Sistema</string>
+    <string name="dark">Escuro</string>
+    <string name="record">Gravar</string>
+    <string name="play">Reproduzir</string>
+    <string name="back">Voltar</string>
+    <string name="settings">Definições</string>
+    <string name="options">Opções</string>
+    <string name="sample_rate">Taxa de amostragem</string>
+    <string name="bitrate">Taxa de bits</string>
+    <string name="auto">Automático</string>
+    <string name="source_code">Código fonte</string>
+    <string name="author">Autor</string>
+    <string name="delete_all">Eliminar tudo</string>
+    <string name="camcorder">Câmara de vídeo</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Estéreo</string>
+    <string name="unprocessed">Não processado</string>
+    <string name="default_audio">Por defeito</string>
 </resources>
