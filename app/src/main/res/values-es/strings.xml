@@ -1,2 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="open">Abrir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="rename">Renombrar</string>
+    <string name="record_screen">Grabar pantalla</string>
+    <string name="active_recording">Grabación activa</string>
+    <string name="pause">Pausar</string>
+    <string name="resume">Reanudar</string>
+    <string name="recording_finished">Grabación finalizada</string>
+    <string name="record">Grabar</string>
+    <string name="play">Reproducir</string>
+    <string name="back">Volver</string>
+    <string name="choose_dir">Seleccionar directorio</string>
+    <string name="audio_format">Formato de audio</string>
+    <string name="microphone">Micrófono</string>
+    <string name="bitrate">Tasa de bits</string>
+    <string name="auto">Automático</string>
+    <string name="camcorder">Videocámara</string>
+    <string name="unprocessed">Sin procesar</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Estéreo</string>
+    <string name="source_code">Código fuente</string>
+    <string name="author">Autor</string>
+    <string name="translation">Traducción</string>
+    <string name="delete_all">Eliminar todo</string>
+    <string name="theme">Tema</string>
+    <string name="dark">Oscuro</string>
+    <string name="light">Claro</string>
+    <string name="options">Opciones</string>
+    <string name="delete">Eliminar</string>
+    <string name="recording_screen">Grabando pantalla …</string>
+    <string name="stop">Detener</string>
+    <string name="recordings">Grabaciones</string>
+    <string name="nothing_here">No hay nada aquí</string>
+    <string name="video">Vídeo</string>
+    <string name="okay">Vale</string>
+    <string name="file_name">Nombre del archivo</string>
+    <string name="irreversible">¿Está seguro\? ¡Esto no se puede deshacer!</string>
+    <string name="record_sound">Grabar sonido</string>
+    <string name="screen_recorder">Grabador de pantalla</string>
+    <string name="recording_audio">Grabando audio …</string>
+    <string name="share">Compartir</string>
+    <string name="audio">Audio</string>
+    <string name="settings">Configuración</string>
+    <string name="directory">Directorio</string>
+    <string name="no_audio">Sin audio</string>
+    <string name="sample_rate">Tasa de muestreo</string>
+    <string name="default_audio">Predeterminado</string>
+    <string name="about">Acerca de</string>
+    <string name="system">Sistema</string>
+</resources>
