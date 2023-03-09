@@ -44,4 +44,9 @@
     <string name="settings">Setări</string>
     <string name="theme">Temă</string>
     <string name="system">Sistem</string>
+    <string name="default_audio">Implicit</string>
+    <string name="camcorder">Cameră video</string>
+    <string name="unprocessed">Neprocesate</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
 </resources>
