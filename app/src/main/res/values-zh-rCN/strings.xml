@@ -16,7 +16,7 @@
     <string name="recording_screen">正在录屏 …</string>
     <string name="record_screen">录屏</string>
     <string name="stop">停止</string>
-    <string name="microphone">麦克风音频</string>
+    <string name="microphone">麦克风</string>
     <string name="no_audio">无音频</string>
     <string name="share">分享</string>
     <string name="open">打开</string>
@@ -44,4 +44,9 @@
     <string name="sample_rate">采样率</string>
     <string name="theme">主题</string>
     <string name="light">浅色</string>
+    <string name="mono">单声道</string>
+    <string name="camcorder">摄像头</string>
+    <string name="default_audio">默认</string>
+    <string name="unprocessed">原音</string>
+    <string name="stereo">立体声</string>
 </resources>
