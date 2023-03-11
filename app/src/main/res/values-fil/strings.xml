@@ -1,2 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="recordings">Mga Rekord</string>
+    <string name="okay">Sige</string>
+    <string name="cancel">Kanselahin</string>
+    <string name="rename">Palitan ang pangalan</string>
+    <string name="file_name">Pangalan ng file</string>
+    <string name="delete">Burahin</string>
+    <string name="irreversible">Sigurado ka ba\? Wala nang bawian!</string>
+    <string name="nothing_here">Walang nandito</string>
+    <string name="record_sound">Magrekord ng tunog</string>
+    <string name="screen_recorder">Pangrekord ng screen</string>
+    <string name="recording_screen">Nirerekord ang screen …</string>
+    <string name="record_screen">Irekord ang screen</string>
+    <string name="recording_audio">Nagrerekord ng tunog …</string>
+    <string name="stop">Hinto</string>
+    <string name="share">Ibahagi</string>
+    <string name="open">Buksan</string>
+    <string name="audio">Tunog</string>
+    <string name="video">Video</string>
+    <string name="active_recording">Aktibong pagrerekord</string>
+    <string name="pause">I-pause</string>
+    <string name="resume">Ituloy</string>
+    <string name="recording_finished">Natapos ang pagrerekord</string>
+    <string name="record">Rekord</string>
+    <string name="play">I-play</string>
+    <string name="back">Bumalik</string>
+    <string name="settings">Mga Setting</string>
+    <string name="options">Mga Opsyon</string>
+    <string name="directory">Directory</string>
+    <string name="choose_dir">Pumili ng directory</string>
+    <string name="audio_format">Format ng tunog</string>
+    <string name="microphone">Mikropono</string>
+    <string name="no_audio">Walang tunog</string>
+    <string name="sample_rate">Sample rate</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="auto">Awto</string>
+    <string name="default_audio">Default</string>
+    <string name="camcorder">Camcorder</string>
+    <string name="unprocessed">\'Di-pinroseso</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+    <string name="about">Tungkol</string>
+    <string name="source_code">Source code</string>
+    <string name="author">May-akda</string>
+    <string name="translation">Pagsasalin</string>
+    <string name="delete_all">Burahin lahat</string>
+    <string name="theme">Tema</string>
+    <string name="system">Sistema</string>
+    <string name="dark">Madilim</string>
+    <string name="light">Maliwanag</string>
+</resources>
