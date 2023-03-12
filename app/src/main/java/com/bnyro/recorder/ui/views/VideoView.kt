@@ -18,16 +18,16 @@ fun VideoView(videoUri: Uri) {
 
     val exoPlayer = remember(context) {
         ExoPlayer.Builder(context)
-        .setUsePlatformDiagnostics(false)
-        .build()
-        .also { exoPlayer ->
-            val mediaItem = MediaItem.Builder()
-                .setUri(videoUri)
-                .build()
-            exoPlayer.setMediaItem(mediaItem)
-            exoPlayer.prepare()
-            exoPlayer.playWhenReady = true
-        }
+            .setUsePlatformDiagnostics(false)
+            .build()
+            .also { exoPlayer ->
+                val mediaItem = MediaItem.Builder()
+                    .setUri(videoUri)
+                    .build()
+                exoPlayer.setMediaItem(mediaItem)
+                exoPlayer.prepare()
+                exoPlayer.playWhenReady = true
+            }
     }
     DisposableEffect(
         AndroidView(

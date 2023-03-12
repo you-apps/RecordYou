@@ -1,6 +1,5 @@
 package com.bnyro.recorder.services
 
-import android.media.MediaRecorder
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioChannels
 import com.bnyro.recorder.enums.AudioDeviceSource
@@ -17,8 +16,11 @@ class AudioRecorderService : RecorderService() {
         val audioFormat = AudioFormat.getCurrent()
 
         recorder = PlayerHelper.newRecorder(this).apply {
-            Preferences.prefs.getInt(Preferences.audioDeviceSourceKey, AudioDeviceSource.DEFAULT.value).let {
-                    setAudioSource(it)
+            Preferences.prefs.getInt(
+                Preferences.audioDeviceSourceKey,
+                AudioDeviceSource.DEFAULT.value
+            ).let {
+                setAudioSource(it)
             }
 
             Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }?.let {
@@ -29,8 +31,10 @@ class AudioRecorderService : RecorderService() {
             Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
                 setAudioEncodingBitRate(it)
             }
-            Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).takeIf { it > AudioChannels.MONO.value }?.let {
-                    setAudioChannels(it)
+            Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).takeIf {
+                it > AudioChannels.MONO.value
+            }?.let {
+                setAudioChannels(it)
             }
 
             setOutputFormat(audioFormat.format)

@@ -59,12 +59,19 @@ fun SettingsBottomSheet(
     }
     var audioChannels by remember {
         mutableStateOf(
-            AudioChannels.fromInt(Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value))
+            AudioChannels.fromInt(
+                Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value)
+            )
         )
     }
     var audioDeviceSource by remember {
         mutableStateOf(
-            AudioDeviceSource.fromInt(Preferences.prefs.getInt(Preferences.audioDeviceSourceKey, AudioDeviceSource.DEFAULT.value))
+            AudioDeviceSource.fromInt(
+                Preferences.prefs.getInt(
+                    Preferences.audioDeviceSourceKey,
+                    AudioDeviceSource.DEFAULT.value
+                )
+            )
         )
     }
     var screenAudioSource by remember {
@@ -95,27 +102,6 @@ fun SettingsBottomSheet(
         }
     ) {
         Box {
-            Row(
-                modifier = Modifier.align(Alignment.TopEnd)
-            ) {
-                AnimatedVisibility(visible = scrollState.value < 50) {
-                    Row {
-                        ClickableIcon(
-                            imageVector = Icons.Default.DarkMode,
-                            contentDescription = stringResource(R.string.theme)
-                        ) {
-                            showThemePref = true
-                        }
-                        ClickableIcon(
-                            imageVector = Icons.Default.Info,
-                            contentDescription = stringResource(R.string.about)
-                        ) {
-                            showAbout = true
-                        }
-                    }
-                }
-            }
-
             Column(
                 modifier = Modifier
                     .padding(horizontal = 20.dp)
@@ -173,21 +159,32 @@ fun SettingsBottomSheet(
                     ) { index, newValue ->
                         if (newValue) {
                             audioChannels = AudioChannels.fromInt(audioChannelsValues[index])
-                            Preferences.edit { putInt(Preferences.audioChannelsKey, audioChannelsValues[index]) }
+                            Preferences.edit {
+                                putInt(Preferences.audioChannelsKey, audioChannelsValues[index])
+                            }
                         }
                     }
                 }
                 val audioDeviceSourceValues = AudioDeviceSource.values().map { it.value }
                 ChipSelector(
-                    entries = listOf(R.string.default_audio, R.string.microphone, R.string.camcorder, R.string.unprocessed).map {
+                    entries = listOf(
+                        R.string.default_audio,
+                        R.string.microphone,
+                        R.string.camcorder,
+                        R.string.unprocessed
+                    ).map {
                         stringResource(it)
                     },
                     values = audioDeviceSourceValues,
                     selections = listOf(audioDeviceSource.value)
                 ) { index, newValue ->
                     if (newValue) {
-                    audioDeviceSource = AudioDeviceSource.fromInt(audioDeviceSourceValues[index])
-                    Preferences.edit { putInt(Preferences.audioDeviceSourceKey, audioDeviceSourceValues[index]) }
+                        audioDeviceSource = AudioDeviceSource.fromInt(
+                            audioDeviceSourceValues[index]
+                        )
+                        Preferences.edit {
+                            putInt(Preferences.audioDeviceSourceKey, audioDeviceSourceValues[index])
+                        }
                     }
                 }
                 Spacer(modifier = Modifier.height(10.dp))
@@ -221,6 +218,27 @@ fun SettingsBottomSheet(
                     title = stringResource(R.string.bitrate),
                     defValue = 1_200_000
                 )
+            }
+
+            Column(
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
+                AnimatedVisibility(visible = scrollState.value < 50) {
+                    Row {
+                        ClickableIcon(
+                            imageVector = Icons.Default.DarkMode,
+                            contentDescription = stringResource(R.string.theme)
+                        ) {
+                            showThemePref = true
+                        }
+                        ClickableIcon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = stringResource(R.string.about)
+                        ) {
+                            showAbout = true
+                        }
+                    }
+                }
             }
         }
     }

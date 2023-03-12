@@ -26,4 +26,27 @@
     <string name="active_recording">Aktiv qeyd</string>
     <string name="pause">Fasilə et</string>
     <string name="resume">Davam et</string>
+    <string name="recording_finished">Yazma bitdi</string>
+    <string name="translation">Tərcümə</string>
+    <string name="delete_all">Hamısın sil</string>
+    <string name="record">Yaz</string>
+    <string name="play">Dinlə</string>
+    <string name="back">Geri</string>
+    <string name="settings">Tənzimləmələr</string>
+    <string name="options">Seçimlər</string>
+    <string name="sample_rate">Nümunə sürəti</string>
+    <string name="bitrate">Bit sürəti</string>
+    <string name="auto">Avtomatik</string>
+    <string name="about">Haqqında</string>
+    <string name="source_code">Mənbə kodu</string>
+    <string name="author">Müəllif</string>
+    <string name="default_audio">Standart</string>
+    <string name="camcorder">Videokamera</string>
+    <string name="unprocessed">İşlənməmiş</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+    <string name="theme">Tema</string>
+    <string name="system">Sistem</string>
+    <string name="light">İşıqlı</string>
+    <string name="dark">Qaranlıq</string>
 </resources>
