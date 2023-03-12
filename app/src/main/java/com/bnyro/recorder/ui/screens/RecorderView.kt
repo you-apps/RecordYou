@@ -121,7 +121,7 @@ fun RecorderView(
             if (recorderModel.recordedAmplitudes.isNotEmpty()) {
                 AudioVisualizer(
                     modifier = Modifier
-                        .align(Alignment.Center)
+                        .fillMaxSize()
                         .padding(bottom = 80.dp)
                 )
             } else {
