@@ -1,2 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="rename">Nama semula</string>
+    <string name="irreversible">Adakah anda pasti\? Ini tidak boleh dibuat semula!</string>
+    <string name="nothing_here">Tiada di sini</string>
+    <string name="active_recording">Rakaman aktif</string>
+    <string name="file_name">Nama fail</string>
+    <string name="record_sound">Rakam bunyi</string>
+    <string name="recording_screen">Skrin dirakam …</string>
+    <string name="screen_recorder">Perakam skrin</string>
+    <string name="directory">Direktori</string>
+    <string name="recording_finished">Rakaman selesai</string>
+    <string name="record_screen">Rakam skrin</string>
+    <string name="recording_audio">Merakam audio …</string>
+    <string name="stop">Berhenti</string>
+    <string name="share">Kongsi</string>
+    <string name="open">Buka</string>
+    <string name="audio">Audio</string>
+    <string name="video">Video</string>
+    <string name="pause">Berhenti</string>
+    <string name="resume">Menyambung semula</string>
+    <string name="record">Rakam</string>
+    <string name="play">Main</string>
+    <string name="back">Kembali</string>
+    <string name="options">Pilihan</string>
+    <string name="settings">Tetapan</string>
+    <string name="audio_format">Format audio</string>
+    <string name="bitrate">Kadar bit</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Tiada audio</string>
+    <string name="sample_rate">Kadar sampel</string>
+    <string name="auto">Automatik</string>
+    <string name="default_audio">Lalai</string>
+    <string name="unprocessed">Tidak diproses</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+    <string name="camcorder">Kamera video</string>
+    <string name="translation">Terjemahan</string>
+    <string name="delete_all">Padam semua</string>
+    <string name="dark">Gelap</string>
+    <string name="system">Sistem</string>
+    <string name="delete">Padam</string>
+    <string name="theme">Tema</string>
+    <string name="light">Cahaya</string>
+    <string name="about">Perihal</string>
+    <string name="source_code">Kod sumber</string>
+    <string name="author">Pengarang</string>
+    <string name="choose_dir">Pilih direktori</string>
+    <string name="recordings">Rakaman-rakaman</string>
+    <string name="okay">Baik</string>
+    <string name="cancel">Batal</string>
+</resources>
