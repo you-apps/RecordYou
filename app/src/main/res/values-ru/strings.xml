@@ -38,4 +38,16 @@
     <string name="play">Играть</string>
     <string name="recording_finished">Запись завершена</string>
     <string name="record">Записать</string>
+    <string name="sample_rate">Частота дискретизации</string>
+    <string name="bitrate">Битрейт</string>
+    <string name="auto">Авто</string>
+    <string name="theme">Тема</string>
+    <string name="system">Система</string>
+    <string name="dark">Темный</string>
+    <string name="light">Светлый</string>
+    <string name="default_audio">По умолчанию</string>
+    <string name="camcorder">Видеокамера</string>
+    <string name="unprocessed">Необработанный</string>
+    <string name="mono">Моно</string>
+    <string name="stereo">Стерео</string>
 </resources>
