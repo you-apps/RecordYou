@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.AudioManager
 import android.media.MediaRecorder
 import android.os.Binder
 import android.os.Build
@@ -36,14 +37,25 @@ abstract class RecorderService : Service() {
     var onRecorderStateChanged: (RecorderState) -> Unit = {}
     open val fgServiceType: Int? = null
     private var recorderState: RecorderState = RecorderState.IDLE
+    private lateinit var audioManager: AudioManager
 
-    private val receiver = object : BroadcastReceiver() {
+    private val recorderReceiver = object : BroadcastReceiver() {
         @SuppressLint("NewApi")
         override fun onReceive(context: Context?, intent: Intent?) {
             when (intent?.getStringExtra(ACTION_EXTRA_KEY)) {
                 STOP_ACTION -> onDestroy()
                 PAUSE_RESUME_ACTION -> {
                     if (recorderState == RecorderState.ACTIVE) pause() else resume()
+                }
+            }
+        }
+    }
+
+    private val bluetoothReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            when (intent?.getIntExtra(AudioManager.EXTRA_SCO_AUDIO_STATE, -1)) {
+                AudioManager.SCO_AUDIO_STATE_CONNECTED -> {
+                    unregisterReceiver(this)
                 }
             }
         }
@@ -67,11 +79,21 @@ abstract class RecorderService : Service() {
         } else {
             startForeground(NotificationHelper.RECORDING_NOTIFICATION_ID, notification.build())
         }
+        audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
         runCatching {
-            unregisterReceiver(receiver)
+            unregisterReceiver(bluetoothReceiver)
         }
-        registerReceiver(receiver, IntentFilter(RECORDER_INTENT_ACTION))
+        registerReceiver(
+            bluetoothReceiver,
+            IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)
+        )
+        audioManager.startBluetoothSco()
+
+        runCatching {
+            unregisterReceiver(recorderReceiver)
+        }
+        registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION))
     }
 
     private fun buildNotification(): NotificationCompat.Builder {
@@ -182,7 +204,12 @@ abstract class RecorderService : Service() {
         outputFile = null
 
         runCatching {
-            unregisterReceiver(receiver)
+            unregisterReceiver(recorderReceiver)
+        }
+
+        runCatching {
+            audioManager.stopBluetoothSco()
+            unregisterReceiver(bluetoothReceiver)
         }
 
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
