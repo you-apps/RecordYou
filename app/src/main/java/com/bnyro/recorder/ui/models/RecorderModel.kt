@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModel
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.services.AudioRecorderService
+import com.bnyro.recorder.services.LosslessRecorderService
 import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
@@ -63,6 +64,9 @@ class RecorderModel : ViewModel() {
     }
 
     fun startAudioRecorder(context: Context) {
+        startLosslessRecorder(context)
+        return
+
         if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 
         val serviceIntent = Intent(context, AudioRecorderService::class.java)
@@ -70,6 +74,16 @@ class RecorderModel : ViewModel() {
 
         startElapsedTimeCounter()
         handler.postDelayed(this::updateAmplitude, 100)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun startLosslessRecorder(context: Context) {
+        if (!PermissionHelper.checkPermissions(context, audioPermission)) return
+
+        val serviceIntent = Intent(context, LosslessRecorderService::class.java)
+        startRecorderService(context, serviceIntent)
+
+        startElapsedTimeCounter()
     }
 
     private fun startRecorderService(context: Context, intent: Intent) {

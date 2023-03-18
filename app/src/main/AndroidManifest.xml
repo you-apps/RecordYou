@@ -45,6 +45,10 @@
             android:name=".services.AudioRecorderService"
             android:exported="false" />
 
+        <service
+            android:name=".services.LosslessRecorderService"
+            android:exported="false" />
+
         <receiver
             android:name=".receivers.FinishedNotificationReceiver"
             android:enabled="true"

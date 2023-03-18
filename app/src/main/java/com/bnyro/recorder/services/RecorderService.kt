@@ -36,7 +36,7 @@ abstract class RecorderService : Service() {
 
     var onRecorderStateChanged: (RecorderState) -> Unit = {}
     open val fgServiceType: Int? = null
-    private var recorderState: RecorderState = RecorderState.IDLE
+    var recorderState: RecorderState = RecorderState.IDLE
     private lateinit var audioManager: AudioManager
 
     private val recorderReceiver = object : BroadcastReceiver() {
