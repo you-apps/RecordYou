@@ -38,13 +38,13 @@ class LosslessRecorderService : RecorderService() {
             audioFormat.sampleRate,
             audioFormat.channelMask,
             audioFormat.encoding,
-            BUFFER_SIZE_IN_BYTES,
+            BUFFER_SIZE_IN_BYTES
         )
 
         pcmConverter = PcmConverter(
             audioFormat.sampleRate.toLong(),
             audioFormat.channelCount,
-            2 * 8,
+            2 * 8
         )
 
         audioRecorder?.startRecording()
@@ -52,7 +52,7 @@ class LosslessRecorderService : RecorderService() {
         outputFile = DocumentFile.fromFile(
             File(filesDir, "temp.pcm").also {
                 it.createNewFile()
-            },
+            }
         )
 
         recorderThread = thread(true) {
@@ -114,7 +114,7 @@ class LosslessRecorderService : RecorderService() {
         private val BUFFER_SIZE_IN_BYTES = 2 * AudioRecord.getMinBufferSize(
             SAMPLING_RATE,
             CHANNEL_IN,
-            FORMAT,
+            FORMAT
         )
     }
 }

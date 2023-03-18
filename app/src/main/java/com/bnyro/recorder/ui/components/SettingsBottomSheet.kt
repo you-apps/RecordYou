@@ -1,6 +1,7 @@
 package com.bnyro.recorder.ui.components
 
 import android.net.Uri
+import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
@@ -38,6 +39,7 @@ import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.AudioFormat
+import com.bnyro.recorder.ui.common.CheckboxPref
 import com.bnyro.recorder.ui.common.ChipSelector
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.CustomNumInputPref
@@ -218,6 +220,14 @@ fun SettingsBottomSheet(
                     title = stringResource(R.string.bitrate),
                     defValue = 1_200_000
                 )
+                Spacer(modifier = Modifier.height(10.dp))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    CheckboxPref(
+                        prefKey = Preferences.losslessRecorderKey,
+                        title = stringResource(R.string.lossless_audio),
+                        summary = stringResource(R.string.lossless_audio_desc)
+                    )
+                }
             }
 
             Column(

@@ -52,7 +52,7 @@ class PcmConverter(sampleRate: Long, channels: Int, bitsPerSample: Int) {
         0,
         0,
         0,
-        0,
+        0
     )
 
     fun convertToWave(inputStream: InputStream, outputStream: OutputStream, bufferSize: Int) {
@@ -77,7 +77,7 @@ class PcmConverter(sampleRate: Long, channels: Int, bitsPerSample: Int) {
     private fun writeWaveHeader(
         out: OutputStream?,
         audioLength: Long,
-        dataLength: Long,
+        dataLength: Long
     ) {
         val header = wavHeader.copyOf(wavHeader.size)
         header[4] = (dataLength and 0xffL).toByte()

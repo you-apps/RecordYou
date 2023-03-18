@@ -63,9 +63,12 @@ class RecorderModel : ViewModel() {
         startElapsedTimeCounter()
     }
 
+    @SuppressLint("NewApi")
     fun startAudioRecorder(context: Context) {
-        startLosslessRecorder(context)
-        return
+        if (Preferences.prefs.getBoolean(Preferences.losslessRecorderKey, false)) {
+            startLosslessRecorder(context)
+            return
+        }
 
         if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 

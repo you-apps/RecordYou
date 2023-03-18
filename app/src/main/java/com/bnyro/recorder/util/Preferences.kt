@@ -17,6 +17,7 @@ object Preferences {
     const val videoCodecKey = "videoCodec"
     const val videoBitrateKey = "videoBitrate"
     const val themeModeKey = "themeMode"
+    const val losslessRecorderKey = "losslessRecorder"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)

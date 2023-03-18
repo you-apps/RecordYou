@@ -46,6 +46,8 @@
     <string name="unprocessed">Unprocessed</string>
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Lossless audio recorder (WAV)</string>
+    <string name="lossless_audio_desc">Note that other audio specific options won\'t apply when using.</string>
 
     <!-- About -->
     <string name="about">About</string>
