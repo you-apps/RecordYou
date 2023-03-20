@@ -150,22 +150,6 @@ fun SettingsBottomSheet(
                         title = stringResource(R.string.bitrate),
                         defValue = 192_000
                     )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    val audioChannelsValues = AudioChannels.values().map { it.value }
-                    ChipSelector(
-                        entries = listOf(R.string.mono, R.string.stereo).map {
-                            stringResource(it)
-                        },
-                        values = audioChannelsValues,
-                        selections = listOf(audioChannels.value)
-                    ) { index, newValue ->
-                        if (newValue) {
-                            audioChannels = AudioChannels.fromInt(audioChannelsValues[index])
-                            Preferences.edit {
-                                putInt(Preferences.audioChannelsKey, audioChannelsValues[index])
-                            }
-                        }
-                    }
                 }
                 val audioDeviceSourceValues = AudioDeviceSource.values().map { it.value }
                 ChipSelector(
@@ -186,6 +170,21 @@ fun SettingsBottomSheet(
                         )
                         Preferences.edit {
                             putInt(Preferences.audioDeviceSourceKey, audioDeviceSourceValues[index])
+                        }
+                    }
+                }
+                val audioChannelsValues = AudioChannels.values().map { it.value }
+                ChipSelector(
+                    entries = listOf(R.string.mono, R.string.stereo).map {
+                        stringResource(it)
+                    },
+                    values = audioChannelsValues,
+                    selections = listOf(audioChannels.value)
+                ) { index, newValue ->
+                    if (newValue) {
+                        audioChannels = AudioChannels.fromInt(audioChannelsValues[index])
+                        Preferences.edit {
+                            putInt(Preferences.audioChannelsKey, audioChannelsValues[index])
                         }
                     }
                 }
