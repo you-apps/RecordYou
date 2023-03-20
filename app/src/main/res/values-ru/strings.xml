@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">Record You</string>
     <string name="recordings">Записи</string>
-    <string name="okay">Ввод</string>
+    <string name="okay">Хорошо</string>
     <string name="cancel">Отменить</string>
     <string name="rename">Переименовать</string>
     <string name="file_name">Название</string>
