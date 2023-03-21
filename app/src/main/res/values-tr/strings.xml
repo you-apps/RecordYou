@@ -49,4 +49,6 @@
     <string name="unprocessed">İşlenmemiş</string>
     <string name="mono">Tek kanal</string>
     <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Kayıpsız ses kaydedici (WAV)</string>
+    <string name="lossless_audio_desc">Kullanırken diğer sese özel seçeneklerin geçerli olmayacağını unutmayın.</string>
 </resources>

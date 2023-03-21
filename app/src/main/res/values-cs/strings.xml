@@ -49,4 +49,6 @@
     <string name="default_audio">Výchozí</string>
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Bezztrátový záznam zvuku (WAV)</string>
+    <string name="lossless_audio_desc">Upozorňujeme, že ostatní možnosti specifické pro zvuk nebudou použity.</string>
 </resources>
