@@ -49,4 +49,6 @@
     <string name="unprocessed">Не оброблено</string>
     <string name="mono">Моно</string>
     <string name="stereo">Стерео</string>
+    <string name="lossless_audio">Аудіозапис без втрат (WAV)</string>
+    <string name="lossless_audio_desc">Зверніть увагу, що інші параметри аудіо не застосовуватимуться під час використання.</string>
 </resources>
