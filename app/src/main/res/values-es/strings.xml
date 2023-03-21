@@ -32,7 +32,7 @@
     <string name="recording_screen">Grabando pantalla …</string>
     <string name="stop">Detener</string>
     <string name="recordings">Grabaciones</string>
-    <string name="nothing_here">Nada aquí</string>
+    <string name="nothing_here">Nada aquí.</string>
     <string name="video">Vídeo</string>
     <string name="okay">De acuerdo</string>
     <string name="file_name">Nombre del archivo</string>
@@ -49,4 +49,6 @@
     <string name="default_audio">Predeterminado</string>
     <string name="about">Acerca de</string>
     <string name="system">Sistema</string>
+    <string name="lossless_audio">Grabadora de audio sin pérdidas (WAV)</string>
+    <string name="lossless_audio_desc">Ten en cuenta que otras opciones específicas del audio no se aplicarán cuando se utiliza.</string>
 </resources>
