@@ -1,2 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="irreversible">Na pewno\? Nie można cofnąć tej akcji!</string>
+    <string name="nothing_here">Nic tutaj nie ma</string>
+    <string name="record_sound">Nagraj dźwięk</string>
+    <string name="screen_recorder">Nagrywanie ekranu</string>
+    <string name="recording_screen">Nagrywanie ekranu …</string>
+    <string name="record_screen">Nagraj ekran</string>
+    <string name="recordings">Nagrywanie</string>
+    <string name="okay">OK</string>
+    <string name="cancel">Anuluj</string>
+    <string name="rename">Zmień nazwę</string>
+    <string name="file_name">Nazwa pliku</string>
+    <string name="delete">Usuń</string>
+    <string name="recording_audio">Nagrywanie dźwięku …</string>
+    <string name="stop">Zatrzymaj</string>
+    <string name="share">Udostępnij</string>
+    <string name="open">Otwórz</string>
+    <string name="audio">Audio</string>
+    <string name="video">Wideo</string>
+    <string name="active_recording">Aktywne nagrywanie</string>
+    <string name="pause">Zatrzymaj</string>
+    <string name="resume">Wznów</string>
+    <string name="recording_finished">Nagrywanie zakończone</string>
+    <string name="record">Nagraj</string>
+    <string name="play">Odtwórz</string>
+    <string name="back">Wstecz</string>
+    <string name="settings">Ustawienia</string>
+    <string name="options">Opcje</string>
+    <string name="directory">Katalog</string>
+    <string name="choose_dir">Wybierz katalog</string>
+    <string name="audio_format">Format dźwięku</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Brak dźwięku</string>
+    <string name="sample_rate">Próbkowanie</string>
+    <string name="bitrate">Przepływność</string>
+    <string name="auto">Automatycznie</string>
+    <string name="default_audio">Domyślnie</string>
+    <string name="camcorder">Kamkorder</string>
+    <string name="unprocessed">Nieprzetworzone</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Bezstratne nagrywanie dźwięku (WAV)</string>
+    <string name="lossless_audio_desc">Pamiętaj, że inne opcje specyficzne dla dźwięku nie zostaną zastosowane podczas używania.</string>
+    <string name="about">O programie</string>
+    <string name="source_code">Kod źródłowy</string>
+    <string name="author">Autor</string>
+    <string name="translation">Tłumaczenie</string>
+    <string name="delete_all">Usuń wszystko</string>
+    <string name="theme">Motyw</string>
+    <string name="system">Systemowy</string>
+    <string name="dark">Ciemny</string>
+    <string name="light">Jasny</string>
+</resources>

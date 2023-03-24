@@ -50,4 +50,5 @@
     <string name="default_audio">Predefinito</string>
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Registratore audio senza perdite (WAV)</string>
+    <string name="lossless_audio_desc">Tieni presente che altre opzioni specifiche per l\'audio non verranno applicate durante l\'utilizzo.</string>
 </resources>
