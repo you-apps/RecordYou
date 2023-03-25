@@ -6,7 +6,7 @@
     <string name="file_name">ফাইলের নাম</string>
     <string name="delete">মুছুন</string>
     <string name="record_sound">শব্দ রেকর্ড করুন</string>
-    <string name="choose_dir">ডাইরেক্টরি বাছুন</string>
+    <string name="choose_dir">ডিরেক্টরি নির্বাচন করুন</string>
     <string name="audio_format">অডিও ফর্ম্যাট</string>
     <string name="okay">আচ্ছা</string>
     <string name="nothing_here">কিছুই নেই</string>
