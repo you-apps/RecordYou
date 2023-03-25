@@ -50,5 +50,5 @@
     <string name="about">Acerca de</string>
     <string name="system">Sistema</string>
     <string name="lossless_audio">Grabadora de audio sin pérdidas (WAV)</string>
-    <string name="lossless_audio_desc">Ten en cuenta que otras opciones específicas del audio no se aplicarán cuando se utiliza.</string>
+    <string name="lossless_audio_desc">Ten en cuenta que otras opciones específicas del audio no se aplicarán durante su uso.</string>
 </resources>
