@@ -12,7 +12,7 @@
     <string name="file_name">文件名</string>
     <string name="delete">删除</string>
     <string name="directory">目录</string>
-    <string name="screen_recorder">屏幕录制器选项</string>
+    <string name="screen_recorder">屏幕录制器</string>
     <string name="recording_screen">正在录屏 …</string>
     <string name="record_screen">录屏</string>
     <string name="stop">停止</string>
@@ -22,7 +22,7 @@
     <string name="open">打开</string>
     <string name="audio">音频</string>
     <string name="video">视频</string>
-    <string name="active_recording">活动录制</string>
+    <string name="active_recording">录制活动中</string>
     <string name="pause">暂停</string>
     <string name="recording_audio">正在录音…</string>
     <string name="resume">恢复录制</string>
