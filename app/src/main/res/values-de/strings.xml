@@ -23,4 +23,5 @@
     <string name="stop">Stopp</string>
     <string name="recording_screen">Bildschirm wird aufgenommen …</string>
     <string name="audio">Ton</string>
+    <string name="about">Über</string>
 </resources>
