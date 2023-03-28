@@ -50,5 +50,5 @@
     <string name="unprocessed">غير معالج</string>
     <string name="mono">احاديه</string>
     <string name="lossless_audio">مسجل الصوت بدون فقدان البيانات (WAV)</string>
-    <string name="lossless_audio_desc">لاحظ أنه لن يتم تطبيق خيارات الصوت الأخرى المحددة عند الاستخدام.</string>
+    <string name="lossless_audio_desc">لاحظ أنه لن يتم تطبيق خيارات الصوت الأخرى المحددة أثناء الاستخدام.</string>
 </resources>

@@ -50,5 +50,5 @@
     <string name="unprocessed">Não processado</string>
     <string name="default_audio">Por defeito</string>
     <string name="lossless_audio">Gravador de áudio sem perdas (WAV)</string>
-    <string name="lossless_audio_desc">Note que outras opções específicas de áudio não se aplicarão quando se utilizar.</string>
+    <string name="lossless_audio_desc">Note que outras opções específicas de áudio não se aplicarão durante a utilização.</string>
 </resources>

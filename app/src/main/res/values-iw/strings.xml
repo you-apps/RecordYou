@@ -45,7 +45,7 @@
     <string name="unprocessed">ללא עיבוד</string>
     <string name="stereo">סטריאו</string>
     <string name="lossless_audio">מקליט שמע ללא אובדן איכות (WAV)</string>
-    <string name="lossless_audio_desc">נא לשים לב שהגדרות ייעודיות לשמע לא תחולנה בעת השימוש.</string>
+    <string name="lossless_audio_desc">נא לשים לב שהגדרות ייעודיות לשמע לא תחולנה במהלך השימוש.</string>
     <string name="dark">כהה</string>
     <string name="source_code">קוד מקור</string>
     <string name="author">יוצר</string>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="record_screen">Ecranul Înregistrare</string>
+    <string name="record_screen">Înregistrează ecranul</string>
     <string name="audio_format">Format audio</string>
     <string name="recordings">Înregistrări</string>
     <string name="okay">Bine</string>
@@ -14,7 +14,7 @@
     <string name="directory">Director</string>
     <string name="choose_dir">Alegeți directorul</string>
     <string name="screen_recorder">Înregistrator de ecran</string>
-    <string name="recording_screen">Înregistrarea ecranului …</string>
+    <string name="recording_screen">Se înregistrează ecranul …</string>
     <string name="recording_audio">Se înregistrează audio…</string>
     <string name="stop">Opreşte</string>
     <string name="no_audio">Fără sunet</string>
@@ -29,24 +29,26 @@
     <string name="record">Înregistrează</string>
     <string name="play">Redă</string>
     <string name="options">Opțiuni</string>
-    <string name="sample_rate">Rata simpla</string>
-    <string name="bitrate">Bitrate</string>
+    <string name="sample_rate">Rată simplă</string>
+    <string name="bitrate">Rată de biți</string>
     <string name="auto">Auto</string>
     <string name="about">Despre</string>
-    <string name="source_code">Cod sursa</string>
+    <string name="source_code">Codul sursă</string>
     <string name="author">Autor</string>
     <string name="translation">Traducere</string>
-    <string name="delete_all">Sterge tot</string>
+    <string name="delete_all">Șterge tot</string>
     <string name="dark">Întunecat</string>
-    <string name="light">Luminat</string>
+    <string name="light">Luminos</string>
     <string name="recording_finished">Înregistrare terminată</string>
-    <string name="back">Înainte</string>
+    <string name="back">Înapoi</string>
     <string name="settings">Setări</string>
     <string name="theme">Temă</string>
     <string name="system">Sistem</string>
     <string name="default_audio">Implicit</string>
     <string name="camcorder">Cameră video</string>
-    <string name="unprocessed">Neprocesate</string>
+    <string name="unprocessed">Neprocesat</string>
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Înregistrare audio fără pierderi (WAV)</string>
+    <string name="lossless_audio_desc">Rețineți că alte opțiuni specifice audio nu se vor aplica în timpul utilizării.</string>
 </resources>
