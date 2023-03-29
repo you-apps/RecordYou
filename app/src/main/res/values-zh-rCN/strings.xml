@@ -50,5 +50,5 @@
     <string name="unprocessed">原始音频</string>
     <string name="stereo">立体声</string>
     <string name="lossless_audio">无损录音（WAV）</string>
-    <string name="lossless_audio_desc">请注意，此选项启用时其他音频选项将不生效。</string>
+    <string name="lossless_audio_desc">请注意，使用此选项时将不会应用其他音频设置。</string>
 </resources>
