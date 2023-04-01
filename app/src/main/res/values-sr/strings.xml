@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Record You</string>
+    <string name="recordings">Снимци</string>
+    <string name="okay">У реду</string>
+    <string name="cancel">Поништи</string>
+    <string name="rename">Преименуј</string>
+    <string name="file_name">Име датотеке</string>
+    <string name="delete">Избриши</string>
+    <string name="irreversible">Да ли сте сигурни? Ово не може бити поништено!</string>
+    <string name="nothing_here">Нема ничега</string>
+    <!-- Action -->
+    <string name="record_sound">Сними звук</string>
+    <string name="screen_recorder">Снимач екрана</string>
+    <string name="recording_screen">Снимање екрана …</string>
+    <string name="record_screen">Сними екран</string>
+    <string name="recording_audio">Снимање звука …</string>
+    <string name="stop">Заустави</string>
+    <string name="share">Подели</string>
+    <string name="open">Отвори</string>
+    <string name="audio">Аудио</string>
+    <string name="video">Видео</string>
+    <string name="active_recording">Снимање активно</string>
+    <string name="pause">Паузирај</string>
+    <string name="resume">Настави</string>
+    <string name="recording_finished">Снимање завршено</string>
+    <string name="record">Сними</string>
+    <string name="play">Репродукуј</string>
+    <string name="back">Назад</string>
+    <!-- Settings -->
+    <string name="settings">Подешавања</string>
+    <string name="options">Опције</string>
+    <string name="directory">Фасцикла</string>
+    <string name="choose_dir">Изабери фасциклу</string>
+    <string name="audio_format">Формат звука</string>
+    <string name="microphone">Микрофон</string>
+    <string name="no_audio">Без звука</string>
+    <string name="sample_rate">Стопа узорковања</string>
+    <string name="bitrate">Битрејт</string>
+    <string name="auto">Аутоматски</string>
+    <string name="default_audio">Подразумевано</string>
+    <string name="camcorder">Камкордер</string>
+    <string name="unprocessed">Необрађен</string>
+    <string name="mono">Моно</string>
+    <string name="stereo">Стерео</string>
+    <string name="lossless_audio">Снимач звука без губитка (WAV)</string>
+    <string name="lossless_audio_desc">Обратите пажњу да друге аудио опције неће бити примењене током употребе.</string>
+    <!-- About -->
+    <string name="about">О</string>
+    <string name="source_code">Изворни кôд</string>
+    <string name="author">Аутор</string>
+    <string name="translation">Превод</string>
+    <string name="delete_all">Избриши све</string>
+    <!-- Theme -->
+    <string name="theme">Тема</string>
+    <string name="system">Системска</string>
+    <string name="dark">Тамна</string>
+    <string name="light">Светла</string>
+</resources>
