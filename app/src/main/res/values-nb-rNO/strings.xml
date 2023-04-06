@@ -18,7 +18,7 @@
     <string name="no_audio">Ingen lyd</string>
     <string name="sample_rate">Samplingstakt</string>
     <string name="bitrate">Bitrate</string>
-    <string name="auto">Auto</string>
+    <string name="auto">Automatisk</string>
     <string name="recording_audio">Tar opp lyd …</string>
     <string name="share">Del</string>
     <string name="open">Åpne</string>
@@ -47,7 +47,7 @@
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
     <string name="about">Om</string>
-    <string name="author">Utvikler</string>
+    <string name="author">Skaper</string>
     <string name="translation">Oversettelse</string>
     <string name="delete_all">Slett alt</string>
     <string name="theme">Drakt</string>
