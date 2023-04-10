@@ -25,7 +25,7 @@
     <string name="active_recording">录制活动中</string>
     <string name="pause">暂停</string>
     <string name="recording_audio">正在录音…</string>
-    <string name="resume">恢复录制</string>
+    <string name="resume">恢复</string>
     <string name="settings">设置</string>
     <string name="record">记录</string>
     <string name="play">播放</string>
