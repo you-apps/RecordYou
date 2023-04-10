@@ -19,7 +19,7 @@
     <string name="stop">إيقاف</string>
     <string name="share">شارك</string>
     <string name="active_recording">التسجيل النشط</string>
-    <string name="pause">ايقاف</string>
+    <string name="pause">ايقاف مؤقت</string>
     <string name="choose_dir">اختر مجلَّدًا</string>
     <string name="recording_audio">تسجيل الصوت …</string>
     <string name="no_audio">لا يوجد صوت</string>
