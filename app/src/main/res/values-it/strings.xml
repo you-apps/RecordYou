@@ -19,7 +19,7 @@
     <string name="video">Video</string>
     <string name="screen_recorder">Registratore dello schermo</string>
     <string name="recording_screen">Registrazione dello schermo…</string>
-    <string name="stop">Ferma</string>
+    <string name="stop">Stop</string>
     <string name="microphone">Microfono</string>
     <string name="audio">Audio</string>
     <string name="active_recording">Registrazione attiva</string>
