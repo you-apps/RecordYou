@@ -32,7 +32,7 @@
     <string name="recording_audio">Enregistrement de l\'audio…</string>
     <string name="active_recording">Enregistrement actif</string>
     <string name="pause">Pause</string>
-    <string name="resume">Reprise</string>
+    <string name="resume">Reprendre</string>
     <string name="recording_finished">Enregistrement terminé</string>
     <string name="settings">Paramètres</string>
     <string name="play">Lecture</string>
