@@ -20,13 +20,13 @@
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>
     <string name="recording_audio">Запись звука …</string>
-    <string name="stop">Остановить</string>
+    <string name="stop">Отключить</string>
     <string name="microphone">Микрофон</string>
     <string name="no_audio">Без звука</string>
     <string name="open">Открыть</string>
     <string name="active_recording">Активная запись</string>
     <string name="pause">Пауза</string>
-    <string name="resume">Продолжить</string>
+    <string name="resume">Возобновить</string>
     <string name="options">Настройки</string>
     <string name="about">О приложении</string>
     <string name="source_code">Исходный код</string>
