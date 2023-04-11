@@ -37,7 +37,7 @@
     <string name="settings">Paramètres</string>
     <string name="play">Lecture</string>
     <string name="options">Options</string>
-    <string name="record">Enregistrer</string>
+    <string name="record">Enregistre</string>
     <string name="sample_rate">Fréquence d\'échantillonnage</string>
     <string name="bitrate">Taux d\'échantillonnage</string>
     <string name="theme">Thème</string>
