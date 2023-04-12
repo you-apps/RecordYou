@@ -40,7 +40,7 @@
     <string name="options">Alternativer</string>
     <string name="active_recording">Aktivt opptak</string>
     <string name="pause">Pause</string>
-    <string name="resume">Gjenoppta</string>
+    <string name="resume">Fortsett</string>
     <string name="default_audio">Forvalg</string>
     <string name="camcorder">Videokamera</string>
     <string name="unprocessed">Ubehandlet</string>
