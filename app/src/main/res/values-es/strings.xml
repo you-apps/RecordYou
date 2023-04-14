@@ -42,7 +42,7 @@
     <string name="recording_audio">Grabando audio …</string>
     <string name="share">Compartir</string>
     <string name="audio">Audio</string>
-    <string name="settings">Configuración</string>
+    <string name="settings">Ajustes</string>
     <string name="directory">Directorio</string>
     <string name="no_audio">Sin audio</string>
     <string name="sample_rate">Tasa de muestreo</string>
