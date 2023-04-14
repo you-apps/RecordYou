@@ -42,7 +42,7 @@
     <string name="bitrate">Битрейт</string>
     <string name="auto">Авто</string>
     <string name="theme">Тема</string>
-    <string name="system">Системный</string>
+    <string name="system">Как в системе</string>
     <string name="dark">Тёмная</string>
     <string name="light">Светлая</string>
     <string name="default_audio">По умолчанию</string>
