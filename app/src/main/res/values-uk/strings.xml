@@ -42,7 +42,7 @@
     <string name="sample_rate">Частота дискретизації</string>
     <string name="bitrate">Бітрейт</string>
     <string name="auto">Авто</string>
-    <string name="system">Системна</string>
+    <string name="system">Система</string>
     <string name="dark">Темна</string>
     <string name="default_audio">За замовчуванням</string>
     <string name="camcorder">Відеокамера</string>
