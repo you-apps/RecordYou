@@ -1,2 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="okay">ОК</string>
+    <string name="cancel">Адмена</string>
+    <string name="file_name">Імя файла</string>
+    <string name="nothing_here">Пуста</string>
+    <string name="record_sound">Запісаць гук</string>
+    <string name="screen_recorder">Запіс экрана</string>
+    <string name="recording_screen">Запіс экрана …</string>
+    <string name="audio">Аўдыё</string>
+    <string name="video">Відэа</string>
+    <string name="pause">Паўза</string>
+    <string name="directory">Каталог</string>
+    <string name="choose_dir">Выберыце каталог</string>
+    <string name="audio_format">Фармат аўдыё</string>
+    <string name="no_audio">Без аўдыё</string>
+    <string name="sample_rate">Частата дыскрэтызацыі</string>
+    <string name="bitrate">Бітрэйт</string>
+    <string name="default_audio">Па змаўчанні</string>
+    <string name="light">Светлая</string>
+    <string name="recordings">Запісы</string>
+    <string name="rename">Перайменаваць</string>
+    <string name="delete">Выдаліць</string>
+    <string name="system">Як у сістэме</string>
+    <string name="dark">Цёмная</string>
+    <string name="recording_finished">Запіс завершаны</string>
+    <string name="settings">Налады</string>
+    <string name="options">Параметры</string>
+    <string name="mono">Мона</string>
+    <string name="stereo">Стэрэа</string>
+    <string name="translation">Пераклад</string>
+    <string name="microphone">Мікрафон</string>
+    <string name="auto">Аўто</string>
+    <string name="about">Аб праграме</string>
+    <string name="source_code">Зыходны код</string>
+    <string name="author">Аўтар</string>
+    <string name="delete_all">Выдаліць усе</string>
+    <string name="theme">Тэма</string>
+</resources>
