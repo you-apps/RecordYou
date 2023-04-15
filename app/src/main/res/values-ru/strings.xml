@@ -7,8 +7,8 @@
     <string name="rename">Переименовать</string>
     <string name="file_name">Название</string>
     <string name="delete">Удалить</string>
-    <string name="irreversible">Вы уверены\? Это нельзя будет отменить!</string>
-    <string name="nothing_here">Здесь ничего нет</string>
+    <string name="irreversible">Вы уверены\? Это действие невозможно отменить!</string>
+    <string name="nothing_here">Пусто</string>
     <string name="record_sound">Запись звука</string>
     <string name="directory">Папка</string>
     <string name="choose_dir">Выбрать папку</string>
@@ -37,7 +37,7 @@
     <string name="back">Назад</string>
     <string name="play">Воспроизвести</string>
     <string name="recording_finished">Запись завершена</string>
-    <string name="record">Записать</string>
+    <string name="record">Запись звука</string>
     <string name="sample_rate">Частота дискретизации</string>
     <string name="bitrate">Битрейт</string>
     <string name="auto">Авто</string>
@@ -50,6 +50,6 @@
     <string name="unprocessed">Необработанный</string>
     <string name="mono">Моно</string>
     <string name="stereo">Стерео</string>
-    <string name="lossless_audio_desc">Обратите внимание, что другие параметры звука не будут применяться во время использования.</string>
-    <string name="lossless_audio">Аудиорекордер без потери качества (WAV)</string>
+    <string name="lossless_audio_desc">Примечание: другие параметры аудио не будут применяться при включенном кодировщике WAV.</string>
+    <string name="lossless_audio">Кодировщик без потерь качества (WAV)</string>
 </resources>
