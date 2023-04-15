@@ -8,7 +8,7 @@
     <string name="cancel">Скасувати</string>
     <string name="file_name">Назва файлу</string>
     <string name="irreversible">Ви впевнені\? Це не можна відмінити!</string>
-    <string name="nothing_here">Тут нічого немає</string>
+    <string name="nothing_here">Пусто</string>
     <string name="record_sound">Записати звук</string>
     <string name="directory">Каталог</string>
     <string name="choose_dir">Виберіть каталог</string>
@@ -42,7 +42,7 @@
     <string name="sample_rate">Частота дискретизації</string>
     <string name="bitrate">Бітрейт</string>
     <string name="auto">Авто</string>
-    <string name="system">Система</string>
+    <string name="system">Як у системі</string>
     <string name="dark">Темна</string>
     <string name="default_audio">За замовчуванням</string>
     <string name="camcorder">Відеокамера</string>
