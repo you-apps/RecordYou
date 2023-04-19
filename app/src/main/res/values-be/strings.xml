@@ -36,4 +36,19 @@
     <string name="author">Аўтар</string>
     <string name="delete_all">Выдаліць усе</string>
     <string name="theme">Тэма</string>
+    <string name="irreversible">Вы ўпэўнены\? Гэтае дзеянне немагчыма адмяніць!</string>
+    <string name="resume">Аднавіць</string>
+    <string name="record_screen">Запіс экрана</string>
+    <string name="recording_audio">Запіс аўдыя…</string>
+    <string name="stop">Стоп</string>
+    <string name="share">Падзяліцца</string>
+    <string name="open">Адкрыць</string>
+    <string name="active_recording">Актыўны запіс</string>
+    <string name="play">Прайграць</string>
+    <string name="record">Запіс</string>
+    <string name="back">Назад</string>
+    <string name="camcorder">Відэакамера</string>
+    <string name="unprocessed">Неапрацаваны</string>
+    <string name="lossless_audio">Аўдыязапіс без страт (WAV)</string>
+    <string name="lossless_audio_desc">Звярніце ўвагу, што іншыя параметры гуку не будуць прымяняцца падчас выкарыстання.</string>
 </resources>
