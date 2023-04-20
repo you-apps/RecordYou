@@ -41,7 +41,7 @@
     <string name="sample_rate">Taxa de amostragem</string>
     <string name="bitrate">Taxa de bits</string>
     <string name="auto">Automático</string>
-    <string name="source_code">Código fonte</string>
+    <string name="source_code">Código-fonte</string>
     <string name="author">Autor</string>
     <string name="delete_all">Eliminar tudo</string>
     <string name="camcorder">Câmara de vídeo</string>
