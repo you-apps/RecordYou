@@ -24,8 +24,8 @@
     <string name="video">Video</string>
     <string name="recording_audio">Səs yazılır …</string>
     <string name="active_recording">Aktiv qeyd</string>
-    <string name="pause">Fasilə et</string>
-    <string name="resume">Davam et</string>
+    <string name="pause">Fasilə</string>
+    <string name="resume">Davam etdir</string>
     <string name="recording_finished">Yazma bitdi</string>
     <string name="translation">Tərcümə</string>
     <string name="delete_all">Hamısın sil</string>
