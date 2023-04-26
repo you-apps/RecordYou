@@ -1,5 +1,7 @@
 package com.bnyro.recorder.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -8,13 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -36,11 +33,13 @@ import com.bnyro.recorder.ui.models.PlayerModel
 import com.bnyro.recorder.ui.views.VideoView
 import com.bnyro.recorder.util.IntentHelper
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RecordingItem(
     recordingFile: DocumentFile,
     isVideo: Boolean,
+    isSelected: Boolean,
+    onClick: (wasLongClick: Boolean) -> Unit,
     startPlayingAudio: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel()
@@ -59,8 +58,23 @@ fun RecordingItem(
         mutableStateOf(false)
     }
 
+    val cardColor = if (!isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp) else MaterialTheme.colorScheme.primary
     ElevatedCard(
-        modifier = Modifier.padding(vertical = 5.dp)
+        modifier = Modifier
+            .padding(vertical = 5.dp)
+            .clip(CardDefaults.shape)
+            .combinedClickable(
+                onClick = {
+                    onClick.invoke(false)
+                },
+                onLongClick = {
+                    onClick.invoke(true)
+                }
+            ),
+        colors = CardDefaults.cardColors(
+            containerColor = cardColor,
+            contentColor = contentColorFor(cardColor)
+        )
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

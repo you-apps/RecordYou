@@ -6,34 +6,39 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Sort
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.documentfile.provider.DocumentFile
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.FullscreenDialog
 import com.bnyro.recorder.ui.components.PlayerView
+import com.bnyro.recorder.ui.models.PlayerModel
 
 @Composable
 fun PlayerScreen(
     showVideoModeInitially: Boolean,
     onDismissRequest: () -> Unit
 ) {
-    var showDeleteAllDialog by remember {
+    var showDeleteDialog by remember {
         mutableStateOf(false)
     }
     var selectedSortOrder by remember {
         mutableStateOf(SortOrder.ALPHABETIC)
     }
+    val selectedFiles = remember {
+        mutableStateOf(listOf<DocumentFile>())
+    }
+    val playerModel: PlayerModel = viewModel()
 
     FullscreenDialog(
         title = stringResource(R.string.recordings),
@@ -77,11 +82,25 @@ fun PlayerScreen(
                     }
                 }
             }
+            if (selectedFiles.value.isNotEmpty()) {
+                val selectedAll = selectedFiles.value.size == playerModel.files.size
+                Checkbox(
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    checked = selectedAll,
+                    onCheckedChange = {
+                        if (selectedAll) {
+                            selectedFiles.value = listOf()
+                        } else {
+                            selectedFiles.value = playerModel.files
+                        }
+                    }
+                )
+            }
             ClickableIcon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = stringResource(R.string.delete_all)
             ) {
-                showDeleteAllDialog = true
+                showDeleteDialog = true
             }
         }
     ) {
@@ -90,8 +109,8 @@ fun PlayerScreen(
                 horizontal = 20.dp
             )
         ) {
-            PlayerView(showVideoModeInitially, showDeleteAllDialog, selectedSortOrder) {
-                showDeleteAllDialog = false
+            PlayerView(showVideoModeInitially, showDeleteDialog, selectedSortOrder, selectedFiles) {
+                showDeleteDialog = false
             }
         }
     }

@@ -26,17 +26,13 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.SortOrder
@@ -49,8 +45,9 @@ import kotlinx.coroutines.delay
 @Composable
 fun PlayerView(
     showVideoModeInitially: Boolean,
-    showDeleteAllDialog: Boolean,
+    showDeleteDialog: Boolean,
     sortOrder: SortOrder,
+    selectedFiles: MutableState<List<DocumentFile>>,
     onDeleteAllDialogDismissed: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel()
@@ -120,7 +117,23 @@ fun PlayerView(
                         .weight(1f)
                 ) {
                     items(files) {
-                        RecordingItem(recordingFile = it, selectedTab == 1) {
+                        RecordingItem(
+                            recordingFile = it,
+                            isVideo = selectedTab == 1,
+                            isSelected = selectedFiles.value.contains(it),
+                            onClick = { wasLongPress ->
+                                when {
+                                    wasLongPress -> selectedFiles.value += it
+                                    selectedFiles.value.isNotEmpty() -> {
+                                        if (selectedFiles.value.contains(it)) {
+                                            selectedFiles.value -= it
+                                        } else {
+                                            selectedFiles.value += it
+                                        }
+                                    }
+                                }
+                            }
+                        ) {
                             playerModel.startPlaying(context, it)
                         }
                     }
@@ -235,14 +248,16 @@ fun PlayerView(
         }
     }
 
-    if (showDeleteAllDialog) {
+    if (showDeleteDialog) {
         ConfirmationDialog(
-            title = R.string.delete_all,
+            title = if (selectedFiles.value.isEmpty()) R.string.delete_all else R.string.delete,
             onDismissRequest = onDeleteAllDialogDismissed
         ) {
-            files.forEach {
-                it.delete()
+            val filesToDelete = selectedFiles.value.takeIf { it.isNotEmpty() } ?: files
+            filesToDelete.forEach {
+                if (it.exists()) it.delete()
                 playerModel.files.remove(it)
+                selectedFiles.value -= it
             }
         }
     }
