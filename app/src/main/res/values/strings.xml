@@ -51,6 +51,8 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Lossless audio recorder (WAV)</string>
     <string name="lossless_audio_desc">Note that other audio specific options won\'t apply during use.</string>
+    <string name="naming_pattern">Naming pattern</string>
+    <string name="naming_pattern_desc">%d: Date, %t: Time, %s: Epoch seconds, %m: Epoch millis</string>
     <!-- About -->
     <string name="about">About</string>
     <string name="source_code">Source code</string>

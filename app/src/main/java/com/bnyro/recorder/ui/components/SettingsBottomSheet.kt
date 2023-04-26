@@ -227,6 +227,8 @@ fun SettingsBottomSheet(
                         summary = stringResource(R.string.lossless_audio_desc)
                     )
                 }
+                Spacer(modifier = Modifier.height(10.dp))
+                NamingPatternPref()
             }
 
             Column(
