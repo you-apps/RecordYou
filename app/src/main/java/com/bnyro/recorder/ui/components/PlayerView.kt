@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.provider.OpenableColumns
 import android.text.format.DateUtils
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
@@ -38,15 +39,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
+import kotlin.math.absoluteValue
 import kotlinx.coroutines.delay
 
 @Composable
 fun PlayerView(
     showVideoModeInitially: Boolean,
     showDeleteAllDialog: Boolean,
+    sortOrder: SortOrder,
     onDeleteAllDialogDismissed: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel()
@@ -61,9 +65,23 @@ fun PlayerView(
         )
     }
 
-    val files = playerModel.files.filter { file ->
+    val filesToShow = playerModel.files.filter { file ->
         val videoCriteria = VideoFormat.codecs.any { file.name.orEmpty().endsWith(it.extension) }
         if (selectedTab == 0) !videoCriteria else videoCriteria
+    }
+
+    val files = when (sortOrder) {
+        SortOrder.ALPHABETIC, SortOrder.ALPHABETIC_REV -> filesToShow.sortedBy { it.name }
+        else -> filesToShow.sortedBy {
+            context.contentResolver.query(it.uri, null, null, null, null)?.use { cursor ->
+                cursor.getLong(cursor.getColumnIndex(OpenableColumns.SIZE).absoluteValue)
+            }
+        }
+    }.let {
+        when (sortOrder) {
+            SortOrder.ALPHABETIC_REV, SortOrder.SIZE -> it.reversed()
+            else -> it
+        }
     }
 
     Column(

@@ -27,6 +27,12 @@
     <string name="record">Record</string>
     <string name="play">Play</string>
     <string name="back">Back</string>
+    <!-- Sort order -->
+    <string name="sort">Sort</string>
+    <string name="alphabetic">Alphabetic</string>
+    <string name="alphabetic_rev">Alphabetic (reversed)</string>
+    <string name="size">Size</string>
+    <string name="size_rev">Size (reversed)</string>
     <!-- Settings -->
     <string name="settings">Settings</string>
     <string name="options">Options</string>
