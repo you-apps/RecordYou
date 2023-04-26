@@ -51,4 +51,10 @@
     <string name="system">Sistema</string>
     <string name="lossless_audio">Grabadora de audio sin pérdidas (WAV)</string>
     <string name="lossless_audio_desc">Ten en cuenta que otras opciones específicas del audio no se aplicarán durante su uso.</string>
+    <string name="alphabetic_rev">Alfabéticamente (invertido)</string>
+    <string name="naming_pattern">Patrón de nombres</string>
+    <string name="sort">Ordenar</string>
+    <string name="alphabetic">Alfabéticamente</string>
+    <string name="size">Tamaño</string>
+    <string name="size_rev">Tamaño (al revés)</string>
 </resources>
