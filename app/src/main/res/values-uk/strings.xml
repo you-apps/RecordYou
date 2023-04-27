@@ -51,4 +51,11 @@
     <string name="stereo">Стерео</string>
     <string name="lossless_audio">Аудіозапис без втрат (WAV)</string>
     <string name="lossless_audio_desc">Зверніть увагу, що інші специфічні для аудіо параметри не застосовуватимуться під час використання.</string>
+    <string name="size">За розміром</string>
+    <string name="size_rev">За розміром (навпаки)</string>
+    <string name="naming_pattern">Шаблон іменування</string>
+    <string name="naming_pattern_desc">%d: Дата, %t: Час, %s: Секунди, %m: Мілісекунди</string>
+    <string name="sort">Сортувати</string>
+    <string name="alphabetic">За алфавітом</string>
+    <string name="alphabetic_rev">За алфавітом (навпаки)</string>
 </resources>
