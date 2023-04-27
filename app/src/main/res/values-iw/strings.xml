@@ -51,4 +51,11 @@
     <string name="author">יוצר</string>
     <string name="translation">תרגום</string>
     <string name="system">מערכת</string>
+    <string name="size">גודל</string>
+    <string name="naming_pattern_desc">%d: תאריך, %t: שעה, %s: שניות זמן יוניקס, %m: מילישניות זמן יוניקס</string>
+    <string name="sort">מיון</string>
+    <string name="alphabetic_rev">אלפביתי (הפוך)</string>
+    <string name="alphabetic">אלפביתי</string>
+    <string name="naming_pattern">תבנית מתן שמות</string>
+    <string name="size_rev">גודל (הפוך)</string>
 </resources>
