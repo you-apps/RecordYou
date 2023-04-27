@@ -51,4 +51,11 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Bezztrátový záznam zvuku (WAV)</string>
     <string name="lossless_audio_desc">Upozorňujeme, že ostatní možnosti specifické pro zvuk nebudou použity.</string>
+    <string name="size">Velikost</string>
+    <string name="naming_pattern">Vzor pojmenování</string>
+    <string name="size_rev">Velikost (obráceně)</string>
+    <string name="sort">Řazení</string>
+    <string name="alphabetic">Abecedně</string>
+    <string name="alphabetic_rev">Abecedně (obráceně)</string>
+    <string name="naming_pattern_desc">%d: Datum, %t: Čas, %s Epocha sekund, %m: Epicha milisekund</string>
 </resources>
