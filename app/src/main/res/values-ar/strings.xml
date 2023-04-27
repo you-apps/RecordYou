@@ -51,4 +51,11 @@
     <string name="mono">احاديه</string>
     <string name="lossless_audio">مسجل الصوت بدون فقدان البيانات (WAV)</string>
     <string name="lossless_audio_desc">لاحظ أنه لن يتم تطبيق خيارات الصوت الأخرى المحددة أثناء الاستخدام.</string>
+    <string name="alphabetic_rev">أبجدي (معكوس)</string>
+    <string name="size">الحجم</string>
+    <string name="size_rev">الحجم (معكوس)</string>
+    <string name="naming_pattern_desc">%d: التاريخ، %t: الوقت، %s: ثواني العصر، %m: الحقبة المللية</string>
+    <string name="sort">فرز</string>
+    <string name="alphabetic">أبجدي</string>
+    <string name="naming_pattern">نمط التسمية</string>
 </resources>
