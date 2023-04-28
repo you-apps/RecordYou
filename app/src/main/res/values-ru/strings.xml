@@ -52,4 +52,11 @@
     <string name="stereo">Стерео</string>
     <string name="lossless_audio_desc">Примечание: другие параметры аудио не будут применяться при включенном кодировщике WAV.</string>
     <string name="lossless_audio">Кодировщик без потерь качества (WAV)</string>
+    <string name="alphabetic_rev">Алфавитный (обратный)</string>
+    <string name="sort">Сортировать</string>
+    <string name="size_rev">Размер (обратный)</string>
+    <string name="alphabetic">Алфавитный</string>
+    <string name="size">Размер</string>
+    <string name="naming_pattern">Образец именования</string>
+    <string name="naming_pattern_desc">%d: Дата, %t: Время, %s: Эпоха секунд, %m: Эпоха миллисекунд</string>
 </resources>
