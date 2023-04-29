@@ -51,4 +51,10 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Registratore audio senza perdite (WAV)</string>
     <string name="lossless_audio_desc">Tieni presente che altre opzioni specifiche per l\'audio non verranno applicate durante l\'utilizzo.</string>
+    <string name="sort">Ordina</string>
+    <string name="alphabetic">Alfabetico</string>
+    <string name="size">Dimensione</string>
+    <string name="size_rev">Dimensione (al contrario)</string>
+    <string name="alphabetic_rev">Alfabetico (al contrario)</string>
+    <string name="naming_pattern_desc">%d: Data, %t: Tempo, %s: Secondi Epoch, %m: Millisecondi Epoch</string>
 </resources>

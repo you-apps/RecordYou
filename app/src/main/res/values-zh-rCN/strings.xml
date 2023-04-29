@@ -51,4 +51,11 @@
     <string name="stereo">立体声</string>
     <string name="lossless_audio">无损录音（WAV）</string>
     <string name="lossless_audio_desc">请注意，使用此选项时将不会应用其他音频设置。</string>
+    <string name="sort">排序</string>
+    <string name="size">大小</string>
+    <string name="size_rev">大小（倒序）</string>
+    <string name="alphabetic_rev">首字母（倒序）</string>
+    <string name="naming_pattern">文件命名模式</string>
+    <string name="naming_pattern_desc">%d: 日期, %t: 时间, %s: 纪元秒, %m: 纪元毫秒</string>
+    <string name="alphabetic">首字母</string>
 </resources>
