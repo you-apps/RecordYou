@@ -51,4 +51,11 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Înregistrare audio fără pierderi (WAV)</string>
     <string name="lossless_audio_desc">Rețineți că alte opțiuni specifice audio nu se vor aplica în timpul utilizării.</string>
+    <string name="sort">Sortare</string>
+    <string name="alphabetic">Alfabetic</string>
+    <string name="alphabetic_rev">Alfabetic (inversat)</string>
+    <string name="size">Dimensiune</string>
+    <string name="size_rev">Dimensiune (inversată)</string>
+    <string name="naming_pattern">Model de denumire</string>
+    <string name="naming_pattern_desc">%d: Data, %t: Ora, %s: Epoch secunde, %m: Epoch milis</string>
 </resources>
