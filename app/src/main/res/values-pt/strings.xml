@@ -51,4 +51,11 @@
     <string name="default_audio">Por defeito</string>
     <string name="lossless_audio">Gravador de áudio sem perdas (WAV)</string>
     <string name="lossless_audio_desc">Note que outras opções específicas de áudio não se aplicarão durante a utilização.</string>
+    <string name="size">Tamanho</string>
+    <string name="naming_pattern">Padrão de nomenclatura</string>
+    <string name="alphabetic">Alfabético</string>
+    <string name="sort">Ordenar</string>
+    <string name="alphabetic_rev">Alfabético (invertido)</string>
+    <string name="size_rev">Tamanho (invertido)</string>
+    <string name="naming_pattern_desc">%d: Data, %t: Hora, %s: Época segundos, %m: Epoch millis</string>
 </resources>
