@@ -41,7 +41,7 @@
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Bezstratne nagrywanie dźwięku (WAV)</string>
-    <string name="lossless_audio_desc">Pamiętaj, że inne opcje specyficzne dla dźwięku nie zostaną zastosowane podczas używania.</string>
+    <string name="lossless_audio_desc">Pamiętaj, że inne opcje specyficzne dla dźwięku nie zostaną zastosowane, gdy ta opcja jest włączona.</string>
     <string name="about">O programie</string>
     <string name="source_code">Kod źródłowy</string>
     <string name="author">Autor</string>
@@ -51,4 +51,11 @@
     <string name="system">Systemowy</string>
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
+    <string name="sort">Sortuj</string>
+    <string name="alphabetic">Alfabetycznie</string>
+    <string name="alphabetic_rev">Alfabetycznie (odwrotnie)</string>
+    <string name="size">Rozmiar</string>
+    <string name="size_rev">Rozmiar (odwrotnie)</string>
+    <string name="naming_pattern">Nazwa pliku</string>
+    <string name="naming_pattern_desc">%d: Data, %t: Czas, %s: Czas uniksowy w sekundach, %m: Czas uniksowy w milisekundach</string>
 </resources>
