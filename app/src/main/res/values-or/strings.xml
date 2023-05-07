@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about">ପ୍ରୋଗ୍ରାମ୍ ବିଷୟରେ</string>
+    <string name="about">ଵିଷୟରେ</string>
     <string name="choose_dir">ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ |</string>
+    <string name="settings">ସେଟିଂ</string>
 </resources>
