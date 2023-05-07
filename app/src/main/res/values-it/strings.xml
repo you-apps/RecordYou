@@ -2,7 +2,7 @@
 <resources>
     <string name="directory">Cartella</string>
     <string name="choose_dir">Scegli la cartella</string>
-    <string name="record_sound">Registra il suono</string>
+    <string name="record_sound">Registra l\'audio</string>
     <string name="audio_format">Formato</string>
     <string name="okay">Ok</string>
     <string name="cancel">Annulla</string>
@@ -12,20 +12,20 @@
     <string name="nothing_here">Non c\'è niente qui</string>
     <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata!</string>
     <string name="delete">Elimina</string>
-    <string name="record_screen">Registra schermo</string>
+    <string name="record_screen">Registra lo schermo</string>
     <string name="no_audio">Nessun audio</string>
     <string name="share">Condividi</string>
     <string name="open">Apri</string>
     <string name="video">Video</string>
     <string name="screen_recorder">Registratore dello schermo</string>
-    <string name="recording_screen">Registrazione dello schermo…</string>
+    <string name="recording_screen">Registrazione dello schermo in corso…</string>
     <string name="stop">Stop</string>
     <string name="microphone">Microfono</string>
     <string name="audio">Audio</string>
     <string name="active_recording">Registrazione attiva</string>
     <string name="pause">Pausa</string>
     <string name="resume">Riprendi</string>
-    <string name="recording_audio">Registrazione audio…</string>
+    <string name="recording_audio">Registrazione dell\'audio in corso…</string>
     <string name="settings">Impostazioni</string>
     <string name="record">Registra</string>
     <string name="options">Opzioni</string>
@@ -41,7 +41,7 @@
     <string name="system">Sistema</string>
     <string name="dark">Scuro</string>
     <string name="light">Chiaro</string>
-    <string name="bitrate">Velocità in bit</string>
+    <string name="bitrate">Bitrate</string>
     <string name="auto">Automatico</string>
     <string name="sample_rate">Frequenza di campionamento</string>
     <string name="unprocessed">Non processato</string>
