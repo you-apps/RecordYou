@@ -1,27 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="okay">OK</string>
+    <string name="app_name" translatable="false">Record You</string>
     <string name="recordings">Aufzeichnungen</string>
+    <string name="okay">OK</string>
     <string name="cancel">Abbrechen</string>
-    <string name="app_name">Record You</string>
     <string name="rename">Umbenennen</string>
     <string name="file_name">Dateiname</string>
-    <string name="delete">Löschen</string>
-    <string name="irreversible">Bist du Sicher\? Es gibt keinen Weg zurück!</string>
+    <string name="delete">L&#246;schen</string>
+    <string name="irreversible">Bist du Sicher\? Es gibt keinen Weg zur&#252;ck!</string>
     <string name="nothing_here">Nichts Vorhanden</string>
+    <!-- Action -->
     <string name="record_sound">Ton aufnehmen</string>
-    <string name="directory">Verzeichnis</string>
-    <string name="choose_dir">Ordner Wählen</string>
     <string name="screen_recorder">Bildschirm Aufnahme</string>
+    <string name="recording_screen">Bildschirm wird aufgenommen &#8230;</string>
+    <string name="record_screen">Bildschirm Aufnehmen</string>
+    <string name="recording_audio">Ton aufnehmen &#8230;</string>
+    <string name="stop">Stopp</string>
+    <string name="share">Teilen</string>
+    <string name="open">&#214;ffnen</string>
+    <string name="audio">Ton</string>
+    <string name="video">Video</string>
+    <string name="active_recording">Aktive Aufnahme</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Weuter</string>
+    <string name="recording_finished">Aufnahme beendet</string>
+    <string name="record">Aufnehmen</string>
+    <string name="play">Abspielen</string>
+    <string name="back">Zurück</string>
+    <!-- Settings -->
+    <string name="settings">Einstellungen</string>
+    <string name="options">Optionen</string>
+    <string name="directory">Verzeichnis</string>
+    <string name="choose_dir">Ordner W&#228;hlen</string>
+    <string name="audio_format">Audio Format</string>
     <string name="microphone">Mikrofon</string>
     <string name="no_audio">Ohne Ton</string>
-    <string name="share">Teilen</string>
-    <string name="open">Öffnen</string>
-    <string name="video">Video</string>
-    <string name="audio_format">Audio Format</string>
-    <string name="record_screen">Bildschirm Aufnehmen</string>
-    <string name="stop">Stopp</string>
-    <string name="recording_screen">Bildschirm wird aufgenommen …</string>
-    <string name="audio">Ton</string>
-    <string name="about">Über</string>
+    <string name="sample_rate">Abtastrate</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="auto">Auto</string>
+    <string name="default_audio">Standard</string>
+    <string name="camcorder">Camcorder</string>
+    <string name="unprocessed">Unverarbeitet</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+    <string name="lossless_audio">Verlustfreier Audiorecorder (WAV)</string>
+    <string name="lossless_audio_desc">Beachte, dass andere audiospezifische Optionen während der Verwendung nicht gelten.</string>
+    <!-- About -->
+    <string name="about">&#220;ber</string>
+    <string name="source_code">Quellcode</string>
+    <string name="author">Author</string>
+    <string name="translation">Übersetzung</string>
+    <string name="delete_all">Alles löschen</string>
+    <!-- Theme -->
+    <string name="theme">Erscheinungsbild</string>
+    <string name="system">System</string>
+    <string name="dark">Dunkel</string>
+    <string name="light">Hell</string>
 </resources>
