@@ -51,4 +51,11 @@
     <string name="unprocessed">Неапрацаваны</string>
     <string name="lossless_audio">Аўдыязапіс без страт (WAV)</string>
     <string name="lossless_audio_desc">Звярніце ўвагу, што іншыя параметры гуку не будуць прымяняцца падчас выкарыстання.</string>
+    <string name="sort">Парадак сартавання</string>
+    <string name="alphabetic">Алфавітны</string>
+    <string name="alphabetic_rev">Алфавітны (перавернуты)</string>
+    <string name="size">Памер</string>
+    <string name="size_rev">Памер (перавернуты)</string>
+    <string name="naming_pattern">Шаблон наймення</string>
+    <string name="naming_pattern_desc">%d: дата, %t: час, %s: секунды эпохі, %m: эпоха ў мілісекундах</string>
 </resources>

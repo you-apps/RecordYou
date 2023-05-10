@@ -8,7 +8,7 @@
     <string name="file_name">Dateiname</string>
     <string name="delete">Löschen</string>
     <string name="irreversible">Bist du Sicher\? Es gibt keinen Weg zurück!</string>
-    <string name="nothing_here">Nichts Vorhanden</string>
+    <string name="nothing_here">Hier ist nichts</string>
     <string name="record_sound">Ton aufnehmen</string>
     <string name="directory">Verzeichnis</string>
     <string name="choose_dir">Ordner Wählen</string>
@@ -24,4 +24,15 @@
     <string name="recording_screen">Bildschirm wird aufgenommen …</string>
     <string name="audio">Ton</string>
     <string name="about">Über</string>
+    <string name="recording_audio">Audio wird aufgenommen …</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Fortsetzen</string>
+    <string name="recording_finished">Aufnahme beendet</string>
+    <string name="record">Aufnahme</string>
+    <string name="settings">Einstellungen</string>
+    <string name="source_code">Quellcode</string>
+    <string name="theme">Thema</string>
+    <string name="light">Hell</string>
+    <string name="dark">Dunkel</string>
+    <string name="system">System</string>
 </resources>
