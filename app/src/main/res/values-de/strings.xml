@@ -35,4 +35,19 @@
     <string name="light">Hell</string>
     <string name="dark">Dunkel</string>
     <string name="system">System</string>
+    <string name="active_recording">Aktive Aufnahme</string>
+    <string name="back">Zurück</string>
+    <string name="options">Optionen</string>
+    <string name="alphabetic">Alphabetisch</string>
+    <string name="bitrate">Bitrate</string>
+    <string name="auto">Automatisch</string>
+    <string name="default_audio">Standard</string>
+    <string name="unprocessed">Unbearbeitet</string>
+    <string name="size_rev">Größe (rückwärts)</string>
+    <string name="alphabetic_rev">Alphabetisch (rückwärts)</string>
+    <string name="size">Größe</string>
+    <string name="lossless_audio">Verlustfreier Audio Rekorder (WAV)</string>
+    <string name="lossless_audio_desc">Beachte, dass andere Audio Optionen während der Benutzung nicht angewendet werden.</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
 </resources>
