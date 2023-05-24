@@ -10,9 +10,9 @@ import com.bnyro.recorder.util.NotificationHelper
 import com.bnyro.recorder.util.StorageHelper
 
 class FinishedNotificationReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-        val fileName = intent?.getStringExtra(RecorderService.FILE_NAME_EXTRA_KEY) ?: return
-        val file = StorageHelper.getOutputDir(context ?: return).findFile(fileName)
+    override fun onReceive(context: Context, intent: Intent) {
+        val fileName = intent.getStringExtra(RecorderService.FILE_NAME_EXTRA_KEY) ?: return
+        val file = StorageHelper.getOutputDir(context).findFile(fileName)
 
         when (intent.getStringExtra(RecorderService.ACTION_EXTRA_KEY)) {
             RecorderService.SHARE_ACTION -> file?.let { IntentHelper.shareFile(context, it) }

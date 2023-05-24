@@ -153,7 +153,7 @@ abstract class RecorderService : Service() {
         this,
         requestCode,
         intent,
-        PendingIntent.FLAG_IMMUTABLE
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
     )
 
     open fun start() {
@@ -253,6 +253,7 @@ abstract class RecorderService : Service() {
             .addAction(deleteAction.build())
             // / .addAction(shareAction.build())
             .setContentIntent(getActivityIntent())
+            .setAutoCancel(true)
 
         NotificationManagerCompat.from(this)
             .notify(NotificationHelper.RECORDING_FINISHED_N_ID, notification.build())
