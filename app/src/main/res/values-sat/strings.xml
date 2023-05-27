@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="okay">ᱴᱷᱤᱠ</string>
+    <string name="delete">ᱢᱮᱴᱟᱣ</string>
+    <string name="irreversible">ᱟᱢ ᱡᱷᱚᱛᱚ ᱞᱮᱠᱷᱟᱛᱮ ᱠᱚᱨᱟᱣ ᱥᱟᱱᱟᱢ ᱠᱟᱱᱟ ᱥᱮ \? ᱱᱚᱶᱟ ᱫᱚ ᱨᱩᱣᱟᱹᱲ ᱟᱹᱜᱩ ᱵᱟᱭ ᱜᱟᱱᱚᱜᱼᱟ !</string>
+    <string name="nothing_here">ᱱᱚᱰᱮ ᱫᱚ ᱪᱮᱫ ᱦᱚᱸ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
+    <string name="recordings">ᱨᱮᱠᱚᱰᱤᱝᱠᱚ</string>
+    <string name="cancel">ᱵᱟᱹᱰᱨᱟᱹ</string>
+    <string name="rename">ᱫᱩᱦᱲᱟᱹ ᱧᱩᱛᱩᱢ ᱚᱞ</string>
+    <string name="file_name">ᱨᱮᱫᱽᱧᱩᱛᱩᱢ</string>
+</resources>
