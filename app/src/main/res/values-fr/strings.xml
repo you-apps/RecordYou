@@ -52,4 +52,11 @@
     <string name="mono">Mono</string>
     <string name="stereo">Stéréo</string>
     <string name="dark">Sombre</string>
+    <string name="sort">Trier</string>
+    <string name="alphabetic">Alphabétique</string>
+    <string name="size">Taille</string>
+    <string name="naming_pattern">Motif de nommage</string>
+    <string name="alphabetic_rev">Alphabétique (inversé)</string>
+    <string name="size_rev">Taille (inversé)</string>
+    <string name="naming_pattern_desc">%d : Date, %t : Temps, %s : Secondes epoch, %m : Millisecondes epoch</string>
 </resources>
