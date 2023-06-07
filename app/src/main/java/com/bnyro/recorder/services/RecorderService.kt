@@ -268,6 +268,8 @@ abstract class RecorderService : Service() {
         )
     }
 
+    abstract fun getCurrentAmplitude(): Int?
+
     companion object {
         const val RECORDER_INTENT_ACTION = "com.bnyro.recorder.RECORDER_ACTION"
         const val FILE_NAME_EXTRA_KEY = "fileName"

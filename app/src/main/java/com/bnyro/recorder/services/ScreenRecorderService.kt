@@ -152,6 +152,8 @@ class ScreenRecorderService : RecorderService() {
         virtualDisplay?.release()
     }
 
+    override fun getCurrentAmplitude() = recorder?.maxAmplitude
+
     companion object {
         private const val BPP = 0.25f
     }

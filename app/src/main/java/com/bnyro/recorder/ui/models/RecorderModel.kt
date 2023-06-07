@@ -59,47 +59,41 @@ class RecorderModel : ViewModel() {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
         startRecorderService(context, serviceIntent)
-
-        startElapsedTimeCounter()
     }
 
     @SuppressLint("NewApi")
     fun startAudioRecorder(context: Context) {
-        if (Preferences.prefs.getBoolean(Preferences.losslessRecorderKey, false)) {
-            startLosslessRecorder(context)
-            return
-        }
-
         if (!PermissionHelper.checkPermissions(context, audioPermission)) return
 
-        val serviceIntent = Intent(context, AudioRecorderService::class.java)
+        val serviceIntent =
+            if (Preferences.prefs.getBoolean(Preferences.losslessRecorderKey, false)) {
+                Intent(context, LosslessRecorderService::class.java)
+            } else {
+                Intent(context, AudioRecorderService::class.java)
+            }
+
         startRecorderService(context, serviceIntent)
-
-        startElapsedTimeCounter()
-        handler.postDelayed(this::updateAmplitude, 100)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.M)
-    fun startLosslessRecorder(context: Context) {
-        if (!PermissionHelper.checkPermissions(context, audioPermission)) return
-
-        val serviceIntent = Intent(context, LosslessRecorderService::class.java)
-        startRecorderService(context, serviceIntent)
-
-        startElapsedTimeCounter()
     }
 
     private fun startRecorderService(context: Context, intent: Intent) {
         runCatching {
             context.unbindService(connection)
         }
-        listOf(AudioRecorderService::class.java, ScreenRecorderService::class.java).forEach {
+
+        listOfNotNull(
+            AudioRecorderService::class.java,
+            ScreenRecorderService::class.java,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) LosslessRecorderService::class.java else null
+        ).forEach {
             runCatching {
                 context.stopService(Intent(context, it))
             }
         }
         ContextCompat.startForegroundService(context, intent)
         context.bindService(intent, connection, Context.BIND_AUTO_CREATE)
+
+        startElapsedTimeCounter()
+        handler.postDelayed(this::updateAmplitude, 100)
     }
 
     fun stopRecording() {
@@ -132,7 +126,7 @@ class RecorderModel : ViewModel() {
     private fun updateAmplitude() {
         if (recorderState != RecorderState.ACTIVE) return
 
-        recorderService?.recorder?.maxAmplitude?.let {
+        recorderService?.getCurrentAmplitude()?.let {
             if (recordedAmplitudes.size >= 90) recordedAmplitudes.removeAt(0)
             recordedAmplitudes.add(it)
         }
@@ -148,7 +142,8 @@ class RecorderModel : ViewModel() {
     fun hasScreenRecordingPermissions(context: Context): Boolean {
         val requiredPermissions = arrayListOf<String>()
 
-        val recordAudio = Preferences.prefs.getInt(Preferences.audioSourceKey, 0) == AudioSource.MICROPHONE.value
+        val recordAudio =
+            Preferences.prefs.getInt(Preferences.audioSourceKey, 0) == AudioSource.MICROPHONE.value
 
         if (recordAudio) requiredPermissions.add(Manifest.permission.RECORD_AUDIO)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

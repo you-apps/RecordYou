@@ -54,4 +54,6 @@ class AudioRecorderService : RecorderService() {
 
         super.start()
     }
+
+    override fun getCurrentAmplitude() = recorder?.maxAmplitude
 }
