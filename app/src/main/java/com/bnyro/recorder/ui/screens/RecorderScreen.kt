@@ -9,7 +9,7 @@ import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.layout.Box
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +28,6 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.material.icons.filled.Videocam
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -55,7 +54,6 @@ import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.components.SettingsBottomSheet
 import com.bnyro.recorder.ui.models.RecorderModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecorderView(
     initialRecorder: Recorder
@@ -113,36 +111,39 @@ fun RecorderView(
     }
 
     Scaffold { pV ->
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(pV)
+                .padding(pV),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (recorderModel.recordedAmplitudes.isNotEmpty()) {
-                AudioVisualizer(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(bottom = 80.dp)
-                )
-            } else {
-                Text(
-                    modifier = Modifier
-                        .align(Alignment.TopCenter)
-                        .padding(
-                            top = if (orientation == Configuration.ORIENTATION_LANDSCAPE) 50.dp else 200.dp
+            Crossfade(
+                modifier = Modifier.weight(1f),
+                targetState = recorderModel.recordedAmplitudes
+            ) {
+                when (it.isEmpty()) {
+                    true -> Text(
+                        modifier = Modifier
+                            .padding(
+                                top = if (orientation == Configuration.ORIENTATION_LANDSCAPE) 50.dp else 200.dp
+                            ),
+                        text = stringResource(
+                            if (recordScreenMode) R.string.record_screen else R.string.record_sound
                         ),
-                    text = stringResource(
-                        if (recordScreenMode) R.string.record_screen else R.string.record_sound
-                    ),
-                    fontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                    fontWeight = MaterialTheme.typography.headlineLarge.fontWeight
-                )
+                        fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                        fontWeight = MaterialTheme.typography.headlineLarge.fontWeight
+                    )
+                    false -> AudioVisualizer(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(top = 20.dp)
+                    )
+                }
             }
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
                     .padding(bottom = 25.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
