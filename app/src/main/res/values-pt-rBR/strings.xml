@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="audio_format">Formato de Áudio</string>
+    <string name="audio_format">Formato de áudio</string>
     <string name="recordings">Gravações</string>
     <string name="okay">Ok</string>
     <string name="cancel">Cancelar</string>
     <string name="rename">Renomear</string>
-    <string name="file_name">Nome do Arquivo</string>
+    <string name="file_name">Nome do arquivo</string>
     <string name="delete">Excluir</string>
     <string name="irreversible">Você tem certeza\? Isso não pode ser desfeito!</string>
     <string name="nothing_here">Nada aqui</string>
     <string name="directory">Diretório</string>
     <string name="choose_dir">Escolher diretório</string>
-    <string name="screen_recorder">Gravador de Tela</string>
+    <string name="screen_recorder">Gravador de tela</string>
     <string name="recording_screen">Gravando a tela …</string>
     <string name="record_screen">Gravador de tela</string>
     <string name="stop">Parar</string>
@@ -24,7 +24,7 @@
     <string name="active_recording">Gravação ativa</string>
     <string name="pause">Pausar</string>
     <string name="resume">Continuar</string>
-    <string name="record_sound">Gravador de Áudio</string>
+    <string name="record_sound">Gravador de áudio</string>
     <string name="recording_audio">Gravando áudio …</string>
     <string name="settings">Configurações</string>
     <string name="record">Gravar</string>
@@ -37,4 +37,25 @@
     <string name="delete_all">Excluir tudo</string>
     <string name="options">Opções</string>
     <string name="recording_finished">Gravação finalizada</string>
+    <string name="sort">Ordenar</string>
+    <string name="alphabetic">Alfabeticamente</string>
+    <string name="alphabetic_rev">Alfabeticamente (Z-A)</string>
+    <string name="size">Tamanho</string>
+    <string name="size_rev">Tamanho (o maior primeiro)</string>
+    <string name="auto">Automático</string>
+    <string name="default_audio">Predefinido</string>
+    <string name="camcorder">Câmara de vídeo</string>
+    <string name="unprocessed">Inalterado</string>
+    <string name="mono">Mono</string>
+    <string name="stereo">Estéreo</string>
+    <string name="lossless_audio">Áudio sem perdas (WAV)</string>
+    <string name="naming_pattern">Padrão de nomeação</string>
+    <string name="naming_pattern_desc">%d: Data, %t: Hora, %s: Segundos, %m: Milisegundos</string>
+    <string name="system">Sistema</string>
+    <string name="sample_rate">Taxa de amostragem</string>
+    <string name="bitrate">Taxa de bits</string>
+    <string name="theme">Tema</string>
+    <string name="light">Claro</string>
+    <string name="dark">Escuro</string>
+    <string name="lossless_audio_desc">Outras opções específicas para áudio não serão aplicadas durante o uso.</string>
 </resources>
