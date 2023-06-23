@@ -42,13 +42,13 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Bezstratne nagrywanie dźwięku (WAV)</string>
     <string name="lossless_audio_desc">Pamiętaj, że inne opcje specyficzne dla dźwięku nie zostaną zastosowane, gdy ta opcja jest włączona.</string>
-    <string name="about">O programie</string>
+    <string name="about">O aplikacji</string>
     <string name="source_code">Kod źródłowy</string>
     <string name="author">Autor</string>
     <string name="translation">Tłumaczenie</string>
     <string name="delete_all">Usuń wszystko</string>
-    <string name="theme">Motyw</string>
-    <string name="system">Systemowy</string>
+    <string name="theme">Kompozycja</string>
+    <string name="system">Zgodny z systemem</string>
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
     <string name="sort">Sortuj</string>
