@@ -11,8 +11,8 @@ android {
         applicationId "com.bnyro.recorder"
         minSdk 21
         targetSdk 33
-        versionCode 12
-        versionName "5.2"
+        versionCode 13
+        versionName "5.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -59,10 +59,10 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.18.7'
 
     // Compose
-    implementation 'androidx.activity:activity-compose:1.7.1'
+    implementation 'androidx.activity:activity-compose:1.7.2'
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.compose.material3:material3:1.2.0-alpha01'
+    implementation 'androidx.compose.material3:material3:1.2.0-alpha03'
     implementation 'androidx.compose.material:material-icons-extended:1.4.3'
 
     // Testing
