@@ -19,7 +19,7 @@
     <string name="audio">Audio</string>
     <string name="video">Wideo</string>
     <string name="active_recording">Aktywne nagrywanie</string>
-    <string name="pause">Zatrzymaj</string>
+    <string name="pause">Wstrzymaj</string>
     <string name="resume">Wznów</string>
     <string name="recording_finished">Nagrywanie zakończone</string>
     <string name="record">Nagraj</string>
@@ -47,8 +47,8 @@
     <string name="author">Autor</string>
     <string name="translation">Tłumaczenie</string>
     <string name="delete_all">Usuń wszystko</string>
-    <string name="theme">Kompozycja</string>
-    <string name="system">Zgodny z systemem</string>
+    <string name="theme">Motyw</string>
+    <string name="system">Systemowy</string>
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
     <string name="sort">Sortuj</string>
