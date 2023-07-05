@@ -1,6 +1,6 @@
 <!-- ---------- Header ---------- -->
 <div align="center">
-  <img width="200" height="200"src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png">
+  <img width="200" height="200"src="fastlane/metadata/android/en-US/images/icon.png">
   <h1>Record You</h1>
 <p><a href="https://m3.material.io/">Material Design 3 (You)</a> voice and screen recorder app</p>
 
@@ -57,6 +57,9 @@
 <a href="https://hosted.weblate.org/projects/you-apps/record-you/">
 <img src="https://hosted.weblate.org/widgets/you-apps/-/record-you/287x66-grey.png" alt="Translation status" />
 </a>
+
+## Credits
+* Icon design by [M00NJ](https://github.com/M00NJ)
 
 ## License
 
