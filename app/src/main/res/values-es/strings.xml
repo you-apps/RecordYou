@@ -54,7 +54,7 @@
     <string name="alphabetic_rev">Alfabéticamente (invertido)</string>
     <string name="naming_pattern">Patrón de nombres</string>
     <string name="sort">Ordenar</string>
-    <string name="alphabetic">Alfabéticamente</string>
+    <string name="alphabetic">Alfabético</string>
     <string name="size">Tamaño</string>
     <string name="size_rev">Tamaño (al revés)</string>
     <string name="naming_pattern_desc">%d: fecha, %t: hora, %s: era-segundos, %m: milisegundos</string>
