@@ -1,6 +1,5 @@
 package com.bnyro.recorder.ui
 
-import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +15,6 @@ import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.ui.models.ThemeModel
 import com.bnyro.recorder.ui.screens.RecorderView
 import com.bnyro.recorder.ui.theme.RecordYouTheme
-import com.bnyro.recorder.ui.views.CanvasOverlay
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,10 +27,7 @@ class MainActivity : ComponentActivity() {
             "screen" -> Recorder.SCREEN
             else -> Recorder.NONE
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val canvasOverlay = CanvasOverlay(this)
-            canvasOverlay.show()
-        }
+
         setContent {
             RecordYouTheme(
                 when (val mode = themeModel.themeMode) {

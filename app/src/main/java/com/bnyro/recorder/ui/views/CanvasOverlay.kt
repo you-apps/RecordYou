@@ -8,8 +8,6 @@ import android.util.Log
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.setViewTreeLifecycleOwner
@@ -23,17 +21,14 @@ class CanvasOverlay(context: Context) {
         WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
         WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
         WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        PixelFormat.TRANSLUCENT
+        PixelFormat.TRANSPARENT
     )
     private var windowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager
 
     private var composeView = ComposeView(context).apply {
         setContent {
-            Button(onClick = {
-                this@CanvasOverlay.hide()
-            }) {
-                Text("Close")
-            }
+            OverlayView(
+                onDismissRequest = { this@CanvasOverlay.remove() })
         }
     }
 
@@ -60,10 +55,18 @@ class CanvasOverlay(context: Context) {
     fun hide() {
         try {
             windowManager.removeView(composeView)
+        } catch (e: Exception) {
+            Log.e("Hide Overlay", e.toString())
+        }
+    }
+
+    fun remove() {
+        try {
+            windowManager.removeView(composeView)
             composeView.invalidate()
             (composeView.parent as ViewGroup).removeAllViews()
         } catch (e: Exception) {
-            Log.e("Hide Overlay", e.toString())
+            Log.e("Remove Overlay", e.toString())
         }
     }
 

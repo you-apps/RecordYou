@@ -24,6 +24,7 @@ import com.bnyro.recorder.services.AudioRecorderService
 import com.bnyro.recorder.services.LosslessRecorderService
 import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
+import com.bnyro.recorder.ui.views.CanvasOverlay
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
 
@@ -34,6 +35,7 @@ class RecorderModel : ViewModel() {
     var recordedTime by mutableStateOf<Long?>(null)
     val recordedAmplitudes = mutableStateListOf<Int>()
     private var activityResult: ActivityResult? = null
+    var canvasOverlay: CanvasOverlay? = null
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -59,6 +61,10 @@ class RecorderModel : ViewModel() {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
         startRecorderService(context, serviceIntent)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            canvasOverlay = CanvasOverlay(context)
+            canvasOverlay?.show()
+        }
     }
 
     @SuppressLint("NewApi")
@@ -98,6 +104,7 @@ class RecorderModel : ViewModel() {
 
     fun stopRecording() {
         recorderService?.onDestroy()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) canvasOverlay?.remove()
         recordedTime = null
         recordedAmplitudes.clear()
     }
