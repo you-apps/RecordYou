@@ -1,4 +1,4 @@
-package com.bnyro.recorder.ui.views
+package com.bnyro.recorder.canvas_overlay
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.gestures.awaitEachGesture
@@ -22,6 +22,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChange
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 enum class MotionEvent {
     Up, Down, Idle, Move
@@ -32,13 +33,12 @@ enum class DrawMode {
 }
 
 @Composable
-fun MainCanvas() {
+fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
     val paths = remember {
         mutableStateListOf<PathProperties>()
     }
     val pathsUndone = remember { mutableStateListOf<PathProperties>() }
     var motionEvent by remember { mutableStateOf(MotionEvent.Idle) }
-    var currentPath by remember { mutableStateOf(PathProperties()) }
 
     var currentPosition by remember { mutableStateOf(Offset.Unspecified) }
 
@@ -68,20 +68,20 @@ fun MainCanvas() {
             when (motionEvent) {
                 MotionEvent.Idle -> Unit
                 MotionEvent.Down -> {
-                    paths.add(currentPath)
-                    currentPath.path.moveTo(
+                    paths.add(canvasViewModel.currentPath)
+                    canvasViewModel.currentPath.path.moveTo(
                         currentPosition.x, currentPosition.y
                     )
                 }
 
                 MotionEvent.Move -> {
-                    currentPath.path.lineTo(
+                    canvasViewModel.currentPath.path.lineTo(
                         currentPosition.x, currentPosition.y
                     )
                     drawCircle(
                         center = currentPosition,
                         color = Color.Gray,
-                        radius = currentPath.strokeWidth / 2,
+                        radius = canvasViewModel.currentPath.strokeWidth / 2,
                         style = Stroke(
                             width = 1f
                         )
@@ -89,14 +89,14 @@ fun MainCanvas() {
                 }
 
                 MotionEvent.Up -> {
-                    currentPath.path.lineTo(
+                    canvasViewModel.currentPath.path.lineTo(
                         currentPosition.x, currentPosition.y
                     )
-                    currentPath = PathProperties(
+                    canvasViewModel.currentPath = PathProperties(
                         path = Path(),
-                        strokeWidth = currentPath.strokeWidth,
-                        color = currentPath.color,
-                        drawMode = currentPath.drawMode
+                        strokeWidth = canvasViewModel.currentPath.strokeWidth,
+                        color = canvasViewModel.currentPath.color,
+                        drawMode = canvasViewModel.currentPath.drawMode
                     )
                     pathsUndone.clear()
                     currentPosition = Offset.Unspecified
@@ -138,7 +138,7 @@ class PathProperties(
                     color = Color.Transparent,
                     path = path,
                     style = Stroke(
-                        width = strokeWidth,
+                        width = 50f,
                         cap = StrokeCap.Round,
                         join = StrokeJoin.Round
                     ),

@@ -1,4 +1,4 @@
-package com.bnyro.recorder.ui.views
+package com.bnyro.recorder.canvas_overlay
 
 import android.content.Context
 import android.content.Context.WINDOW_SERVICE
@@ -11,8 +11,11 @@ import androidx.annotation.RequiresApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.setViewTreeLifecycleOwner
+import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
+import com.bnyro.recorder.ui.theme.RecordYouTheme
 import com.bnyro.recorder.util.CustomLifecycleOwner
+import com.bnyro.recorder.util.CustomViewModelStoreOwner
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -27,16 +30,20 @@ class CanvasOverlay(context: Context) {
 
     private var composeView = ComposeView(context).apply {
         setContent {
-            OverlayView(
-                onDismissRequest = { this@CanvasOverlay.remove() })
+            RecordYouTheme() {
+                OverlayView(
+                    onDismissRequest = { this@CanvasOverlay.remove() })
+            }
         }
     }
 
     init {
         val lifecycleOwner = CustomLifecycleOwner()
+        val viewModelStoreOwner = CustomViewModelStoreOwner()
         lifecycleOwner.performRestore(null)
         lifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
         composeView.setViewTreeLifecycleOwner(lifecycleOwner)
+        composeView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
         composeView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
     }
 

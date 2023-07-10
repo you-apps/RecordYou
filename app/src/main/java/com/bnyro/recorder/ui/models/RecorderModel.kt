@@ -24,7 +24,7 @@ import com.bnyro.recorder.services.AudioRecorderService
 import com.bnyro.recorder.services.LosslessRecorderService
 import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
-import com.bnyro.recorder.ui.views.CanvasOverlay
+import com.bnyro.recorder.canvas_overlay.CanvasOverlay
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
 
