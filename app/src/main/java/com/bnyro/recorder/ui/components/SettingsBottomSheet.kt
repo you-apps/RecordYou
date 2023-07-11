@@ -228,6 +228,14 @@ fun SettingsBottomSheet(
                     )
                 }
                 Spacer(modifier = Modifier.height(10.dp))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    CheckboxPref(
+                        prefKey = Preferences.showOverlayAnnotationToolKey,
+                        title = stringResource(R.string.screen_recorder_annotation),
+                        summary = stringResource(R.string.screen_recorder_annotation_desc)
+                    )
+                }
+                Spacer(modifier = Modifier.height(10.dp))
                 NamingPatternPref()
             }
 

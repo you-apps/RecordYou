@@ -19,6 +19,7 @@ object Preferences {
     const val themeModeKey = "themeMode"
     const val losslessRecorderKey = "losslessRecorder"
     const val namingPatternKey = "namingPattern"
+    const val showOverlayAnnotationToolKey = "annotationTool"
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE)

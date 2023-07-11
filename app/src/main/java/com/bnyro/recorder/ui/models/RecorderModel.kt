@@ -6,18 +6,22 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.provider.Settings
 import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import com.bnyro.recorder.canvas_overlay.CanvasOverlay
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.services.AudioRecorderService
@@ -27,13 +31,16 @@ import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
 
+
 class RecorderModel : ViewModel() {
     private val audioPermission = arrayOf(Manifest.permission.RECORD_AUDIO)
+    private val supportsOverlay = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
     var recorderState by mutableStateOf(RecorderState.IDLE)
     var recordedTime by mutableStateOf<Long?>(null)
     val recordedAmplitudes = mutableStateListOf<Int>()
     private var activityResult: ActivityResult? = null
+    private var canvasOverlay: CanvasOverlay? = null
 
     private val handler = Handler(Looper.getMainLooper())
 
@@ -59,6 +66,12 @@ class RecorderModel : ViewModel() {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
         startRecorderService(context, serviceIntent)
+        val showOverlayAnnotation =
+            Preferences.prefs.getBoolean(Preferences.showOverlayAnnotationToolKey, false)
+        if (supportsOverlay && showOverlayAnnotation) {
+            canvasOverlay = CanvasOverlay(context)
+            canvasOverlay?.showAll()
+        }
     }
 
     @SuppressLint("NewApi")
@@ -98,6 +111,7 @@ class RecorderModel : ViewModel() {
 
     fun stopRecording() {
         recorderService?.onDestroy()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) canvasOverlay?.remove()
         recordedTime = null
         recordedAmplitudes.clear()
     }
@@ -139,7 +153,18 @@ class RecorderModel : ViewModel() {
         handler.postDelayed(this::updateTime, 1000)
     }
 
+    @SuppressLint("NewApi")
     fun hasScreenRecordingPermissions(context: Context): Boolean {
+        val overlayEnabled = Preferences.prefs.getBoolean(Preferences.showOverlayAnnotationToolKey, true)
+        if (supportsOverlay && overlayEnabled && !Settings.canDrawOverlays(context)) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:" + context.packageName)
+            )
+            context.startActivity(intent)
+            return false
+        }
+
         val requiredPermissions = arrayListOf<String>()
 
         val recordAudio =
