@@ -64,4 +64,6 @@
     <string name="system">System</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+    <string name="screen_recorder_annotation">Screen Record Annotation</string>
+    <string name="screen_recorder_annotation_desc">Show annotation tool during screen recording</string>
 </resources>

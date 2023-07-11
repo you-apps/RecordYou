@@ -18,13 +18,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import com.bnyro.recorder.canvas_overlay.CanvasOverlay
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.services.AudioRecorderService
 import com.bnyro.recorder.services.LosslessRecorderService
 import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
-import com.bnyro.recorder.canvas_overlay.CanvasOverlay
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
 
@@ -61,7 +61,9 @@ class RecorderModel : ViewModel() {
         activityResult = result
         val serviceIntent = Intent(context, ScreenRecorderService::class.java)
         startRecorderService(context, serviceIntent)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        val showOverlayAnnotation =
+            Preferences.prefs.getBoolean(Preferences.showOverlayAnnotationToolKey, false)
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) && showOverlayAnnotation) {
             canvasOverlay = CanvasOverlay(context)
             canvasOverlay?.showAll()
         }
