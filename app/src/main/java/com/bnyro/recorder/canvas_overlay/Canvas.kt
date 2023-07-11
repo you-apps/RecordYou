@@ -6,7 +6,6 @@ import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -34,10 +33,6 @@ enum class DrawMode {
 
 @Composable
 fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
-    val paths = remember {
-        mutableStateListOf<PathProperties>()
-    }
-    val pathsUndone = remember { mutableStateListOf<PathProperties>() }
     var motionEvent by remember { mutableStateOf(MotionEvent.Idle) }
 
     var currentPosition by remember { mutableStateOf(Offset.Unspecified) }
@@ -68,7 +63,7 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
             when (motionEvent) {
                 MotionEvent.Idle -> Unit
                 MotionEvent.Down -> {
-                    paths.add(canvasViewModel.currentPath)
+                    canvasViewModel.paths.add(canvasViewModel.currentPath)
                     canvasViewModel.currentPath.path.moveTo(
                         currentPosition.x, currentPosition.y
                     )
@@ -98,12 +93,11 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
                         color = canvasViewModel.currentPath.color,
                         drawMode = canvasViewModel.currentPath.drawMode
                     )
-                    pathsUndone.clear()
                     currentPosition = Offset.Unspecified
                     motionEvent = MotionEvent.Idle
                 }
             }
-            paths.forEach { path ->
+            canvasViewModel.paths.forEach { path ->
                 path.draw(this@Canvas)
             }
             restoreToCount(checkPoint)

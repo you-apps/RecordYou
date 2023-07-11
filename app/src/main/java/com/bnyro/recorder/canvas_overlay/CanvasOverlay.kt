@@ -5,17 +5,20 @@ import android.content.Context.WINDOW_SERVICE
 import android.graphics.PixelFormat
 import android.os.Build
 import android.util.Log
-import android.view.ViewGroup
+import android.view.Gravity
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.platform.ComposeView
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelStore
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.bnyro.recorder.ui.theme.RecordYouTheme
 import com.bnyro.recorder.util.CustomLifecycleOwner
-import com.bnyro.recorder.util.CustomViewModelStoreOwner
 
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -27,54 +30,77 @@ class CanvasOverlay(context: Context) {
         PixelFormat.TRANSPARENT
     )
     private var windowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager
-
-    private var composeView = ComposeView(context).apply {
+    private var canvasView = ComposeView(context).apply {
         setContent {
             RecordYouTheme() {
-                OverlayView(
-                    onDismissRequest = { this@CanvasOverlay.remove() })
+                MainCanvas()
+            }
+        }
+    }
+    private var toolbarView = ComposeView(context).apply {
+        setContent {
+            RecordYouTheme {
+                ToolbarView(hideCanvas = { hide ->
+                    if (hide) {
+                        hideCanvas()
+                    } else {
+                        showCanvas()
+                    }
+                })
             }
         }
     }
 
     init {
         val lifecycleOwner = CustomLifecycleOwner()
-        val viewModelStoreOwner = CustomViewModelStoreOwner()
+        val viewModelStoreOwner = object : ViewModelStoreOwner {
+            override val viewModelStore: ViewModelStore = ViewModelStore()
+        }
         lifecycleOwner.performRestore(null)
         lifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        composeView.setViewTreeLifecycleOwner(lifecycleOwner)
-        composeView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
-        composeView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
+        canvasView.setViewTreeLifecycleOwner(lifecycleOwner)
+        canvasView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
+        canvasView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
+
+        toolbarView.setViewTreeLifecycleOwner(lifecycleOwner)
+        toolbarView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
+        toolbarView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
+
+        hideCanvas()
     }
 
-    fun show() {
+    fun showAll() {
         try {
-            if (composeView.windowToken == null) {
-                if (composeView.parent == null) {
-                    windowManager.addView(composeView, params)
-                }
+            if (canvasView.windowToken == null && canvasView.parent == null) {
+                windowManager.addView(canvasView, params)
+
+            }
+            if (toolbarView.windowToken == null && toolbarView.parent == null) {
+                val toolbarParams = params
+                toolbarParams.gravity = Gravity.TOP or Gravity.END
+                windowManager.addView(toolbarView, toolbarParams)
             }
         } catch (e: Exception) {
             Log.e("Show Overlay", e.toString())
         }
     }
 
-    fun hide() {
-        try {
-            windowManager.removeView(composeView)
-        } catch (e: Exception) {
-            Log.e("Hide Overlay", e.toString())
-        }
+    fun showCanvas() {
+        canvasView.isVisible = true
+    }
+
+    fun hideCanvas() {
+        canvasView.isInvisible = true
     }
 
     fun remove() {
         try {
-            windowManager.removeView(composeView)
-            composeView.invalidate()
-            (composeView.parent as ViewGroup).removeAllViews()
+            windowManager.removeView(canvasView)
+            canvasView.invalidate()
+            windowManager.removeView(toolbarView)
+            toolbarView.invalidate()
         } catch (e: Exception) {
             Log.e("Remove Overlay", e.toString())
         }
     }
-
 }

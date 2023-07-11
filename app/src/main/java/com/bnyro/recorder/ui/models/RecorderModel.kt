@@ -63,7 +63,7 @@ class RecorderModel : ViewModel() {
         startRecorderService(context, serviceIntent)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             canvasOverlay = CanvasOverlay(context)
-            canvasOverlay?.show()
+            canvasOverlay?.showAll()
         }
     }
 
