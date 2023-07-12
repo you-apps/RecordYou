@@ -1,17 +1,24 @@
 package com.bnyro.recorder.ui.components
 
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +26,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -44,6 +53,9 @@ fun RecordingItem(
 ) {
     val playerModel: PlayerModel = viewModel()
     val context = LocalContext.current
+    var thumbnail: Bitmap? by remember {
+        mutableStateOf(null)
+    }
 
     var showRenameDialog by remember {
         mutableStateOf(false)
@@ -58,7 +70,20 @@ fun RecordingItem(
         mutableStateOf(false)
     }
 
-    val cardColor = if (!isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp) else MaterialTheme.colorScheme.primary
+    LaunchedEffect(Unit) {
+        if (isVideo) {
+            thumbnail =
+                MediaMetadataRetriever().apply {
+                    setDataSource(
+                        context,
+                        recordingFile.uri
+                    )
+                }.frameAtTime
+        }
+    }
+
+    val cardColor =
+        if (!isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp) else MaterialTheme.colorScheme.primary
     ElevatedCard(
         modifier = Modifier
             .padding(vertical = 5.dp)
@@ -76,79 +101,94 @@ fun RecordingItem(
             contentColor = contentColorFor(cardColor)
         )
     ) {
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Start,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 10.dp)
-        ) {
-            Text(
-                modifier = Modifier.weight(1f),
-                text = recordingFile.name.orEmpty()
-            )
-            ClickableIcon(
-                imageVector = Icons.Default.PlayArrow,
-                contentDescription = stringResource(R.string.play)
-            ) {
-                if (isVideo) {
-                    showPlayer = true
-                } else {
-                    startPlayingAudio.invoke()
-                }
+        Column() {
+            thumbnail?.let { thumbnail ->
+                Image(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(0.8f)
+                        .padding(8.dp)
+                        .clip(RoundedCornerShape(8.dp)),
+                    bitmap = thumbnail.asImageBitmap(),
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.Center
+                )
             }
-            Box {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Start,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp, horizontal = 10.dp)
+            ) {
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = recordingFile.name.orEmpty()
+                )
                 ClickableIcon(
-                    imageVector = Icons.Default.MoreVert,
-                    contentDescription = stringResource(R.string.options)
+                    imageVector = Icons.Default.PlayArrow,
+                    contentDescription = stringResource(R.string.play)
                 ) {
-                    showDropDown = true
+                    if (isVideo) {
+                        showPlayer = true
+                    } else {
+                        startPlayingAudio.invoke()
+                    }
                 }
+                Box {
+                    ClickableIcon(
+                        imageVector = Icons.Default.MoreVert,
+                        contentDescription = stringResource(R.string.options)
+                    ) {
+                        showDropDown = true
+                    }
 
-                DropdownMenu(
-                    expanded = showDropDown,
-                    onDismissRequest = { showDropDown = false }
-                ) {
-                    DropdownMenuItem(
-                        text = {
-                            Text(stringResource(R.string.open))
-                        },
-                        onClick = {
-                            playerModel.stopPlaying()
-                            IntentHelper.openFile(context, recordingFile)
-                            showDropDown = false
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(stringResource(R.string.share))
-                        },
-                        onClick = {
-                            playerModel.stopPlaying()
-                            IntentHelper.shareFile(context, recordingFile)
-                            showDropDown = false
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(stringResource(R.string.rename))
-                        },
-                        onClick = {
-                            playerModel.stopPlaying()
-                            showRenameDialog = true
-                            showDropDown = false
-                        }
-                    )
-                    DropdownMenuItem(
-                        text = {
-                            Text(stringResource(R.string.delete))
-                        },
-                        onClick = {
-                            playerModel.stopPlaying()
-                            showDeleteDialog = true
-                            showDropDown = false
-                        }
-                    )
+                    DropdownMenu(
+                        expanded = showDropDown,
+                        onDismissRequest = { showDropDown = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = {
+                                Text(stringResource(R.string.open))
+                            },
+                            onClick = {
+                                playerModel.stopPlaying()
+                                IntentHelper.openFile(context, recordingFile)
+                                showDropDown = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = {
+                                Text(stringResource(R.string.share))
+                            },
+                            onClick = {
+                                playerModel.stopPlaying()
+                                IntentHelper.shareFile(context, recordingFile)
+                                showDropDown = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = {
+                                Text(stringResource(R.string.rename))
+                            },
+                            onClick = {
+                                playerModel.stopPlaying()
+                                showRenameDialog = true
+                                showDropDown = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = {
+                                Text(stringResource(R.string.delete))
+                            },
+                            onClick = {
+                                playerModel.stopPlaying()
+                                showDeleteDialog = true
+                                showDropDown = false
+                            }
+                        )
+                    }
                 }
             }
         }

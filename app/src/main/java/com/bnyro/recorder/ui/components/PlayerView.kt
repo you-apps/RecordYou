@@ -26,13 +26,7 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -45,8 +39,8 @@ import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
-import kotlinx.coroutines.delay
 import kotlin.math.absoluteValue
+import kotlinx.coroutines.delay
 
 @Composable
 fun PlayerView(
@@ -123,48 +117,25 @@ fun PlayerView(
                         .weight(1f)
                 ) {
                     items(files) {
-                        when (selectedTab) {
-                            0 -> RecordingItem(
-                                recordingFile = it,
-                                isVideo = false,
-                                isSelected = selectedFiles.value.contains(it),
-                                onClick = { wasLongPress ->
-                                    when {
-                                        wasLongPress -> selectedFiles.value += it
-                                        selectedFiles.value.isNotEmpty() -> {
-                                            if (selectedFiles.value.contains(it)) {
-                                                selectedFiles.value -= it
-                                            } else {
-                                                selectedFiles.value += it
-                                            }
+                        RecordingItem(
+                            recordingFile = it,
+                            isVideo = selectedTab == 1,
+                            isSelected = selectedFiles.value.contains(it),
+                            onClick = { wasLongPress ->
+                                when {
+                                    wasLongPress -> selectedFiles.value += it
+                                    selectedFiles.value.isNotEmpty() -> {
+                                        if (selectedFiles.value.contains(it)) {
+                                            selectedFiles.value -= it
+                                        } else {
+                                            selectedFiles.value += it
                                         }
                                     }
                                 }
-                            ) {
-                                playerModel.startPlaying(context, it)
                             }
-
-                            else -> ScreenRecordingItem(
-                                recordingFile = it,
-                                isVideo = true,
-                                isSelected = selectedFiles.value.contains(it),
-                                onClick = { wasLongPress ->
-                                    when {
-                                        wasLongPress -> selectedFiles.value += it
-                                        selectedFiles.value.isNotEmpty() -> {
-                                            if (selectedFiles.value.contains(it)) {
-                                                selectedFiles.value -= it
-                                            } else {
-                                                selectedFiles.value += it
-                                            }
-                                        }
-                                    }
-                                }
-                            ) {
-                                playerModel.startPlaying(context, it)
-                            }
+                        ) {
+                            playerModel.startPlaying(context, it)
                         }
-
                     }
                 }
                 AnimatedVisibility(
