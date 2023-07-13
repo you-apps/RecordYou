@@ -13,7 +13,7 @@
     <string name="choose_dir">Escolher diretório</string>
     <string name="screen_recorder">Gravador de tela</string>
     <string name="recording_screen">Gravando a tela …</string>
-    <string name="record_screen">Gravador de tela</string>
+    <string name="record_screen">Gravar tela</string>
     <string name="stop">Parar</string>
     <string name="microphone">Microfone</string>
     <string name="no_audio">Sem áudios</string>
@@ -23,7 +23,7 @@
     <string name="video">Vídeo</string>
     <string name="active_recording">Gravação ativa</string>
     <string name="pause">Pausar</string>
-    <string name="resume">Continuar</string>
+    <string name="resume">Retomar</string>
     <string name="record_sound">Gravador de áudio</string>
     <string name="recording_audio">Gravando áudio …</string>
     <string name="settings">Configurações</string>
@@ -38,7 +38,7 @@
     <string name="options">Opções</string>
     <string name="recording_finished">Gravação finalizada</string>
     <string name="sort">Ordenar</string>
-    <string name="alphabetic">Alfabeticamente</string>
+    <string name="alphabetic">Alfabético</string>
     <string name="alphabetic_rev">Alfabeticamente (Z-A)</string>
     <string name="size">Tamanho</string>
     <string name="size_rev">Tamanho (o maior primeiro)</string>
