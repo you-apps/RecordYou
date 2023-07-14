@@ -1,7 +1,7 @@
 package com.bnyro.recorder.enums
 
-enum class Recorder {
+enum class RecorderType {
     NONE,
     AUDIO,
-    SCREEN
+    VIDEO
 }

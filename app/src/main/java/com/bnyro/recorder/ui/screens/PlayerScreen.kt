@@ -10,15 +10,20 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.SortOrder
+import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.FullscreenDialog
 import com.bnyro.recorder.ui.components.PlayerView
@@ -36,7 +41,7 @@ fun PlayerScreen(
         mutableStateOf(SortOrder.ALPHABETIC)
     }
     val selectedFiles = remember {
-        mutableStateOf(listOf<DocumentFile>())
+        mutableStateOf(listOf<RecordingItemData>())
     }
     val playerModel: PlayerModel = viewModel()
 
@@ -69,6 +74,7 @@ fun PlayerScreen(
                     R.string.size_rev
                 )
                 DropdownMenu(showDropDown, { showDropDown = false }) {
+                    val context = LocalContext.current
                     sortOptions.forEachIndexed { index, sortOrder ->
                         DropdownMenuItem(
                             text = {
@@ -76,6 +82,7 @@ fun PlayerScreen(
                             },
                             onClick = {
                                 selectedSortOrder = sortOrder
+                                playerModel.sortRecordingItems(context, sortOrder)
                                 showDropDown = false
                             }
                         )
@@ -91,7 +98,7 @@ fun PlayerScreen(
                         if (selectedAll) {
                             selectedFiles.value = listOf()
                         } else {
-                            selectedFiles.value = playerModel.files
+                            selectedFiles.value = playerModel.recordingItems
                         }
                     }
                 )
@@ -109,7 +116,11 @@ fun PlayerScreen(
                 horizontal = 20.dp
             )
         ) {
-            PlayerView(showVideoModeInitially, showDeleteDialog, selectedSortOrder, selectedFiles) {
+            PlayerView(
+                showVideoModeInitially,
+                showDeleteDialog,
+                selectedFiles
+            ) {
                 showDeleteDialog = false
             }
         }

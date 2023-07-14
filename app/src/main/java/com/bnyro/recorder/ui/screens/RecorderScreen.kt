@@ -47,7 +47,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
-import com.bnyro.recorder.enums.Recorder
+import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
@@ -56,7 +56,7 @@ import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
 fun RecorderView(
-    initialRecorder: Recorder
+    initialRecorder: RecorderType
 ) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
@@ -90,16 +90,16 @@ fun RecorderView(
 
     LaunchedEffect(Unit) {
         when (initialRecorder) {
-            Recorder.AUDIO -> {
+            RecorderType.AUDIO -> {
                 recorderModel.startAudioRecorder(context)
             }
 
-            Recorder.SCREEN -> {
+            RecorderType.VIDEO -> {
                 recordScreenMode = true
                 requestScreenRecording()
             }
 
-            Recorder.NONE -> {}
+            RecorderType.NONE -> {}
         }
     }
 
