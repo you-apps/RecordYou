@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.bnyro.recorder.enums.Recorder
+import com.bnyro.recorder.ui.screens.PlayerScreen
 import com.bnyro.recorder.ui.screens.RecorderView
 import com.bnyro.recorder.ui.screens.SettingsScreen
 
@@ -24,6 +25,10 @@ fun AppNavHost(
 
         composable(route = Settings.route) {
             SettingsScreen()
+        }
+
+        composable(route = RecordingPlayer.route) {
+            PlayerScreen(showVideoModeInitially = false)
         }
     }
 }

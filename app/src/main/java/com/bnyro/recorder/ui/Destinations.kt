@@ -11,3 +11,7 @@ object Home : Destination {
 object Settings : Destination {
     override val route = "settings"
 }
+
+object RecordingPlayer : Destination {
+    override val route = "player"
+}
