@@ -8,7 +8,6 @@ import android.os.Build
 import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -24,12 +23,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -52,12 +47,11 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
-import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.RecorderState
+import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.ui.common.BlobIconBox
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
-import com.bnyro.recorder.ui.components.SettingsBottomSheet
 import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
@@ -147,7 +141,7 @@ fun RecorderView(
 
                     ElevatedCard(
                         colors = CardDefaults.elevatedCardColors(
-                            containerColor = if (isSystemInDarkTheme()) Color(0xffee665b) else Color(
+                            containerColor = if (isSystemInDarkTheme()) Color(0xA8EE665B) else Color(
                                 0xffdd6f62
                             ),
                             contentColor = Color.White
@@ -184,9 +178,15 @@ fun RecorderView(
                                 else -> {
                                     Box(
                                         Modifier
-                                            .size(36.dp)
+                                            .size(40.dp)
                                             .clip(CircleShape)
-                                            .background(Color.White)
+                                            .background(Color(0x9FFFFFFF))
+                                    )
+                                    Box(
+                                        Modifier
+                                            .size(26.dp)
+                                            .clip(CircleShape)
+                                            .background(Color(0x9FFFFFFF))
                                     )
                                 }
                             }

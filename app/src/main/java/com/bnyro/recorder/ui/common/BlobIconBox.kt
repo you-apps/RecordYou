@@ -3,8 +3,7 @@ package com.bnyro.recorder.ui.common
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -21,21 +20,20 @@ fun BlobIconBox(@DrawableRes icon: Int) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-            .fillMaxWidth()
-            .height(350.dp)
+            .fillMaxSize()
             .alpha(0.3f)
     ) {
         Image(
             modifier = Modifier.size(350.dp),
             painter = painterResource(id = R.drawable.blob),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.tertiaryContainer)
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.secondaryContainer)
         )
         Image(
             modifier = Modifier.size(250.dp),
             painter = painterResource(id = icon),
             contentDescription = null,
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onTertiaryContainer)
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer)
         )
     }
 }

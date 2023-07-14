@@ -3,13 +3,12 @@ package com.bnyro.recorder.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.compose.rememberNavController
 import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.ThemeMode
@@ -20,7 +19,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val themeModel: ThemeModel = ViewModelProvider(this).get()
+        val themeModel: ThemeModel by viewModels()
 
         val initialRecorder = when (intent?.getStringExtra("action")) {
             "audio" -> RecorderType.AUDIO
@@ -30,21 +29,23 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RecordYouTheme(
-                when (val mode = themeModel.themeMode) {
+                when (themeModel.themeMode) {
                     ThemeMode.SYSTEM -> isSystemInDarkTheme()
-                    else -> mode == ThemeMode.DARK
-                }
+                    ThemeMode.DARK -> true
+                    else -> false
+                },
+                amoledDark = themeModel.themeMode == ThemeMode.AMOLED,
             ) {
                 val navController = rememberNavController()
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     AppNavHost(
                         navController = navController,
                         modifier = Modifier,
-                        initialRecorder = initialRecorder
+                        initialRecorder = initialRecorder,
                     )
                 }
             }
