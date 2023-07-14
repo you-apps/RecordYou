@@ -58,4 +58,6 @@
     <string name="naming_pattern">文件命名模式</string>
     <string name="naming_pattern_desc">%d: 日期, %t: 时间, %s: 纪元秒, %m: 纪元毫秒</string>
     <string name="alphabetic">按字母表顺序</string>
+    <string name="screen_recorder_annotation">录屏注释</string>
+    <string name="screen_recorder_annotation_desc">在录屏期间显示注释工具</string>
 </resources>
