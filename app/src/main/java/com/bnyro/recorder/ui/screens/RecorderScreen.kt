@@ -49,6 +49,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.Recorder
 import com.bnyro.recorder.enums.RecorderState
+import com.bnyro.recorder.ui.Destination
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.components.SettingsBottomSheet
@@ -56,7 +57,8 @@ import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
 fun RecorderView(
-    initialRecorder: Recorder
+    initialRecorder: Recorder,
+    onNavigate: (destination: Destination) -> Unit
 ) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
