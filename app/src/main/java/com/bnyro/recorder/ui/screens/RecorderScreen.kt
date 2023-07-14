@@ -8,7 +8,6 @@ import android.os.Build
 import android.text.format.DateUtils
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,14 +18,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Stop
-import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -35,10 +30,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -49,9 +40,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.Recorder
 import com.bnyro.recorder.enums.RecorderState
-import com.bnyro.recorder.ui.Destination
-import com.bnyro.recorder.ui.RecordingPlayer
-import com.bnyro.recorder.ui.Settings
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
 import com.bnyro.recorder.ui.models.RecorderModel
@@ -59,17 +47,13 @@ import com.bnyro.recorder.ui.models.RecorderModel
 @Composable
 fun RecorderView(
     initialRecorder: Recorder,
-    onNavigate: (destination: Destination) -> Unit
+    recordScreenMode: Boolean
 ) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
     val mProjectionManager =
         context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     val orientation = LocalConfiguration.current.orientation
-
-    var recordScreenMode by remember {
-        mutableStateOf(false)
-    }
 
     val requestRecording = rememberLauncherForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -92,7 +76,6 @@ fun RecorderView(
             }
 
             Recorder.SCREEN -> {
-                recordScreenMode = true
                 requestScreenRecording()
             }
 
@@ -155,14 +138,6 @@ fun RecorderView(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    ClickableIcon(
-                        imageVector = Icons.Default.Settings,
-                        contentDescription = stringResource(R.string.settings)
-                    ) {
-                        onNavigate(Settings)
-                    }
-
-                    Spacer(modifier = Modifier.width(20.dp))
 
                     FloatingActionButton(
                         onClick = {
@@ -189,9 +164,8 @@ fun RecorderView(
                         )
                     }
 
-                    Spacer(modifier = Modifier.width(20.dp))
-
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && recorderModel.recorderState != RecorderState.IDLE) {
+                        Spacer(modifier = Modifier.width(20.dp))
                         ClickableIcon(
                             imageVector = if (recorderModel.recorderState == RecorderState.PAUSED) {
                                 Icons.Default.PlayArrow
@@ -212,28 +186,9 @@ fun RecorderView(
                                 recorderModel.pauseRecording()
                             }
                         }
-                    } else {
-                        ClickableIcon(
-                            imageVector = Icons.Default.VideoLibrary,
-                            contentDescription = stringResource(R.string.recordings)
-                        ) {
-                            onNavigate(RecordingPlayer)
-                        }
                     }
                 }
 
-                Spacer(modifier = Modifier.height(5.dp))
-
-                AnimatedVisibility(recorderModel.recorderState == RecorderState.IDLE) {
-                    ClickableIcon(
-                        imageVector = if (recordScreenMode) Icons.Default.ExpandMore else Icons.Default.ExpandLess,
-                        contentDescription = stringResource(
-                            if (recordScreenMode) R.string.record_sound else R.string.record_screen
-                        )
-                    ) {
-                        recordScreenMode = !recordScreenMode
-                    }
-                }
             }
         }
     }
