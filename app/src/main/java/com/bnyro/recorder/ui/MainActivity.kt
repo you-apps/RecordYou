@@ -10,10 +10,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
+import androidx.navigation.compose.rememberNavController
 import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.ThemeMode
 import com.bnyro.recorder.ui.models.ThemeModel
-import com.bnyro.recorder.ui.screens.RecorderView
 import com.bnyro.recorder.ui.theme.RecordYouTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,11 +35,17 @@ class MainActivity : ComponentActivity() {
                     else -> mode == ThemeMode.DARK
                 }
             ) {
+                val navController = rememberNavController()
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    RecorderView(initialRecorder)
+                    AppNavHost(
+                        navController = navController,
+                        modifier = Modifier,
+                        initialRecorder = initialRecorder
+                    )
                 }
             }
         }
