@@ -50,9 +50,9 @@ import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.Recorder
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.ui.Destination
+import com.bnyro.recorder.ui.Settings
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.AudioVisualizer
-import com.bnyro.recorder.ui.components.SettingsBottomSheet
 import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
@@ -66,9 +66,6 @@ fun RecorderView(
         context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     val orientation = LocalConfiguration.current.orientation
 
-    var showBottomSheet by remember {
-        mutableStateOf(false)
-    }
     var showPlayerScreen by remember {
         mutableStateOf(false)
     }
@@ -164,7 +161,7 @@ fun RecorderView(
                         imageVector = Icons.Default.Settings,
                         contentDescription = stringResource(R.string.settings)
                     ) {
-                        showBottomSheet = true
+                        onNavigate(Settings)
                     }
 
                     Spacer(modifier = Modifier.width(20.dp))
@@ -243,11 +240,6 @@ fun RecorderView(
         }
     }
 
-    if (showBottomSheet) {
-        SettingsBottomSheet {
-            showBottomSheet = false
-        }
-    }
     if (showPlayerScreen) {
         PlayerScreen(recordScreenMode) {
             showPlayerScreen = false

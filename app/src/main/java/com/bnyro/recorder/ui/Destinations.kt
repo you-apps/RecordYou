@@ -7,3 +7,7 @@ interface Destination {
 object Home : Destination {
     override val route = "home"
 }
+
+object Settings : Destination {
+    override val route = "settings"
+}

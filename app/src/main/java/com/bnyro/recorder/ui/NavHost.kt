@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.bnyro.recorder.enums.Recorder
 import com.bnyro.recorder.ui.screens.RecorderView
+import com.bnyro.recorder.ui.screens.SettingsScreen
 
 @Composable
 fun AppNavHost(
@@ -19,6 +20,10 @@ fun AppNavHost(
             RecorderView(initialRecorder, onNavigate = { destination ->
                 navController.navigateTo(destination.route)
             })
+        }
+
+        composable(route = Settings.route) {
+            SettingsScreen()
         }
     }
 }
