@@ -13,6 +13,7 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.util.PlayerHelper
@@ -74,9 +75,9 @@ class PlayerModel : ViewModel() {
                                 file.uri
                             )
                         }.frameAtTime
-                    recordingItems.add(RecordingItemData(file, true, thumbnail))
+                    recordingItems.add(RecordingItemData(file, RecorderType.VIDEO, thumbnail))
                 } else {
-                    recordingItems.add(RecordingItemData(file))
+                    recordingItems.add(RecordingItemData(file, RecorderType.AUDIO))
                 }
             }
         }

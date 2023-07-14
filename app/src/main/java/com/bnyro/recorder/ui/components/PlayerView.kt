@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.obj.RecordingItemData
-import com.bnyro.recorder.obj.isAudio
 import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 import kotlinx.coroutines.launch
@@ -50,26 +49,28 @@ fun PlayerView(
         }
         val scope = rememberCoroutineScope()
         TabRow(selectedTabIndex = pagerState.currentPage, Modifier.fillMaxWidth()) {
-            Tab(selected = (pagerState.currentPage == 0), onClick = {
-                scope.launch {
-                    pagerState.animateScrollToPage(
-                        0
-                    )
+            Tab(
+                selected = pagerState.currentPage == 0,
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(0)
+                    }
                 }
-            }) {
+            ) {
                 Text(
                     stringResource(R.string.audio),
                     Modifier.padding(10.dp),
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-            Tab(selected = (pagerState.currentPage == 1), onClick = {
-                scope.launch {
-                    pagerState.animateScrollToPage(
-                        1
-                    )
+            Tab(
+                selected = pagerState.currentPage == 1,
+                onClick = {
+                    scope.launch {
+                        pagerState.animateScrollToPage(1)
+                    }
                 }
-            }) {
+            ) {
                 Text(
                     text = stringResource(R.string.video),
                     Modifier.padding(10.dp),
