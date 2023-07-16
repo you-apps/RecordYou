@@ -20,11 +20,11 @@ import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.bnyro.recorder.ui.theme.RecordYouTheme
 import com.bnyro.recorder.util.CustomLifecycleOwner
 
-
 @RequiresApi(Build.VERSION_CODES.O)
 class CanvasOverlay(context: Context) {
     private var params: WindowManager.LayoutParams = WindowManager.LayoutParams(
-        WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT,
+        WindowManager.LayoutParams.WRAP_CONTENT,
+        WindowManager.LayoutParams.WRAP_CONTENT,
         WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
         WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
         PixelFormat.TRANSPARENT
@@ -73,7 +73,6 @@ class CanvasOverlay(context: Context) {
         try {
             if (canvasView.windowToken == null && canvasView.parent == null) {
                 windowManager.addView(canvasView, params)
-
             }
             if (toolbarView.windowToken == null && toolbarView.parent == null) {
                 val toolbarParams = params

@@ -34,18 +34,18 @@ class MainActivity : ComponentActivity() {
                     ThemeMode.DARK -> true
                     else -> false
                 },
-                amoledDark = themeModel.themeMode == ThemeMode.AMOLED,
+                amoledDark = themeModel.themeMode == ThemeMode.AMOLED
             ) {
                 val navController = rememberNavController()
                 Surface(
                     modifier = Modifier
                         .fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     AppNavHost(
                         navController = navController,
                         modifier = Modifier,
-                        initialRecorder = initialRecorder,
+                        initialRecorder = initialRecorder
                     )
                 }
             }

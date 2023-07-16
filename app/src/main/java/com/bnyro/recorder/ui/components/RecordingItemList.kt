@@ -74,7 +74,6 @@ fun RecordingItemList(
                 }
             }
         }
-
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
             Column(

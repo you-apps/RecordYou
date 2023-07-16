@@ -54,7 +54,6 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
                     }
                 } while (event.changes.any { it.pressed })
                 motionEvent = MotionEvent.Up
-
             }
         }
     Canvas(modifier = drawModifier) {
@@ -65,13 +64,15 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
                 MotionEvent.Down -> {
                     canvasViewModel.paths.add(canvasViewModel.currentPath)
                     canvasViewModel.currentPath.path.moveTo(
-                        currentPosition.x, currentPosition.y
+                        currentPosition.x,
+                        currentPosition.y
                     )
                 }
 
                 MotionEvent.Move -> {
                     canvasViewModel.currentPath.path.lineTo(
-                        currentPosition.x, currentPosition.y
+                        currentPosition.x,
+                        currentPosition.y
                     )
                     drawCircle(
                         center = currentPosition,
@@ -85,7 +86,8 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
 
                 MotionEvent.Up -> {
                     canvasViewModel.currentPath.path.lineTo(
-                        currentPosition.x, currentPosition.y
+                        currentPosition.x,
+                        currentPosition.y
                     )
                     canvasViewModel.currentPath = PathProperties(
                         path = Path(),
@@ -102,7 +104,6 @@ fun MainCanvas(canvasViewModel: CanvasViewModel = viewModel()) {
             }
             restoreToCount(checkPoint)
         }
-
     }
 }
 
@@ -115,7 +116,6 @@ class PathProperties(
     fun draw(scope: DrawScope) {
         when (drawMode) {
             DrawMode.Pen -> {
-
                 scope.drawPath(
                     color = color,
                     path = path,

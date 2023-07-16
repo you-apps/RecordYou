@@ -14,12 +14,12 @@ import com.bnyro.recorder.ui.screens.SettingsScreen
 fun AppNavHost(
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    initialRecorder: RecorderType,
+    initialRecorder: RecorderType
 ) {
     NavHost(
         navController = navController,
         startDestination = Destination.Home.route,
-        modifier = modifier,
+        modifier = modifier
     ) {
         composable(route = Destination.Home.route) {
             HomeScreen(initialRecorder, onNavigate = { destination ->

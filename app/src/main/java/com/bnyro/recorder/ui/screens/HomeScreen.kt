@@ -37,7 +37,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     initialRecorder: RecorderType,
     onNavigate: (Destination) -> Unit,
-    recorderModel: RecorderModel = viewModel(),
+    recorderModel: RecorderModel = viewModel()
 ) {
     val pagerState = rememberPagerState { 2 }
     val scope = rememberCoroutineScope()
@@ -45,13 +45,13 @@ fun HomeScreen(
         TopAppBar(title = { Text(stringResource(R.string.app_name)) }, actions = {
             ClickableIcon(
                 imageVector = Icons.Default.Settings,
-                contentDescription = stringResource(R.string.settings),
+                contentDescription = stringResource(R.string.settings)
             ) {
                 onNavigate(Destination.Settings)
             }
             ClickableIcon(
                 imageVector = Icons.Default.VideoLibrary,
-                contentDescription = stringResource(R.string.recordings),
+                contentDescription = stringResource(R.string.recordings)
             ) {
                 onNavigate(Destination.RecordingPlayer)
             }
@@ -65,8 +65,8 @@ fun HomeScreen(
                             Icon(
                                 imageVector = Icons.Default.Mic,
                                 contentDescription = stringResource(
-                                    id = R.string.record_sound,
-                                ),
+                                    id = R.string.record_sound
+                                )
                             )
                         },
                         label = { Text(stringResource(R.string.record_sound)) },
@@ -75,15 +75,15 @@ fun HomeScreen(
                             scope.launch {
                                 pagerState.animateScrollToPage(0)
                             }
-                        },
+                        }
                     )
                     NavigationBarItem(
                         icon = {
                             Icon(
                                 imageVector = Icons.Default.Videocam,
                                 contentDescription = stringResource(
-                                    id = R.string.record_screen,
-                                ),
+                                    id = R.string.record_screen
+                                )
                             )
                         },
                         label = { Text(stringResource(R.string.record_screen)) },
@@ -92,7 +92,7 @@ fun HomeScreen(
                             scope.launch {
                                 pagerState.animateScrollToPage(1)
                             }
-                        },
+                        }
                     )
                 }
             }
@@ -101,11 +101,11 @@ fun HomeScreen(
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
+                .padding(paddingValues)
         ) {
             HorizontalPager(
                 state = pagerState,
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize()
             ) { index ->
                 RecorderView(initialRecorder = initialRecorder, recordScreenMode = (index == 1))
             }

@@ -43,7 +43,9 @@ class ScreenRecorderService : RecorderService() {
     }
 
     private fun initMediaProjection() {
-        val mProjectionManager = getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
+        val mProjectionManager = getSystemService(
+            Context.MEDIA_PROJECTION_SERVICE
+        ) as MediaProjectionManager
         try {
             mediaProjection = mProjectionManager.getMediaProjection(
                 Activity.RESULT_OK,

@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import com.bnyro.recorder.canvas_overlay.CanvasOverlay
@@ -30,7 +29,6 @@ import com.bnyro.recorder.services.RecorderService
 import com.bnyro.recorder.services.ScreenRecorderService
 import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
-
 
 class RecorderModel : ViewModel() {
     private val audioPermission = arrayOf(Manifest.permission.RECORD_AUDIO)
@@ -155,7 +153,10 @@ class RecorderModel : ViewModel() {
 
     @SuppressLint("NewApi")
     fun hasScreenRecordingPermissions(context: Context): Boolean {
-        val overlayEnabled = Preferences.prefs.getBoolean(Preferences.showOverlayAnnotationToolKey, true)
+        val overlayEnabled = Preferences.prefs.getBoolean(
+            Preferences.showOverlayAnnotationToolKey,
+            true
+        )
         if (supportsOverlay && overlayEnabled && !Settings.canDrawOverlays(context)) {
             val intent = Intent(
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,

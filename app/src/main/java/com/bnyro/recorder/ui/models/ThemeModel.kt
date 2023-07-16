@@ -8,6 +8,6 @@ import com.bnyro.recorder.enums.ThemeMode
 
 class ThemeModel : ViewModel() {
     var themeMode by mutableStateOf(
-        ThemeMode.getCurrent(),
+        ThemeMode.getCurrent()
     )
 }

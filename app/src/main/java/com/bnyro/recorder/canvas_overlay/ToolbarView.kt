@@ -29,14 +29,16 @@ fun ToolbarView(
                     currentDrawMode = DrawMode.Pen
                     canvasViewModel.currentPath.drawMode = currentDrawMode
                     hideCanvas(false)
-                }) {
+                }
+            ) {
                 Icon(imageVector = Icons.Default.Draw, contentDescription = "Draw Mode")
             }
             IconButton(
                 onClick = {
                     currentDrawMode = DrawMode.Eraser
                     canvasViewModel.currentPath.drawMode = currentDrawMode
-                }) {
+                }
+            ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_eraser_black_24dp),
                     contentDescription = "Erase Mode"

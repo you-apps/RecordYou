@@ -59,8 +59,8 @@ fun SettingsScreen() {
     var audioChannels by remember {
         mutableStateOf(
             AudioChannels.fromInt(
-                Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value),
-            ),
+                Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value)
+            )
         )
     }
     var audioDeviceSource by remember {
@@ -68,14 +68,14 @@ fun SettingsScreen() {
             AudioDeviceSource.fromInt(
                 Preferences.prefs.getInt(
                     Preferences.audioDeviceSourceKey,
-                    AudioDeviceSource.DEFAULT.value,
-                ),
-            ),
+                    AudioDeviceSource.DEFAULT.value
+                )
+            )
         )
     }
     var screenAudioSource by remember {
         mutableStateOf(
-            AudioSource.fromInt(Preferences.prefs.getInt(Preferences.audioSourceKey, 0)),
+            AudioSource.fromInt(Preferences.prefs.getInt(Preferences.audioSourceKey, 0))
         )
     }
     var videoEncoder by remember {
@@ -99,28 +99,28 @@ fun SettingsScreen() {
             actions = {
                 ClickableIcon(
                     imageVector = Icons.Default.DarkMode,
-                    contentDescription = stringResource(R.string.theme),
+                    contentDescription = stringResource(R.string.theme)
                 ) {
                     showThemePref = true
                 }
                 ClickableIcon(
                     imageVector = Icons.Default.Info,
-                    contentDescription = stringResource(R.string.about),
+                    contentDescription = stringResource(R.string.about)
                 ) {
                     showAbout = true
                 }
-            },
+            }
         )
     }) { paddingValues ->
         Column(
             modifier = Modifier
                 .padding(paddingValues)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
         ) {
             Text(
                 text = stringResource(R.string.directory),
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
+                fontSize = 18.sp
             )
             Spacer(modifier = Modifier.height(5.dp))
             Button(
@@ -128,7 +128,7 @@ fun SettingsScreen() {
                     val lastDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
                         .takeIf { !it.isNullOrBlank() }
                     directoryPicker.launch(lastDir?.let { Uri.parse(it) })
-                },
+                }
             ) {
                 Text(stringResource(R.string.choose_dir))
             }
@@ -137,7 +137,7 @@ fun SettingsScreen() {
                 title = stringResource(R.string.audio_format),
                 entries = AudioFormat.formats.map { it.name },
                 values = AudioFormat.formats.map { it.format },
-                selections = listOf(audioFormat.format),
+                selections = listOf(audioFormat.format)
             ) { index, newValue ->
                 if (newValue) {
                     audioFormat = AudioFormat.formats[index]
@@ -148,13 +148,13 @@ fun SettingsScreen() {
                 CustomNumInputPref(
                     key = Preferences.audioSampleRateKey,
                     title = stringResource(R.string.sample_rate),
-                    defValue = 44_100,
+                    defValue = 44_100
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 CustomNumInputPref(
                     key = Preferences.audioBitrateKey,
                     title = stringResource(R.string.bitrate),
-                    defValue = 192_000,
+                    defValue = 192_000
                 )
             }
             val audioDeviceSourceValues = AudioDeviceSource.values().map { it.value }
@@ -163,16 +163,16 @@ fun SettingsScreen() {
                     R.string.default_audio,
                     R.string.microphone,
                     R.string.camcorder,
-                    R.string.unprocessed,
+                    R.string.unprocessed
                 ).map {
                     stringResource(it)
                 },
                 values = audioDeviceSourceValues,
-                selections = listOf(audioDeviceSource.value),
+                selections = listOf(audioDeviceSource.value)
             ) { index, newValue ->
                 if (newValue) {
                     audioDeviceSource = AudioDeviceSource.fromInt(
-                        audioDeviceSourceValues[index],
+                        audioDeviceSourceValues[index]
                     )
                     Preferences.edit {
                         putInt(Preferences.audioDeviceSourceKey, audioDeviceSourceValues[index])
@@ -185,7 +185,7 @@ fun SettingsScreen() {
                     stringResource(it)
                 },
                 values = audioChannelsValues,
-                selections = listOf(audioChannels.value),
+                selections = listOf(audioChannels.value)
             ) { index, newValue ->
                 if (newValue) {
                     audioChannels = AudioChannels.fromInt(audioChannelsValues[index])
@@ -202,7 +202,7 @@ fun SettingsScreen() {
                     stringResource(it)
                 },
                 values = audioValues,
-                selections = listOf(screenAudioSource.value),
+                selections = listOf(screenAudioSource.value)
             ) { index, newValue ->
                 if (newValue) {
                     screenAudioSource = AudioSource.fromInt(audioValues[index])
@@ -212,7 +212,7 @@ fun SettingsScreen() {
             ChipSelector(
                 entries = VideoFormat.codecs.map { it.name },
                 values = VideoFormat.codecs.map { it.codec },
-                selections = listOf(videoEncoder.codec),
+                selections = listOf(videoEncoder.codec)
             ) { index, newValue ->
                 if (newValue) {
                     videoEncoder = VideoFormat.codecs[index]
@@ -223,14 +223,14 @@ fun SettingsScreen() {
             CustomNumInputPref(
                 key = Preferences.videoBitrateKey,
                 title = stringResource(R.string.bitrate),
-                defValue = 1_200_000,
+                defValue = 1_200_000
             )
             Spacer(modifier = Modifier.height(10.dp))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 CheckboxPref(
                     prefKey = Preferences.losslessRecorderKey,
                     title = stringResource(R.string.lossless_audio),
-                    summary = stringResource(R.string.lossless_audio_desc),
+                    summary = stringResource(R.string.lossless_audio_desc)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -238,7 +238,7 @@ fun SettingsScreen() {
                 CheckboxPref(
                     prefKey = Preferences.showOverlayAnnotationToolKey,
                     title = stringResource(R.string.screen_recorder_annotation),
-                    summary = stringResource(R.string.screen_recorder_annotation_desc),
+                    summary = stringResource(R.string.screen_recorder_annotation_desc)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
@@ -254,10 +254,10 @@ fun SettingsScreen() {
                 R.string.system,
                 R.string.light,
                 R.string.dark,
-                R.string.amoled_dark,
+                R.string.amoled_dark
             ).map {
                 stringResource(it)
-            },
+            }
         ) {
             themeModel.themeMode = ThemeMode.values()[it]
             Preferences.edit { putString(Preferences.themeModeKey, ThemeMode.values()[it].name) }

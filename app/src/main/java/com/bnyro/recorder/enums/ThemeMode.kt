@@ -6,7 +6,7 @@ enum class ThemeMode {
     SYSTEM,
     LIGHT,
     DARK,
-    AMOLED,
+    AMOLED
     ;
 
     companion object {

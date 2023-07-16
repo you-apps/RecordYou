@@ -121,7 +121,8 @@ fun PlayerScreen(
                 },
                 scrollBehavior = scrollBehavior
             )
-        }) { paddingValues ->
+        }
+    ) { paddingValues ->
         Column(
             modifier = Modifier
                 .padding(paddingValues)

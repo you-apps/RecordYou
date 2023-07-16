@@ -64,7 +64,13 @@ fun RecordingItem(
     }
     with(recordingItem) {
         val cardColor =
-            if (!isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(5.dp) else MaterialTheme.colorScheme.primary
+            if (!isSelected) {
+                MaterialTheme.colorScheme.surfaceColorAtElevation(
+                    5.dp
+                )
+            } else {
+                MaterialTheme.colorScheme.primary
+            }
         ElevatedCard(
             modifier = Modifier
                 .padding(vertical = 5.dp)

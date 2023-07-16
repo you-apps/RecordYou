@@ -112,7 +112,9 @@ fun RecorderView(
                 targetState = recorderModel.recordedAmplitudes
             ) {
                 when (it.isEmpty() && orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    true -> BlobIconBox(icon = if (recordScreenMode) R.drawable.ic_screen_record else R.drawable.ic_mic)
+                    true -> BlobIconBox(
+                        icon = if (recordScreenMode) R.drawable.ic_screen_record else R.drawable.ic_mic
+                    )
                     false -> AudioVisualizer(
                         modifier = Modifier
                             .fillMaxSize()
@@ -138,14 +140,18 @@ fun RecorderView(
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-
                     ElevatedCard(
                         colors = CardDefaults.elevatedCardColors(
-                            containerColor = if (isSystemInDarkTheme()) Color(0xA8EE665B) else Color(
-                                0xffdd6f62
-                            ),
+                            containerColor = if (isSystemInDarkTheme()) {
+                                Color(0xA8EE665B)
+                            } else {
+                                Color(
+                                    0xffdd6f62
+                                )
+                            },
                             contentColor = Color.White
-                        ), shape = CircleShape
+                        ),
+                        shape = CircleShape
                     ) {
                         val buttonDescription = stringResource(
                             if (recorderModel.recorderState != RecorderState.IDLE) {
@@ -224,7 +230,6 @@ fun RecorderView(
                         }
                     }
                 }
-
             }
         }
     }
