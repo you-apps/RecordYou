@@ -58,4 +58,6 @@
     <string name="sort">Сортувати</string>
     <string name="alphabetic">За алфавітом</string>
     <string name="alphabetic_rev">За алфавітом (навпаки)</string>
+    <string name="screen_recorder_annotation">Анотація до запису екрану</string>
+    <string name="screen_recorder_annotation_desc">Показувати інструмент анотацій під час запису екрана</string>
 </resources>

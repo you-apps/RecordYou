@@ -58,4 +58,6 @@
     <string name="alphabetic">אלפביתי</string>
     <string name="naming_pattern">תבנית מתן שמות</string>
     <string name="size_rev">גודל (הפוך)</string>
+    <string name="screen_recorder_annotation">סימון על הקלטת מסך</string>
+    <string name="screen_recorder_annotation_desc">הצגת כלי סימון במהלך הקלטת מסך</string>
 </resources>

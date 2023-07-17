@@ -58,4 +58,6 @@
     <string name="alphabetic">Abecedně</string>
     <string name="alphabetic_rev">Abecedně (obráceně)</string>
     <string name="naming_pattern_desc">%d: Datum, %t: Čas, %s Epocha sekund, %m: Epicha milisekund</string>
+    <string name="screen_recorder_annotation">Poznámky na záznamu obrazovky</string>
+    <string name="screen_recorder_annotation_desc">Zobrazit nástroj pro poznámky během nahrávání obrazovky</string>
 </resources>

@@ -58,4 +58,6 @@
     <string name="sort">فرز</string>
     <string name="alphabetic">أبجدي</string>
     <string name="naming_pattern">نمط التسمية</string>
+    <string name="screen_recorder_annotation">تعليق توضيحي لسجل الشاشة</string>
+    <string name="screen_recorder_annotation_desc">إظهار أداة التعليق التوضيحي أثناء تسجيل الشاشة</string>
 </resources>

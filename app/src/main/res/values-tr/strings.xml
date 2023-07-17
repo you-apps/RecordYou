@@ -51,11 +51,13 @@
     <string name="stereo">Stereo</string>
     <string name="lossless_audio">Kayıpsız ses kaydedici (WAV)</string>
     <string name="lossless_audio_desc">Diğer sese özel seçeneklerin kullanım sırasında geçerli olmayacağını unutmayın.</string>
-    <string name="alphabetic_rev">Alfabetik</string>
+    <string name="alphabetic_rev">Alfabetik (ters)</string>
     <string name="size">Boyut</string>
-    <string name="size_rev">Boyut</string>
+    <string name="size_rev">Boyut (ters)</string>
     <string name="naming_pattern">Adlandırma Şablonu</string>
     <string name="naming_pattern_desc">Tarih %d, Zaman %t, Saniye %s, Milisaniye %m</string>
     <string name="alphabetic">Alfabetik</string>
     <string name="sort">Tür</string>
+    <string name="screen_recorder_annotation">Ekran Kaydı Açıklaması</string>
+    <string name="screen_recorder_annotation_desc">Ekran kaydı sırasında açıklama aracını göster</string>
 </resources>
