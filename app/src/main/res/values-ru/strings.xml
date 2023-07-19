@@ -5,7 +5,7 @@
     <string name="okay">ОК</string>
     <string name="cancel">Отмена</string>
     <string name="rename">Переименовать</string>
-    <string name="file_name">Название</string>
+    <string name="file_name">Название файла</string>
     <string name="delete">Удалить</string>
     <string name="irreversible">Вы уверены\? Это действие невозможно отменить!</string>
     <string name="nothing_here">Пусто</string>
@@ -20,14 +20,14 @@
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>
     <string name="recording_audio">Запись звука …</string>
-    <string name="stop">Отключить</string>
+    <string name="stop">Остановить</string>
     <string name="microphone">Микрофон</string>
     <string name="no_audio">Без звука</string>
     <string name="open">Открыть</string>
     <string name="active_recording">Активная запись</string>
     <string name="pause">Пауза</string>
     <string name="resume">Возобновить</string>
-    <string name="options">Настройки</string>
+    <string name="options">Опции</string>
     <string name="about">О программе</string>
     <string name="source_code">Исходный код</string>
     <string name="translation">Перевод</string>
@@ -37,7 +37,7 @@
     <string name="back">Назад</string>
     <string name="play">Воспроизвести</string>
     <string name="recording_finished">Запись завершена</string>
-    <string name="record">Запись звука</string>
+    <string name="record">Начать запись</string>
     <string name="sample_rate">Частота дискретизации</string>
     <string name="bitrate">Битрейт</string>
     <string name="auto">Авто</string>
@@ -59,4 +59,7 @@
     <string name="size">Размер</string>
     <string name="naming_pattern">Образец именования</string>
     <string name="naming_pattern_desc">%d: Дата, %t: Время, %s: Эпоха секунд, %m: Эпоха миллисекунд</string>
+    <string name="amoled_dark">Чёрная (Amoled)</string>
+    <string name="screen_recorder_annotation">Аннотация записи экрана</string>
+    <string name="screen_recorder_annotation_desc">Показывать инструмент аннотации во время записи экрана</string>
 </resources>

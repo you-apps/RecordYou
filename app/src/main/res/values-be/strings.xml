@@ -58,4 +58,7 @@
     <string name="size_rev">Памер (перавернуты)</string>
     <string name="naming_pattern">Шаблон наймення</string>
     <string name="naming_pattern_desc">%d: дата, %t: час, %s: секунды эпохі, %m: эпоха ў мілісекундах</string>
+    <string name="amoled_dark">Чорная (Amoled)</string>
+    <string name="screen_recorder_annotation">Анатацыя запісу экрана</string>
+    <string name="screen_recorder_annotation_desc">Паказаць інструмент анатацый падчас запісу экрана</string>
 </resources>

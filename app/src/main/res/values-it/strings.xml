@@ -57,4 +57,8 @@
     <string name="size_rev">Dimensione (al contrario)</string>
     <string name="alphabetic_rev">Alfabetico (al contrario)</string>
     <string name="naming_pattern_desc">%d: Data, %t: Tempo, %s: Secondi Epoch, %m: Millisecondi Epoch</string>
+    <string name="naming_pattern">Modello di denominazione</string>
+    <string name="amoled_dark">Nero (Amoled)</string>
+    <string name="screen_recorder_annotation">Annotazione della registrazione dello schermo</string>
+    <string name="screen_recorder_annotation_desc">Mostra lo strumento di annotazione durante la registrazione dello schermo</string>
 </resources>

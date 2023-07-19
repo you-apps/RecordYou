@@ -8,20 +8,20 @@
     <string name="file_name">Име датотеке</string>
     <string name="delete">Избриши</string>
     <string name="irreversible">Да ли сте сигурни? Ово не може бити поништено!</string>
-    <string name="nothing_here">Нема ничега</string>
+    <string name="nothing_here">Овде је празно</string>
     <!-- Action -->
     <string name="record_sound">Сними звук</string>
     <string name="screen_recorder">Снимач екрана</string>
     <string name="recording_screen">Снимање екрана …</string>
     <string name="record_screen">Сними екран</string>
     <string name="recording_audio">Снимање звука …</string>
-    <string name="stop">Заустави</string>
+    <string name="stop">Зауставити</string>
     <string name="share">Подели</string>
     <string name="open">Отвори</string>
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>
     <string name="active_recording">Снимање активно</string>
-    <string name="pause">Паузирај</string>
+    <string name="pause">Пауза</string>
     <string name="resume">Настави</string>
     <string name="recording_finished">Снимање завршено</string>
     <string name="record">Сними</string>
@@ -46,14 +46,24 @@
     <string name="lossless_audio">Снимач звука без губитка (WAV)</string>
     <string name="lossless_audio_desc">Обратите пажњу да друге аудио опције неће бити примењене током употребе.</string>
     <!-- About -->
-    <string name="about">О</string>
-    <string name="source_code">Изворни кôд</string>
+    <string name="about">О апликацији</string>
+    <string name="source_code">Изворни код</string>
     <string name="author">Аутор</string>
     <string name="translation">Превод</string>
     <string name="delete_all">Избриши све</string>
     <!-- Theme -->
     <string name="theme">Тема</string>
-    <string name="system">Системска</string>
-    <string name="dark">Тамна</string>
+    <string name="system">Како систем</string>
+    <string name="dark">Мрачна</string>
     <string name="light">Светла</string>
+    <string name="sort">Редослед сортирања</string>
+    <string name="alphabetic">Абецедно</string>
+    <string name="alphabetic_rev">Абецедно (обрнуто)</string>
+    <string name="size">Величина</string>
+    <string name="size_rev">Величина (обрнуто)</string>
+    <string name="naming_pattern">Образац именовања</string>
+    <string name="amoled_dark">Црна (Amoled)</string>
+    <string name="naming_pattern_desc">%d: Датум, %t: Време, %s: Епоха секунди, %m: Епоха милиса</string>
+    <string name="screen_recorder_annotation">Белешка о снимању екрана</string>
+    <string name="screen_recorder_annotation_desc">Прикажи алатку за белешке током снимања екрана</string>
 </resources>

@@ -60,4 +60,5 @@
     <string name="alphabetic">按字母表顺序</string>
     <string name="screen_recorder_annotation">录屏注释</string>
     <string name="screen_recorder_annotation_desc">在录屏期间显示注释工具</string>
+    <string name="amoled_dark">Amoled Dark</string>
 </resources>

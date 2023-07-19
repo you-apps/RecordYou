@@ -60,4 +60,5 @@
     <string name="alphabetic_rev">За алфавітом (навпаки)</string>
     <string name="screen_recorder_annotation">Анотація до запису екрану</string>
     <string name="screen_recorder_annotation_desc">Показувати інструмент анотацій під час запису екрана</string>
+    <string name="amoled_dark">Чорна (Amoled)</string>
 </resources>
