@@ -15,6 +15,8 @@
 </div>
 </div>
 
+Read in other languages: [Japanese](https://github.com/kuragehimekurara1/RecordYou/blob/main/README-ja.md)
+
 <!-- ---------- Description ---------- -->
 ## Features
 
