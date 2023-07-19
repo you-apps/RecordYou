@@ -50,7 +50,7 @@
     <string name="mono">モノラル</string>
     <string name="stereo">ステレオ</string>
     <string name="lossless_audio">ロスレスオーディオレコーダー（WAV）</string>
-    <string name="lossless_audio_desc">他のオーディオ固有のオプションは、使用中に適用されないことに注意してください。</string>
+    <string name="lossless_audio_desc">注意　他のオーディオ固有のオプションは、使用中は適用されません。</string>
     <string name="naming_pattern">命名パターン</string>
     <string name="naming_pattern_desc">%d: 日付、 %t: 時間、 %s: エポック秒、 %m: エポックミリ秒</string>
     <!-- About -->
@@ -64,7 +64,7 @@
     <string name="system">システム</string>
     <string name="dark">ダーク</string>
     <string name="light">ライト</string>
-    <string name="screen_recorder_annotation">画面記録の注釈</string>
+    <string name="screen_recorder_annotation">画面録画中の注釈</string>
     <string name="screen_recorder_annotation_desc">画面録画中に注釈ツールを表示します</string>
     <string name="amoled_dark">Amoledダーク</string>
 </resources>
