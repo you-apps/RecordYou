@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Record You</string>
+    <string name="recordings">るくゎらん</string>
+    <string name="okay">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="rename">やーめーへいるかん</string>
+    <string name="file_name">ファイルめい</string>
+    <string name="delete">さちゅるじょ</string>
+    <string name="irreversible">ふんとうんかいさちゅるじょさびーが？くれーとぅりきしやびらん！</string>
+    <string name="nothing_here">くまんかえーぬーんあいびらん</string>
+    <!-- Action -->
+    <string name="record_sound">うんせいるくゎらん</string>
+    <string name="screen_recorder">スクリーンレコーダー</string>
+    <string name="recording_screen">るくががみん…</string>
+    <string name="record_screen">やしがみんるくが</string>
+    <string name="recording_audio">うんせいるくゎらんそーいびーん…</string>
+    <string name="stop">ストップ</string>
+    <string name="share">ちゅーゆーいん</string>
+    <string name="open">ふぃらく</string>
+    <string name="audio">うんせい</string>
+    <string name="video">ビデオ</string>
+    <string name="active_recording">アクティブやるるくゎらん</string>
+    <string name="pause">いちじていし</string>
+    <string name="resume">りりき</string>
+    <string name="recording_finished">るくゎらんしがしゅうりょうさびたん</string>
+    <string name="record">るくゎらん</string>
+    <string name="play">さいせい</string>
+    <string name="back">むどぅいん</string>
+    <!-- Sort order -->
+    <string name="sort">ソート</string>
+    <string name="alphabetic">アルファベット</string>
+    <string name="alphabetic_rev">アルファベット（こうじゅん）</string>
+    <string name="size">サイズ</string>
+    <string name="size_rev">サイズ（こうじゅん）</string>
+    <!-- Settings -->
+    <string name="settings">しってい</string>
+    <string name="options">オプション</string>
+    <string name="directory">ディレクトリ</string>
+    <string name="choose_dir">ディレクトリしんたく</string>
+    <string name="audio_format">うんせいフォーマット</string>
+    <string name="microphone">マイク</string>
+    <string name="no_audio">うんせいなし</string>
+    <string name="sample_rate">サンプルレート</string>
+    <string name="bitrate">ビットレート</string>
+    <string name="auto">じちゃー</string>
+    <string name="default_audio">デフォルト</string>
+    <string name="camcorder">ビデオカメラ</string>
+    <string name="unprocessed">んーじかくいん</string>
+    <string name="mono">モノラル</string>
+    <string name="stereo">ステレオ</string>
+    <string name="lossless_audio">ロスレスオーディオレコーダー（WAV）</string>
+    <string name="lossless_audio_desc">ちゅうい　ふかぬオーディオくゆうぬオプションー、さうちゅうはてぃきようさりましん。</string>
+    <string name="naming_pattern">なーめーめーパターン</string>
+    <string name="naming_pattern_desc">%d: ふぃいづけい、 %t: じがん、 %s: エポックびょう、 %m: エポックミリびょう</string>
+    <!-- About -->
+    <string name="about">しょうさい</string>
+    <string name="source_code">ソースコード</string>
+    <string name="author">さくしゃ</string>
+    <string name="translation">ふんやちゅん</string>
+    <string name="delete_all">まじりさちゅるじょ</string>
+    <!-- Theme -->
+    <string name="theme">テーマ</string>
+    <string name="system">システム</string>
+    <string name="dark">ダーク</string>
+    <string name="light">ライト</string>
+    <string name="screen_recorder_annotation">やしがみんるくがちゅうぬちゅうしゃく</string>
+    <string name="screen_recorder_annotation_desc">やしがみんるくがちゅうにちゅうしゃくちーるひょうじさびーん</string>
+    <string name="amoled_dark">Amoledダーク</string>
+</resources>
