@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">Record You</string>
+    <string name="recordings">録音</string>
+    <string name="okay">OK</string>
+    <string name="cancel">キャンセル</string>
+    <string name="rename">名前を変更</string>
+    <string name="file_name">ファイル名</string>
+    <string name="delete">削除</string>
+    <string name="irreversible">本当に削除しますか？これは取り消せません！</string>
+    <string name="nothing_here">ここには何もありません</string>
+    <!-- Action -->
+    <string name="record_sound">音声を録音</string>
+    <string name="screen_recorder">スクリーンレコーダー</string>
+    <string name="recording_screen">録画画面…</string>
+    <string name="record_screen">画面録画</string>
+    <string name="recording_audio">音声を録音しています…</string>
+    <string name="stop">ストップ</string>
+    <string name="share">共有</string>
+    <string name="open">開く</string>
+    <string name="audio">音声</string>
+    <string name="video">ビデオ</string>
+    <string name="active_recording">アクティブな録音</string>
+    <string name="pause">一時停止</string>
+    <string name="resume">履歴</string>
+    <string name="recording_finished">録音が終了しました</string>
+    <string name="record">録音</string>
+    <string name="play">再生</string>
+    <string name="back">戻る</string>
+    <!-- Sort order -->
+    <string name="sort">ソート</string>
+    <string name="alphabetic">アルファベット</string>
+    <string name="alphabetic_rev">アルファベット（降順）</string>
+    <string name="size">サイズ</string>
+    <string name="size_rev">サイズ（降順）</string>
+    <!-- Settings -->
+    <string name="settings">設定</string>
+    <string name="options">オプション</string>
+    <string name="directory">ディレクトリ</string>
+    <string name="choose_dir">ディレクトリを選択</string>
+    <string name="audio_format">音声フォーマット</string>
+    <string name="microphone">マイク</string>
+    <string name="no_audio">音声なし</string>
+    <string name="sample_rate">サンプルレート</string>
+    <string name="bitrate">ビットレート</string>
+    <string name="auto">自動</string>
+    <string name="default_audio">デフォルト</string>
+    <string name="camcorder">ビデオカメラ</string>
+    <string name="unprocessed">未加工</string>
+    <string name="mono">モノラル</string>
+    <string name="stereo">ステレオ</string>
+    <string name="lossless_audio">ロスレスオーディオレコーダー（WAV）</string>
+    <string name="lossless_audio_desc">他のオーディオ固有のオプションは、使用中に適用されないことに注意してください。</string>
+    <string name="naming_pattern">命名パターン</string>
+    <string name="naming_pattern_desc">%d: 日付、 %t: 時間、 %s: エポック秒、 %m: エポックミリ秒</string>
+    <!-- About -->
+    <string name="about">詳細</string>
+    <string name="source_code">ソースコード</string>
+    <string name="author">作者</string>
+    <string name="translation">翻訳</string>
+    <string name="delete_all">全て削除</string>
+    <!-- Theme -->
+    <string name="theme">テーマ</string>
+    <string name="system">システム</string>
+    <string name="dark">ダーク</string>
+    <string name="light">ライト</string>
+    <string name="screen_recorder_annotation">画面記録の注釈</string>
+    <string name="screen_recorder_annotation_desc">画面録画中に注釈ツールを表示します</string>
+    <string name="amoled_dark">Amoledダーク</string>
+</resources>
