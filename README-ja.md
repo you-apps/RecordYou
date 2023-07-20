@@ -2,7 +2,7 @@
 <div align="center">
   <img width="200" height="200"src="fastlane/metadata/android/en-US/images/icon.png">
   <h1>Record You</h1>
-<p><a href="https://m3.material.io/">Material Design 3 (You)</a> voice and screen recorder app</p>
+<p><a href="https://m3.material.io/">マテリアルデザイン3（You）</a> 音声およびスクリーンレコーダーアプリ</p>
 
 <!-- ---------- Badges ---------- -->
   <div align="center">
@@ -15,25 +15,25 @@
 </div>
 </div>
 
-Read in other languages: [Japanese](https://github.com/kuragehimekurara1/RecordYou/blob/main/README-ja.md)
+他の言語で読む：[英語](https://github.com/Bnyro/RecordYou/blob/main/README.md)
 
 <!-- ---------- Description ---------- -->
-## Features
+## 特徴
 
-- [x] Material Design 3 (You)
-- [x] Dark and light theme
-- [X] Support for audio and screen recording
-- [X] Different available formats and codecs
-- [X] In-app recordings player
-- [X] SAF (Storage Access Framework) support
-- [X] Written in Jetpack Compose 
+- [x] マテリアルデザイン3（You）
+- [x] ダークとライトのテーマ
+- [X] 音声および画面録画のサポート
+- [X] 利用可能な様々なフォーマットとコーデック
+- [X] アプリ内録音プレーヤー
+- [X] SAF（ストレージアクセスフレームワーク）のサポート
+- [X] Jetpack Composeで書かれています 
 
 <!-- ---------- Download ---------- -->
 ## Download
 
 <div align="center">
 
-[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.bnyro.recorder/)
+[<img src="[https://gitlab.com/fdroid/artwork/-/blob/master/badge/get-it-on-ja.png]" alt="F-Droidで手に入れよう" height="80">](https://f-droid.org/packages/com.bnyro.recorder/)
 [<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/RecordYou/releases)
 
 </div>
@@ -48,21 +48,21 @@ Read in other languages: [Japanese](https://github.com/kuragehimekurara1/RecordY
 </div>
 
 <!-- ---------- Contribution ---------- -->
-## Feedback and contributions
-***All contributions are very welcome!***
+## フィードバックと貢献
+***全ての貢献を歓迎します！***
 
-* Feel free to join the [Matrix room](https://matrix.to/#/#you-apps:matrix.org) for discussions about the app.
-* Bug reports and feature requests can be submitted [here](https://github.com/Bnyro/RecordYou/issues) (please make sure to fill out all the requested information properly!).
-* If you are a developer and wish to contribute to the app, please **fork** the project and submit a [**pull request**](https://help.github.com/articles/about-pull-requests/).
+* アプリについてのディスカッションについては、[マトリックス ルーム](https://matrix.to/#/#you-apps:matrix.org)にお気軽にご参加ください。
+* バグレポートや機能リクエストは、[こちら](https://github.com/Bnyro/RecordYou/issues) から送信できます (要求された情報は全て正しく入力してください)。
+* あなたが開発者で、アプリに貢献したい場合は、プロジェクトを**fork**し、[**pull request**](https://help.github.com/articles/about-pull-requests)を送信してください。
 
-## Translation
+## 翻訳
 <a href="https://hosted.weblate.org/projects/you-apps/record-you/">
 <img src="https://hosted.weblate.org/widgets/you-apps/-/record-you/287x66-grey.png" alt="Translation status" />
 </a>
 
-## Credits
-* Icon design by [M00NJ](https://github.com/M00NJ)
+## クレジット
+* アイコンデザイン：[M00NJ](https://github.com/M00NJ)
 
 ## License
 
-Record You is licensed under the [**GNU General Public License**](https://www.gnu.org/licenses/gpl.html): You can use, study and share it as you want.
+Record Youは [**GNU General Public License**](https://www.gnu.org/licenses/gpl.html) に基づいてライセンスが付与されています。必要に応じて使用、学習、共有できます。
