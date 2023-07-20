@@ -21,7 +21,7 @@
     <string name="pause">Pausa</string>
     <string name="resume">Retomar</string>
     <string name="irreversible">Tem a certeza\? Isto não pode ser desfeito!</string>
-    <string name="delete">Eliminar</string>
+    <string name="delete">Excluir</string>
     <string name="okay">Ok</string>
     <string name="video">Vídeo</string>
     <string name="recording_audio">Gravar áudio …</string>
@@ -58,4 +58,7 @@
     <string name="alphabetic_rev">Alfabético (invertido)</string>
     <string name="size_rev">Tamanho (invertido)</string>
     <string name="naming_pattern_desc">%d: Data, %t: Hora, %s: Época segundos, %m: Epoch millis</string>
+    <string name="amoled_dark">Amoled Escuro</string>
+    <string name="screen_recorder_annotation">Anotação de registo de ecrã</string>
+    <string name="screen_recorder_annotation_desc">Mostrar ferramenta de anotação durante a gravação de ecrã</string>
 </resources>
