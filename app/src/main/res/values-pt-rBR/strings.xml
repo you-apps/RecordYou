@@ -7,7 +7,7 @@
     <string name="rename">Renomear</string>
     <string name="file_name">Nome do arquivo</string>
     <string name="delete">Excluir</string>
-    <string name="irreversible">Você tem certeza\? Isso não pode ser desfeito!</string>
+    <string name="irreversible">Você tem certeza\? Isso não pode ser desfeito.</string>
     <string name="nothing_here">Nada aqui</string>
     <string name="directory">Diretório</string>
     <string name="choose_dir">Escolher diretório</string>
@@ -58,4 +58,7 @@
     <string name="light">Claro</string>
     <string name="dark">Escuro</string>
     <string name="lossless_audio_desc">Outras opções específicas para áudio não serão aplicadas durante o uso.</string>
+    <string name="amoled_dark">Preto (Amoled)</string>
+    <string name="screen_recorder_annotation">Anotação de gravação de tela</string>
+    <string name="screen_recorder_annotation_desc">Mostrar ferramenta de anotação durante a gravação da tela</string>
 </resources>
