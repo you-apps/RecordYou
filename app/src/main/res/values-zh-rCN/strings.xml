@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="irreversible">你确定吗？此操作无法撤销！</string>
+    <string name="irreversible">你确定吗？此操作无法撤销。</string>
     <string name="nothing_here">这里空无一物</string>
     <string name="record_sound">录音</string>
     <string name="choose_dir">选择目录</string>
