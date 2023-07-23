@@ -10,7 +10,7 @@
     <string name="rename">Rinomina</string>
     <string name="file_name">Nome del file</string>
     <string name="nothing_here">Non c\'è niente qui</string>
-    <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata!</string>
+    <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata.</string>
     <string name="delete">Elimina</string>
     <string name="record_screen">Registra lo schermo</string>
     <string name="no_audio">Nessun audio</string>
