@@ -3,7 +3,7 @@
     <string name="audio_format">Formát zvuku</string>
     <string name="recordings">Záznamy</string>
     <string name="file_name">Název souboru</string>
-    <string name="irreversible">Opravdu\? Tato akce je nevratná!</string>
+    <string name="irreversible">Opravdu\? Tato akce je nevratná.</string>
     <string name="delete">Odstranit</string>
     <string name="nothing_here">Nic zde není</string>
     <string name="screen_recorder">Záznam obrazovky</string>
@@ -60,4 +60,5 @@
     <string name="naming_pattern_desc">%d: Datum, %t: Čas, %s Epocha sekund, %m: Epicha milisekund</string>
     <string name="screen_recorder_annotation">Poznámky na záznamu obrazovky</string>
     <string name="screen_recorder_annotation_desc">Zobrazit nástroj pro poznámky během nahrávání obrazovky</string>
+    <string name="amoled_dark">Amoled tmavý</string>
 </resources>

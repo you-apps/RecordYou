@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="irreversible">你确定吗？此操作无法撤销！</string>
+    <string name="irreversible">你确定吗？此操作无法撤销。</string>
     <string name="nothing_here">这里空无一物</string>
     <string name="record_sound">录音</string>
     <string name="choose_dir">选择目录</string>
-    <string name="okay">好的</string>
+    <string name="okay">确定</string>
     <string name="audio_format">音频格式</string>
     <string name="rename">重命名</string>
     <string name="recordings">录制列表</string>

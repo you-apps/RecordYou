@@ -8,7 +8,7 @@
     <string name="rename">Redenumire</string>
     <string name="file_name">Nume de fișier</string>
     <string name="delete">Șterge</string>
-    <string name="irreversible">Eşti sigur\? Acest lucru nu poate fi anulat!</string>
+    <string name="irreversible">Eşti sigur\? Acest lucru nu poate fi anulat.</string>
     <string name="nothing_here">Nimic aici</string>
     <string name="record_sound">Înregistrare sunet</string>
     <string name="directory">Director</string>
@@ -60,4 +60,5 @@
     <string name="naming_pattern_desc">%d: Data, %t: Ora, %s: Epoch secunde, %m: Epoch milis</string>
     <string name="screen_recorder_annotation">Adnotare înregistrare ecran</string>
     <string name="screen_recorder_annotation_desc">Afișare instrument adnotare în timpul înregistrării ecranului</string>
+    <string name="amoled_dark">Amoled întunecat</string>
 </resources>

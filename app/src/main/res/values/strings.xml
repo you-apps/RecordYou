@@ -7,7 +7,7 @@
     <string name="rename">Rename</string>
     <string name="file_name">Filename</string>
     <string name="delete">Delete</string>
-    <string name="irreversible">Are you sure? This can\'t be undone!</string>
+    <string name="irreversible">Are you sure\? This can\'t be undone.</string>
     <string name="nothing_here">Nothing here</string>
     <!-- Action -->
     <string name="record_sound">Record sound</string>

@@ -8,7 +8,7 @@
     <string name="cancel">ألغِ</string>
     <string name="rename">إعادة تسمية</string>
     <string name="delete">حذف</string>
-    <string name="irreversible">أمتأكِّد؟ لا يمكن التراجع عن هذا!</string>
+    <string name="irreversible">هل أنت متأكد؟ هذا لا يمكن التراجع عنه.</string>
     <string name="nothing_here">لا شيء هنا</string>
     <string name="microphone">ميكروفون</string>
     <string name="screen_recorder">مسجل الشاشة</string>

@@ -7,11 +7,11 @@
     <string name="rename">Umbenennen</string>
     <string name="file_name">Dateiname</string>
     <string name="delete">Löschen</string>
-    <string name="irreversible">Bist du Sicher\? Es gibt keinen Weg zurück!</string>
+    <string name="irreversible">Bist du Sicher\? Es kann nicht Rückgängig gemacht werden.</string>
     <string name="nothing_here">Hier ist nichts</string>
     <string name="record_sound">Ton aufnehmen</string>
     <string name="directory">Verzeichnis</string>
-    <string name="choose_dir">Ordner Wählen</string>
+    <string name="choose_dir">Pfad auswählen</string>
     <string name="screen_recorder">Bildschirm Aufnahme</string>
     <string name="microphone">Mikrofon</string>
     <string name="no_audio">Ohne Ton</string>
@@ -26,7 +26,7 @@
     <string name="about">Über</string>
     <string name="recording_audio">Audio wird aufgenommen …</string>
     <string name="pause">Pause</string>
-    <string name="resume">Fortsetzen</string>
+    <string name="resume">Weiter</string>
     <string name="recording_finished">Aufnahme beendet</string>
     <string name="record">Aufnahme</string>
     <string name="settings">Einstellungen</string>
@@ -50,4 +50,16 @@
     <string name="lossless_audio_desc">Beachte, dass andere Audio Optionen während der Benutzung nicht angewendet werden.</string>
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
+    <string name="play">Abspielen</string>
+    <string name="naming_pattern">Namensmuster</string>
+    <string name="author">Autor</string>
+    <string name="sort">Sortieren</string>
+    <string name="sample_rate">Samplerate</string>
+    <string name="naming_pattern_desc">%d: Datum, %t: Zeit, %s: Sekunden, %m: Millisekunden</string>
+    <string name="camcorder">Camcorder</string>
+    <string name="amoled_dark">Amoled Dark</string>
+    <string name="translation">Übersetzung</string>
+    <string name="delete_all">Alle löschen</string>
+    <string name="screen_recorder_annotation">Bildschirmaufnahmeanmerkungen</string>
+    <string name="screen_recorder_annotation_desc">Zeige Anmerkungenwerkzeug während Bildschirmaufnahmr</string>
 </resources>
