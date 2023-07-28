@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.common
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bnyro.recorder.R
@@ -22,6 +24,7 @@ fun SelectionDialog(
     entries: List<String>,
     onSelect: (index: Int) -> Unit
 ) {
+    val view = LocalView.current
     AlertDialog(
         title = { Text(title) },
         onDismissRequest = onDismissRequest,
@@ -38,6 +41,7 @@ fun SelectionDialog(
                             .fillMaxWidth()
                             .clip(RoundedCornerShape(20.dp))
                             .clickable {
+                                view.playSoundEffect(SoundEffectConstants.CLICK)
                                 onSelect.invoke(index)
                                 onDismissRequest.invoke()
                             }
