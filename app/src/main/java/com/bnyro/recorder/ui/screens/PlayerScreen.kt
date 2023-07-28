@@ -20,15 +20,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.SortOrder
-import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.components.PlayerView
+import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,10 +41,7 @@ fun PlayerScreen(
     var selectedSortOrder by remember {
         mutableStateOf(SortOrder.ALPHABETIC)
     }
-    val selectedFiles = remember {
-        mutableStateOf(listOf<RecordingItemData>())
-    }
-    val playerModel: PlayerModel = viewModel()
+    val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
 
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         rememberTopAppBarState()
@@ -71,43 +67,39 @@ fun PlayerScreen(
                         }
 
                         val sortOptions = listOf(
-                            SortOrder.ALPHABETIC,
-                            SortOrder.ALPHABETIC_REV,
-                            SortOrder.SIZE,
-                            SortOrder.SIZE_REV
-                        )
-                        val sortOptionNames = listOf(
-                            R.string.alphabetic,
-                            R.string.alphabetic_rev,
-                            R.string.size,
-                            R.string.size_rev
+                            SortOrder.DEFAULT to R.string.default_sort,
+                            SortOrder.ALPHABETIC to R.string.alphabetic,
+                            SortOrder.ALPHABETIC_REV to R.string.alphabetic_rev,
+                            SortOrder.SIZE to R.string.size,
+                            SortOrder.SIZE_REV to R.string.size_rev
                         )
                         DropdownMenu(showDropDown, { showDropDown = false }) {
-                            val context = LocalContext.current
-                            sortOptions.forEachIndexed { index, sortOrder ->
+                            sortOptions.forEach { sortOrder ->
                                 DropdownMenuItem(
                                     text = {
-                                        Text(stringResource(sortOptionNames[index]))
+                                        Text(stringResource(sortOrder.second))
                                     },
                                     onClick = {
-                                        selectedSortOrder = sortOrder
-                                        playerModel.sortRecordingItems(context, sortOrder)
+                                        selectedSortOrder = sortOrder.first
+                                        playerModel.sortItems(sortOrder.first)
                                         showDropDown = false
                                     }
                                 )
                             }
                         }
                     }
-                    if (selectedFiles.value.isNotEmpty()) {
-                        val selectedAll = selectedFiles.value.size == playerModel.files.size
+                    if (playerModel.selectedFiles.isNotEmpty()) {
+                        val selectedAll =
+                            playerModel.selectedFiles.size == playerModel.audioRecordingItems.size + playerModel.screenRecordingItems.size
                         Checkbox(
                             modifier = Modifier.align(Alignment.CenterVertically),
                             checked = selectedAll,
                             onCheckedChange = {
                                 if (selectedAll) {
-                                    selectedFiles.value = listOf()
+                                    playerModel.selectedFiles = listOf()
                                 } else {
-                                    selectedFiles.value = playerModel.recordingItems
+                                    playerModel.selectedFiles =
+                                        playerModel.screenRecordingItems + playerModel.audioRecordingItems
                                 }
                             }
                         )
@@ -129,12 +121,17 @@ fun PlayerScreen(
                 .padding(horizontal = 16.dp)
         ) {
             PlayerView(
-                showVideoModeInitially,
-                showDeleteDialog,
-                selectedFiles
-            ) {
-                showDeleteDialog = false
-            }
+                showVideoModeInitially
+            )
+        }
+    }
+
+    if (showDeleteDialog) {
+        ConfirmationDialog(
+            title = if (playerModel.selectedFiles.isEmpty()) R.string.delete_all else R.string.delete,
+            onDismissRequest = { showDeleteDialog = false }
+        ) {
+            playerModel.deleteFiles()
         }
     }
 }

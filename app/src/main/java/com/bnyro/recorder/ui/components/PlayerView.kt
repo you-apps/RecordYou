@@ -13,30 +13,19 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
-import com.bnyro.recorder.obj.RecordingItemData
-import com.bnyro.recorder.ui.dialogs.ConfirmationDialog
 import com.bnyro.recorder.ui.models.PlayerModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PlayerView(
-    showVideoModeInitially: Boolean,
-    showDeleteDialog: Boolean,
-    selectedFiles: MutableState<List<RecordingItemData>>,
-    onDeleteAllDialogDismissed: () -> Unit
+    showVideoModeInitially: Boolean
 ) {
-    val playerModel: PlayerModel = viewModel()
-    val context = LocalContext.current
-
-    LaunchedEffect(Unit) {
-        playerModel.loadFiles(context)
-    }
+    val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -85,31 +74,14 @@ fun PlayerView(
         ) { index ->
             when (index) {
                 0 -> RecordingItemList(
-                    items = playerModel.recordingItems.filter { it.isAudio },
-                    selectedFiles,
+                    items = playerModel.audioRecordingItems,
                     isVideoList = false
                 )
 
                 1 -> RecordingItemList(
-                    items = playerModel.recordingItems.filter { it.isVideo },
-                    selectedFiles,
+                    items = playerModel.screenRecordingItems,
                     isVideoList = true
                 )
-            }
-        }
-    }
-
-    if (showDeleteDialog) {
-        ConfirmationDialog(
-            title = if (selectedFiles.value.isEmpty()) R.string.delete_all else R.string.delete,
-            onDismissRequest = onDeleteAllDialogDismissed
-        ) {
-            val filesToDelete =
-                selectedFiles.value.takeIf { it.isNotEmpty() } ?: playerModel.recordingItems
-            filesToDelete.forEach {
-                if (it.recordingFile.exists()) it.recordingFile.delete()
-                playerModel.recordingItems.remove(it)
-                selectedFiles.value -= it
             }
         }
     }
