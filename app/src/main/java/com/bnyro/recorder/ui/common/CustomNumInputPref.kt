@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.common
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -34,7 +36,7 @@ fun CustomNumInputPref(
     defValue: Int
 ) {
     val pref = Preferences.prefs.getInt(key, -1).takeIf { it != -1 }
-
+    val view = LocalView.current
     var showDialog by remember {
         mutableStateOf(false)
     }
@@ -45,7 +47,10 @@ fun CustomNumInputPref(
         mutableStateOf((pref ?: defValue).toString())
     }
 
-    Button(onClick = { showDialog = true }) {
+    Button(onClick = {
+        view.playSoundEffect(SoundEffectConstants.CLICK)
+        showDialog = true
+    }) {
         Text(text = title)
     }
 

@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -47,11 +49,13 @@ fun PlayerView(
         ) {
             2
         }
+        val view = LocalView.current
         val scope = rememberCoroutineScope()
         TabRow(selectedTabIndex = pagerState.currentPage, Modifier.fillMaxWidth()) {
             Tab(
                 selected = pagerState.currentPage == 0,
                 onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     scope.launch {
                         pagerState.animateScrollToPage(0)
                     }
@@ -66,6 +70,7 @@ fun PlayerView(
             Tab(
                 selected = pagerState.currentPage == 1,
                 onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     scope.launch {
                         pagerState.animateScrollToPage(1)
                     }

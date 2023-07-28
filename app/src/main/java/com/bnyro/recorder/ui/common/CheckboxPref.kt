@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.common
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bnyro.recorder.util.Preferences
@@ -37,6 +39,7 @@ fun CheckboxPref(
         )
     }
     val interactionSource = remember { MutableInteractionSource() }
+    val view = LocalView.current
 
     Row(
         modifier = Modifier
@@ -46,6 +49,7 @@ fun CheckboxPref(
                 interactionSource = interactionSource,
                 indication = null
             ) {
+                view.playSoundEffect(SoundEffectConstants.CLICK)
                 checked = !checked
                 Preferences.edit { putBoolean(prefKey, checked) }
             },
