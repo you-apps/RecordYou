@@ -58,14 +58,18 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
     }
 
     override suspend fun deleteSelectedFiles(files: List<DocumentFile>) {
-        files.forEach {
-            if (it.exists()) it.delete()
+        withContext(Dispatchers.IO) {
+            files.forEach {
+                if (it.exists()) it.delete()
+            }
         }
     }
 
     override suspend fun deleteAllFiles() {
-        getOutputDir().listFiles().forEach {
-            if (it.isFile) it.delete()
+        withContext(Dispatchers.IO) {
+            getOutputDir().listFiles().forEach {
+                if (it.isFile) it.delete()
+            }
         }
     }
 
