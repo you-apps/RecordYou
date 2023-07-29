@@ -12,7 +12,7 @@ import com.bnyro.recorder.util.NotificationHelper
 class FinishedNotificationReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val fileName = intent.getStringExtra(RecorderService.FILE_NAME_EXTRA_KEY) ?: return
-        val file = (context.applicationContext as App).container.fileRepository
+        val file = (context.applicationContext as App).fileRepository
             .getOutputDir().findFile(fileName)
 
         when (intent.getStringExtra(RecorderService.ACTION_EXTRA_KEY)) {

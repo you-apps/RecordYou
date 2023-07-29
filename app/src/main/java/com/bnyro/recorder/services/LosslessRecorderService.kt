@@ -110,7 +110,7 @@ class LosslessRecorderService : RecorderService() {
 
     private fun convertToWav() {
         val inputStream = contentResolver.openInputStream(outputFile?.uri ?: return) ?: return
-        val outputStream = (application as App).container.fileRepository
+        val outputStream = (application as App).fileRepository
             .getOutputFile(FILE_NAME_EXTENSION_WAV)
             .let {
                 contentResolver.openOutputStream(it.uri) ?: return

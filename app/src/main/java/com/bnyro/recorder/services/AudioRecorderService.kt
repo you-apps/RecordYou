@@ -38,7 +38,7 @@ class AudioRecorderService : RecorderService() {
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 
-            outputFile = (application as App).container.fileRepository.getOutputFile(
+            outputFile = (application as App).fileRepository.getOutputFile(
                 audioFormat.extension
             )
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")

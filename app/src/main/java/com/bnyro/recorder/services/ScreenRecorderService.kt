@@ -115,7 +115,7 @@ class ScreenRecorderService : RecorderService() {
                 null
             )
 
-            outputFile = (application as App).container.fileRepository
+            outputFile = (application as App).fileRepository
                 .getOutputFile(videoFormat.extension)
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)

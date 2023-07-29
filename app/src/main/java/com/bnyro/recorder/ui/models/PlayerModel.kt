@@ -109,7 +109,7 @@ class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
         val Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as App)
-                PlayerModel(application.container.fileRepository)
+                PlayerModel(application.fileRepository)
             }
         }
     }
