@@ -16,7 +16,6 @@ import androidx.compose.material.icons.filled.VideoFile
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,7 +29,6 @@ import com.bnyro.recorder.ui.models.PlayerModel
 @Composable
 fun RecordingItemList(
     items: List<RecordingItemData>,
-    selectedFiles: MutableState<List<RecordingItemData>>,
     isVideoList: Boolean,
     playerModel: PlayerModel = viewModel()
 ) {
@@ -46,15 +44,15 @@ fun RecordingItemList(
                 items(items) {
                     RecordingItem(
                         it,
-                        isSelected = selectedFiles.value.contains(it),
+                        isSelected = playerModel.selectedFiles.contains(it),
                         onClick = { wasLongPress ->
                             when {
-                                wasLongPress -> selectedFiles.value += it
-                                selectedFiles.value.isNotEmpty() -> {
-                                    if (selectedFiles.value.contains(it)) {
-                                        selectedFiles.value -= it
+                                wasLongPress -> playerModel.selectedFiles += it
+                                playerModel.selectedFiles.isNotEmpty() -> {
+                                    if (playerModel.selectedFiles.contains(it)) {
+                                        playerModel.selectedFiles -= it
                                     } else {
-                                        selectedFiles.value += it
+                                        playerModel.selectedFiles += it
                                     }
                                 }
                             }

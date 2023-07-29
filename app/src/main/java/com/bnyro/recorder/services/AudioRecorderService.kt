@@ -1,12 +1,12 @@
 package com.bnyro.recorder.services
 
+import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioChannels
 import com.bnyro.recorder.enums.AudioDeviceSource
 import com.bnyro.recorder.obj.AudioFormat
 import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
-import com.bnyro.recorder.util.StorageHelper
 
 class AudioRecorderService : RecorderService() {
     override val notificationTitle: String
@@ -38,8 +38,7 @@ class AudioRecorderService : RecorderService() {
             setOutputFormat(audioFormat.format)
             setAudioEncoder(audioFormat.codec)
 
-            outputFile = StorageHelper.getOutputFile(
-                this@AudioRecorderService,
+            outputFile = (application as App).fileRepository.getOutputFile(
                 audioFormat.extension
             )
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")

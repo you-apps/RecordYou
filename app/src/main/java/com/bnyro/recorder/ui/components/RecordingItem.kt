@@ -51,7 +51,7 @@ fun RecordingItem(
     onClick: (wasLongClick: Boolean) -> Unit,
     startPlayingAudio: () -> Unit
 ) {
-    val playerModel: PlayerModel = viewModel()
+    val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
     val context = LocalContext.current
     val view = LocalView.current
     val haptic = LocalHapticFeedback.current
@@ -215,9 +215,7 @@ fun RecordingItem(
                 confirmButton = {
                     DialogButton(stringResource(R.string.okay)) {
                         recordingFile.renameTo(fileName)
-                        val index = playerModel.files.indexOf(recordingFile)
-                        playerModel.files.removeAt(index)
-                        playerModel.files.add(index, recordingFile)
+                        playerModel.loadFiles()
                         showRenameDialog = false
                     }
                 },
@@ -236,7 +234,7 @@ fun RecordingItem(
             ) {
                 playerModel.stopPlaying()
                 recordingFile.delete()
-                playerModel.files.remove(recordingFile)
+                playerModel.loadFiles()
             }
         }
 
