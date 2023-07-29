@@ -8,7 +8,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
@@ -107,7 +106,7 @@ class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
     }
 
     companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
+        val Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as App)
                 PlayerModel(application.container.fileRepository)

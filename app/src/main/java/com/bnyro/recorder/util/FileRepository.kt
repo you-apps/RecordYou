@@ -10,6 +10,8 @@ import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.obj.RecordingItemData
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 interface FileRepository {
     suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
@@ -33,20 +35,26 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         }
 
     override suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
-        return getVideoFiles().sortedBy(sortOrder).map {
-            val thumbnail =
-                MediaMetadataRetriever().apply {
-                    setDataSource(
-                        context,
-                        it.uri
-                    )
-                }.frameAtTime
-            RecordingItemData(it, RecorderType.VIDEO, thumbnail)
+        val items = withContext(Dispatchers.IO) {
+            getVideoFiles().sortedBy(sortOrder).map {
+                val thumbnail =
+                    MediaMetadataRetriever().apply {
+                        setDataSource(
+                            context,
+                            it.uri
+                        )
+                    }.frameAtTime
+                RecordingItemData(it, RecorderType.VIDEO, thumbnail)
+            }
         }
+        return items
     }
 
     override suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
-        return getAudioFiles().sortedBy(sortOrder).map { RecordingItemData(it, RecorderType.AUDIO) }
+        val items = withContext(Dispatchers.IO) {
+            getAudioFiles().sortedBy(sortOrder).map { RecordingItemData(it, RecorderType.AUDIO) }
+        }
+        return items
     }
 
     override suspend fun deleteSelectedFiles(files: List<DocumentFile>) {
