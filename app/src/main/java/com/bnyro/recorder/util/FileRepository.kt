@@ -1,28 +1,34 @@
 package com.bnyro.recorder.util
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.media.MediaMetadataRetriever
+import android.net.Uri
 import androidx.documentfile.provider.DocumentFile
 import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.obj.RecordingItemData
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 interface FileRepository {
     suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
     suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
     suspend fun deleteSelectedFiles(files: List<DocumentFile>)
     suspend fun deleteAllFiles()
+    fun getOutputFile(extension: String): DocumentFile
+    fun getOutputDir(): DocumentFile
 }
 
 class FileRepositoryImpl(val context: Context) : FileRepository {
 
     private fun getVideoFiles(): List<DocumentFile> =
-        StorageHelper.getOutputDir(context).listFiles().filter {
+        getOutputDir().listFiles().filter {
             it.isFile && it.name.orEmpty().endsWith("mp4")
         }
 
     private fun getAudioFiles(): List<DocumentFile> =
-        StorageHelper.getOutputDir(context).listFiles().filter {
+        getOutputDir().listFiles().filter {
             it.isFile && !it.name.orEmpty().endsWith("mp4")
         }
 
@@ -50,9 +56,47 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
     }
 
     override suspend fun deleteAllFiles() {
-        StorageHelper.getOutputDir(context).listFiles().forEach {
+        getOutputDir().listFiles().forEach {
             if (it.isFile) it.delete()
         }
+    }
+
+    override fun getOutputFile(extension: String): DocumentFile {
+        val currentTimeMillis = Calendar.getInstance().time
+        val currentDateTime = dateTimeFormat.format(currentTimeMillis)
+        val currentDate = currentDateTime.split("_").first()
+        val currentTime = currentDateTime.split("_").last()
+
+        val fileName = Preferences.getString(
+            Preferences.namingPatternKey,
+            DEFAULT_NAMING_PATTERN
+        )
+            .replace("%d", currentDate)
+            .replace("%t", currentTime)
+            .replace("%m", currentTimeMillis.time.toString())
+            .replace("%s", currentTimeMillis.time.div(1000).toString())
+
+        val recordingFile = getOutputDir().createFile("audio/*", "$fileName.$extension")
+        return recordingFile!!
+    }
+
+    override fun getOutputDir(): DocumentFile {
+        val prefDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
+        val audioDir = when {
+            prefDir.isNullOrBlank() -> {
+                val dir = context.getExternalFilesDir(null) ?: context.filesDir
+                DocumentFile.fromFile(dir)
+            }
+
+            else -> DocumentFile.fromTreeUri(context, Uri.parse(prefDir))
+        }
+        return audioDir!!
+    }
+
+    companion object {
+        @SuppressLint("SimpleDateFormat")
+        private val dateTimeFormat = SimpleDateFormat("yyyy-MM-dd_HH-mm-ss")
+        const val DEFAULT_NAMING_PATTERN = "%d_%t"
     }
 }
 

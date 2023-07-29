@@ -7,10 +7,10 @@ import android.media.MediaRecorder
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.documentfile.provider.DocumentFile
+import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.util.PcmConverter
-import com.bnyro.recorder.util.StorageHelper
 import java.io.File
 import kotlin.concurrent.thread
 import kotlin.experimental.and
@@ -110,9 +110,11 @@ class LosslessRecorderService : RecorderService() {
 
     private fun convertToWav() {
         val inputStream = contentResolver.openInputStream(outputFile?.uri ?: return) ?: return
-        val outputStream = StorageHelper.getOutputFile(this, FILE_NAME_EXTENSION_WAV).let {
-            contentResolver.openOutputStream(it.uri) ?: return
-        }
+        val outputStream = (application as App).container.fileRepository
+            .getOutputFile(FILE_NAME_EXTENSION_WAV)
+            .let {
+                contentResolver.openOutputStream(it.uri) ?: return
+            }
         pcmConverter?.convertToWave(inputStream, outputStream, BUFFER_SIZE_IN_BYTES)
         outputFile?.delete()
     }

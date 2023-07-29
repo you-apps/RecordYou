@@ -13,6 +13,7 @@ import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
 import androidx.activity.result.ActivityResult
+import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioChannels
 import com.bnyro.recorder.enums.AudioDeviceSource
@@ -21,7 +22,6 @@ import com.bnyro.recorder.enums.VideoFormat
 import com.bnyro.recorder.obj.VideoResolution
 import com.bnyro.recorder.util.PlayerHelper
 import com.bnyro.recorder.util.Preferences
-import com.bnyro.recorder.util.StorageHelper
 
 class ScreenRecorderService : RecorderService() {
     override val notificationTitle: String
@@ -115,10 +115,8 @@ class ScreenRecorderService : RecorderService() {
                 null
             )
 
-            outputFile = StorageHelper.getOutputFile(
-                this@ScreenRecorderService,
-                videoFormat.extension
-            )
+            outputFile = (application as App).container.fileRepository
+                .getOutputFile(videoFormat.extension)
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 
