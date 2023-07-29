@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.dialogs
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -36,7 +38,7 @@ import com.bnyro.recorder.util.IntentHelper
 @Composable
 fun AboutDialog(onDismissRequest: () -> Unit) {
     val context = LocalContext.current
-
+    val view = LocalView.current
     val actions = listOf(
         AboutItem(R.string.source_code, Icons.Default.Code, "https://github.com/Bnyro/RecordYou"),
         AboutItem(R.string.author, Icons.Default.Person, "https://github.com/Bnyro"),
@@ -83,6 +85,7 @@ fun AboutDialog(onDismissRequest: () -> Unit) {
                             .fillMaxWidth()
                             .padding(vertical = 1.dp),
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             IntentHelper.openHref(context, it.url ?: return@OutlinedButton)
                         }
                     ) {

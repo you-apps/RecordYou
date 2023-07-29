@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
+import android.view.SoundEffectConstants
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.Crossfade
@@ -41,6 +42,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
@@ -61,6 +63,7 @@ fun RecorderView(
 ) {
     val recorderModel: RecorderModel = viewModel()
     val context = LocalContext.current
+    val view = LocalView.current
     val mProjectionManager =
         context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager
     val orientation = LocalConfiguration.current.orientation
@@ -115,6 +118,7 @@ fun RecorderView(
                     true -> BlobIconBox(
                         icon = if (recordScreenMode) R.drawable.ic_screen_record else R.drawable.ic_mic
                     )
+
                     false -> AudioVisualizer(
                         modifier = Modifier
                             .fillMaxSize()
@@ -162,6 +166,7 @@ fun RecorderView(
                         )
                         IconButton(
                             onClick = {
+                                view.playSoundEffect(SoundEffectConstants.CLICK)
                                 when {
                                     recorderModel.recorderState != RecorderState.IDLE -> recorderModel.stopRecording()
                                     recordScreenMode -> requestScreenRecording()

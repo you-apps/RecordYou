@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.combinedClickable
@@ -24,8 +25,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -49,6 +53,8 @@ fun RecordingItem(
 ) {
     val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
     val context = LocalContext.current
+    val view = LocalView.current
+    val haptic = LocalHapticFeedback.current
 
     var showRenameDialog by remember {
         mutableStateOf(false)
@@ -77,9 +83,11 @@ fun RecordingItem(
                 .clip(CardDefaults.shape)
                 .combinedClickable(
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         onClick.invoke(false)
                     },
                     onLongClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
                         onClick.invoke(true)
                     }
                 ),

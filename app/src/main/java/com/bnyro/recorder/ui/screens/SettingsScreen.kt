@@ -2,6 +2,7 @@ package com.bnyro.recorder.ui.screens
 
 import android.net.Uri
 import android.os.Build
+import android.view.SoundEffectConstants
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.foundation.layout.Column
@@ -26,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -93,6 +95,8 @@ fun SettingsScreen() {
         mutableStateOf(false)
     }
 
+    val view = LocalView.current
+
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
         TopAppBar(
             title = { Text(stringResource(R.string.settings)) },
@@ -125,6 +129,7 @@ fun SettingsScreen() {
             Spacer(modifier = Modifier.height(5.dp))
             Button(
                 onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     val lastDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
                         .takeIf { !it.isNullOrBlank() }
                     directoryPicker.launch(lastDir?.let { Uri.parse(it) })

@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.screens
 
+import android.view.SoundEffectConstants
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
@@ -41,6 +43,7 @@ fun HomeScreen(
 ) {
     val pagerState = rememberPagerState { 2 }
     val scope = rememberCoroutineScope()
+    val view = LocalView.current
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
         TopAppBar(title = { Text(stringResource(R.string.app_name)) }, actions = {
             ClickableIcon(
@@ -72,6 +75,7 @@ fun HomeScreen(
                         label = { Text(stringResource(R.string.record_sound)) },
                         selected = (pagerState.currentPage == 0),
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             scope.launch {
                                 pagerState.animateScrollToPage(0)
                             }
@@ -89,6 +93,7 @@ fun HomeScreen(
                         label = { Text(stringResource(R.string.record_screen)) },
                         selected = (pagerState.currentPage == 1),
                         onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
                             scope.launch {
                                 pagerState.animateScrollToPage(1)
                             }

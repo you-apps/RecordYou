@@ -1,6 +1,7 @@
 package com.bnyro.recorder.ui.components
 
 import android.text.format.DateUtils
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -32,6 +34,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun MiniPlayer(playerModel: PlayerModel = viewModel()) {
+    val view = LocalView.current
     ElevatedCard(
         modifier = Modifier
             .height(140.dp)
@@ -53,6 +56,7 @@ fun MiniPlayer(playerModel: PlayerModel = viewModel()) {
                 )
                 FloatingActionButton(
                     onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
                         if (playerModel.isPlaying) {
                             playerModel.pausePlaying()
                         } else {

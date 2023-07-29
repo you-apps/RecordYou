@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.common
 
+import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
@@ -33,6 +35,7 @@ fun ChipSelector(
     selections: List<Int>,
     onSelectionChanged: (Int, Boolean) -> Unit
 ) {
+    val view = LocalView.current
     title?.let {
         Text(
             text = it,
@@ -58,6 +61,7 @@ fun ChipSelector(
                 },
                 selected = selections.contains(values[index]),
                 onClick = {
+                    view.playSoundEffect(SoundEffectConstants.CLICK)
                     onSelectionChanged(index, !selections.contains(values[index]))
                 },
                 leadingIcon = {
