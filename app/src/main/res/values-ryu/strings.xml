@@ -67,4 +67,5 @@
     <string name="screen_recorder_annotation">やしがみんるくがちゅうぬちゅうしゃく</string>
     <string name="screen_recorder_annotation_desc">やしがみんるくがちゅうにちゅうしゃくちーるひょうじさびーん</string>
     <string name="amoled_dark">Amoledダーク</string>
+    <string name="default_sort">デフォルト</string>
 </resources>
