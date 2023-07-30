@@ -16,7 +16,7 @@ import kotlinx.coroutines.withContext
 interface FileRepository {
     suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
     suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
-    suspend fun deleteSelectedFiles(files: List<DocumentFile>)
+    suspend fun deleteFiles(files: List<DocumentFile>)
     suspend fun deleteAllFiles()
     fun getOutputFile(extension: String): DocumentFile
     fun getOutputDir(): DocumentFile
@@ -57,7 +57,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         return items
     }
 
-    override suspend fun deleteSelectedFiles(files: List<DocumentFile>) {
+    override suspend fun deleteFiles(files: List<DocumentFile>) {
         withContext(Dispatchers.IO) {
             files.forEach {
                 if (it.exists()) it.delete()

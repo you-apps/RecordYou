@@ -56,7 +56,8 @@ class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
                 loadFiles()
                 return@launch
             }
-            fileRepository.deleteSelectedFiles(selectedFiles.map { it.recordingFile })
+            fileRepository.deleteFiles(selectedFiles.map { it.recordingFile })
+            selectedFiles = emptyList()
             loadFiles()
         }
     }
