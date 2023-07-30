@@ -16,19 +16,24 @@ fun AudioVisualizer(
     modifier: Modifier = Modifier
 ) {
     val viewModel: RecorderModel = viewModel()
-    val maxAmplitude = 7000
+    /*
+    * set max amplitude to tune the sensitivity
+    * Higher the value, lower the sensitivity of the visualizer
+     */
+    val maxAmplitude = 10000
     val primary = MaterialTheme.colorScheme.primary
-    // set the maximum amplitude to avoid overflows
-    val amplitudes = viewModel.recordedAmplitudes.map { if (it <= maxAmplitude) it else maxAmplitude }
+    val primaryMuted = primary.copy(alpha = 0.3f)
+    val amplitudes = viewModel.recordedAmplitudes
     Canvas(modifier = modifier) {
         val height = this.size.height / 2f
         val width = this.size.width
 
         translate(width, height) {
             amplitudes.forEachIndexed { index, amplitude ->
-                val boxHeight = height * (amplitude.toFloat() / maxAmplitude)
+                val amplitudePercentage = (amplitude.toFloat() / maxAmplitude).coerceAtMost(1f)
+                val boxHeight = height * amplitudePercentage
                 drawRoundRect(
-                    color = primary,
+                    color = if (amplitudePercentage > 0.05f) primary else primaryMuted,
                     topLeft = Offset(
                         30f * (index - viewModel.recordedAmplitudes.size),
                         -boxHeight / 2f
