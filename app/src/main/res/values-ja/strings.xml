@@ -67,4 +67,5 @@
     <string name="screen_recorder_annotation">画面録画中の注釈</string>
     <string name="screen_recorder_annotation_desc">画面録画中に注釈ツールを表示します</string>
     <string name="amoled_dark">Amoledダーク</string>
+    <string name="default_sort">デフォルト</string>
 </resources>
