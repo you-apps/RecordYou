@@ -61,4 +61,5 @@
     <string name="screen_recorder_annotation">סימון על הקלטת מסך</string>
     <string name="screen_recorder_annotation_desc">הצגת כלי סימון במהלך הקלטת מסך</string>
     <string name="amoled_dark">כהה למסכי AMOLED</string>
+    <string name="default_sort">ברירת מחדל</string>
 </resources>
