@@ -61,4 +61,5 @@
     <string name="amoled_dark">Amoled Escuro</string>
     <string name="screen_recorder_annotation">Anotação de registo de ecrã</string>
     <string name="screen_recorder_annotation_desc">Mostrar ferramenta de anotação durante a gravação de ecrã</string>
+    <string name="default_sort">Predefinição</string>
 </resources>
