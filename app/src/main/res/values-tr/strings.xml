@@ -61,4 +61,5 @@
     <string name="screen_recorder_annotation">Ekran Kaydı Açıklaması</string>
     <string name="screen_recorder_annotation_desc">Ekran kaydı sırasında açıklama aracını göster</string>
     <string name="amoled_dark">Amoled Koyu</string>
+    <string name="default_sort">Öntanımlı</string>
 </resources>
