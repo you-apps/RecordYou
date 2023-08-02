@@ -61,4 +61,5 @@
     <string name="amoled_dark">Nero (Amoled)</string>
     <string name="screen_recorder_annotation">Annotazione della registrazione dello schermo</string>
     <string name="screen_recorder_annotation_desc">Mostra lo strumento di annotazione durante la registrazione dello schermo</string>
+    <string name="default_sort">Predefinito</string>
 </resources>
