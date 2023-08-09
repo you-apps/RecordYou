@@ -68,4 +68,6 @@
     <string name="screen_recorder_annotation_desc">Show annotation tool during screen recording</string>
     <string name="amoled_dark">Amoled Dark</string>
     <string name="default_sort">Default</string>
+    <string name="audio_visualizer_timestamps">Audio visualizer timestamps</string>
+    <string name="audio_visualizer_timestamps_description">Show timestamps in the audio visualizer timeline.</string>
 </resources>

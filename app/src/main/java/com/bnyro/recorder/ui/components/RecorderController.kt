@@ -89,7 +89,7 @@ fun RecorderController(
     ) {
         recorderModel.recordedTime?.let {
             Text(
-                text = DateUtils.formatElapsedTime(it),
+                text = DateUtils.formatElapsedTime(it / 10),
                 style = MaterialTheme.typography.displayLarge
             )
             Spacer(modifier = Modifier.height(20.dp))
