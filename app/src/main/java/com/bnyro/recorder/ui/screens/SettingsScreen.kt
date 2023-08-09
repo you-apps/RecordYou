@@ -247,6 +247,12 @@ fun SettingsScreen() {
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
+            CheckboxPref(
+                prefKey = Preferences.showVisualizerTimestamps,
+                title = stringResource(R.string.audio_visualizer_timestamps),
+                summary = stringResource(R.string.audio_visualizer_timestamps_description)
+            )
+            Spacer(modifier = Modifier.height(10.dp))
             NamingPatternPref()
         }
     }

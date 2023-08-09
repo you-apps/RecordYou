@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
@@ -20,12 +21,19 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.ui.models.RecorderModel
+import com.bnyro.recorder.util.Preferences
 
 @Composable
 fun AudioVisualizer(
     modifier: Modifier = Modifier
 ) {
     val viewModel: RecorderModel = viewModel()
+    val showTimestamps = remember {
+        Preferences.prefs.getBoolean(
+            Preferences.showVisualizerTimestamps,
+            false
+        )
+    }
 
     /**Set max amplitude to tune the sensitivity
      * Higher the value, lower the sensitivity of the visualizer
@@ -44,26 +52,20 @@ fun AudioVisualizer(
             val y = height / 2
 
             translate(width, y) {
-                drawLine(
-                    color = primaryMuted,
-                    start = Offset(-width, -y),
-                    end = Offset(0f, -y),
-                    strokeWidth = 5f
-                )
-                drawLine(
-                    color = primaryMuted,
-                    start = Offset(-width, y),
-                    end = Offset(0f, y),
-                    strokeWidth = 5f
-                )
-                /*
-                drawLine(
-                    color = Color.Red,
-                    start = Offset(0f, -height / 2),
-                    end = Offset(0f, height / 2),
-                    strokeWidth = 5f
-                )
-                 */
+                if (showTimestamps) {
+                    drawLine(
+                        color = primaryMuted,
+                        start = Offset(-width, -y),
+                        end = Offset(0f, -y),
+                        strokeWidth = 5f
+                    )
+                    drawLine(
+                        color = primaryMuted,
+                        start = Offset(-width, y),
+                        end = Offset(0f, y),
+                        strokeWidth = 5f
+                    )
+                }
                 amplitudes.forEachIndexed { index, amplitude ->
                     val amplitudePercentage = (amplitude.toFloat() / maxAmplitude).coerceAtMost(1f)
                     val boxHeight = height * amplitudePercentage
@@ -78,41 +80,42 @@ fun AudioVisualizer(
                         size = Size(15f, boxHeight),
                         cornerRadius = CornerRadius(3f, 3f)
                     )
-
-                    viewModel.recordedTime?.let {
-                        val timeStamp = it + reverseIndex
-                        if (timeStamp.mod(10) == 0) {
-                            drawLine(
-                                color = primaryMuted,
-                                start = Offset(x, -y),
-                                end = Offset(x, -y + 60f),
-                                strokeWidth = 5f
-                            )
-                            drawLine(
-                                color = primaryMuted,
-                                start = Offset(x, y),
-                                end = Offset(x, y - 60f),
-                                strokeWidth = 5f
-                            )
-                            drawText(
-                                measurer,
-                                DateUtils.formatElapsedTime(timeStamp / 10),
-                                topLeft = Offset(x - 54f, -y - 60f),
-                                style = TextStyle(primaryMuted)
-                            )
-                        } else if (timeStamp.mod(5) == 0) {
-                            drawLine(
-                                color = primaryMuted,
-                                start = Offset(x, -y),
-                                end = Offset(x, -y + 30f),
-                                strokeWidth = 5f
-                            )
-                            drawLine(
-                                color = primaryMuted,
-                                start = Offset(x, y),
-                                end = Offset(x, y - 30f),
-                                strokeWidth = 5f
-                            )
+                    if (showTimestamps) {
+                        viewModel.recordedTime?.let {
+                            val timeStamp = it + reverseIndex
+                            if (timeStamp.mod(10) == 0) {
+                                drawLine(
+                                    color = primaryMuted,
+                                    start = Offset(x, -y),
+                                    end = Offset(x, -y + 60f),
+                                    strokeWidth = 5f
+                                )
+                                drawLine(
+                                    color = primaryMuted,
+                                    start = Offset(x, y),
+                                    end = Offset(x, y - 60f),
+                                    strokeWidth = 5f
+                                )
+                                drawText(
+                                    measurer,
+                                    DateUtils.formatElapsedTime(timeStamp / 10),
+                                    topLeft = Offset(x - 54f, -y - 60f),
+                                    style = TextStyle(primaryMuted)
+                                )
+                            } else if (timeStamp.mod(5) == 0) {
+                                drawLine(
+                                    color = primaryMuted,
+                                    start = Offset(x, -y),
+                                    end = Offset(x, -y + 30f),
+                                    strokeWidth = 5f
+                                )
+                                drawLine(
+                                    color = primaryMuted,
+                                    start = Offset(x, y),
+                                    end = Offset(x, y - 30f),
+                                    strokeWidth = 5f
+                                )
+                            }
                         }
                     }
                 }
