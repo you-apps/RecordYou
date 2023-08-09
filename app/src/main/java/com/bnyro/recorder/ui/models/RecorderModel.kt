@@ -132,7 +132,7 @@ class RecorderModel : ViewModel() {
         if (recorderState != RecorderState.ACTIVE) return
 
         recordedTime = recordedTime?.plus(1)
-        handler.postDelayed(this::updateTime, 1000)
+        handler.postDelayed(this::updateTime, 100)
     }
 
     private fun updateAmplitude() {
@@ -148,7 +148,7 @@ class RecorderModel : ViewModel() {
 
     private fun startElapsedTimeCounter() {
         recordedTime = 0L
-        handler.postDelayed(this::updateTime, 1000)
+        handler.postDelayed(this::updateTime, 100)
     }
 
     @SuppressLint("NewApi")
