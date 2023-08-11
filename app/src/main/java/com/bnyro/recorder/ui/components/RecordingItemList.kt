@@ -16,15 +16,21 @@ import androidx.compose.material.icons.filled.VideoFile
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.ui.models.PlayerModel
+import com.bnyro.recorder.ui.screens.TrimmerScreen
 
 @Composable
 fun RecordingItemList(
@@ -34,6 +40,8 @@ fun RecordingItemList(
 ) {
     val context = LocalContext.current
     val icon = if (isVideoList) Icons.Default.VideoFile else Icons.Default.AudioFile
+    var chosenFile by remember { mutableStateOf<DocumentFile?>(null) }
+    var showTrimmer by remember { mutableStateOf(false) }
     if (items.isNotEmpty()) {
         Column {
             LazyColumn(
@@ -56,6 +64,10 @@ fun RecordingItemList(
                                     }
                                 }
                             }
+                        },
+                        onEdit = {
+                            chosenFile = it.recordingFile
+                            showTrimmer = true
                         }
                     ) {
                         playerModel.startPlaying(context, it.recordingFile)
@@ -88,5 +100,8 @@ fun RecordingItemList(
                 Text(text = stringResource(R.string.nothing_here))
             }
         }
+    }
+    if (showTrimmer && chosenFile != null) {
+        TrimmerScreen(onDismissRequest = { showTrimmer = false }, inputFile = chosenFile!!)
     }
 }

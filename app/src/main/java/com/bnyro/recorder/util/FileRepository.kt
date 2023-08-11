@@ -18,7 +18,7 @@ interface FileRepository {
     suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
     suspend fun deleteFiles(files: List<DocumentFile>)
     suspend fun deleteAllFiles()
-    fun getOutputFile(extension: String): DocumentFile
+    fun getOutputFile(extension: String, prefix: String = ""): DocumentFile
     fun getOutputDir(): DocumentFile
 }
 
@@ -73,7 +73,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         }
     }
 
-    override fun getOutputFile(extension: String): DocumentFile {
+    override fun getOutputFile(extension: String, prefix: String): DocumentFile {
         val currentTimeMillis = Calendar.getInstance().time
         val currentDateTime = dateTimeFormat.format(currentTimeMillis)
         val currentDate = currentDateTime.split("_").first()
@@ -88,7 +88,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
             .replace("%m", currentTimeMillis.time.toString())
             .replace("%s", currentTimeMillis.time.div(1000).toString())
 
-        val recordingFile = getOutputDir().createFile("audio/*", "$fileName.$extension")
+        val recordingFile = getOutputDir().createFile("audio/*", "$prefix$fileName.$extension")
         return recordingFile!!
     }
 

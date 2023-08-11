@@ -49,6 +49,7 @@ fun RecordingItem(
     recordingItem: RecordingItemData,
     isSelected: Boolean,
     onClick: (wasLongClick: Boolean) -> Unit,
+    onEdit: () -> Unit,
     startPlayingAudio: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
@@ -150,6 +151,15 @@ fun RecordingItem(
                                 onClick = {
                                     playerModel.stopPlaying()
                                     IntentHelper.openFile(context, recordingFile)
+                                    showDropDown = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.trim))
+                                },
+                                onClick = {
+                                    onEdit.invoke()
                                     showDropDown = false
                                 }
                             )
