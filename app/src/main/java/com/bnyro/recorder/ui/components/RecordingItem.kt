@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.os.Build
 import android.view.SoundEffectConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -154,15 +155,17 @@ fun RecordingItem(
                                     showDropDown = false
                                 }
                             )
-                            DropdownMenuItem(
-                                text = {
-                                    Text(stringResource(R.string.trim))
-                                },
-                                onClick = {
-                                    onEdit.invoke()
-                                    showDropDown = false
-                                }
-                            )
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(stringResource(R.string.trim))
+                                    },
+                                    onClick = {
+                                        onEdit.invoke()
+                                        showDropDown = false
+                                    }
+                                )
+                            }
                             DropdownMenuItem(
                                 text = {
                                     Text(stringResource(R.string.share))

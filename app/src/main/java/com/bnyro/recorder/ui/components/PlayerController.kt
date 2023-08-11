@@ -4,13 +4,11 @@ import android.text.format.DateUtils
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -26,13 +24,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import com.bnyro.recorder.R
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withContext
 
 @Composable
 fun PlayerController(exoPlayer: ExoPlayer) {
@@ -78,24 +80,16 @@ fun PlayerController(exoPlayer: ExoPlayer) {
                         playPause()
                     }
                 ) {
-                    when (playState) {
-                        PlayerState.Buffer -> {
-                            CircularProgressIndicator(modifier = Modifier.size(24.dp))
-                        }
-
-                        PlayerState.Play -> {
-                            Icon(
-                                Icons.Default.Pause,
-                                contentDescription = "Pause"
-                            )
-                        }
-
-                        PlayerState.Pause -> {
-                            Icon(
-                                Icons.Default.PlayArrow,
-                                contentDescription = "Play"
-                            )
-                        }
+                    if (playState) {
+                        Icon(
+                            Icons.Default.Pause,
+                            contentDescription = stringResource(id = R.string.pause)
+                        )
+                    } else {
+                        Icon(
+                            Icons.Default.PlayArrow,
+                            contentDescription = stringResource(id = R.string.play)
+                        )
                     }
                 }
             }
@@ -104,27 +98,26 @@ fun PlayerController(exoPlayer: ExoPlayer) {
 }
 
 @Composable
-fun Player.isPlayingState(): State<PlayerState> {
+fun Player.isPlayingState(): State<Boolean> {
     return produceState(
-        initialValue = if (isPlaying) {
-            PlayerState.Play
-        } else {
-            PlayerState.Pause
-        },
+        initialValue = isPlaying,
         this
     ) {
         val listener = object : Player.Listener {
             override fun onIsPlayingChanged(isPlaying: Boolean) {
                 playbackState
-                value = if (isPlaying) {
-                    PlayerState.Play
-                } else {
-                    PlayerState.Pause
-                }
+                value = isPlaying
             }
         }
         addListener(listener)
-        if (!isActive) {
+        withContext(Dispatchers.IO) {
+            while (isActive) {
+                delay(1000) // To reduce cpu use
+            }
+        }
+        try {
+            suspendCancellableCoroutine<Nothing> { }
+        } finally {
             removeListener(listener)
         }
     }
@@ -169,7 +162,9 @@ fun Player.positionAndDurationState(): State<Pair<Long, Long?>> {
                 }
             }
         }
-        if (!isActive) {
+        try {
+            suspendCancellableCoroutine<Nothing> { }
+        } finally {
             pollJob.cancel()
             removeListener(listener)
         }
@@ -178,8 +173,4 @@ fun Player.positionAndDurationState(): State<Pair<Long, Long?>> {
 
 fun Player.playPause() {
     if (isPlaying) pause() else play()
-}
-
-enum class PlayerState {
-    Buffer, Play, Pause
 }

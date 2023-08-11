@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.os.Build
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -101,7 +102,7 @@ fun RecordingItemList(
             }
         }
     }
-    if (showTrimmer && chosenFile != null) {
+    if (showTrimmer && chosenFile != null && (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)) {
         TrimmerScreen(onDismissRequest = { showTrimmer = false }, inputFile = chosenFile!!)
     }
 }

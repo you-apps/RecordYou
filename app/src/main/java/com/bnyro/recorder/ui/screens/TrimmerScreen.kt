@@ -1,6 +1,8 @@
 package com.bnyro.recorder.ui.screens
 
+import android.os.Build
 import android.text.format.DateUtils
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +32,7 @@ import com.bnyro.recorder.ui.models.TrimmerModel
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.PlayerView
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrimmerScreen(onDismissRequest: () -> Unit, inputFile: DocumentFile) {

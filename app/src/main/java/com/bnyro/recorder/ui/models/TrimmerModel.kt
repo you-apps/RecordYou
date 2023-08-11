@@ -3,6 +3,7 @@ package com.bnyro.recorder.ui.models
 import android.content.Context
 import android.os.Build
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -25,17 +26,16 @@ class TrimmerModel(context: Context) : ViewModel() {
     var startTimeStamp by mutableLongStateOf(0L)
     var endTimeStamp by mutableStateOf<Long?>(null)
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun startTrimmer(context: Context, inputFile: DocumentFile) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            viewModelScope.launch {
-                val trimmer = MediaTrimmer()
-                Toast.makeText(context, "Starting Trimmer", Toast.LENGTH_LONG).show()
-                val result = trimmer.trimMedia(context, inputFile, startTimeStamp, endTimeStamp!!)
-                if (result) {
-                    Toast.makeText(context, "Trim Success", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(context, "Trim Failed", Toast.LENGTH_LONG).show()
-                }
+        viewModelScope.launch {
+            val trimmer = MediaTrimmer()
+            Toast.makeText(context, "Starting Trimmer", Toast.LENGTH_LONG).show()
+            val result = trimmer.trimMedia(context, inputFile, startTimeStamp, endTimeStamp!!)
+            if (result) {
+                Toast.makeText(context, "Trim Success", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(context, "Trim Failed", Toast.LENGTH_LONG).show()
             }
         }
     }
