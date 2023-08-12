@@ -12,19 +12,25 @@ import com.bnyro.recorder.ui.models.RecorderModel
 @Composable
 fun RecorderPreview(recordScreenMode: Boolean) {
     val recorderModel: RecorderModel = viewModel()
-    Crossfade(
-        modifier = Modifier.fillMaxSize(),
-        targetState = recorderModel.recordedAmplitudes
-    ) {
-        when (it.isEmpty()) {
-            true -> BlobIconBox(
-                icon = if (recordScreenMode) R.drawable.ic_screen_record else R.drawable.ic_mic
-            )
+    if (recordScreenMode) {
+        BlobIconBox(
+            icon = R.drawable.ic_screen_record
+        )
+    } else {
+        Crossfade(
+            modifier = Modifier.fillMaxSize(),
+            targetState = recorderModel.recordedAmplitudes
+        ) {
+            when (it.isEmpty()) {
+                true -> BlobIconBox(
+                    icon = R.drawable.ic_mic
+                )
 
-            false -> AudioVisualizer(
-                modifier = Modifier
-                    .fillMaxSize()
-            )
+                false -> AudioVisualizer(
+                    modifier = Modifier
+                        .fillMaxSize()
+                )
+            }
         }
     }
 }
