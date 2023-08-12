@@ -1,5 +1,6 @@
 package com.bnyro.recorder.ui.components
 
+import android.os.Build
 import android.view.SoundEffectConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -49,6 +50,7 @@ fun RecordingItem(
     recordingItem: RecordingItemData,
     isSelected: Boolean,
     onClick: (wasLongClick: Boolean) -> Unit,
+    onEdit: () -> Unit,
     startPlayingAudio: () -> Unit
 ) {
     val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
@@ -153,6 +155,17 @@ fun RecordingItem(
                                     showDropDown = false
                                 }
                             )
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(stringResource(R.string.trim))
+                                    },
+                                    onClick = {
+                                        onEdit.invoke()
+                                        showDropDown = false
+                                    }
+                                )
+                            }
                             DropdownMenuItem(
                                 text = {
                                     Text(stringResource(R.string.share))
