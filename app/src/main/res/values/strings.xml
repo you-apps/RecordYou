@@ -76,4 +76,7 @@
     <string name="not_set">Not Set</string>
     <string name="start_timestamp">Start:</string>
     <string name="select_trim_range">Select Trim Range</string>
+    <string name="trim_failed">Trim Failed</string>
+    <string name="trimming">Trimming...</string>
+    <string name="trim_successful">Trim Successful</string>
 </resources>
