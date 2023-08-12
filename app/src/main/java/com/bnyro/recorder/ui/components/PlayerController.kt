@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,12 +30,10 @@ import com.bnyro.recorder.R
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
 
 @Composable
 fun PlayerController(exoPlayer: ExoPlayer) {
@@ -74,7 +73,19 @@ fun PlayerController(exoPlayer: ExoPlayer) {
                 ),
                 shape = CircleShape
             ) {
-                val playState by isPlayingState()
+                var playState by remember { mutableStateOf(false) }
+
+                DisposableEffect(key1 = exoPlayer) {
+                    val listener = object : Player.Listener {
+                        override fun onIsPlayingChanged(isPlaying: Boolean) {
+                            playState = isPlaying
+                        }
+                    }
+                    addListener(listener)
+                    onDispose {
+                        removeListener(listener)
+                    }
+                }
                 IconButton(
                     onClick = {
                         playPause()
@@ -93,32 +104,6 @@ fun PlayerController(exoPlayer: ExoPlayer) {
                     }
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun Player.isPlayingState(): State<Boolean> {
-    return produceState(
-        initialValue = isPlaying,
-        this
-    ) {
-        val listener = object : Player.Listener {
-            override fun onIsPlayingChanged(isPlaying: Boolean) {
-                playbackState
-                value = isPlaying
-            }
-        }
-        addListener(listener)
-        withContext(Dispatchers.IO) {
-            while (isActive) {
-                delay(1000) // To reduce cpu use
-            }
-        }
-        try {
-            suspendCancellableCoroutine<Nothing> { }
-        } finally {
-            removeListener(listener)
         }
     }
 }
