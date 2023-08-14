@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
             RecordYouTheme(
                 when (themeModel.themeMode) {
                     ThemeMode.SYSTEM -> isSystemInDarkTheme()
-                    ThemeMode.DARK -> true
+                    ThemeMode.DARK, ThemeMode.AMOLED -> true
                     else -> false
                 },
                 amoledDark = themeModel.themeMode == ThemeMode.AMOLED
