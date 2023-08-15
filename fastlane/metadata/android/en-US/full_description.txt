@@ -1,3 +1,5 @@
+Important: Since the keys the app had been signed with is lost, please export all the recordings to a different folder before updating the app! Updating the app will require you to uninstall it first.
+
 <i>Record You</i> is a voice and screen recorder app built with <a href="https://m3.material.io/">Material Design 3 (You)</a>.
 
 It supports multiple audio formats and codecs, such as M4A, AAC and OPUS.
