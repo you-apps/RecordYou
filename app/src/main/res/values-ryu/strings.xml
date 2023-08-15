@@ -68,4 +68,16 @@
     <string name="screen_recorder_annotation_desc">やしがみんるくがちゅうにちゅうしゃくちーるひょうじさびーん</string>
     <string name="amoled_dark">Amoledダーク</string>
     <string name="default_sort">デフォルト</string>
+    <string name="audio_visualizer_timestamps">オーディオビジュアライザーぬタイムスタンプ</string>
+    <string name="audio_visualizer_timestamps_description">オーディオビジュアライザーぬタイムラインんかいタイムスタンプひょうじさびーん。</string>
+    <string name="trim">トリム</string>
+    <string name="start_trimming">トリミングかいしすん</string>
+    <string name="stop_timestamp">しゅうりょう：</string>
+    <string name="not_set">しっていさりやびらん</string>
+    <string name="start_timestamp">かいし：</string>
+    <string name="select_trim_range">トリムしーんはんうぅいしんたくしてぃくぃみそーれー</string>
+    <string name="trim_failed">トリムんかいしっぺーさびたん</string>
+    <string name="trimming">トリミングそーいびーん...</string>
+    <string name="trim_successful">トリムせいかんさびたん</string>
+</resources>
 </resources>
