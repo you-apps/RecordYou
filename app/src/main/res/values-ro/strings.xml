@@ -61,4 +61,5 @@
     <string name="screen_recorder_annotation">Adnotare înregistrare ecran</string>
     <string name="screen_recorder_annotation_desc">Afișare instrument adnotare în timpul înregistrării ecranului</string>
     <string name="amoled_dark">Amoled întunecat</string>
+    <string name="default_sort">Implicit</string>
 </resources>
