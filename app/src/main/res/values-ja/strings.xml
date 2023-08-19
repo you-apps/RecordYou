@@ -77,6 +77,6 @@
     <string name="start_timestamp">開始：</string>
     <string name="select_trim_range">トリムする範囲を選択してください</string>
     <string name="trim_failed">トリムに失敗しました</string>
-    <string name="trimming">トリミングしています...</string>
+    <string name="trimming">トリミングしています…</string>
     <string name="trim_successful">トリムに成功しました</string>
 </resources>

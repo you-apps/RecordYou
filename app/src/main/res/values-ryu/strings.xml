@@ -77,7 +77,6 @@
     <string name="start_timestamp">かいし：</string>
     <string name="select_trim_range">トリムしーんはんうぅいしんたくしてぃくぃみそーれー</string>
     <string name="trim_failed">トリムんかいしっぺーさびたん</string>
-    <string name="trimming">トリミングそーいびーん...</string>
+    <string name="trimming">トリミングそーいびーん…</string>
     <string name="trim_successful">トリムせいかんさびたん</string>
-</resources>
 </resources>
