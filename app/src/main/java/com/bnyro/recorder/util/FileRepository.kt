@@ -90,9 +90,11 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         if (!outputDir.exists() || !outputDir.canRead() || !outputDir.canWrite()) return null
 
         Log.e("out",  Preferences.prefs.getString(Preferences.targetFolderKey, "").toString())
-        
-        return outputDir
-            .createFile("audio/*", "$prefix$fileName.$extension")
+
+        val fullFileName = "$prefix$fileName.$extension"
+        val existingFile = outputDir.findFile(fullFileName)
+
+        return existingFile ?: outputDir.createFile("audio/*", fullFileName)
     }
 
     override fun getOutputDir(): DocumentFile {
