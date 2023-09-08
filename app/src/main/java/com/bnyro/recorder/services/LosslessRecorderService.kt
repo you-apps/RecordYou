@@ -5,6 +5,7 @@ import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.documentfile.provider.DocumentFile
 import com.bnyro.recorder.App
@@ -112,9 +113,15 @@ class LosslessRecorderService : RecorderService() {
         val inputStream = contentResolver.openInputStream(outputFile?.uri ?: return) ?: return
         val outputStream = (application as App).fileRepository
             .getOutputFile(FILE_NAME_EXTENSION_WAV)
-            .let {
-                contentResolver.openOutputStream(it.uri) ?: return
+            ?.let {
+                contentResolver.openOutputStream(it.uri)
             }
+
+        if (outputStream == null) {
+            Toast.makeText(this, R.string.cant_access_selected_folder, Toast.LENGTH_LONG).show()
+            return
+        }
+
         pcmConverter?.convertToWave(inputStream, outputStream, BUFFER_SIZE_IN_BYTES)
         outputFile?.delete()
     }

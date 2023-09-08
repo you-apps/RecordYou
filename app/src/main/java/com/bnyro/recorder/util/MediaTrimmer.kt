@@ -34,7 +34,7 @@ class MediaTrimmer {
                 extension = extension ?: "mp4",
                 prefix = "Trim_"
             )
-            val pfd = context.contentResolver.openFileDescriptor(outputFile.uri, "w")!!
+            val pfd = context.contentResolver.openFileDescriptor(outputFile!!.uri, "w")!!
             trimMediaFile(inputFilePath, pfd, startMs, endMs)
         }
     }

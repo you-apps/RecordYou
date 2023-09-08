@@ -17,7 +17,9 @@ class PickFolderContract : ActivityResultContract<Uri?, Uri?>() {
         this.context = context
 
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).apply {
-            flags = Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+            flags = Intent.FLAG_GRANT_WRITE_URI_PERMISSION or
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or
+                    Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && input != null) {
             intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, input)
@@ -32,10 +34,8 @@ class PickFolderContract : ActivityResultContract<Uri?, Uri?>() {
 
     override fun parseResult(resultCode: Int, intent: Intent?): Uri? {
         return intent.takeIf { resultCode == Activity.RESULT_OK }?.data?.also {
-            context.contentResolver.takePersistableUriPermission(
-                it,
-                Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            )
+            val flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+            context.contentResolver.takePersistableUriPermission(it, flags)
         }
     }
 }

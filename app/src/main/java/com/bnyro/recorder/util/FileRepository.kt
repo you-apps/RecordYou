@@ -3,7 +3,8 @@ package com.bnyro.recorder.util
 import android.annotation.SuppressLint
 import android.content.Context
 import android.media.MediaMetadataRetriever
-import android.net.Uri
+import android.util.Log
+import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.SortOrder
@@ -18,7 +19,7 @@ interface FileRepository {
     suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
     suspend fun deleteFiles(files: List<DocumentFile>)
     suspend fun deleteAllFiles()
-    fun getOutputFile(extension: String, prefix: String = ""): DocumentFile
+    fun getOutputFile(extension: String, prefix: String = ""): DocumentFile?
     fun getOutputDir(): DocumentFile
 }
 
@@ -39,10 +40,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
             getVideoFiles().sortedBy(sortOrder).map {
                 val thumbnail =
                     MediaMetadataRetriever().apply {
-                        setDataSource(
-                            context,
-                            it.uri
-                        )
+                        setDataSource(context, it.uri)
                     }.frameAtTime
                 RecordingItemData(it, RecorderType.VIDEO, thumbnail)
             }
@@ -73,7 +71,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         }
     }
 
-    override fun getOutputFile(extension: String, prefix: String): DocumentFile {
+    override fun getOutputFile(extension: String, prefix: String): DocumentFile? {
         val currentTimeMillis = Calendar.getInstance().time
         val currentDateTime = dateTimeFormat.format(currentTimeMillis)
         val currentDate = currentDateTime.split("_").first()
@@ -87,22 +85,26 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
             .replace("%t", currentTime)
             .replace("%m", currentTimeMillis.time.toString())
             .replace("%s", currentTimeMillis.time.div(1000).toString())
+        
+        val outputDir = getOutputDir()
+        if (!outputDir.exists() || !outputDir.canRead() || !outputDir.canWrite()) return null
 
-        val recordingFile = getOutputDir().createFile("audio/*", "$prefix$fileName.$extension")
-        return recordingFile!!
+        Log.e("out",  Preferences.prefs.getString(Preferences.targetFolderKey, "").toString())
+        
+        return outputDir
+            .createFile("audio/*", "$prefix$fileName.$extension")
     }
 
     override fun getOutputDir(): DocumentFile {
         val prefDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
-        val audioDir = when {
+        return when {
             prefDir.isNullOrBlank() -> {
                 val dir = context.getExternalFilesDir(null) ?: context.filesDir
                 DocumentFile.fromFile(dir)
             }
 
-            else -> DocumentFile.fromTreeUri(context, Uri.parse(prefDir))
+            else -> DocumentFile.fromTreeUri(context, prefDir.toUri())!!
         }
-        return audioDir!!
     }
 
     companion object {
@@ -117,12 +119,7 @@ fun List<DocumentFile>.sortedBy(sortOrder: SortOrder): List<DocumentFile> {
         SortOrder.DEFAULT -> this
         SortOrder.ALPHABETIC -> sortedBy { it.name }
         SortOrder.ALPHABETIC_REV -> sortedByDescending { it.name }
-        SortOrder.SIZE_REV -> sortedBy {
-            it.length()
-        }
-
-        SortOrder.SIZE -> sortedByDescending {
-            it.length()
-        }
+        SortOrder.SIZE_REV -> sortedBy { it.length() }
+        SortOrder.SIZE -> sortedByDescending { it.length() }
     }
 }

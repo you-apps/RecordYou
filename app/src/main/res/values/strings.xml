@@ -67,6 +67,7 @@
     <string name="screen_recorder_annotation">Screen Record Annotation</string>
     <string name="screen_recorder_annotation_desc">Show annotation tool during screen recording</string>
     <string name="amoled_dark">Amoled Dark</string>
+    <!-- Other info -->
     <string name="default_sort">Default</string>
     <string name="audio_visualizer_timestamps">Audio visualizer timestamps</string>
     <string name="audio_visualizer_timestamps_description">Show timestamps in the audio visualizer timeline.</string>
@@ -77,6 +78,7 @@
     <string name="start_timestamp">Start:</string>
     <string name="select_trim_range">Select Trim Range</string>
     <string name="trim_failed">Trim Failed</string>
-    <string name="trimming">Trimming...</string>
+    <string name="trimming">Trimming…</string>
     <string name="trim_successful">Trim Successful</string>
+    <string name="cant_access_selected_folder">Can\'t access selected folder!</string>
 </resources>

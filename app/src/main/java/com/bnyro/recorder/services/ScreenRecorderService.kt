@@ -12,6 +12,7 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Display
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
@@ -115,8 +116,13 @@ class ScreenRecorderService : RecorderService() {
                 null
             )
 
-            outputFile = (application as App).fileRepository
-                .getOutputFile(videoFormat.extension)
+            outputFile = (application as App).fileRepository.getOutputFile(videoFormat.extension)
+            if (outputFile == null) {
+                Toast.makeText(this@ScreenRecorderService, R.string.cant_access_selected_folder, Toast.LENGTH_LONG).show()
+                onDestroy()
+                return
+            }
+
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 

@@ -1,5 +1,6 @@
 package com.bnyro.recorder.services
 
+import android.widget.Toast
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.AudioChannels
@@ -41,6 +42,12 @@ class AudioRecorderService : RecorderService() {
             outputFile = (application as App).fileRepository.getOutputFile(
                 audioFormat.extension
             )
+            if (outputFile == null) {
+                Toast.makeText(this@AudioRecorderService, R.string.cant_access_selected_folder, Toast.LENGTH_LONG).show()
+                onDestroy()
+                return
+            }
+
             fileDescriptor = contentResolver.openFileDescriptor(outputFile!!.uri, "w")
             setOutputFile(fileDescriptor?.fileDescriptor)
 
