@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Text
@@ -44,7 +43,6 @@ fun CheckboxPref(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(end = 10.dp)
             .clickable(
                 interactionSource = interactionSource,
                 indication = null
@@ -56,22 +54,21 @@ fun CheckboxPref(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row {
-            Column(
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(title)
-                if (summary != null) {
-                    Spacer(Modifier.height(2.dp))
-                    Text(
-                        text = summary,
-                        fontSize = 12.sp,
-                        lineHeight = 15.sp
-                    )
-                }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(title)
+            if (summary != null) {
+                Spacer(Modifier.height(2.dp))
+                Text(
+                    text = summary,
+                    fontSize = 12.sp,
+                    lineHeight = 15.sp
+                )
             }
         }
-        Spacer(modifier = Modifier.width(10.dp))
+        Spacer(modifier = Modifier.width(5.dp))
         Checkbox(
             checked = checked,
             onCheckedChange = {
