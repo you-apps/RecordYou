@@ -6,16 +6,16 @@
 
 <!-- ---------- Badges ---------- -->
   <div align="center">
-    <img alt="License" src="https://img.shields.io/github/license/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Downloads" src="https://img.shields.io/github/downloads/Bnyro/RecordYou/total.svg?color=c3e7ff&style=flat-square">
-    <img alt="Last commit" src="https://img.shields.io/github/last-commit/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Repo size" src="https://img.shields.io/github/repo-size/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Stars" src="https://img.shields.io/github/stars/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="License" src="https://img.shields.io/github/license/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/you-apps/RecordYou/total.svg?color=c3e7ff&style=flat-square">
+    <img alt="Last commit" src="https://img.shields.io/github/last-commit/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Repo size" src="https://img.shields.io/github/repo-size/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Stars" src="https://img.shields.io/github/stars/you-apps/RecordYou?color=c3e7ff&style=flat-square">
     <br>
 </div>
 </div>
 
-他の言語で読む：[英語](https://github.com/Bnyro/RecordYou/blob/main/README.md)
+他の言語で読む：[英語](https://github.com/you-apps/RecordYou/blob/main/README.md)
 
 <!-- ---------- Description ---------- -->
 ## 特徴
@@ -34,7 +34,7 @@
 <div align="center">
 
 [<img src="[https://gitlab.com/fdroid/artwork/-/blob/master/badge/get-it-on-ja.png]" alt="F-Droidで手に入れよう" height="80">](https://f-droid.org/packages/com.bnyro.recorder/)
-[<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/RecordYou/releases)
+[<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/you-apps/RecordYou/releases)
 
 </div>
 
@@ -52,7 +52,7 @@
 ***全ての貢献を歓迎します！***
 
 * アプリについてのディスカッションについては、[マトリックス ルーム](https://matrix.to/#/#you-apps:matrix.org)にお気軽にご参加ください。
-* バグレポートや機能リクエストは、[こちら](https://github.com/Bnyro/RecordYou/issues) から送信できます (要求された情報は全て正しく入力してください)。
+* バグレポートや機能リクエストは、[こちら](https://github.com/you-apps/RecordYou/issues) から送信できます (要求された情報は全て正しく入力してください)。
 * あなたが開発者で、アプリに貢献したい場合は、プロジェクトを**fork**し、[**pull request**](https://help.github.com/articles/about-pull-requests)を送信してください。
 
 ## 翻訳

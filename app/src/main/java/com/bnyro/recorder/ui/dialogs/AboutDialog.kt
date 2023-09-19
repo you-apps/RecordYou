@@ -40,8 +40,8 @@ fun AboutDialog(onDismissRequest: () -> Unit) {
     val context = LocalContext.current
     val view = LocalView.current
     val actions = listOf(
-        AboutItem(R.string.source_code, Icons.Default.Code, "https://github.com/Bnyro/RecordYou"),
-        AboutItem(R.string.author, Icons.Default.Person, "https://github.com/Bnyro"),
+        AboutItem(R.string.source_code, Icons.Default.Code, "https://github.com/you-apps/RecordYou"),
+        AboutItem(R.string.author, Icons.Default.Person, "https://github.com/you-apps"),
         AboutItem(
             R.string.translation,
             Icons.Default.Translate,

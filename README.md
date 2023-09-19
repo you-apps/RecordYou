@@ -6,11 +6,11 @@
 
 <!-- ---------- Badges ---------- -->
   <div align="center">
-    <img alt="License" src="https://img.shields.io/github/license/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Downloads" src="https://img.shields.io/github/downloads/Bnyro/RecordYou/total.svg?color=c3e7ff&style=flat-square">
-    <img alt="Last commit" src="https://img.shields.io/github/last-commit/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Repo size" src="https://img.shields.io/github/repo-size/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
-    <img alt="Stars" src="https://img.shields.io/github/stars/Bnyro/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="License" src="https://img.shields.io/github/license/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Downloads" src="https://img.shields.io/github/downloads/you-apps/RecordYou/total.svg?color=c3e7ff&style=flat-square">
+    <img alt="Last commit" src="https://img.shields.io/github/last-commit/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Repo size" src="https://img.shields.io/github/repo-size/you-apps/RecordYou?color=c3e7ff&style=flat-square">
+    <img alt="Stars" src="https://img.shields.io/github/stars/you-apps/RecordYou?color=c3e7ff&style=flat-square">
     <br>
 </div>
 </div>
@@ -34,7 +34,7 @@ Read in other languages: [Japanese](https://github.com/kuragehimekurara1/RecordY
 <div align="center">
 
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/packages/com.bnyro.recorder/)
-[<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/bnyro/RecordYou/releases)
+[<img src="https://raw.githubusercontent.com/vadret/android/master/assets/get-github.png" alt="Get it on GitHub" height="80">](https://github.com/you-apps/RecordYou/releases)
 
 </div>
 
@@ -52,7 +52,7 @@ Read in other languages: [Japanese](https://github.com/kuragehimekurara1/RecordY
 ***All contributions are very welcome!***
 
 * Feel free to join the [Matrix room](https://matrix.to/#/#you-apps:matrix.org) for discussions about the app.
-* Bug reports and feature requests can be submitted [here](https://github.com/Bnyro/RecordYou/issues) (please make sure to fill out all the requested information properly!).
+* Bug reports and feature requests can be submitted [here](https://github.com/you-apps/RecordYou/issues) (please make sure to fill out all the requested information properly!).
 * If you are a developer and wish to contribute to the app, please **fork** the project and submit a [**pull request**](https://help.github.com/articles/about-pull-requests/).
 
 ## Translation
