@@ -67,6 +67,7 @@
     <string name="screen_recorder_annotation">画面録画中の注釈</string>
     <string name="screen_recorder_annotation_desc">画面録画中に注釈ツールを表示します</string>
     <string name="amoled_dark">Amoledダーク</string>
+    <!-- Other info -->
     <string name="default_sort">デフォルト</string>
     <string name="audio_visualizer_timestamps">オーディオビジュアライザーのタイムスタンプ</string>
     <string name="audio_visualizer_timestamps_description">オーディオビジュアライザーのタイムラインにタイムスタンプを表示します。</string>
@@ -79,4 +80,5 @@
     <string name="trim_failed">トリムに失敗しました</string>
     <string name="trimming">トリミングしています…</string>
     <string name="trim_successful">トリムに成功しました</string>
+    <string name="cant_access_selected_folder">選択したフォルダーにアクセス出来ません！</string>
 </resources>
