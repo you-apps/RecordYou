@@ -1,1 +1,1 @@
-Material Design 3 (You) voice and screen recorder app
+Privacy focused voice and screen recorder app build with MD3
