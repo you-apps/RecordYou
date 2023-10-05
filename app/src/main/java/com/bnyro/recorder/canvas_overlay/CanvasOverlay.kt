@@ -22,13 +22,6 @@ import com.bnyro.recorder.util.CustomLifecycleOwner
 
 @RequiresApi(Build.VERSION_CODES.O)
 class CanvasOverlay(context: Context) {
-    private var params: WindowManager.LayoutParams = WindowManager.LayoutParams(
-        WindowManager.LayoutParams.WRAP_CONTENT,
-        WindowManager.LayoutParams.WRAP_CONTENT,
-        WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-        WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-        PixelFormat.TRANSPARENT
-    )
     private var windowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager
     private var canvasView = ComposeView(context).apply {
         setContent {
@@ -69,15 +62,26 @@ class CanvasOverlay(context: Context) {
         hideCanvas()
     }
 
+    private fun getWindowLayoutParams(size: Int): WindowManager.LayoutParams {
+        return WindowManager.LayoutParams(
+            size,
+            size,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSPARENT,
+        )
+    }
+
     fun showAll() {
         try {
             if (canvasView.windowToken == null && canvasView.parent == null) {
+                val params = getWindowLayoutParams(WindowManager.LayoutParams.MATCH_PARENT)
                 windowManager.addView(canvasView, params)
             }
             if (toolbarView.windowToken == null && toolbarView.parent == null) {
-                val toolbarParams = params
-                toolbarParams.gravity = Gravity.TOP or Gravity.END
-                windowManager.addView(toolbarView, toolbarParams)
+                val params = getWindowLayoutParams(WindowManager.LayoutParams.WRAP_CONTENT)
+                params.gravity = Gravity.TOP or Gravity.END
+                windowManager.addView(toolbarView, params)
             }
         } catch (e: Exception) {
             Log.e("Show Overlay", e.toString())
