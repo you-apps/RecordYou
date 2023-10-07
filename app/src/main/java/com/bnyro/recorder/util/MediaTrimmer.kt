@@ -28,14 +28,14 @@ class MediaTrimmer {
     ): Boolean {
         assert(endMs > startMs && endMs > 0)
         return withContext(Dispatchers.IO) {
-            val inputFilePath = inputFile.uri.path!!
-            val extension = inputFilePath.split('.').lastOrNull()
+            val extension = inputFile.uri.path!!.split('.').lastOrNull()
             val outputFile = (context.applicationContext as App).fileRepository.getOutputFile(
                 extension = extension ?: "mp4",
                 prefix = "Trim_"
             )
-            val pfd = context.contentResolver.openFileDescriptor(outputFile!!.uri, "w")!!
-            trimMediaFile(inputFilePath, pfd, startMs, endMs)
+            val inputPfd = context.contentResolver.openFileDescriptor(inputFile.uri, "r")!!
+            val outputPfd = context.contentResolver.openFileDescriptor(outputFile!!.uri, "w")!!
+            trimMediaFile(inputPfd, outputPfd, startMs, endMs)
         }
     }
 
@@ -43,16 +43,17 @@ class MediaTrimmer {
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("WrongConstant")
     private suspend fun trimMediaFile(
-        inputFile: String,
-        pfd: ParcelFileDescriptor,
+        inputPfd: ParcelFileDescriptor,
+        outputPfd: ParcelFileDescriptor,
         startMs: Long,
         endMs: Long
     ): Boolean {
         return withContext(Dispatchers.IO) {
             val extractor = MediaExtractor()
-            extractor.setDataSource(inputFile)
+            extractor.setDataSource(inputPfd.fileDescriptor)
             val trackCount = extractor.trackCount
-            val muxer = MediaMuxer(pfd.fileDescriptor, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
+            val muxer =
+                MediaMuxer(outputPfd.fileDescriptor, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
             val indexMap = SparseIntArray(trackCount)
             var bufferSize = -1
 
@@ -120,7 +121,8 @@ class MediaTrimmer {
                 false
             } finally {
                 muxer.release()
-                pfd.close()
+                inputPfd.close()
+                outputPfd.close()
             }
         }
     }
