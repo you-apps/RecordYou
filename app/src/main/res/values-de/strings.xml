@@ -61,5 +61,7 @@
     <string name="translation">Übersetzung</string>
     <string name="delete_all">Alle löschen</string>
     <string name="screen_recorder_annotation">Bildschirmaufnahmeanmerkungen</string>
-    <string name="screen_recorder_annotation_desc">Zeige Anmerkungenwerkzeug während Bildschirmaufnahmr</string>
+    <string name="screen_recorder_annotation_desc">Zeige Anmerkungenwerkzeug während Bildschirmaufnahme</string>
+    <string name="audio_visualizer_timestamps">Audiovisualisierungs-Zeitstempel</string>
+    <string name="audio_visualizer_timestamps_description">Zeige Zeitstempel in der Audiovisualisierungs-Zeitleiste.</string>
 </resources>
