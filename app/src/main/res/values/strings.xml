@@ -66,7 +66,7 @@
     <string name="light">Light</string>
     <string name="screen_recorder_annotation">Screen Record Annotation</string>
     <string name="screen_recorder_annotation_desc">Show annotation tool during screen recording</string>
-    <string name="amoled_dark">Amoled Dark</string>
+    <string name="amoled_dark">Black</string>
     <!-- Other info -->
     <string name="default_sort">Default</string>
     <string name="audio_visualizer_timestamps">Audio visualizer timestamps</string>
