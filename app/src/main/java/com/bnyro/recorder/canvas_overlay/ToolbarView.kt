@@ -1,9 +1,11 @@
 package com.bnyro.recorder.canvas_overlay
 
+import android.content.Intent
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Draw
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -12,9 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
+import com.bnyro.recorder.services.RecorderService
 
 @Composable
 fun ToolbarView(
@@ -49,6 +54,16 @@ fun ToolbarView(
                 canvasViewModel.paths.clear()
             }) {
                 Icon(Icons.Default.Close, "Show/Hide Canvas")
+            }
+            val context = LocalContext.current
+            IconButton(onClick = {
+                val intent = Intent().apply {
+                    action = RecorderService.RECORDER_INTENT_ACTION
+                    putExtra(RecorderService.ACTION_EXTRA_KEY, RecorderService.STOP_ACTION)
+                }
+                context.sendBroadcast(intent)
+            }) {
+                Icon(Icons.Default.Stop, stringResource(id = R.string.stop))
             }
         }
     }
