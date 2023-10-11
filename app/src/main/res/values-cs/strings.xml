@@ -62,4 +62,16 @@
     <string name="screen_recorder_annotation_desc">Zobrazit nástroj pro poznámky během nahrávání obrazovky</string>
     <string name="amoled_dark">Amoled tmavý</string>
     <string name="default_sort">Výchozí</string>
+    <string name="select_trim_range">Vyberte rozsah oříznutí</string>
+    <string name="trimming">Ořezávání…</string>
+    <string name="trim">Oříznout</string>
+    <string name="start_timestamp">Začátek:</string>
+    <string name="cant_access_selected_folder">Nemáme přístup k vybrané složce!</string>
+    <string name="audio_visualizer_timestamps">Časové značky ve vizualizaci zvuku</string>
+    <string name="audio_visualizer_timestamps_description">Zobrazit časové značky ve stopě vizualizace zvuku.</string>
+    <string name="stop_timestamp">Konec:</string>
+    <string name="not_set">Nenastaveno</string>
+    <string name="trim_successful">Úspěšně oříznuto</string>
+    <string name="start_trimming">Spustit oříznutí</string>
+    <string name="trim_failed">Oříznutí selhalo</string>
 </resources>
