@@ -2,10 +2,10 @@
 <resources>
     <string name="app_name">Record You</string>
     <string name="recordings">Записи</string>
-    <string name="okay">ОК</string>
+    <string name="okay">Ок</string>
     <string name="cancel">Отмена</string>
     <string name="rename">Переименовать</string>
-    <string name="file_name">Название файла</string>
+    <string name="file_name">Имя файла</string>
     <string name="delete">Удалить</string>
     <string name="irreversible">Вы уверены\? Это действие невозможно отменить.</string>
     <string name="nothing_here">Пусто</string>
@@ -13,13 +13,13 @@
     <string name="directory">Папка</string>
     <string name="choose_dir">Выбрать папку</string>
     <string name="share">Поделиться</string>
-    <string name="audio_format">Аудиоформат</string>
+    <string name="audio_format">Формат аудио</string>
     <string name="screen_recorder">Запись экрана</string>
-    <string name="recording_screen">Запись экрана …</string>
+    <string name="recording_screen">Идёт запись экрана …</string>
     <string name="record_screen">Запись экрана</string>
     <string name="audio">Аудио</string>
     <string name="video">Видео</string>
-    <string name="recording_audio">Запись звука …</string>
+    <string name="recording_audio">Идёт запись звука …</string>
     <string name="stop">Остановить</string>
     <string name="microphone">Микрофон</string>
     <string name="no_audio">Без звука</string>
@@ -42,7 +42,7 @@
     <string name="bitrate">Битрейт</string>
     <string name="auto">Авто</string>
     <string name="theme">Тема</string>
-    <string name="system">Как в системе</string>
+    <string name="system">Системная</string>
     <string name="dark">Тёмная</string>
     <string name="light">Светлая</string>
     <string name="default_audio">По умолчанию</string>
@@ -50,8 +50,8 @@
     <string name="unprocessed">Необработанный</string>
     <string name="mono">Моно</string>
     <string name="stereo">Стерео</string>
-    <string name="lossless_audio_desc">Примечание: другие параметры аудио не будут применяться при включенном кодировщике WAV.</string>
-    <string name="lossless_audio">Кодировщик без потерь качества (WAV)</string>
+    <string name="lossless_audio_desc">Примечание: другие параметры аудио не будут применены при включенном кодировщике WAV.</string>
+    <string name="lossless_audio">Кодировщик без потери качества (WAV)</string>
     <string name="alphabetic_rev">Алфавитный (обратный)</string>
     <string name="sort">Сортировать</string>
     <string name="size_rev">Размер (обратный)</string>
@@ -59,7 +59,20 @@
     <string name="size">Размер</string>
     <string name="naming_pattern">Образец именования</string>
     <string name="naming_pattern_desc">%d: Дата, %t: Время, %s: Эпоха секунд, %m: Эпоха миллисекунд</string>
-    <string name="amoled_dark">Чёрная (Amoled)</string>
+    <string name="amoled_dark">Чёрная</string>
     <string name="screen_recorder_annotation">Аннотация записи экрана</string>
     <string name="screen_recorder_annotation_desc">Показывать инструмент аннотации во время записи экрана</string>
+    <string name="select_trim_range">Выделите диапазон обрезки</string>
+    <string name="trimming">Обрезка…</string>
+    <string name="trim">Обрезать</string>
+    <string name="start_timestamp">Начало:</string>
+    <string name="cant_access_selected_folder">К выбранной папке нет доступа!</string>
+    <string name="audio_visualizer_timestamps">Временные метки визуализатора</string>
+    <string name="audio_visualizer_timestamps_description">Показывать метки во временной шкале визуализатора громкости.</string>
+    <string name="stop_timestamp">Конец:</string>
+    <string name="not_set">Не задан</string>
+    <string name="trim_successful">Обрезка успешна</string>
+    <string name="start_trimming">Начать обрезку</string>
+    <string name="default_sort">По умолчанию</string>
+    <string name="trim_failed">Обрезка не удалась</string>
 </resources>
