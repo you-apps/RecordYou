@@ -5,7 +5,7 @@
     <string name="rename">Renombrar</string>
     <string name="record_screen">Grabar pantalla</string>
     <string name="active_recording">Grabación activa</string>
-    <string name="pause">Pausar</string>
+    <string name="pause">Pausa</string>
     <string name="resume">Reanudar</string>
     <string name="recording_finished">Grabación finalizada</string>
     <string name="record">Grabar</string>
@@ -60,6 +60,18 @@
     <string name="naming_pattern_desc">%d: fecha, %t: hora, %s: era-segundos, %m: milisegundos</string>
     <string name="screen_recorder_annotation">Anotación del registro de pantalla</string>
     <string name="screen_recorder_annotation_desc">Mostrar la herramienta de anotación durante la grabación de pantalla</string>
-    <string name="amoled_dark">Negro (Amoled)</string>
+    <string name="amoled_dark">Negro</string>
     <string name="default_sort">Predeterminado</string>
+    <string name="select_trim_range">Selecciona el rango del corte</string>
+    <string name="trimming">Recortando…</string>
+    <string name="trim">Recortar</string>
+    <string name="start_timestamp">Iniciar:</string>
+    <string name="cant_access_selected_folder">¡No puedo acceder a la carpeta seleccionada!</string>
+    <string name="audio_visualizer_timestamps">Marcas de tiempo para el visualizador del audio</string>
+    <string name="audio_visualizer_timestamps_description">Mostrar marcas de tiempo en la línea de tiempo del visualizador de audio.</string>
+    <string name="stop_timestamp">Parar:</string>
+    <string name="not_set">No configurado</string>
+    <string name="trim_successful">Recorte exitoso</string>
+    <string name="start_trimming">Empezar a recortar</string>
+    <string name="trim_failed">Recorte fallido</string>
 </resources>
