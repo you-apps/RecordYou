@@ -61,4 +61,7 @@
     <string name="amoled_dark">Preto (Amoled)</string>
     <string name="screen_recorder_annotation">Anotação de gravação de tela</string>
     <string name="screen_recorder_annotation_desc">Mostrar ferramenta de anotação durante a gravação da tela</string>
+    <string name="audio_visualizer_timestamps">Visualização de marcas de tempo do áudio</string>
+    <string name="audio_visualizer_timestamps_description">Exibir a visualização das marcas de tempo de áudio na linha de tempo.</string>
+    <string name="default_sort">Padrão</string>
 </resources>
