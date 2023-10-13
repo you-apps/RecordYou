@@ -2,7 +2,7 @@
 <div align="center">
   <img width="200" height="200"src="fastlane/metadata/android/en-US/images/icon.png">
   <h1>Record You</h1>
-<p>Privacy focused voice and screen recorder app build with MD3.</p>
+<p>Privacy focused voice and screen recorder app built with MD3.</p>
 
 <!-- ---------- Badges ---------- -->
   <div align="center">
