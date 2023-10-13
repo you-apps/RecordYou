@@ -60,6 +60,18 @@
     <string name="alphabetic">按字母表顺序</string>
     <string name="screen_recorder_annotation">录屏注释</string>
     <string name="screen_recorder_annotation_desc">在录屏期间显示注释工具</string>
-    <string name="amoled_dark">Amoled Dark</string>
+    <string name="amoled_dark">黑色</string>
     <string name="default_sort">默认</string>
+    <string name="select_trim_range">选择剪辑范围</string>
+    <string name="trimming">剪辑中……</string>
+    <string name="trim">剪辑</string>
+    <string name="start_timestamp">起始点：</string>
+    <string name="cant_access_selected_folder">已选的文件夹无法访问！</string>
+    <string name="audio_visualizer_timestamps">音频可视化时间戳</string>
+    <string name="audio_visualizer_timestamps_description">在音频可视化时间线上显示时间戳。</string>
+    <string name="stop_timestamp">结束点：</string>
+    <string name="not_set">未设定</string>
+    <string name="trim_successful">剪辑成功</string>
+    <string name="start_trimming">开始剪辑</string>
+    <string name="trim_failed">剪辑失败</string>
 </resources>
