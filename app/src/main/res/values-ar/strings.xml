@@ -60,6 +60,18 @@
     <string name="naming_pattern">نمط التسمية</string>
     <string name="screen_recorder_annotation">تعليق توضيحي لسجل الشاشة</string>
     <string name="screen_recorder_annotation_desc">إظهار أداة التعليق التوضيحي أثناء تسجيل الشاشة</string>
-    <string name="amoled_dark">أموليد اسود</string>
+    <string name="amoled_dark">اسود</string>
     <string name="default_sort">الإفتراضي</string>
+    <string name="select_trim_range">حدد نطاق القص</string>
+    <string name="trimming">قيد القص…</string>
+    <string name="trim">قص</string>
+    <string name="start_timestamp">يبدأ:</string>
+    <string name="cant_access_selected_folder">لا يمكن الوصول إلى المجلد المحدد!</string>
+    <string name="audio_visualizer_timestamps">الطوابع الزمنية لمعادل الصوت</string>
+    <string name="audio_visualizer_timestamps_description">إظهار الطوابع الزمنية في المخطط الزمني للمعادل الصوتي.</string>
+    <string name="stop_timestamp">قف:</string>
+    <string name="not_set">لم يتم تعيينه</string>
+    <string name="trim_successful">تم القص بنجاح</string>
+    <string name="start_trimming">ابدأ القص</string>
+    <string name="trim_failed">فشل القص</string>
 </resources>
