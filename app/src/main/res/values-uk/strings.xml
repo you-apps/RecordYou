@@ -60,6 +60,18 @@
     <string name="alphabetic_rev">За алфавітом (навпаки)</string>
     <string name="screen_recorder_annotation">Анотація до запису екрану</string>
     <string name="screen_recorder_annotation_desc">Показувати інструмент анотацій під час запису екрана</string>
-    <string name="amoled_dark">Чорна (Amoled)</string>
+    <string name="amoled_dark">Чорна</string>
     <string name="default_sort">За замовчуванням</string>
+    <string name="select_trim_range">Виберіть діапазон обрізки</string>
+    <string name="trimming">Обрізання…</string>
+    <string name="trim">Обрізати</string>
+    <string name="start_timestamp">Початок:</string>
+    <string name="cant_access_selected_folder">Не вдається отримати доступ до обраної теки!</string>
+    <string name="audio_visualizer_timestamps">Мітки часу аудіовізуалізатора</string>
+    <string name="audio_visualizer_timestamps_description">Показувати часові мітки на часовій шкалі аудіовізуалізатора.</string>
+    <string name="stop_timestamp">Кінець:</string>
+    <string name="not_set">Не встановлено</string>
+    <string name="trim_successful">Обрізка успішна</string>
+    <string name="start_trimming">Почати обрізання</string>
+    <string name="trim_failed">Не вдалося обрізати</string>
 </resources>
