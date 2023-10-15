@@ -51,4 +51,27 @@
     <string name="translation">Oversettelse</string>
     <string name="delete_all">Slett alt</string>
     <string name="theme">Drakt</string>
+    <string name="size">Størrelse</string>
+    <string name="naming_pattern_desc">%d: dato, %t: tid, %s: sekunder, %m: millisekunder</string>
+    <string name="naming_pattern">Navnemønster</string>
+    <string name="select_trim_range">Velg beskjæringsområde</string>
+    <string name="trimming">Beskjærer …</string>
+    <string name="alphabetic">A–Å</string>
+    <string name="screen_recorder_annotation_desc">Vis undertekstsverktøy under skjermopptak</string>
+    <string name="trim">Beskjær</string>
+    <string name="start_timestamp">Start:</string>
+    <string name="cant_access_selected_folder">Har ikke tilgang til valgt mappe.</string>
+    <string name="alphabetic_rev">Å–A</string>
+    <string name="audio_visualizer_timestamps">Lydvisualiseringstidsstempel</string>
+    <string name="size_rev">Størrelse (omvendt)</string>
+    <string name="audio_visualizer_timestamps_description">Vis tidsstempler i lydvisualiseringstidslinjen.</string>
+    <string name="stop_timestamp">Stopp:</string>
+    <string name="not_set">Ikke satt</string>
+    <string name="sort">Sortering</string>
+    <string name="trim_successful">Beskjært</string>
+    <string name="amoled_dark">Nattsvart</string>
+    <string name="start_trimming">Start beskjæring</string>
+    <string name="default_sort">Forvalg</string>
+    <string name="trim_failed">Kunne ikke utføre beskjæring</string>
+    <string name="screen_recorder_annotation">Skjermopptaksundertekst</string>
 </resources>
