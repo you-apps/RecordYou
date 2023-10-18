@@ -60,7 +60,7 @@
     <string name="naming_pattern_desc">%d: Datum, %t: Čas, %s Epocha sekund, %m: Epicha milisekund</string>
     <string name="screen_recorder_annotation">Poznámky na záznamu obrazovky</string>
     <string name="screen_recorder_annotation_desc">Zobrazit nástroj pro poznámky během nahrávání obrazovky</string>
-    <string name="amoled_dark">Amoled tmavý</string>
+    <string name="amoled_dark">Černý</string>
     <string name="default_sort">Výchozí</string>
     <string name="select_trim_range">Vyberte rozsah oříznutí</string>
     <string name="trimming">Ořezávání…</string>

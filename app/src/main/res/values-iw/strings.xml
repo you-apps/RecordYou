@@ -24,7 +24,7 @@
     <string name="audio">שמע</string>
     <string name="share">שיתוף</string>
     <string name="video">וידאו</string>
-    <string name="pause">השהייה</string>
+    <string name="pause">השהיה</string>
     <string name="resume">המשך</string>
     <string name="play">נגינה</string>
     <string name="recording_finished">ההקלטה הסתיימה</string>
@@ -60,6 +60,18 @@
     <string name="size_rev">גודל (הפוך)</string>
     <string name="screen_recorder_annotation">סימון על הקלטת מסך</string>
     <string name="screen_recorder_annotation_desc">הצגת כלי סימון במהלך הקלטת מסך</string>
-    <string name="amoled_dark">כהה למסכי AMOLED</string>
+    <string name="amoled_dark">שחור</string>
     <string name="default_sort">ברירת מחדל</string>
+    <string name="select_trim_range">בחירת טווח חיתוך</string>
+    <string name="trimming">מתבצע חיתוך…</string>
+    <string name="trim">חיתוך</string>
+    <string name="start_timestamp">התחלה:</string>
+    <string name="cant_access_selected_folder">אי אפשר לגשת לתיקייה הנבחרת!</string>
+    <string name="audio_visualizer_timestamps">חותמות ממחיש שמע</string>
+    <string name="audio_visualizer_timestamps_description">הצגת חותמות זמן בציר הזמן של ממחיש השמע.</string>
+    <string name="stop_timestamp">עצירה:</string>
+    <string name="not_set">לא הוגדר</string>
+    <string name="trim_successful">החיתוך הצליח</string>
+    <string name="start_trimming">התחלת חיתוך</string>
+    <string name="trim_failed">החיתוך נכשל</string>
 </resources>

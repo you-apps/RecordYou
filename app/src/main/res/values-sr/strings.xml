@@ -62,7 +62,7 @@
     <string name="size">Величина</string>
     <string name="size_rev">Величина (обрнуто)</string>
     <string name="naming_pattern">Образац именовања</string>
-    <string name="amoled_dark">Црна (Amoled)</string>
+    <string name="amoled_dark">Црна</string>
     <string name="naming_pattern_desc">%d: Датум, %t: Време, %s: Епоха секунда, %m: Епоха милисекунда</string>
     <string name="screen_recorder_annotation">Белешка о снимању екрана</string>
     <string name="screen_recorder_annotation_desc">Прикажи алатку за белешке током снимања екрана</string>
