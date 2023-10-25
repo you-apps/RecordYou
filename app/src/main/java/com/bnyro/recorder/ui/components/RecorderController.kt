@@ -5,6 +5,7 @@ import android.content.Context
 import android.media.projection.MediaProjectionManager
 import android.os.Build
 import android.text.format.DateUtils
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -52,7 +53,7 @@ fun RecorderController(
     recordScreenMode: Boolean,
     initialRecorder: RecorderType
 ) {
-    val recorderModel: RecorderModel = viewModel()
+    val recorderModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
     val context = LocalContext.current
     val mProjectionManager =
         context.getSystemService(Context.MEDIA_PROJECTION_SERVICE) as MediaProjectionManager

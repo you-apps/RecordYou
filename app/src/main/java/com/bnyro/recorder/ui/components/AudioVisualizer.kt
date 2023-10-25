@@ -1,6 +1,7 @@
 package com.bnyro.recorder.ui.components
 
 import android.text.format.DateUtils
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.translate
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
@@ -27,7 +29,7 @@ import com.bnyro.recorder.util.Preferences
 fun AudioVisualizer(
     modifier: Modifier = Modifier
 ) {
-    val viewModel: RecorderModel = viewModel()
+    val viewModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
     val showTimestamps = remember {
         Preferences.prefs.getBoolean(
             Preferences.showVisualizerTimestamps,
