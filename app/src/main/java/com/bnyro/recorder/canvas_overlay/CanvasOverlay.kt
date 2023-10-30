@@ -7,23 +7,24 @@ import android.os.Build
 import android.util.Log
 import android.view.Gravity
 import android.view.WindowManager
+import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.setViewTreeLifecycleOwner
 import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import com.bnyro.recorder.ui.theme.RecordYouTheme
-import com.bnyro.recorder.util.CustomLifecycleOwner
 
 @RequiresApi(Build.VERSION_CODES.O)
 class CanvasOverlay(context: Context) {
     private var windowManager = context.getSystemService(WINDOW_SERVICE) as WindowManager
     private var canvasView = ComposeView(context).apply {
+        val activity = context as ComponentActivity
+        setViewTreeLifecycleOwner(activity)
+        setViewTreeViewModelStoreOwner(activity)
+        setViewTreeSavedStateRegistryOwner(activity)
         setContent {
             RecordYouTheme() {
                 MainCanvas()
@@ -31,6 +32,10 @@ class CanvasOverlay(context: Context) {
         }
     }
     private var toolbarView = ComposeView(context).apply {
+        val activity = context as ComponentActivity
+        setViewTreeLifecycleOwner(activity)
+        setViewTreeViewModelStoreOwner(activity)
+        setViewTreeSavedStateRegistryOwner(activity)
         setContent {
             RecordYouTheme {
                 ToolbarView(hideCanvas = { hide ->
@@ -45,20 +50,6 @@ class CanvasOverlay(context: Context) {
     }
 
     init {
-        val lifecycleOwner = CustomLifecycleOwner()
-        val viewModelStoreOwner = object : ViewModelStoreOwner {
-            override val viewModelStore: ViewModelStore = ViewModelStore()
-        }
-        lifecycleOwner.performRestore(null)
-        lifecycleOwner.handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        canvasView.setViewTreeLifecycleOwner(lifecycleOwner)
-        canvasView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
-        canvasView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
-
-        toolbarView.setViewTreeLifecycleOwner(lifecycleOwner)
-        toolbarView.setViewTreeViewModelStoreOwner(viewModelStoreOwner)
-        toolbarView.setViewTreeSavedStateRegistryOwner(lifecycleOwner)
-
         hideCanvas()
     }
 
@@ -68,7 +59,7 @@ class CanvasOverlay(context: Context) {
             size,
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-            PixelFormat.TRANSPARENT,
+            PixelFormat.TRANSPARENT
         )
     }
 

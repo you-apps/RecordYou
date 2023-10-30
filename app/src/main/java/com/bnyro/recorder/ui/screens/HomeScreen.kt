@@ -1,6 +1,7 @@
 package com.bnyro.recorder.ui.screens
 
 import android.view.SoundEffectConstants
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -39,7 +41,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     initialRecorder: RecorderType,
     onNavigate: (Destination) -> Unit,
-    recorderModel: RecorderModel = viewModel()
+    recorderModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
 ) {
     val pagerState = rememberPagerState { 2 }
     val scope = rememberCoroutineScope()
