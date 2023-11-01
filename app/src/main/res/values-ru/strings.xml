@@ -42,7 +42,7 @@
     <string name="bitrate">Битрейт</string>
     <string name="auto">Авто</string>
     <string name="theme">Тема</string>
-    <string name="system">Системная</string>
+    <string name="system">Как в системе</string>
     <string name="dark">Тёмная</string>
     <string name="light">Светлая</string>
     <string name="default_audio">По умолчанию</string>
@@ -75,4 +75,6 @@
     <string name="start_trimming">Начать обрезку</string>
     <string name="default_sort">По умолчанию</string>
     <string name="trim_failed">Обрезка не удалась</string>
+    <string name="draw_mode">Режим отрисовки</string>
+    <string name="erase_mode">Режим затирания</string>
 </resources>
