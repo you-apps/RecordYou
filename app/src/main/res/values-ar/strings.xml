@@ -5,7 +5,7 @@
     <string name="okay">حسنًا</string>
     <string name="file_name">اسم الملف</string>
     <string name="record_sound">تسجيل الصوت</string>
-    <string name="cancel">ألغِ</string>
+    <string name="cancel">إلغاء</string>
     <string name="rename">إعادة تسمية</string>
     <string name="delete">حذف</string>
     <string name="irreversible">هل أنت متأكد؟ هذا لا يمكن التراجع عنه.</string>
@@ -19,7 +19,7 @@
     <string name="stop">إيقاف</string>
     <string name="share">شارك</string>
     <string name="active_recording">التسجيل النشط</string>
-    <string name="pause">ايقاف مؤقت</string>
+    <string name="pause">ايقاف</string>
     <string name="choose_dir">اختر مجلَّدًا</string>
     <string name="recording_audio">تسجيل الصوت …</string>
     <string name="no_audio">لا يوجد صوت</string>
