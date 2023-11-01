@@ -74,4 +74,6 @@
     <string name="trim_successful">Úspěšně oříznuto</string>
     <string name="start_trimming">Spustit oříznutí</string>
     <string name="trim_failed">Oříznutí selhalo</string>
+    <string name="draw_mode">Režim kreslení</string>
+    <string name="erase_mode">Režim gumy</string>
 </resources>
