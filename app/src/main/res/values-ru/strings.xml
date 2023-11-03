@@ -35,7 +35,7 @@
     <string name="delete_all">Удалить все</string>
     <string name="author">Автор</string>
     <string name="back">Назад</string>
-    <string name="play">Воспроизвести</string>
+    <string name="play">Проиграть</string>
     <string name="recording_finished">Запись завершена</string>
     <string name="record">Начать запись</string>
     <string name="sample_rate">Частота дискретизации</string>
@@ -75,6 +75,6 @@
     <string name="start_trimming">Начать обрезку</string>
     <string name="default_sort">По умолчанию</string>
     <string name="trim_failed">Обрезка не удалась</string>
-    <string name="draw_mode">Режим отрисовки</string>
-    <string name="erase_mode">Режим затирания</string>
+    <string name="draw_mode">Режим рисования</string>
+    <string name="erase_mode">Режим ластика</string>
 </resources>
