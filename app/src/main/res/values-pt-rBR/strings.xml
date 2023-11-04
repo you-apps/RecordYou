@@ -38,10 +38,10 @@
     <string name="options">Opções</string>
     <string name="recording_finished">Gravação finalizada</string>
     <string name="sort">Ordenar</string>
-    <string name="alphabetic">Alfabético</string>
-    <string name="alphabetic_rev">Alfabeticamente (Z-A)</string>
+    <string name="alphabetic">Alfabética</string>
+    <string name="alphabetic_rev">Alfabética (invertida)</string>
     <string name="size">Tamanho</string>
-    <string name="size_rev">Tamanho (o maior primeiro)</string>
+    <string name="size_rev">Tamanho (invertida)</string>
     <string name="auto">Automático</string>
     <string name="default_audio">Predefinido</string>
     <string name="camcorder">Câmara de vídeo</string>
@@ -64,4 +64,16 @@
     <string name="audio_visualizer_timestamps">Visualização de marcas de tempo do áudio</string>
     <string name="audio_visualizer_timestamps_description">Exibir a visualização das marcas de tempo de áudio na linha de tempo.</string>
     <string name="default_sort">Padrão</string>
+    <string name="select_trim_range">Selecionar Intervalo de Aparação</string>
+    <string name="draw_mode">Modo de Desenhar</string>
+    <string name="trimming">Aparando…</string>
+    <string name="trim">Aparar</string>
+    <string name="start_timestamp">Iniciar:</string>
+    <string name="cant_access_selected_folder">Não é possível acessar a pasta selecionada!</string>
+    <string name="stop_timestamp">Parar:</string>
+    <string name="not_set">Não Definido</string>
+    <string name="trim_successful">Aparação feita com Sucesso</string>
+    <string name="start_trimming">Iniciar Aparamento</string>
+    <string name="erase_mode">Modo de Apagar</string>
+    <string name="trim_failed">Aparação Falhou</string>
 </resources>
