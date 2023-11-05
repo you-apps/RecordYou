@@ -35,7 +35,7 @@
     <string name="delete_all">Удалить все</string>
     <string name="author">Автор</string>
     <string name="back">Назад</string>
-    <string name="play">Проиграть</string>
+    <string name="play">Воспроизвести</string>
     <string name="recording_finished">Запись завершена</string>
     <string name="record">Начать запись</string>
     <string name="sample_rate">Частота дискретизации</string>
