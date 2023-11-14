@@ -60,6 +60,20 @@
     <string name="sort">Tür</string>
     <string name="screen_recorder_annotation">Ekran Kaydı Açıklaması</string>
     <string name="screen_recorder_annotation_desc">Ekran kaydı sırasında açıklama aracını göster</string>
-    <string name="amoled_dark">Amoled Koyu</string>
+    <string name="amoled_dark">Siyah</string>
     <string name="default_sort">Öntanımlı</string>
+    <string name="select_trim_range">Kırpma Aralığını Seç</string>
+    <string name="draw_mode">Çizim Modu</string>
+    <string name="trimming">Kırpılıyor…</string>
+    <string name="trim">Kırp</string>
+    <string name="start_timestamp">Başlat:</string>
+    <string name="cant_access_selected_folder">Seçilen klasöre erişilemiyor!</string>
+    <string name="audio_visualizer_timestamps">Ses görselleştiricisi zaman damgaları</string>
+    <string name="audio_visualizer_timestamps_description">Ses görselleştiricisi zaman çizelgesinde zaman damgalarını göster.</string>
+    <string name="stop_timestamp">Dur:</string>
+    <string name="not_set">Ayarlanmadı</string>
+    <string name="trim_successful">Kırpma Başarılı</string>
+    <string name="start_trimming">Kırpmaya Başla</string>
+    <string name="erase_mode">Silme Modu</string>
+    <string name="trim_failed">Kırpma Başarısız</string>
 </resources>

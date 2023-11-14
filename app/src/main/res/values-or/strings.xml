@@ -2,5 +2,8 @@
 <resources>
     <string name="about">ଵିଷୟରେ</string>
     <string name="choose_dir">ଡିରେକ୍ଟୋରୀ ବାଛନ୍ତୁ |</string>
-    <string name="settings">ସେଟିଂ</string>
+    <string name="settings">ସେଟିଂସମୂହ</string>
+    <string name="pause">ବିରତି</string>
+    <string name="cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
+    <string name="play">ଚଲାନ୍ତୁ</string>
 </resources>

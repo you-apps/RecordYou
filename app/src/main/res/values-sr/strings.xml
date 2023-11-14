@@ -79,4 +79,6 @@
     <string name="start_trimming">Започни сечење</string>
     <string name="default_sort">Подразумевано</string>
     <string name="trim_failed">Сечење није успело</string>
+    <string name="draw_mode">Режим цртања</string>
+    <string name="erase_mode">Режим брисања</string>
 </resources>

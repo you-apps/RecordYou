@@ -58,7 +58,22 @@
     <string name="size_rev">Памер (перавернуты)</string>
     <string name="naming_pattern">Шаблон наймення</string>
     <string name="naming_pattern_desc">%d: дата, %t: час, %s: секунды эпохі, %m: эпоха ў мілісекундах</string>
-    <string name="amoled_dark">Чорная (Amoled)</string>
+    <string name="amoled_dark">Чорная</string>
     <string name="screen_recorder_annotation">Анатацыя запісу экрана</string>
     <string name="screen_recorder_annotation_desc">Паказаць інструмент анатацый падчас запісу экрана</string>
+    <string name="select_trim_range">Выберыце дыяпазон абрэзкі</string>
+    <string name="draw_mode">Рэжым малявання</string>
+    <string name="trimming">Абразанне…</string>
+    <string name="trim">Абрэзаць</string>
+    <string name="start_timestamp">Пачатак:</string>
+    <string name="cant_access_selected_folder">Выбраная папка недаступная!</string>
+    <string name="audio_visualizer_timestamps">Пазнакі часу аўдыявізуалізатара</string>
+    <string name="audio_visualizer_timestamps_description">Паказаць пазнакі часу на часовай шкале аўдыявізуалізатара.</string>
+    <string name="stop_timestamp">Канец:</string>
+    <string name="not_set">Не ўстаноўлены</string>
+    <string name="trim_successful">Абрэзка прайшла паспяхова</string>
+    <string name="start_trimming">Пачаць абрэзку</string>
+    <string name="default_sort">Па змаўчанні</string>
+    <string name="erase_mode">Рэжым сцірання</string>
+    <string name="trim_failed">Не ўдалося абрэзаць</string>
 </resources>

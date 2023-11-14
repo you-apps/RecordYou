@@ -52,10 +52,26 @@
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
     <string name="sort">Sortuj</string>
-    <string name="alphabetic">Alfabetycznie</string>
+    <string name="alphabetic">Alfabetyczny</string>
     <string name="alphabetic_rev">Alfabetycznie (odwrotnie)</string>
     <string name="size">Rozmiar</string>
     <string name="size_rev">Rozmiar (odwrotnie)</string>
     <string name="naming_pattern">Nazwa pliku</string>
     <string name="naming_pattern_desc">%d: Data, %t: Czas, %s: Czas uniksowy w sekundach, %m: Czas uniksowy w milisekundach</string>
+    <string name="select_trim_range">Wybierz zakres przycinania</string>
+    <string name="trimming">Przycinanie…</string>
+    <string name="screen_recorder_annotation_desc">Pokaż narzędzie adnotacji podczas nagrywania ekranu</string>
+    <string name="trim">Przytnij</string>
+    <string name="start_timestamp">Start:</string>
+    <string name="cant_access_selected_folder">Nie można uzyskać dostępu do wybranego folderu!</string>
+    <string name="audio_visualizer_timestamps">Audio wizualizator znaczników czasu</string>
+    <string name="audio_visualizer_timestamps_description">Pokaż znaczniki czasu na osi czasu wizualizatora audio.</string>
+    <string name="stop_timestamp">Stop:</string>
+    <string name="not_set">Nie ustawiono</string>
+    <string name="trim_successful">Przycinanie powiodło się</string>
+    <string name="amoled_dark">Czarny</string>
+    <string name="start_trimming">Uruchom przycinanie</string>
+    <string name="default_sort">Domyślne</string>
+    <string name="trim_failed">Przycinanie nie powiodło się</string>
+    <string name="screen_recorder_annotation">Adnotacja nagrania ekranu</string>
 </resources>

@@ -13,7 +13,7 @@
     <string name="record_sound">Tallenna ääntä</string>
     <string name="naming_pattern">Nimeämiskaava</string>
     <string name="pause">Keskeytä</string>
-    <string name="nothing_here">Ei mitään täällä</string>
+    <string name="nothing_here">Täällä ei ole mitään</string>
     <string name="rename">Nimeä uudelleen</string>
     <string name="directory">Kansio</string>
     <string name="select_trim_range">Valitse trimmausalue</string>
