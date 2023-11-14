@@ -11,8 +11,8 @@ android {
         applicationId = "com.bnyro.recorder"
         minSdk = 21
         targetSdk = 33
-        versionCode = 16
-        versionName = "7.1"
+        versionCode = 17
+        versionName = "7.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
