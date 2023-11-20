@@ -7,7 +7,7 @@
     <string name="nothing_here">C\'est vide ici</string>
     <string name="record_sound">Enregistrer le son</string>
     <string name="directory">Répertoire</string>
-    <string name="choose_dir">Choisir un répertoire</string>
+    <string name="choose_dir">Choisissez un répertoire</string>
     <string name="audio_format">Format</string>
     <string name="recordings">Enregistrements</string>
     <string name="okay">D\'accord</string>
@@ -18,7 +18,7 @@
     <string name="delete_all">Tout supprimer</string>
     <string name="back">Retour</string>
     <string name="about">À propos</string>
-    <string name="author">Auteur</string>
+    <string name="author">Auteur·e</string>
     <string name="source_code">Code source</string>
     <string name="screen_recorder">Enregistreur d\'écran</string>
     <string name="recording_screen">Enregistrement de l\'écran…</string>
@@ -34,7 +34,7 @@
     <string name="pause">Pause</string>
     <string name="resume">Reprendre</string>
     <string name="recording_finished">Enregistrement terminé</string>
-    <string name="settings">Paramètres</string>
+    <string name="settings">Réglages</string>
     <string name="play">Jouer</string>
     <string name="options">Options</string>
     <string name="record">Enregistre</string>
