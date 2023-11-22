@@ -36,7 +36,7 @@
     <string name="video">Vídeo</string>
     <string name="okay">De acuerdo</string>
     <string name="file_name">Nombre del archivo</string>
-    <string name="irreversible">¿Estás seguro\? Esto no se puede deshacer.</string>
+    <string name="irreversible">¿Estás seguro? ¡Esto no se puede deshacer!</string>
     <string name="record_sound">Grabar sonido</string>
     <string name="screen_recorder">Grabador de pantalla</string>
     <string name="recording_audio">Grabando audio …</string>
