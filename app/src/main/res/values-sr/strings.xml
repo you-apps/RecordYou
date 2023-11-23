@@ -7,8 +7,8 @@
     <string name="rename">Преименуј</string>
     <string name="file_name">Назив фајла</string>
     <string name="delete">Избриши</string>
-    <string name="irreversible">Да ли сте сигурни\? Ово се не може поништити.</string>
-    <string name="nothing_here">Овде је празно</string>
+    <string name="irreversible">Да ли сте сигурни? Ово се не може поништити!</string>
+    <string name="nothing_here">Овде је празно.</string>
     <!-- Action -->
     <string name="record_sound">Сними звук</string>
     <string name="screen_recorder">Снимач екрана</string>
