@@ -2,7 +2,7 @@
 <resources>
     <string name="delete">מחיקה</string>
     <string name="cancel">ביטול</string>
-    <string name="nothing_here">אין כאן כלום</string>
+    <string name="nothing_here">אין כאן כלום.</string>
     <string name="stop">עצירה</string>
     <string name="choose_dir">בחירת תיקייה</string>
     <string name="sample_rate">קצב דגימה</string>
