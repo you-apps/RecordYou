@@ -9,7 +9,7 @@
     <string name="rename">إعادة تسمية</string>
     <string name="delete">حذف</string>
     <string name="irreversible">هل أنت متأكد؟ هذا لا يمكن التراجع عنه!</string>
-    <string name="nothing_here">لا شيء هنا</string>
+    <string name="nothing_here">لا شيء هنا.</string>
     <string name="microphone">ميكروفون</string>
     <string name="screen_recorder">مسجل الشاشة</string>
     <string name="record_screen">تسجيل الشاشة</string>
