@@ -7,8 +7,8 @@
     <string name="okay">Добре</string>
     <string name="cancel">Скасувати</string>
     <string name="file_name">Назва файлу</string>
-    <string name="irreversible">Ви впевнені\? Це не можна відмінити.</string>
-    <string name="nothing_here">Порожньо</string>
+    <string name="irreversible">Ви впевнені? Це не можна відмінити!</string>
+    <string name="nothing_here">Порожньо.</string>
     <string name="record_sound">Записати звук</string>
     <string name="directory">Каталог</string>
     <string name="choose_dir">Виберіть каталог</string>
