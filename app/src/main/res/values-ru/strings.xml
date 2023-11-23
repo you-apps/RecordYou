@@ -7,8 +7,8 @@
     <string name="rename">Переименовать</string>
     <string name="file_name">Имя файла</string>
     <string name="delete">Удалить</string>
-    <string name="irreversible">Вы уверены\? Это действие невозможно отменить.</string>
-    <string name="nothing_here">Пусто</string>
+    <string name="irreversible">Вы уверены? Это действие невозможно отменить!</string>
+    <string name="nothing_here">Пусто.</string>
     <string name="record_sound">Запись звука</string>
     <string name="directory">Папка</string>
     <string name="choose_dir">Выбрать папку</string>
