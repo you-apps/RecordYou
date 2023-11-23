@@ -11,7 +11,7 @@
     <string name="record">Grabar</string>
     <string name="play">Reproducir</string>
     <string name="back">Volver</string>
-    <string name="choose_dir">Seleccionar directorio</string>
+    <string name="choose_dir">Seleccionar carpeta</string>
     <string name="audio_format">Formato de audio</string>
     <string name="microphone">Micrófono</string>
     <string name="bitrate">Tasa de bits</string>
