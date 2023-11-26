@@ -71,4 +71,5 @@
     <string name="active_recording">Registration active</string>
     <string name="audio">Audio</string>
     <string name="lossless_audio">Registrator de audio sin perdita (WAV)</string>
+    <string name="irreversible">Es tu secur? Isto non potera esser disfacite!</string>
 </resources>
