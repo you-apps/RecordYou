@@ -72,4 +72,8 @@
     <string name="audio">Audio</string>
     <string name="lossless_audio">Registrator de audio sin perdita (WAV)</string>
     <string name="irreversible">Es tu secur? Isto non potera esser disfacite!</string>
+    <string name="lossless_audio_desc">Nota que altere optiones specific de audio non essera applicate durante le uso.</string>
+    <string name="screen_recorder_annotation_desc">Monstrar instrumento de annotation durante le registro de schermo</string>
+    <string name="cant_access_selected_folder">Non pote acceder al dossier seligite!</string>
+    <string name="screen_recorder_annotation">Annotation de registro de schermo</string>
 </resources>
