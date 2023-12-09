@@ -32,8 +32,8 @@
     <string name="audio_format">Format dźwięku</string>
     <string name="microphone">Mikrofon</string>
     <string name="no_audio">Brak dźwięku</string>
-    <string name="sample_rate">Próbkowanie</string>
-    <string name="bitrate">Przepływność</string>
+    <string name="sample_rate">Częstotliwość próbkowania</string>
+    <string name="bitrate">Bitrate</string>
     <string name="auto">Automatycznie</string>
     <string name="default_audio">Domyślnie</string>
     <string name="camcorder">Kamkorder</string>
@@ -74,4 +74,6 @@
     <string name="default_sort">Domyślne</string>
     <string name="trim_failed">Przycinanie nie powiodło się</string>
     <string name="screen_recorder_annotation">Adnotacja nagrania ekranu</string>
+    <string name="draw_mode">Tryb rysowania</string>
+    <string name="erase_mode">Tryb wymazywania</string>
 </resources>
