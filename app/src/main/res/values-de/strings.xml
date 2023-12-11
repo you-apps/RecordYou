@@ -7,8 +7,8 @@
     <string name="rename">Umbenennen</string>
     <string name="file_name">Dateiname</string>
     <string name="delete">Löschen</string>
-    <string name="irreversible">Bist du Sicher\? Es kann nicht Rückgängig gemacht werden.</string>
-    <string name="nothing_here">Hier ist nichts</string>
+    <string name="irreversible">Bist du Sicher? Das kann nicht Rückgängig gemacht werden.</string>
+    <string name="nothing_here">Hier ist nichts.</string>
     <string name="record_sound">Ton aufnehmen</string>
     <string name="directory">Verzeichnis</string>
     <string name="choose_dir">Pfad auswählen</string>
