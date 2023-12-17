@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -25,12 +26,13 @@ import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
 fun ToolbarView(
+    modifier: Modifier = Modifier,
     hideCanvas: (Boolean) -> Unit,
     canvasViewModel: CanvasViewModel = viewModel(),
     recorderModel: RecorderModel = viewModel()
 ) {
     var currentDrawMode by remember { mutableStateOf(DrawMode.Eraser) }
-    Card() {
+    Card(modifier) {
         Row {
             IconButton(
                 onClick = {
