@@ -9,10 +9,10 @@ import androidx.documentfile.provider.DocumentFile
 import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.obj.RecordingItemData
-import java.text.SimpleDateFormat
-import java.util.Calendar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.text.SimpleDateFormat
+import java.util.Calendar
 
 interface FileRepository {
     suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
@@ -39,9 +39,11 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         val items = withContext(Dispatchers.IO) {
             getVideoFiles().sortedBy(sortOrder).map {
                 val thumbnail =
-                    MediaMetadataRetriever().apply {
-                        setDataSource(context, it.uri)
-                    }.frameAtTime
+                    kotlin.runCatching {
+                        MediaMetadataRetriever().apply {
+                            setDataSource(context, it.uri)
+                        }.frameAtTime
+                    }.getOrNull()
                 RecordingItemData(it, RecorderType.VIDEO, thumbnail)
             }
         }
@@ -85,11 +87,11 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
             .replace("%t", currentTime)
             .replace("%m", currentTimeMillis.time.toString())
             .replace("%s", currentTimeMillis.time.div(1000).toString())
-        
+
         val outputDir = getOutputDir()
         if (!outputDir.exists() || !outputDir.canRead() || !outputDir.canWrite()) return null
 
-        Log.e("out",  Preferences.prefs.getString(Preferences.targetFolderKey, "").toString())
+        Log.e("out", Preferences.prefs.getString(Preferences.targetFolderKey, "").toString())
 
         val fullFileName = "$prefix$fileName.$extension"
         val existingFile = outputDir.findFile(fullFileName)
