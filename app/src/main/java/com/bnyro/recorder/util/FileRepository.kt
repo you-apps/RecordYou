@@ -24,15 +24,32 @@ interface FileRepository {
 }
 
 class FileRepositoryImpl(val context: Context) : FileRepository {
+    private val commonAudioExtensions = listOf(
+        ".mp3",
+        ".aac",
+        ".ogg",
+        ".wma",
+        ".3gp",
+        ".wav"
+    )
+
+    private val commonVideoExtensions = listOf(
+        ".mp4",
+        ".mov",
+        ".avi",
+        ".mkv",
+        ".webm",
+        ".mpg"
+    )
 
     private fun getVideoFiles(): List<DocumentFile> =
-        getOutputDir().listFiles().filter {
-            it.isFile && it.name.orEmpty().endsWith("mp4")
+        getOutputDir().listFiles().filter { file ->
+            file.isFile && commonVideoExtensions.any { file.name?.endsWith(it) ?: false }
         }
 
     private fun getAudioFiles(): List<DocumentFile> =
-        getOutputDir().listFiles().filter {
-            it.isFile && !it.name.orEmpty().endsWith("mp4")
+        getOutputDir().listFiles().filter { file ->
+            file.isFile && commonAudioExtensions.any { file.name?.endsWith(it) ?: false }
         }
 
     override suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
