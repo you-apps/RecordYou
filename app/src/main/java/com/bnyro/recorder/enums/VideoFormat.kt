@@ -17,6 +17,12 @@ data class VideoFormat(
                 MediaRecorder.VideoEncoder.H264,
                 "mp4",
                 MediaRecorder.OutputFormat.MPEG_4
+            ),
+            VideoFormat(
+                "webm (VP8)",
+                MediaRecorder.VideoEncoder.VP8,
+                "webm",
+                MediaRecorder.OutputFormat.WEBM
             )
         ).also {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -26,6 +32,16 @@ data class VideoFormat(
                         MediaRecorder.VideoEncoder.HEVC,
                         "mp4",
                         MediaRecorder.OutputFormat.MPEG_4
+                    )
+                )
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.add(
+                    VideoFormat(
+                        "webm (VP9)",
+                        MediaRecorder.VideoEncoder.VP9,
+                        "webm",
+                        MediaRecorder.OutputFormat.WEBM
                     )
                 )
             }
