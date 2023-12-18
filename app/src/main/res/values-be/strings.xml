@@ -3,7 +3,7 @@
     <string name="okay">ОК</string>
     <string name="cancel">Адмена</string>
     <string name="file_name">Імя файла</string>
-    <string name="nothing_here">Пуста</string>
+    <string name="nothing_here">Пуста.</string>
     <string name="record_sound">Запісаць гук</string>
     <string name="screen_recorder">Запіс экрана</string>
     <string name="recording_screen">Запіс экрана …</string>
@@ -36,7 +36,7 @@
     <string name="author">Аўтар</string>
     <string name="delete_all">Выдаліць усе</string>
     <string name="theme">Тэма</string>
-    <string name="irreversible">Вы ўпэўнены\? Гэтае дзеянне немагчыма адмяніць.</string>
+    <string name="irreversible">Вы ўпэўнены? Гэтае дзеянне немагчыма адмяніць!</string>
     <string name="resume">Аднавіць</string>
     <string name="record_screen">Запіс экрана</string>
     <string name="recording_audio">Запіс аўдыя…</string>

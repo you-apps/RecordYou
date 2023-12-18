@@ -3,9 +3,9 @@
     <string name="audio_format">Formát zvuku</string>
     <string name="recordings">Záznamy</string>
     <string name="file_name">Název souboru</string>
-    <string name="irreversible">Opravdu\? Tato akce je nevratná.</string>
+    <string name="irreversible">Opravdu? Tato akce je nevratná!</string>
     <string name="delete">Odstranit</string>
-    <string name="nothing_here">Nic zde není</string>
+    <string name="nothing_here">Nic zde není.</string>
     <string name="screen_recorder">Záznam obrazovky</string>
     <string name="recording_screen">Záznam obrazovky …</string>
     <string name="record_screen">Záznam obrazovky</string>

@@ -2,7 +2,7 @@
 <resources>
     <string name="delete">מחיקה</string>
     <string name="cancel">ביטול</string>
-    <string name="nothing_here">אין כאן כלום</string>
+    <string name="nothing_here">אין כאן כלום.</string>
     <string name="stop">עצירה</string>
     <string name="choose_dir">בחירת תיקייה</string>
     <string name="sample_rate">קצב דגימה</string>
@@ -13,7 +13,7 @@
     <string name="okay">אישור</string>
     <string name="rename">שינוי שם</string>
     <string name="file_name">שם קובץ</string>
-    <string name="irreversible">להמשיך\? זה בלתי הפיך.</string>
+    <string name="irreversible">להמשיך? זה בלתי הפיך!</string>
     <string name="record_sound">הקלטת שמע</string>
     <string name="open">פתיחה</string>
     <string name="screen_recorder">מקליט מסך</string>

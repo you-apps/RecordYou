@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="irreversible">Na pewno\? Nie można cofnąć tej akcji!</string>
-    <string name="nothing_here">Nic tutaj nie ma</string>
+    <string name="nothing_here">Nic tutaj nie ma.</string>
     <string name="record_sound">Nagraj dźwięk</string>
     <string name="screen_recorder">Nagrywanie ekranu</string>
     <string name="recording_screen">Nagrywanie ekranu …</string>
@@ -32,8 +32,8 @@
     <string name="audio_format">Format dźwięku</string>
     <string name="microphone">Mikrofon</string>
     <string name="no_audio">Brak dźwięku</string>
-    <string name="sample_rate">Próbkowanie</string>
-    <string name="bitrate">Przepływność</string>
+    <string name="sample_rate">Częstotliwość próbkowania</string>
+    <string name="bitrate">Bitrate</string>
     <string name="auto">Automatycznie</string>
     <string name="default_audio">Domyślnie</string>
     <string name="camcorder">Kamkorder</string>
@@ -52,11 +52,11 @@
     <string name="dark">Ciemny</string>
     <string name="light">Jasny</string>
     <string name="sort">Sortuj</string>
-    <string name="alphabetic">Alfabetyczny</string>
+    <string name="alphabetic">Alfabetycznie</string>
     <string name="alphabetic_rev">Alfabetycznie (odwrotnie)</string>
     <string name="size">Rozmiar</string>
     <string name="size_rev">Rozmiar (odwrotnie)</string>
-    <string name="naming_pattern">Nazwa pliku</string>
+    <string name="naming_pattern">Wzór nazewnictwa</string>
     <string name="naming_pattern_desc">%d: Data, %t: Czas, %s: Czas uniksowy w sekundach, %m: Czas uniksowy w milisekundach</string>
     <string name="select_trim_range">Wybierz zakres przycinania</string>
     <string name="trimming">Przycinanie…</string>
@@ -74,4 +74,6 @@
     <string name="default_sort">Domyślne</string>
     <string name="trim_failed">Przycinanie nie powiodło się</string>
     <string name="screen_recorder_annotation">Adnotacja nagrania ekranu</string>
+    <string name="draw_mode">Tryb rysowania</string>
+    <string name="erase_mode">Tryb wymazywania</string>
 </resources>

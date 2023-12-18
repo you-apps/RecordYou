@@ -24,13 +24,13 @@
     <string name="video">Video</string>
     <string name="recording_audio">Səs yazılır …</string>
     <string name="active_recording">Aktiv qeyd</string>
-    <string name="pause">Fasilə</string>
+    <string name="pause">Fasilə ver</string>
     <string name="resume">Davam etdir</string>
     <string name="recording_finished">Yazma bitdi</string>
     <string name="translation">Tərcümə</string>
     <string name="delete_all">Hamısın sil</string>
     <string name="record">Yaz</string>
-    <string name="play">Dinlə</string>
+    <string name="play">Səsləndir</string>
     <string name="back">Geri</string>
     <string name="settings">Tənzimləmələr</string>
     <string name="options">Seçimlər</string>

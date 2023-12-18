@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recordings">Inspelningar</string>
+    <string name="pause">Pausa</string>
+    <string name="rename">Byt namn</string>
+    <string name="alphabetic">Alfabetisk</string>
+    <string name="resume">Återuppta</string>
+    <string name="delete">Ta bort</string>
+    <string name="alphabetic_rev">Alfabetisk (omvänd)</string>
+    <string name="about">Om</string>
+    <string name="file_name">Filnamn</string>
+    <string name="cancel">Avbryt</string>
+    <string name="open">Öppna</string>
+    <string name="irreversible">Är du säker? Detta kan inte ångras!</string>
+    <string name="sort">Sortera</string>
+    <string name="delete_all">Ta bort alla</string>
+    <string name="settings">Inställningar</string>
+    <string name="author">Skapare</string>
+    <string name="share">Dela</string>
+    <string name="nothing_here">Ingenting här.</string>
+</resources>

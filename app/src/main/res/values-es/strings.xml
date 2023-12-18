@@ -11,7 +11,7 @@
     <string name="record">Grabar</string>
     <string name="play">Reproducir</string>
     <string name="back">Volver</string>
-    <string name="choose_dir">Seleccionar directorio</string>
+    <string name="choose_dir">Seleccionar carpeta</string>
     <string name="audio_format">Formato de audio</string>
     <string name="microphone">Micrófono</string>
     <string name="bitrate">Tasa de bits</string>
@@ -32,11 +32,11 @@
     <string name="recording_screen">Grabando pantalla …</string>
     <string name="stop">Detener</string>
     <string name="recordings">Grabaciones</string>
-    <string name="nothing_here">Aquí no hay nada</string>
+    <string name="nothing_here">Aquí no hay nada.</string>
     <string name="video">Vídeo</string>
     <string name="okay">De acuerdo</string>
     <string name="file_name">Nombre del archivo</string>
-    <string name="irreversible">¿Estás seguro\? Esto no se puede deshacer.</string>
+    <string name="irreversible">¿Estás seguro? ¡Esto no se puede deshacer!</string>
     <string name="record_sound">Grabar sonido</string>
     <string name="screen_recorder">Grabador de pantalla</string>
     <string name="recording_audio">Grabando audio …</string>
