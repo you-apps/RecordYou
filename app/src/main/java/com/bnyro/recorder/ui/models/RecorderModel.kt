@@ -68,7 +68,6 @@ class RecorderModel : ViewModel() {
             Preferences.prefs.getBoolean(Preferences.showOverlayAnnotationToolKey, false)
         if (supportsOverlay && showOverlayAnnotation) {
             canvasOverlay = CanvasOverlay(context)
-            canvasOverlay?.showAll()
         }
     }
 
