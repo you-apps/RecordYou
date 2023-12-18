@@ -1,5 +1,6 @@
 package com.bnyro.recorder.services
 
+import android.media.MediaRecorder
 import android.widget.Toast
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
@@ -23,15 +24,17 @@ class AudioRecorderService : RecorderService() {
             ).let {
                 setAudioSource(it)
             }
-
-            Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }?.let {
-                setAudioSamplingRate(it)
-                setAudioEncodingBitRate(it * 32 * 2)
+            if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS) {
+                Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
+                    ?.let {
+                        setAudioSamplingRate(it)
+                        setAudioEncodingBitRate(it * 32 * 2)
+                    }
+                Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
+                    setAudioEncodingBitRate(it)
+                }
             }
 
-            Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
-                setAudioEncodingBitRate(it)
-            }
             Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).let {
                 setAudioChannels(it)
             }
@@ -43,7 +46,11 @@ class AudioRecorderService : RecorderService() {
                 audioFormat.extension
             )
             if (outputFile == null) {
-                Toast.makeText(this@AudioRecorderService, R.string.cant_access_selected_folder, Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@AudioRecorderService,
+                    R.string.cant_access_selected_folder,
+                    Toast.LENGTH_LONG
+                ).show()
                 onDestroy()
                 return
             }
