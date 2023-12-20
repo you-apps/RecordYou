@@ -4,13 +4,16 @@ import android.os.Build
 import android.view.SoundEffectConstants
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -35,7 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
-import com.bnyro.recorder.obj.RecordingItemData
+import com.bnyro.recorder.obj.RecordingItem
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.common.DialogButton
 import com.bnyro.recorder.ui.common.FullscreenDialog
@@ -46,8 +49,229 @@ import com.bnyro.recorder.util.IntentHelper
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RecordingItem(
-    recordingItem: RecordingItemData,
+fun VideoRecordingItem(
+    recordingItem: RecordingItem.Video,
+    isSelected: Boolean,
+    onClick: (wasLongClick: Boolean) -> Unit,
+    onEdit: () -> Unit
+) {
+    val playerModel: PlayerModel = viewModel(factory = PlayerModel.Factory)
+    val context = LocalContext.current
+    val view = LocalView.current
+    val haptic = LocalHapticFeedback.current
+
+    var showRenameDialog by remember {
+        mutableStateOf(false)
+    }
+    var showDeleteDialog by remember {
+        mutableStateOf(false)
+    }
+    var showDropDown by remember {
+        mutableStateOf(false)
+    }
+    var showPlayer by remember {
+        mutableStateOf(false)
+    }
+    with(recordingItem) {
+        val cardColor =
+            if (!isSelected) {
+                MaterialTheme.colorScheme.surfaceColorAtElevation(
+                    5.dp
+                )
+            } else {
+                MaterialTheme.colorScheme.primary
+            }
+        ElevatedCard(
+            modifier = Modifier
+                .padding(vertical = 5.dp)
+                .clip(CardDefaults.shape)
+                .combinedClickable(
+                    onClick = {
+                        view.playSoundEffect(SoundEffectConstants.CLICK)
+                        onClick.invoke(false)
+                    },
+                    onLongClick = {
+                        haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                        onClick.invoke(true)
+                    }
+                ),
+            colors = CardDefaults.cardColors(
+                containerColor = cardColor,
+                contentColor = contentColorFor(cardColor)
+            )
+        ) {
+            Column() {
+                thumbnail?.let { thumbnail ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(0.8f)
+                            .padding(8.dp)
+                            .clip(RoundedCornerShape(8.dp))
+                            .clickable { showPlayer = true },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Image(
+                            modifier = Modifier.fillMaxSize(),
+                            bitmap = thumbnail.asImageBitmap(),
+                            contentDescription = null,
+                            contentScale = ContentScale.Crop,
+                            alignment = Alignment.Center
+                        )
+                        FilledIconButton(onClick = { showPlayer = true }) {
+                            Icon(
+                                imageVector = Icons.Default.PlayArrow,
+                                contentDescription = stringResource(R.string.play)
+                            )
+                        }
+                    }
+                }
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.Start,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp, horizontal = 10.dp)
+                ) {
+                    Text(
+                        modifier = Modifier.weight(1f),
+                        text = recordingFile.name.orEmpty()
+                    )
+                    Box {
+                        ClickableIcon(
+                            imageVector = Icons.Default.MoreVert,
+                            contentDescription = stringResource(R.string.options)
+                        ) {
+                            showDropDown = true
+                        }
+
+                        DropdownMenu(
+                            expanded = showDropDown,
+                            onDismissRequest = { showDropDown = false }
+                        ) {
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.open))
+                                },
+                                onClick = {
+                                    playerModel.stopPlaying()
+                                    IntentHelper.openFile(context, recordingFile)
+                                    showDropDown = false
+                                }
+                            )
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                DropdownMenuItem(
+                                    text = {
+                                        Text(stringResource(R.string.trim))
+                                    },
+                                    onClick = {
+                                        onEdit.invoke()
+                                        showDropDown = false
+                                    }
+                                )
+                            }
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.share))
+                                },
+                                onClick = {
+                                    playerModel.stopPlaying()
+                                    IntentHelper.shareFile(context, recordingFile)
+                                    showDropDown = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.rename))
+                                },
+                                onClick = {
+                                    playerModel.stopPlaying()
+                                    showRenameDialog = true
+                                    showDropDown = false
+                                }
+                            )
+                            DropdownMenuItem(
+                                text = {
+                                    Text(stringResource(R.string.delete))
+                                },
+                                onClick = {
+                                    playerModel.stopPlaying()
+                                    showDeleteDialog = true
+                                    showDropDown = false
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+
+        if (showRenameDialog) {
+            var fileName by remember {
+                mutableStateOf(recordingFile.name.orEmpty())
+            }
+
+            AlertDialog(
+                onDismissRequest = {
+                    showRenameDialog = false
+                },
+                title = {
+                    Text(stringResource(R.string.rename))
+                },
+                text = {
+                    OutlinedTextField(
+                        value = fileName,
+                        onValueChange = {
+                            fileName = it
+                        },
+                        label = {
+                            Text(stringResource(R.string.file_name))
+                        }
+                    )
+                },
+                confirmButton = {
+                    DialogButton(stringResource(R.string.okay)) {
+                        recordingFile.renameTo(fileName)
+                        playerModel.loadFiles()
+                        showRenameDialog = false
+                    }
+                },
+                dismissButton = {
+                    DialogButton(stringResource(R.string.cancel)) {
+                        showRenameDialog = false
+                    }
+                }
+            )
+        }
+
+        if (showDeleteDialog) {
+            ConfirmationDialog(
+                title = R.string.delete,
+                onDismissRequest = { showDeleteDialog = false }
+            ) {
+                playerModel.stopPlaying()
+                recordingFile.delete()
+                playerModel.loadFiles()
+            }
+        }
+
+        if (showPlayer) {
+            FullscreenDialog(
+                title = recordingFile.name.orEmpty().substringBeforeLast("."),
+                onDismissRequest = {
+                    showPlayer = false
+                }
+            ) {
+                VideoView(videoUri = recordingFile.uri)
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun AudioRecordingItem(
+    recordingItem: RecordingItem.Audio,
     isSelected: Boolean,
     onClick: (wasLongClick: Boolean) -> Unit,
     onEdit: () -> Unit,
@@ -99,17 +323,10 @@ fun RecordingItem(
             )
         ) {
             Column() {
-                thumbnail?.let { thumbnail ->
-                    Image(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(0.8f)
-                            .padding(8.dp)
-                            .clip(RoundedCornerShape(8.dp)),
-                        bitmap = thumbnail.asImageBitmap(),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        alignment = Alignment.Center
+                samples?.let { amplitudes ->
+                    StaticVisualizer(
+                        modifier = Modifier.fillMaxWidth().height(64.dp),
+                        amplitudes = amplitudes
                     )
                 }
                 Row(
@@ -127,11 +344,7 @@ fun RecordingItem(
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = stringResource(R.string.play)
                     ) {
-                        if (isVideo) {
-                            showPlayer = true
-                        } else {
-                            startPlayingAudio.invoke()
-                        }
+                        startPlayingAudio.invoke()
                     }
                     Box {
                         ClickableIcon(

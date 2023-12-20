@@ -2,13 +2,16 @@ package com.bnyro.recorder.obj
 
 import android.graphics.Bitmap
 import androidx.documentfile.provider.DocumentFile
-import com.bnyro.recorder.enums.RecorderType
 
-data class RecordingItemData(
-    val recordingFile: DocumentFile,
-    val recorderType: RecorderType,
-    val thumbnail: Bitmap? = null
-) {
-    val isAudio get() = recorderType == RecorderType.AUDIO
-    val isVideo get() = recorderType == RecorderType.VIDEO
+sealed class RecordingItem(open val recordingFile: DocumentFile) {
+    data class Video(
+        override val recordingFile: DocumentFile,
+        val thumbnail: Bitmap? = null
+    ) : RecordingItem(recordingFile)
+
+    data class Audio(
+        override val recordingFile: DocumentFile,
+        val duration: Long? = null,
+        val samples: List<Int>? = null
+    ) : RecordingItem(recordingFile)
 }

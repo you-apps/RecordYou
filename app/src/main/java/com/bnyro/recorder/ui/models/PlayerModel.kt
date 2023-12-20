@@ -14,23 +14,23 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.bnyro.recorder.App
 import com.bnyro.recorder.enums.SortOrder
-import com.bnyro.recorder.obj.RecordingItemData
+import com.bnyro.recorder.obj.RecordingItem
 import com.bnyro.recorder.util.FileRepository
 import com.bnyro.recorder.util.PlayerHelper
-import java.io.IOException
 import kotlinx.coroutines.launch
+import java.io.IOException
 
 class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
     var isPlaying by mutableStateOf(false)
     var player by mutableStateOf<MediaPlayer?>(null)
     var currentPlayingFile by mutableStateOf<DocumentFile?>(null)
 
-    var selectedFiles by mutableStateOf(listOf<RecordingItemData>())
+    var selectedFiles by mutableStateOf(listOf<RecordingItem>())
 
     private var sortOrder = SortOrder.DEFAULT
 
-    var audioRecordingItems by mutableStateOf(listOf<RecordingItemData>())
-    var screenRecordingItems by mutableStateOf(listOf<RecordingItemData>())
+    var audioRecordingItems by mutableStateOf(listOf<RecordingItem.Audio>())
+    var screenRecordingItems by mutableStateOf(listOf<RecordingItem.Video>())
 
     init {
         loadFiles()

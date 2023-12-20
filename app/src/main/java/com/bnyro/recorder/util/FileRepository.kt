@@ -6,17 +6,18 @@ import android.media.MediaMetadataRetriever
 import android.util.Log
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
-import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.enums.SortOrder
-import com.bnyro.recorder.obj.RecordingItemData
+import com.bnyro.recorder.obj.RecordingItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import linc.com.amplituda.Amplituda
+import linc.com.amplituda.AmplitudaResult
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
 interface FileRepository {
-    suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
-    suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData>
+    suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItem.Video>
+    suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItem.Audio>
     suspend fun deleteFiles(files: List<DocumentFile>)
     suspend fun deleteAllFiles()
     fun getOutputFile(extension: String, prefix: String = ""): DocumentFile?
@@ -30,7 +31,8 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         ".ogg",
         ".wma",
         ".3gp",
-        ".wav"
+        ".wav",
+        ".m4a"
     )
 
     private val commonVideoExtensions = listOf(
@@ -42,6 +44,8 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         ".mpg"
     )
 
+    private val amplituda = Amplituda(context)
+
     private fun getVideoFiles(): List<DocumentFile> =
         getOutputDir().listFiles().filter { file ->
             file.isFile && commonVideoExtensions.any { file.name?.endsWith(it) ?: false }
@@ -52,7 +56,7 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
             file.isFile && commonAudioExtensions.any { file.name?.endsWith(it) ?: false }
         }
 
-    override suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
+    override suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItem.Video> {
         val items = withContext(Dispatchers.IO) {
             getVideoFiles().sortedBy(sortOrder).map {
                 val thumbnail =
@@ -61,15 +65,22 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
                             setDataSource(context, it.uri)
                         }.frameAtTime
                     }.getOrNull()
-                RecordingItemData(it, RecorderType.VIDEO, thumbnail)
+                RecordingItem.Video(it, thumbnail)
             }
         }
         return items
     }
 
-    override suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
+    override suspend fun getAudioRecordingItems(sortOrder: SortOrder): List<RecordingItem.Audio> {
         val items = withContext(Dispatchers.IO) {
-            getAudioFiles().sortedBy(sortOrder).map { RecordingItemData(it, RecorderType.AUDIO) }
+            getAudioFiles().sortedBy(sortOrder).map {
+                val result = amplituda.processAudio(
+                    it.uri.path
+                ).get()
+                val duration = result.getAudioDuration(AmplitudaResult.DurationUnit.SECONDS)
+                val samples = result.amplitudesAsList()
+                RecordingItem.Audio(it, duration = duration, samples = samples)
+            }
         }
         return items
     }

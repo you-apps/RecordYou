@@ -70,7 +70,9 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.1.1")
     implementation("androidx.compose.material:material-icons-extended:1.4.3")
 
-    //Navigation
+    implementation("com.github.lincollincol:amplituda:2.2.2")
+
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.6.0")
 
     // Testing

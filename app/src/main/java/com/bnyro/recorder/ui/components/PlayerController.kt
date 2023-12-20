@@ -2,8 +2,10 @@ package com.bnyro.recorder.ui.components
 
 import android.text.format.DateUtils
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.Player
@@ -49,6 +52,47 @@ fun PlayerController(exoPlayer: ExoPlayer) {
                         tempSliderPosition = null
                     }
                 )
+                Text(
+                    positionAndDuration.second?.let { DateUtils.formatElapsedTime(it / 1000) }
+                        ?: ""
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun WaveformPlayerController(exoPlayer: ExoPlayer, samples: List<Int>) {
+    with(exoPlayer) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            val positionAndDuration by positionAndDurationState()
+            Row(Modifier.weight(1f), verticalAlignment = Alignment.CenterVertically) {
+                Text(DateUtils.formatElapsedTime(positionAndDuration.first / 1000))
+                Column(Modifier.weight(1f)) {
+                    var tempSliderPosition by remember { mutableStateOf<Float?>(null) }
+                    StaticVisualizer(
+                        modifier = Modifier.height(100.dp).fillMaxWidth(),
+                        amplitudes = samples
+                    )
+                    Slider(
+                        modifier = Modifier.fillMaxWidth(),
+                        value = tempSliderPosition ?: positionAndDuration.first.toFloat(),
+                        onValueChange = { tempSliderPosition = it },
+                        valueRange = 0f.rangeTo(
+                            positionAndDuration.second?.toFloat() ?: Float.MAX_VALUE
+                        ),
+                        onValueChangeFinished = {
+                            tempSliderPosition?.let {
+                                exoPlayer.seekTo(it.toLong())
+                            }
+                            tempSliderPosition = null
+                        }
+                    )
+                }
                 Text(
                     positionAndDuration.second?.let { DateUtils.formatElapsedTime(it / 1000) }
                         ?: ""

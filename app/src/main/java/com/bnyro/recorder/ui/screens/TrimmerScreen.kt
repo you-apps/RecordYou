@@ -50,11 +50,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.TrimmerState
+import com.bnyro.recorder.obj.RecordingItem
 import com.bnyro.recorder.ui.components.PlayerController
+import com.bnyro.recorder.ui.components.WaveformPlayerController
 import com.bnyro.recorder.ui.components.playPause
 import com.bnyro.recorder.ui.models.TrimmerModel
 import com.google.android.exoplayer2.MediaItem
@@ -64,13 +65,13 @@ import com.google.android.exoplayer2.ui.PlayerView
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationGraphicsApi::class)
 @Composable
-fun TrimmerScreen(onDismissRequest: () -> Unit, inputFile: DocumentFile) {
+fun TrimmerScreen(onDismissRequest: () -> Unit, inputItem: RecordingItem) {
     val trimmerModel: TrimmerModel = viewModel(factory = TrimmerModel.Factory)
     val sheetState = rememberModalBottomSheetState(true)
 
     DisposableEffect(Unit) {
         with(trimmerModel.player) {
-            val mediaItem = MediaItem.Builder().setUri(inputFile.uri).build()
+            val mediaItem = MediaItem.Builder().setUri(inputItem.recordingFile.uri).build()
             setMediaItem(mediaItem)
             prepare()
             onDispose {
@@ -96,7 +97,7 @@ fun TrimmerScreen(onDismissRequest: () -> Unit, inputFile: DocumentFile) {
                     stringResource(R.string.select_trim_range)
                 )
             })
-            if (inputFile.type?.startsWith("video") == true) {
+            if (inputItem is RecordingItem.Video) {
                 Box(
                     modifier = Modifier
                         .weight(1f)
@@ -110,8 +111,10 @@ fun TrimmerScreen(onDismissRequest: () -> Unit, inputFile: DocumentFile) {
                         }
                     }, modifier = Modifier.fillMaxSize())
                 }
+                PlayerController(trimmerModel.player)
+            } else if (inputItem is RecordingItem.Audio) {
+                WaveformPlayerController(trimmerModel.player, inputItem.samples!!)
             }
-            PlayerController(trimmerModel.player)
 
             Row(
                 Modifier
@@ -192,7 +195,12 @@ fun TrimmerScreen(onDismissRequest: () -> Unit, inputFile: DocumentFile) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 val context = LocalContext.current
                 Button(
-                    onClick = { trimmerModel.startTrimmer(context, inputFile = inputFile) },
+                    onClick = {
+                        trimmerModel.startTrimmer(
+                            context,
+                            inputFile = inputItem.recordingFile
+                        )
+                    },
                     enabled = (trimmerModel.endTimeStamp != null)
                 ) {
                     Text(stringResource(R.string.start_trimming))
