@@ -30,7 +30,8 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         ".ogg",
         ".wma",
         ".3gp",
-        ".wav"
+        ".wav",
+        ".m4a"
     )
 
     private val commonVideoExtensions = listOf(
