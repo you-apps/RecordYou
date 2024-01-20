@@ -213,6 +213,7 @@ abstract class RecorderService : Service() {
         }
 
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+        stopSelf()
         super.onDestroy()
     }
 
