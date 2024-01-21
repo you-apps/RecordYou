@@ -16,12 +16,13 @@ import com.bnyro.recorder.ui.models.ThemeModel
 import com.bnyro.recorder.ui.theme.RecordYouTheme
 
 class MainActivity : ComponentActivity() {
+    private var initialRecorder = RecorderType.NONE
+    private var exit = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val themeModel: ThemeModel by viewModels()
 
-        val initialRecorder = when (intent?.getStringExtra("action")) {
+        initialRecorder = when (intent?.getStringExtra("action")) {
             "audio" -> RecorderType.AUDIO
             "screen" -> RecorderType.VIDEO
             else -> RecorderType.NONE
@@ -49,6 +50,22 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (initialRecorder != RecorderType.NONE) {
+            exit = true
+            initialRecorder = RecorderType.NONE
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (exit) {
+            exit = false
+            finish()
         }
     }
 }
