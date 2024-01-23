@@ -1,2 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="recordings">Salvestused</string>
+    <string name="okay">Sobib</string>
+    <string name="delete">Kustuta</string>
+    <string name="irreversible">Kas sa oled kindel? Seda tegevust ei saa tagasi pöörata!</string>
+    <string name="nothing_here">Siin pole mitte midagi.</string>
+    <string name="cancel">Katkesta</string>
+    <string name="rename">Muuda nime</string>
+    <string name="file_name">Faili nimi</string>
+</resources>
