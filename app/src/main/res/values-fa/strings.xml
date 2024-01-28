@@ -13,7 +13,7 @@
     <string name="record_sound">ضبط صدا</string>
     <string name="naming_pattern">الگوی نام‌گذاری</string>
     <string name="pause">مکث</string>
-    <string name="nothing_here">چیزی اینجا نیست</string>
+    <string name="nothing_here">چیزی اینجا نیست.</string>
     <string name="rename">تغییر نام</string>
     <string name="directory">پوشه</string>
     <string name="select_trim_range">انتخاب ناحیه برش</string>
@@ -46,7 +46,7 @@
     <string name="file_name">نام پرونده</string>
     <string name="cancel">انصراف</string>
     <string name="open">بازکردن</string>
-    <string name="irreversible">آیا مطمئن هستید؟ این کار برگشت‌ناپذیر است.</string>
+    <string name="irreversible">آیا مطمئن هستید؟ این کار برگشت‌ناپذیر است!</string>
     <string name="not_set">تنظیم نشده</string>
     <string name="bitrate">نرخ بیت</string>
     <string name="recording_screen">درحال ضبط صفحه …</string>
