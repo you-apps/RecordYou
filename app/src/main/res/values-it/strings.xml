@@ -9,8 +9,8 @@
     <string name="recordings">Registrazioni</string>
     <string name="rename">Rinomina</string>
     <string name="file_name">Nome del file</string>
-    <string name="nothing_here">Non c\'è niente qui</string>
-    <string name="irreversible">Sei sicuro\? Quest\'azione non può essere annullata.</string>
+    <string name="nothing_here">Non c\'è niente qui.</string>
+    <string name="irreversible">Sei sicuro? Quest\'azione non può essere annullata!</string>
     <string name="delete">Elimina</string>
     <string name="record_screen">Registra lo schermo</string>
     <string name="no_audio">Nessun audio</string>
@@ -58,8 +58,22 @@
     <string name="alphabetic_rev">Alfabetico (al contrario)</string>
     <string name="naming_pattern_desc">%d: Data, %t: Tempo, %s: Secondi Epoch, %m: Millisecondi Epoch</string>
     <string name="naming_pattern">Modello di denominazione</string>
-    <string name="amoled_dark">Nero (Amoled)</string>
+    <string name="amoled_dark">Nero</string>
     <string name="screen_recorder_annotation">Annotazione della registrazione dello schermo</string>
     <string name="screen_recorder_annotation_desc">Mostra lo strumento di annotazione durante la registrazione dello schermo</string>
     <string name="default_sort">Predefinito</string>
+    <string name="draw_mode">Modalità disegno</string>
+    <string name="erase_mode">Modalità cancellazione</string>
+    <string name="audio_visualizer_timestamps">Timestamp del visualizzatore audio</string>
+    <string name="audio_visualizer_timestamps_description">Mostra i timestamp nella timeline del visualizzatore audio.</string>
+    <string name="trim">Taglia</string>
+    <string name="start_trimming">Inizia a tagliare</string>
+    <string name="stop_timestamp">Fine:</string>
+    <string name="not_set">Non impostato</string>
+    <string name="start_timestamp">Inizio:</string>
+    <string name="select_trim_range">Seleziona l\'intervallo di taglio</string>
+    <string name="trim_failed">Taglio fallito</string>
+    <string name="trimming">Tagliando…</string>
+    <string name="trim_successful">Taglio riuscito</string>
+    <string name="cant_access_selected_folder">Impossibile accedere alla cartella selezionata!</string>
 </resources>
