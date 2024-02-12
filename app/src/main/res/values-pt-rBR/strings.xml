@@ -7,8 +7,8 @@
     <string name="rename">Renomear</string>
     <string name="file_name">Nome do arquivo</string>
     <string name="delete">Excluir</string>
-    <string name="irreversible">Você tem certeza\? Isso não pode ser desfeito.</string>
-    <string name="nothing_here">Nada por aqui</string>
+    <string name="irreversible">Você tem certeza? Isso não pode ser desfeito!</string>
+    <string name="nothing_here">Nada por aqui.</string>
     <string name="directory">Diretório</string>
     <string name="choose_dir">Escolher diretório</string>
     <string name="screen_recorder">Gravador de tela</string>
@@ -64,16 +64,16 @@
     <string name="audio_visualizer_timestamps">Visualização de marcas de tempo do áudio</string>
     <string name="audio_visualizer_timestamps_description">Exibir a visualização das marcas de tempo de áudio na linha de tempo.</string>
     <string name="default_sort">Padrão</string>
-    <string name="select_trim_range">Selecione o intervalo de corte</string>
+    <string name="select_trim_range">Selecione o intervalo de aparar</string>
     <string name="draw_mode">Modo de Desenho</string>
-    <string name="trimming">Cortando…</string>
+    <string name="trimming">Aparando…</string>
     <string name="trim">Aparar</string>
     <string name="start_timestamp">Iniciar:</string>
     <string name="cant_access_selected_folder">Não é possível acessar a pasta selecionada!</string>
     <string name="stop_timestamp">Parar:</string>
     <string name="not_set">Não definido</string>
-    <string name="trim_successful">Corte feito com sucesso</string>
-    <string name="start_trimming">Comece a aparar</string>
+    <string name="trim_successful">Aparar feito com sucesso</string>
+    <string name="start_trimming">Iniciar Aparação</string>
     <string name="erase_mode">Modo Apagar</string>
-    <string name="trim_failed">Corte Falhou</string>
+    <string name="trim_failed">Aparar Falhou</string>
 </resources>
