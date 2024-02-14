@@ -1,6 +1,5 @@
 package com.bnyro.recorder.ui.components
 
-import android.text.format.DateUtils
 import android.view.SoundEffectConstants
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,10 +13,9 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,14 +25,26 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.bnyro.recorder.R
 import com.bnyro.recorder.ui.models.PlayerModel
-import kotlinx.coroutines.delay
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
 
 @Composable
-fun MiniPlayer(playerModel: PlayerModel = viewModel()) {
+fun MiniPlayer(inputFile: DocumentFile, playerModel: PlayerModel = viewModel()) {
     val view = LocalView.current
+    DisposableEffect(inputFile) {
+        with(playerModel.player) {
+            val mediaItem = MediaItem.Builder().setUri(inputFile.uri).build()
+            setMediaItem(mediaItem)
+            playWhenReady = true
+            prepare()
+            onDispose {
+                stop()
+            }
+        }
+    }
     ElevatedCard(
         modifier = Modifier
             .height(140.dp)
@@ -47,77 +57,52 @@ fun MiniPlayer(playerModel: PlayerModel = viewModel()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                val fileName = playerModel.currentPlayingFile?.name.orEmpty()
+                val fileName = inputFile.name.orEmpty()
                 Text(
                     modifier = Modifier.weight(1f),
                     text = fileName.substringBeforeLast(".").takeIf {
                         it.isNotBlank()
                     } ?: fileName
                 )
-                FloatingActionButton(
-                    onClick = {
-                        view.playSoundEffect(SoundEffectConstants.CLICK)
-                        if (playerModel.isPlaying) {
-                            playerModel.pausePlaying()
-                        } else {
-                            playerModel.resumePlaying()
+                with(playerModel.player) {
+
+                    var playState by remember { mutableStateOf(false) }
+
+                    DisposableEffect(key1 = this) {
+                        val listener = object : Player.Listener {
+                            override fun onIsPlayingChanged(isPlaying: Boolean) {
+                                playState = isPlaying
+                            }
+                        }
+                        addListener(listener)
+                        onDispose {
+                            removeListener(listener)
                         }
                     }
-                ) {
-                    Icon(
-                        if (playerModel.isPlaying) Icons.Default.Pause else Icons.Default.PlayArrow,
-                        contentDescription = stringResource(
-                            if (playerModel.isPlaying) R.string.pause else R.string.resume
-                        )
-                    )
+                    FloatingActionButton(
+                        onClick = {
+                            view.playSoundEffect(SoundEffectConstants.CLICK)
+                            playPause()
+                        }
+                    ) {
+                        if (playState) {
+                            Icon(
+                                Icons.Default.Pause,
+                                contentDescription = stringResource(id = com.bnyro.recorder.R.string.pause)
+                            )
+                        } else {
+                            Icon(
+                                Icons.Default.PlayArrow,
+                                contentDescription = stringResource(id = com.bnyro.recorder.R.string.play)
+                            )
+                        }
+                    }
                 }
             }
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            playerModel.player?.let { player ->
-                var position by remember {
-                    mutableStateOf(0)
-                }
-
-                LaunchedEffect(Unit) {
-                    while (true) {
-                        runCatching {
-                            position = player.currentPosition
-                        }
-                        delay(50)
-                    }
-                }
-
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    val duration = player.duration.toFloat()
-                    Text(
-                        text = DateUtils.formatElapsedTime(
-                            (position / 1000).toLong()
-                        )
-                    )
-                    Slider(
-                        modifier = Modifier
-                            .padding(horizontal = 10.dp)
-                            .weight(1f),
-                        value = position.toFloat(),
-                        onValueChange = {
-                            runCatching {
-                                player.seekTo(it.toInt())
-                                position = it.toInt()
-                            }
-                        },
-                        valueRange = 0f..duration
-                    )
-                    Text(
-                        text = DateUtils.formatElapsedTime(
-                            (duration / 1000).toLong()
-                        )
-                    )
-                }
-            }
+            PlayerController(exoPlayer = playerModel.player)
         }
     }
 }

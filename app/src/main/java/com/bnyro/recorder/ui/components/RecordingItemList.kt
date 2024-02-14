@@ -23,7 +23,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.documentfile.provider.DocumentFile
@@ -39,10 +38,10 @@ fun RecordingItemList(
     isVideoList: Boolean,
     playerModel: PlayerModel = viewModel()
 ) {
-    val context = LocalContext.current
     val icon = if (isVideoList) Icons.Default.VideoFile else Icons.Default.AudioFile
     var chosenFile by remember { mutableStateOf<DocumentFile?>(null) }
     var showTrimmer by remember { mutableStateOf(false) }
+    var showMiniPlayer by remember { mutableStateOf(false) }
     if (items.isNotEmpty()) {
         Column {
             LazyColumn(
@@ -71,17 +70,18 @@ fun RecordingItemList(
                             showTrimmer = true
                         }
                     ) {
-                        playerModel.startPlaying(context, it.recordingFile)
+                        chosenFile = it.recordingFile
+                        showMiniPlayer = true
                     }
                 }
             }
-            if (!isVideoList) {
+            if (!isVideoList && chosenFile != null) {
                 AnimatedVisibility(
                     modifier = Modifier
                         .padding(bottom = 10.dp),
-                    visible = playerModel.currentPlayingFile != null
+                    visible = showMiniPlayer
                 ) {
-                    MiniPlayer()
+                    MiniPlayer(chosenFile!!)
                 }
             }
         }
