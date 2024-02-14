@@ -1,8 +1,6 @@
 package com.bnyro.recorder.ui.models
 
 import android.content.Context
-import android.media.MediaPlayer
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -16,13 +14,11 @@ import com.bnyro.recorder.App
 import com.bnyro.recorder.enums.SortOrder
 import com.bnyro.recorder.obj.RecordingItemData
 import com.bnyro.recorder.util.FileRepository
-import com.bnyro.recorder.util.PlayerHelper
-import java.io.IOException
+import com.google.android.exoplayer2.ExoPlayer
 import kotlinx.coroutines.launch
 
-class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
-    var isPlaying by mutableStateOf(false)
-    var player by mutableStateOf<MediaPlayer?>(null)
+class PlayerModel(context: Context, private val fileRepository: FileRepository) : ViewModel() {
+    var player = ExoPlayer.Builder(context).build()
     var currentPlayingFile by mutableStateOf<DocumentFile?>(null)
 
     var selectedFiles by mutableStateOf(listOf<RecordingItemData>())
@@ -62,55 +58,15 @@ class PlayerModel(private val fileRepository: FileRepository) : ViewModel() {
         }
     }
 
-    fun startPlaying(context: Context, file: DocumentFile) {
-        stopPlaying()
-
-        currentPlayingFile = file
-        player = getMediaPlayer().apply {
-            try {
-                context.contentResolver.openFileDescriptor(file.uri, "r")?.use {
-                    setDataSource(it.fileDescriptor)
-                }
-                prepare()
-                start()
-            } catch (e: IOException) {
-                Log.e("reading file", e.toString())
-            }
-        }
-        player?.setOnCompletionListener {
-            stopPlaying()
-        }
-        isPlaying = true
-    }
-
     fun stopPlaying() {
-        currentPlayingFile = null
-        player?.release()
-        player = null
-        isPlaying = false
-    }
-
-    fun pausePlaying() {
-        player?.pause()
-        isPlaying = false
-    }
-
-    fun resumePlaying() {
-        player?.start()
-        isPlaying = true
-    }
-
-    private fun getMediaPlayer(): MediaPlayer {
-        return MediaPlayer().apply {
-            setAudioAttributes(PlayerHelper.getAudioAttributes())
-        }
+        player.stop()
     }
 
     companion object {
         val Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as App)
-                PlayerModel(application.fileRepository)
+                PlayerModel(application, application.fileRepository)
             }
         }
     }
