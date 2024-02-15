@@ -18,4 +18,27 @@
     <string name="author">Skapare</string>
     <string name="share">Dela</string>
     <string name="nothing_here">Ingenting här.</string>
+    <string name="okay">Okej</string>
+    <string name="record_sound">Spela in ljud</string>
+    <string name="screen_recorder">Skärminspelning</string>
+    <string name="recording_screen">Spelar in skärm …</string>
+    <string name="record_screen">Spela in skärm</string>
+    <string name="recording_audio">Spelar in ljud …</string>
+    <string name="stop">Stopp</string>
+    <string name="audio">Ljud</string>
+    <string name="video">Video</string>
+    <string name="active_recording">Pågående inspelning</string>
+    <string name="recording_finished">Inspelning avslutad</string>
+    <string name="record">Spela in</string>
+    <string name="play">Play</string>
+    <string name="back">Bakåt</string>
+    <string name="size">Storlek</string>
+    <string name="size_rev">Storlek (omvänd)</string>
+    <string name="options">Val</string>
+    <string name="directory">Mapp</string>
+    <string name="choose_dir">Välj mapp</string>
+    <string name="audio_format">Ljudformat</string>
+    <string name="microphone">Mikrofon</string>
+    <string name="no_audio">Inget ljud</string>
+    <string name="sample_rate">Samplingsfrekvens</string>
 </resources>
