@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import com.bnyro.recorder.App
 import com.bnyro.recorder.enums.SortOrder
@@ -18,8 +19,10 @@ import com.bnyro.recorder.util.FileRepository
 import kotlinx.coroutines.launch
 
 class PlayerModel(context: Context, private val fileRepository: FileRepository) : ViewModel() {
-    var player = ExoPlayer.Builder(context).build()
-    var currentPlayingFile by mutableStateOf<DocumentFile?>(null)
+    @UnstableApi
+    var player = ExoPlayer.Builder(context)
+        .setUsePlatformDiagnostics(false)
+        .build()
 
     var selectedFiles by mutableStateOf(listOf<RecordingItemData>())
 
