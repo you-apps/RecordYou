@@ -52,14 +52,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
+import androidx.media3.ui.PlayerView
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.TrimmerState
 import com.bnyro.recorder.ui.components.PlayerController
 import com.bnyro.recorder.ui.components.playPause
 import com.bnyro.recorder.ui.models.TrimmerModel
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.ui.PlayerView
 
 @RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationGraphicsApi::class)

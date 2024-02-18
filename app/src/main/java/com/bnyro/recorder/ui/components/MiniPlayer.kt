@@ -27,9 +27,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import com.bnyro.recorder.ui.models.PlayerModel
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
 
 @Composable
 fun MiniPlayer(inputFile: DocumentFile, playerModel: PlayerModel = viewModel()) {
