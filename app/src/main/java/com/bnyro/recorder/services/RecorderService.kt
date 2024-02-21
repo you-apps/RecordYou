@@ -3,7 +3,6 @@ package com.bnyro.recorder.services
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.PendingIntent
-import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -19,14 +18,19 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
 import androidx.documentfile.provider.DocumentFile
+import androidx.lifecycle.LifecycleService
+import androidx.lifecycle.lifecycleScope
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.receivers.FinishedNotificationReceiver
 import com.bnyro.recorder.ui.MainActivity
 import com.bnyro.recorder.util.NotificationHelper
 import com.bnyro.recorder.util.PermissionHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-abstract class RecorderService : Service() {
+abstract class RecorderService : LifecycleService() {
     abstract val notificationTitle: String
 
     private val binder = LocalBinder()
@@ -61,7 +65,10 @@ abstract class RecorderService : Service() {
         }
     }
 
-    override fun onBind(intent: Intent?): IBinder? = binder
+    override fun onBind(intent: Intent): IBinder? {
+        super.onBind(intent)
+        return binder
+    }
 
     inner class LocalBinder : Binder() {
         // Return this instance of [BackgroundMode] so clients can call public methods
@@ -94,6 +101,8 @@ abstract class RecorderService : Service() {
             unregisterReceiver(recorderReceiver)
         }
         registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION))
+
+        super.onCreate()
     }
 
     private fun buildNotification(): NotificationCompat.Builder {
@@ -149,12 +158,13 @@ abstract class RecorderService : Service() {
         )
     }
 
-    private fun getPendingIntent(intent: Intent, requestCode: Int): PendingIntent = PendingIntent.getBroadcast(
-        this,
-        requestCode,
-        intent,
-        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-    )
+    private fun getPendingIntent(intent: Intent, requestCode: Int): PendingIntent =
+        PendingIntent.getBroadcast(
+            this,
+            requestCode,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
 
     open fun start() {
         runCatching {
@@ -193,28 +203,33 @@ abstract class RecorderService : Service() {
         NotificationManagerCompat.from(this)
             .cancel(NotificationHelper.RECORDING_NOTIFICATION_ID)
 
-        recorder?.runCatching {
-            stop()
-            release()
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                recorder?.runCatching {
+                    stop()
+                    release()
+                }
+                recorder = null
+                fileDescriptor?.close()
+            }
+
+            createRecordingFinishedNotification()
+            outputFile = null
+
+            runCatching {
+                unregisterReceiver(recorderReceiver)
+            }
+
+            runCatching {
+                audioManager.stopBluetoothSco()
+                unregisterReceiver(bluetoothReceiver)
+            }
+
+            ServiceCompat.stopForeground(this@RecorderService, ServiceCompat.STOP_FOREGROUND_REMOVE)
+            stopSelf()
+
+            super.onDestroy()
         }
-        recorder = null
-        fileDescriptor?.close()
-
-        createRecordingFinishedNotification()
-        outputFile = null
-
-        runCatching {
-            unregisterReceiver(recorderReceiver)
-        }
-
-        runCatching {
-            audioManager.stopBluetoothSco()
-            unregisterReceiver(bluetoothReceiver)
-        }
-
-        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
-        stopSelf()
-        super.onDestroy()
     }
 
     @SuppressLint("MissingPermission")
