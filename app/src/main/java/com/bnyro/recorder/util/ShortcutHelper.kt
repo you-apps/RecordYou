@@ -8,6 +8,7 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import com.bnyro.recorder.R
+import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.ui.MainActivity
 
 object ShortcutHelper {
@@ -16,8 +17,8 @@ object ShortcutHelper {
         @DrawableRes val iconRes: Int,
         @StringRes val label: Int
     ) {
-        object RecordAudio : AppShortcut("audio", R.drawable.ic_audio, R.string.record_sound)
-        object RecordScreen : AppShortcut("screen", R.drawable.ic_screen, R.string.record_screen)
+        object RecordAudio : AppShortcut(RecorderType.AUDIO.name, R.drawable.ic_audio, R.string.record_sound)
+        object RecordScreen : AppShortcut(RecorderType.VIDEO.name, R.drawable.ic_screen, R.string.record_screen)
     }
     private val shortcuts = listOf(AppShortcut.RecordAudio, AppShortcut.RecordScreen)
 
@@ -29,7 +30,7 @@ object ShortcutHelper {
             .setIntent(
                 Intent(context, MainActivity::class.java).apply {
                     this.action = Intent.ACTION_VIEW
-                    putExtra("action", action)
+                    putExtra(MainActivity.EXTRA_ACTION_KEY, action)
                 }
             )
             .build()
