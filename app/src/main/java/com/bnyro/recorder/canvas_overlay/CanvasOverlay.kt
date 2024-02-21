@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.annotation.RequiresApi
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.platform.ComposeView
@@ -40,6 +41,8 @@ class CanvasOverlay(context: Context) {
     private var initialY = 0
     private var initialTouchX = 0f
     private var initialTouchY = 0f
+
+    @OptIn(ExperimentalComposeUiApi::class)
     private val toolbarView = ComposeView(context).apply {
         val activity = context as ComponentActivity
         setViewTreeLifecycleOwner(activity)
