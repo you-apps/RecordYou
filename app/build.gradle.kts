@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.lifecycle:lifecycle-service:2.6.1")
     implementation("androidx.documentfile:documentfile:1.0.1")
     implementation("com.google.android.exoplayer:exoplayer:2.19.0")
 
