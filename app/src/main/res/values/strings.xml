@@ -29,6 +29,8 @@
     <string name="back">Back</string>
     <!-- Sort order -->
     <string name="sort">Sort</string>
+    <string name="modified">Modified</string>
+    <string name="modified_rev">Modified (reversed)</string>
     <string name="alphabetic">Alphabetic</string>
     <string name="alphabetic_rev">Alphabetic (reversed)</string>
     <string name="size">Size</string>

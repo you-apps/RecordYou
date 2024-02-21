@@ -67,7 +67,8 @@ fun PlayerScreen(
                         }
 
                         val sortOptions = listOf(
-                            SortOrder.DEFAULT to R.string.default_sort,
+                            SortOrder.MODIFIED to R.string.modified,
+                            SortOrder.MODIFIED_REV to R.string.modified_rev,
                             SortOrder.ALPHABETIC to R.string.alphabetic,
                             SortOrder.ALPHABETIC_REV to R.string.alphabetic_rev,
                             SortOrder.SIZE to R.string.size,

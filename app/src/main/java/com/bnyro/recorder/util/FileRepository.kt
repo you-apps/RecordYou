@@ -138,7 +138,8 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
 
 fun List<DocumentFile>.sortedBy(sortOrder: SortOrder): List<DocumentFile> {
     return when (sortOrder) {
-        SortOrder.DEFAULT -> this
+        SortOrder.MODIFIED -> sortedBy { it.lastModified() }
+        SortOrder.MODIFIED_REV -> sortedByDescending { it.lastModified() }
         SortOrder.ALPHABETIC -> sortedBy { it.name }
         SortOrder.ALPHABETIC_REV -> sortedByDescending { it.name }
         SortOrder.SIZE_REV -> sortedBy { it.length() }

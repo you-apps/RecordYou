@@ -1,7 +1,8 @@
 package com.bnyro.recorder.enums
 
 enum class SortOrder {
-    DEFAULT,
+    MODIFIED,
+    MODIFIED_REV,
     ALPHABETIC,
     ALPHABETIC_REV,
     SIZE,
