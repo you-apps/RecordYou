@@ -23,7 +23,7 @@ class PlayerModel(context: Context, private val fileRepository: FileRepository) 
 
     var selectedFiles by mutableStateOf(listOf<RecordingItemData>())
 
-    private var sortOrder = SortOrder.DEFAULT
+    private var sortOrder = SortOrder.MODIFIED
 
     var audioRecordingItems by mutableStateOf(listOf<RecordingItemData>())
     var screenRecordingItems by mutableStateOf(listOf<RecordingItemData>())
