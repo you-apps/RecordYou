@@ -13,15 +13,19 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.ExoPlayer
 import com.bnyro.recorder.App
 import com.bnyro.recorder.enums.TrimmerState
 import com.bnyro.recorder.util.MediaTrimmer
-import com.google.android.exoplayer2.ExoPlayer
 import kotlinx.coroutines.launch
 
 class TrimmerModel(context: Context) : ViewModel() {
 
-    val player = ExoPlayer.Builder(context).build()
+    @UnstableApi
+    val player = ExoPlayer.Builder(context)
+        .setUsePlatformDiagnostics(false)
+        .build()
 
     var startTimeStamp by mutableLongStateOf(0L)
     var endTimeStamp by mutableStateOf<Long?>(null)
