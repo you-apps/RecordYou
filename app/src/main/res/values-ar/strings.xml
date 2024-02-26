@@ -76,4 +76,6 @@
     <string name="trim_failed">فشل القص</string>
     <string name="draw_mode">وضع الرسم</string>
     <string name="erase_mode">وضع الممحاة</string>
+    <string name="modified">تم تعديله</string>
+    <string name="modified_rev">تم تعديله(معكوس)</string>
 </resources>
