@@ -76,4 +76,6 @@
     <string name="start_trimming">Kırpmaya Başla</string>
     <string name="erase_mode">Silme Modu</string>
     <string name="trim_failed">Kırpma Başarısız</string>
+    <string name="modified">Değiştirildi</string>
+    <string name="modified_rev">Değiştirildi (ters)</string>
 </resources>
