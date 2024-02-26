@@ -76,4 +76,6 @@
     <string name="trim_failed">Oříznutí selhalo</string>
     <string name="draw_mode">Režim kreslení</string>
     <string name="erase_mode">Režim gumy</string>
+    <string name="modified_rev">Upraveno (obráceně)</string>
+    <string name="modified">Upraveno</string>
 </resources>
