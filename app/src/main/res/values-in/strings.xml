@@ -76,4 +76,6 @@
     <string name="recordings">Rekaman</string>
     <string name="microphone">Mikrofon</string>
     <string name="okay">Oke</string>
+    <string name="modified">Terakhir diubah</string>
+    <string name="modified_rev">Terakhir diubah (terbalik)</string>
 </resources>
