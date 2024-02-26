@@ -76,4 +76,6 @@
     <string name="draw_mode">ड्रा मोड</string>
     <string name="erase_mode">मिटाएँ मोड</string>
     <string name="cant_access_selected_folder">चयनित फोल्डर तक नहीं पहुंच सकते!</string>
+    <string name="modified">संशोधित</string>
+    <string name="modified_rev">संशोधित (उलटा हुआ)</string>
 </resources>
