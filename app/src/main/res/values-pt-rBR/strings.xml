@@ -24,7 +24,7 @@
     <string name="active_recording">Gravação ativa</string>
     <string name="pause">Pausa</string>
     <string name="resume">Retomar</string>
-    <string name="record_sound">Gravador de áudio</string>
+    <string name="record_sound">Gravar áudio</string>
     <string name="recording_audio">Gravando áudio …</string>
     <string name="settings">Configurações</string>
     <string name="record">Gravar</string>
@@ -43,9 +43,9 @@
     <string name="size">Tamanho</string>
     <string name="size_rev">Tamanho (invertida)</string>
     <string name="auto">Automático</string>
-    <string name="default_audio">Predefinido</string>
-    <string name="camcorder">Câmara de vídeo</string>
-    <string name="unprocessed">Inalterado</string>
+    <string name="default_audio">Padrão</string>
+    <string name="camcorder">Câmera filmadora</string>
+    <string name="unprocessed">Não processado</string>
     <string name="mono">Mono</string>
     <string name="stereo">Estéreo</string>
     <string name="lossless_audio">Áudio sem perdas (WAV)</string>
@@ -76,4 +76,6 @@
     <string name="start_trimming">Iniciar Aparação</string>
     <string name="erase_mode">Modo Apagar</string>
     <string name="trim_failed">Aparar Falhou</string>
+    <string name="modified">Modificada</string>
+    <string name="modified_rev">Modificada (invertida)</string>
 </resources>
