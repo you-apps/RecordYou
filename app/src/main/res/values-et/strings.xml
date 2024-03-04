@@ -76,4 +76,6 @@
     <string name="alphabetic_rev">Tähestikuline järjekord (tagurpidi)</string>
     <string name="size_rev">Suuruse alusel (tagurpidi)</string>
     <string name="size">Suuruse alusel</string>
+    <string name="modified_rev">Muudetud (tagasi pööratud)</string>
+    <string name="modified">Muudetud</string>
 </resources>
