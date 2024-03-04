@@ -76,4 +76,6 @@
     <string name="active_recording">ضبط فعال</string>
     <string name="audio">صدا</string>
     <string name="lossless_audio">ضبط صدا بدون افت (WAV)</string>
+    <string name="modified">اصلاح شده</string>
+    <string name="modified_rev">اصلاح شده (معکوس)</string>
 </resources>
