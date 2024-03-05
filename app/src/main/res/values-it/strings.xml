@@ -76,4 +76,6 @@
     <string name="trimming">Tagliando…</string>
     <string name="trim_successful">Taglio riuscito</string>
     <string name="cant_access_selected_folder">Impossibile accedere alla cartella selezionata!</string>
+    <string name="modified">Modificato</string>
+    <string name="modified_rev">Modificato (invertito)</string>
 </resources>
