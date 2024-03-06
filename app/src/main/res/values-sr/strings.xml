@@ -81,4 +81,6 @@
     <string name="trim_failed">Сечење није успело</string>
     <string name="draw_mode">Режим цртања</string>
     <string name="erase_mode">Режим брисања</string>
+    <string name="modified">Измењено</string>
+    <string name="modified_rev">Измењено (обрнуто)</string>
 </resources>
