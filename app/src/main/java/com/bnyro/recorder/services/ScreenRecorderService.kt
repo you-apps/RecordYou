@@ -56,6 +56,13 @@ class ScreenRecorderService : RecorderService() {
             Log.e("Media Projection Error", e.toString())
             onDestroy()
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            mediaProjection!!.registerCallback(object : MediaProjection.Callback() {
+                override fun onStop() {
+                    onDestroy()
+                }
+            }, null)
+        }
     }
 
     override fun start() {

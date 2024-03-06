@@ -91,16 +91,28 @@ abstract class RecorderService : LifecycleService() {
         runCatching {
             unregisterReceiver(bluetoothReceiver)
         }
-        registerReceiver(
-            bluetoothReceiver,
-            IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            registerReceiver(
+                bluetoothReceiver,
+                IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED),
+                RECEIVER_EXPORTED
+            )
+        } else {
+            registerReceiver(
+                bluetoothReceiver,
+                IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)
+            )
+        }
         audioManager.startBluetoothSco()
 
         runCatching {
             unregisterReceiver(recorderReceiver)
         }
-        registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION))
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION), RECEIVER_EXPORTED)
+        } else {
+            registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION))
+        }
 
         super.onCreate()
     }

@@ -1,6 +1,8 @@
 package com.bnyro.recorder.services
 
+import android.content.pm.ServiceInfo
 import android.media.MediaRecorder
+import android.os.Build
 import android.widget.Toast
 import com.bnyro.recorder.App
 import com.bnyro.recorder.R
@@ -13,6 +15,13 @@ import com.bnyro.recorder.util.Preferences
 class AudioRecorderService : RecorderService() {
     override val notificationTitle: String
         get() = getString(R.string.recording_audio)
+
+    override val fgServiceType: Int?
+        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+        } else {
+            null
+        }
 
     override fun start() {
         val audioFormat = AudioFormat.getCurrent()
