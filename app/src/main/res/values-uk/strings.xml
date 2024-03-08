@@ -76,4 +76,6 @@
     <string name="trim_failed">Не вдалося обрізати</string>
     <string name="draw_mode">Режим малювання</string>
     <string name="erase_mode">Режим стирання</string>
+    <string name="modified">Змінено</string>
+    <string name="modified_rev">Змінено (навпаки)</string>
 </resources>
