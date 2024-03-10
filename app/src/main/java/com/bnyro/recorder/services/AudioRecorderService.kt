@@ -24,15 +24,16 @@ class AudioRecorderService : RecorderService() {
             ).let {
                 setAudioSource(it)
             }
-            if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS) {
-                Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
-                    ?.let {
+            Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
+                ?.let {
+                    if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || listOf(8000, 12000, 16000, 24000, 48000).contains(it)) {
                         setAudioSamplingRate(it)
-                        setAudioEncodingBitRate(it * 32 * 2)
                     }
-                Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
-                    setAudioEncodingBitRate(it)
+                    setAudioEncodingBitRate(it * 32 * 2)
                 }
+
+            Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
+                setAudioEncodingBitRate(it)
             }
 
             Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).let {
