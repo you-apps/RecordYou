@@ -28,14 +28,17 @@ class MediaTrimmer {
     ): Boolean {
         assert(endMs > startMs && endMs > 0)
         return withContext(Dispatchers.IO) {
-            val extension = inputFile.uri.path!!.split('.').lastOrNull()
+            var extension = inputFile.uri.path!!.split('.').lastOrNull()
+            if (extension == "aac") { // Special case if trimming raw AAC input mux it into MP4 container
+                extension = "mp4"
+            }
             val outputFile = (context.applicationContext as App).fileRepository.getOutputFile(
                 extension = extension ?: "mp4",
                 prefix = "Trim_"
             )
             val inputPfd = context.contentResolver.openFileDescriptor(inputFile.uri, "r")!!
             val outputPfd = context.contentResolver.openFileDescriptor(outputFile!!.uri, "w")!!
-            trimMediaFile(inputPfd, outputPfd, startMs, endMs)
+            trimMediaFile(inputPfd, outputPfd, startMs, endMs, extension)
         }
     }
 
@@ -46,14 +49,25 @@ class MediaTrimmer {
         inputPfd: ParcelFileDescriptor,
         outputPfd: ParcelFileDescriptor,
         startMs: Long,
-        endMs: Long
+        endMs: Long,
+        extension: String?
     ): Boolean {
         return withContext(Dispatchers.IO) {
             val extractor = MediaExtractor()
             extractor.setDataSource(inputPfd.fileDescriptor)
             val trackCount = extractor.trackCount
+            var outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
+            if (extension == "3gp") {
+                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_3GPP
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && extension == "ogg") {
+                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_OGG
+            }
+            if (extension == "webm") { // No need to add API level 21 here as the whole app is minSdk 21
+                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM
+            }
             val muxer =
-                MediaMuxer(outputPfd.fileDescriptor, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
+                MediaMuxer(outputPfd.fileDescriptor, outputFormat)
             val indexMap = SparseIntArray(trackCount)
             var bufferSize = -1
 
