@@ -30,7 +30,7 @@ class MediaTrimmer {
         return withContext(Dispatchers.IO) {
             var extension = inputFile.uri.path!!.split('.').lastOrNull()
             if (extension == "aac") { // Special case if trimming raw AAC input mux it into MP4 container
-                extension = "mp4"
+                extension = "m4a"
             }
             val outputFile = (context.applicationContext as App).fileRepository.getOutputFile(
                 extension = extension ?: "mp4",
