@@ -47,7 +47,8 @@
 
         <service
             android:name=".services.AudioRecorderService"
-            android:exported="false" android:foregroundServiceType="microphone" />
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
 
         <service
             android:name=".services.LosslessRecorderService"
