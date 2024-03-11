@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.lifecycleScope
@@ -91,28 +92,18 @@ abstract class RecorderService : LifecycleService() {
         runCatching {
             unregisterReceiver(bluetoothReceiver)
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            registerReceiver(
-                bluetoothReceiver,
-                IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED),
-                RECEIVER_EXPORTED
-            )
-        } else {
-            registerReceiver(
-                bluetoothReceiver,
-                IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)
-            )
-        }
+        ContextCompat.registerReceiver(
+            this,
+            bluetoothReceiver,
+            IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED),
+            RECEIVER_EXPORTED
+        )
         audioManager.startBluetoothSco()
 
         runCatching {
             unregisterReceiver(recorderReceiver)
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION), RECEIVER_EXPORTED)
-        } else {
-            registerReceiver(recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION))
-        }
+        ContextCompat.registerReceiver(this, recorderReceiver, IntentFilter(RECORDER_INTENT_ACTION), RECEIVER_EXPORTED)
 
         super.onCreate()
     }
