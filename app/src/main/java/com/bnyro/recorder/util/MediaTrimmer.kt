@@ -29,7 +29,7 @@ class MediaTrimmer {
         assert(endMs > startMs && endMs > 0)
         return withContext(Dispatchers.IO) {
             var extension = inputFile.uri.path!!.split('.').lastOrNull()
-            if (extension == "aac") { // Special case if trimming raw AAC input mux it into MP4 container
+            if (extension == "aac" || (extension == "ogg" && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)) { // Special case if trimming raw AAC or ogg with no muxer available input mux it into MP4 container.
                 extension = "m4a"
             }
             val outputFile = (context.applicationContext as App).fileRepository.getOutputFile(
@@ -56,18 +56,15 @@ class MediaTrimmer {
             val extractor = MediaExtractor()
             extractor.setDataSource(inputPfd.fileDescriptor)
             val trackCount = extractor.trackCount
-            var outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
-            if (extension == "3gp") {
-                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_3GPP
-            }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && extension == "ogg") {
-                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_OGG
-            }
-            if (extension == "webm") { // No need to add API level 21 here as the whole app is minSdk 21
-                outputFormat = MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM
-            }
-            val muxer =
-                MediaMuxer(outputPfd.fileDescriptor, outputFormat)
+            val muxer = MediaMuxer(
+                outputPfd.fileDescriptor,
+                when (extension) {
+                    "3gp" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_3GPP
+                    "ogg" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_OGG // How do I also handle (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    "webm" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM
+                    else -> MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
+                }
+            )
             val indexMap = SparseIntArray(trackCount)
             var bufferSize = -1
 
