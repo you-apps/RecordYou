@@ -36,7 +36,7 @@
     <string name="bitrate">Jumlah bit per detik</string>
     <string name="auto">Otomatis</string>
     <string name="lossless_audio">Perekam audio lossless (WAV)</string>
-    <string name="nothing_here">Tak ada apa pun di sini.</string>
+    <string name="nothing_here">Tidak ada apa pun di sini.</string>
     <string name="record_sound">Rekam suara</string>
     <string name="record_screen">Rekam layar</string>
     <string name="cancel">Batalkan</string>
