@@ -51,7 +51,8 @@
 
         <service
             android:name=".services.LosslessRecorderService"
-            android:exported="false" android:foregroundServiceType="microphone" />
+            android:exported="false"
+            android:foregroundServiceType="microphone" />
 
         <receiver
             android:name=".receivers.FinishedNotificationReceiver"
