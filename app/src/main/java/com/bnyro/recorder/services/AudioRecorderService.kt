@@ -26,10 +26,11 @@ class AudioRecorderService : RecorderService() {
             }
             Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
                 ?.let {
-                    if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || listOf(8000, 12000, 16000, 24000, 48000).contains(it)) {
-                        setAudioSamplingRate(it)
+                    val sampleratePreference = it
+                    if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || listOf(8000, 12000, 16000, 24000, 48000).contains(sampleratePreference)) {
+                        setAudioSamplingRate(sampleratePreference)
                     }
-                    setAudioEncodingBitRate(it * 32 * 2)
+                    setAudioEncodingBitRate(sampleratePreference * 32 * 2)
                 }
 
             Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
