@@ -1,6 +1,7 @@
 package com.bnyro.recorder.services
 
 import android.annotation.SuppressLint
+import android.content.pm.ServiceInfo
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
@@ -21,6 +22,13 @@ import kotlin.experimental.or
 class LosslessRecorderService : RecorderService() {
     override val notificationTitle: String
         get() = getString(R.string.recording_audio)
+
+    override val fgServiceType: Int?
+        get() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+        } else {
+            null
+        }
 
     private var audioRecorder: AudioRecord? = null
     private var recorderThread: Thread? = null
