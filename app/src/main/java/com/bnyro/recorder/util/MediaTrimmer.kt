@@ -60,7 +60,7 @@ class MediaTrimmer {
                 outputPfd.fileDescriptor,
                 when (extension) {
                     "3gp" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_3GPP
-                    "ogg" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_OGG // How do I also handle (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                    "ogg" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_OGG
                     "webm" -> MediaMuxer.OutputFormat.MUXER_OUTPUT_WEBM
                     else -> MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4
                 }
