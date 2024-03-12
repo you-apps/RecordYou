@@ -18,20 +18,19 @@ class AudioRecorderService : RecorderService() {
         val audioFormat = AudioFormat.getCurrent()
 
         recorder = PlayerHelper.newRecorder(this).apply {
-            Preferences.prefs.getInt(
+            val audioSource = Preferences.prefs.getInt(
                 Preferences.audioDeviceSourceKey,
                 AudioDeviceSource.DEFAULT.value
-            ).let {
-                setAudioSource(it)
-            }
-            Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
-                ?.let {
-                    val sampleratePreference = it
-                    if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || listOf(8000, 12000, 16000, 24000, 48000).contains(sampleratePreference)) {
-                        setAudioSamplingRate(sampleratePreference)
-                    }
-                    setAudioEncodingBitRate(sampleratePreference * 32 * 2)
+            )
+            setAudioSource(audioSource)
+
+            val sampleRatePref = Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
+            if (sampleRatePref != null) {
+                if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || opusSampleRates.contains(sampleRatePref)) {
+                    setAudioSamplingRate(sampleRatePref)
                 }
+                setAudioEncodingBitRate(sampleRatePref * 32 * 2)
+            }
 
             Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
                 setAudioEncodingBitRate(it)
@@ -71,4 +70,8 @@ class AudioRecorderService : RecorderService() {
     }
 
     override fun getCurrentAmplitude() = recorder?.maxAmplitude
+
+    companion object {
+        private val opusSampleRates =  listOf(8000, 12000, 16000, 24000, 48000)
+    }
 }
