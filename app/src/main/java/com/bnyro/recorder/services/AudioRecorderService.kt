@@ -25,15 +25,14 @@ class AudioRecorderService : RecorderService() {
             setAudioSource(audioSource)
 
             val sampleRatePref = Preferences.prefs.getInt(Preferences.audioSampleRateKey, -1).takeIf { it > 0 }
-            if (sampleRatePref != null) {
-                if (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || opusSampleRates.contains(sampleRatePref)) {
-                    setAudioSamplingRate(sampleRatePref)
-                }
-                setAudioEncodingBitRate(sampleRatePref * 32 * 2)
+            val audioBitrate = Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }
+            if (sampleRatePref != null && (audioFormat.codec != MediaRecorder.AudioEncoder.OPUS || sampleRatePref in opusSampleRates)) {
+                setAudioSamplingRate(sampleRatePref)
             }
-
-            Preferences.prefs.getInt(Preferences.audioBitrateKey, -1).takeIf { it > 0 }?.let {
-                setAudioEncodingBitRate(it)
+            if (audioBitrate != null) {
+                setAudioEncodingBitRate(audioBitrate)
+            } else if (sampleRatePref != null) {
+                setAudioEncodingBitRate(sampleRatePref * 32 * 2)
             }
 
             Preferences.prefs.getInt(Preferences.audioChannelsKey, AudioChannels.MONO.value).let {
