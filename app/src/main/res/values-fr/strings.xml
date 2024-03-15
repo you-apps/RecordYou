@@ -4,7 +4,7 @@
     <string name="file_name">Nom de fichier</string>
     <string name="delete">Supprimer</string>
     <string name="irreversible">Êtes-vous sûr ? Cela ne peut pas être annulé !</string>
-    <string name="nothing_here">C\'est vide ici</string>
+    <string name="nothing_here">C\'est vide ici.</string>
     <string name="record_sound">Enregistrer le son</string>
     <string name="directory">Répertoire</string>
     <string name="choose_dir">Choisissez un répertoire</string>
@@ -59,15 +59,15 @@
     <string name="alphabetic_rev">Alphabétique (inversé)</string>
     <string name="size_rev">Taille (inversé)</string>
     <string name="naming_pattern_desc">%d : Date, %t : Temps, %s : Secondes epoch, %m : Millisecondes epoch</string>
-    <string name="amoled_dark">Noir (Amoled)</string>
+    <string name="amoled_dark">Noir</string>
     <string name="screen_recorder_annotation">Annotation d\'enregistrement d\'écran</string>
     <string name="screen_recorder_annotation_desc">Afficher l\'outil d\'annotation pendant l\'enregistrement d\'écran</string>
     <string name="draw_mode">Mode dessin</string>
-    <string name="start_timestamp">Commencer :</string>
+    <string name="start_timestamp">Commencer:</string>
     <string name="cant_access_selected_folder">Impossible d\'accéder au dossier sélectionné !</string>
     <string name="audio_visualizer_timestamps">Horodatage du visualiseur audio</string>
     <string name="audio_visualizer_timestamps_description">Afficher les horodatages dans la ligne de temps du visualiseur audio.</string>
-    <string name="stop_timestamp">Arrêter :</string>
+    <string name="stop_timestamp">Arrêter:</string>
     <string name="not_set">Non défini</string>
     <string name="default_sort">Par Défaut</string>
 </resources>

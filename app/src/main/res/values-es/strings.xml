@@ -76,4 +76,6 @@
     <string name="trim_failed">Recorte fallido</string>
     <string name="draw_mode">Modo de dibujo</string>
     <string name="erase_mode">Modo de borrado</string>
+    <string name="modified_rev">Modificado (inverso)</string>
+    <string name="modified">Modificado</string>
 </resources>

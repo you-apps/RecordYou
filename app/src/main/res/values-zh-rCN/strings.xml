@@ -76,4 +76,6 @@
     <string name="trim_failed">剪辑失败</string>
     <string name="draw_mode">绘图模式</string>
     <string name="erase_mode">擦除模式</string>
+    <string name="modified">修改日期</string>
+    <string name="modified_rev">修改日期（倒序）</string>
 </resources>

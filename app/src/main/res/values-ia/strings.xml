@@ -76,4 +76,6 @@
     <string name="screen_recorder_annotation_desc">Monstrar instrumento de annotation durante le registro de schermo</string>
     <string name="cant_access_selected_folder">Non pote acceder al dossier seligite!</string>
     <string name="screen_recorder_annotation">Annotation de registro de schermo</string>
+    <string name="modified">Modificate</string>
+    <string name="modified_rev">Modificate (invertite)</string>
 </resources>

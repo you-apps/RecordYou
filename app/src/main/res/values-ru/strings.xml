@@ -52,11 +52,11 @@
     <string name="stereo">Стерео</string>
     <string name="lossless_audio_desc">Примечание: другие параметры аудио не будут применены при включенном кодировщике WAV.</string>
     <string name="lossless_audio">Кодировщик без потери качества (WAV)</string>
-    <string name="alphabetic_rev">Алфавитный (обратный)</string>
+    <string name="alphabetic_rev">По алфавиту (наоборот)</string>
     <string name="sort">Сортировать</string>
-    <string name="size_rev">Размер (обратный)</string>
-    <string name="alphabetic">Алфавитный</string>
-    <string name="size">Размер</string>
+    <string name="size_rev">По размеру (наоборот)</string>
+    <string name="alphabetic">По алфавиту</string>
+    <string name="size">По размеру</string>
     <string name="naming_pattern">Образец именования</string>
     <string name="naming_pattern_desc">%d: Дата, %t: Время, %s: Эпоха секунд, %m: Эпоха миллисекунд</string>
     <string name="amoled_dark">Чёрная</string>
@@ -77,4 +77,6 @@
     <string name="trim_failed">Обрезка не удалась</string>
     <string name="draw_mode">Режим рисования</string>
     <string name="erase_mode">Режим ластика</string>
+    <string name="modified_rev">По дате изменения (наоборот)</string>
+    <string name="modified">По дате изменения</string>
 </resources>
