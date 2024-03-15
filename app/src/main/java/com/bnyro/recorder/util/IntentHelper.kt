@@ -36,17 +36,20 @@ object IntentHelper {
     }
 
     private fun getFileUri(context: Context, file: DocumentFile): Uri {
-        return when (Preferences.prefs.getString(Preferences.targetFolderKey, "")) {
-            "", null -> {
+        return if (file.uri.path!!.startsWith(
+                (context.getExternalFilesDir(null) ?: context.filesDir).path
+            )
+        ) {
                 val rawFile = File(
                     context.getExternalFilesDir(null) ?: context.filesDir,
                     file.name.orEmpty()
                 )
                 Log.e("using raw", rawFile.absolutePath)
                 FileProvider.getUriForFile(context, context.packageName + ".provider", rawFile)
+        } else {
+            file.uri
             }
-            else -> file.uri
-        }
+
     }
 
     fun openHref(context: Context, url: String) {

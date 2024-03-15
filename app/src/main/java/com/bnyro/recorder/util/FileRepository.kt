@@ -21,6 +21,7 @@ interface FileRepository {
     suspend fun deleteAllFiles()
     fun getOutputFile(extension: String, prefix: String = ""): DocumentFile?
     fun getOutputDir(): DocumentFile
+    fun getOutputDirs(): List<DocumentFile>
 }
 
 class FileRepositoryImpl(val context: Context) : FileRepository {
@@ -44,13 +45,17 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
     )
 
     private fun getVideoFiles(): List<DocumentFile> =
-        getOutputDir().listFiles().filter { file ->
+        getOutputDirs().flatMap {
+            it.listFiles().filter { file ->
             file.isFile && commonVideoExtensions.any { file.name?.endsWith(it) ?: false }
+        }
         }
 
     private fun getAudioFiles(): List<DocumentFile> =
-        getOutputDir().listFiles().filter { file ->
+        getOutputDirs().flatMap {
+            it.listFiles().filter { file ->
             file.isFile && commonAudioExtensions.any { file.name?.endsWith(it) ?: false }
+            }
         }
 
     override suspend fun getVideoRecordingItems(sortOrder: SortOrder): List<RecordingItemData> {
@@ -85,8 +90,10 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
 
     override suspend fun deleteAllFiles() {
         withContext(Dispatchers.IO) {
-            getOutputDir().listFiles().forEach {
+            getOutputDirs().map { files ->
+                files.listFiles().forEach {
                 if (it.isFile) it.delete()
+            }
             }
         }
     }
@@ -117,15 +124,16 @@ class FileRepositoryImpl(val context: Context) : FileRepository {
         return existingFile ?: outputDir.createFile("audio/*", fullFileName)
     }
 
-    override fun getOutputDir(): DocumentFile {
+    override fun getOutputDir(): DocumentFile = getOutputDirs().last()
+    override fun getOutputDirs(): List<DocumentFile> {
         val prefDir = Preferences.prefs.getString(Preferences.targetFolderKey, "")
+        val externalFilesDir = run {
+            val dir = context.getExternalFilesDir(null) ?: context.filesDir
+            DocumentFile.fromFile(dir)
+        }
         return when {
-            prefDir.isNullOrBlank() -> {
-                val dir = context.getExternalFilesDir(null) ?: context.filesDir
-                DocumentFile.fromFile(dir)
-            }
-
-            else -> DocumentFile.fromTreeUri(context, prefDir.toUri())!!
+            prefDir.isNullOrBlank() -> listOf(externalFilesDir)
+            else -> listOf(externalFilesDir, DocumentFile.fromTreeUri(context, prefDir.toUri())!!)
         }
     }
 
