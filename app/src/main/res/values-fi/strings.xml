@@ -73,4 +73,6 @@
     <string name="active_recording">Aktiivinen tallennus</string>
     <string name="audio">Ääni</string>
     <string name="lossless_audio">Häviötön äänitallennin (WAV)</string>
+    <string name="modified_rev">Muokattu (käänteinen)</string>
+    <string name="modified">Muokattu</string>
 </resources>
