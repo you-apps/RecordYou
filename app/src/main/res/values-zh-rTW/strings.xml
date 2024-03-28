@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="record_screen">螢幕錄製</string>
-    <string name="recordings">正在錄音中</string>
+    <string name="recordings">錄製清單</string>
     <string name="okay">確定</string>
     <string name="cancel">取消</string>
     <string name="rename">重新</string>
@@ -49,4 +49,33 @@
     <string name="auto">自動</string>
     <string name="default_audio">預設</string>
     <string name="translation">翻譯</string>
+    <string name="sort">排序</string>
+    <string name="alphabetic">按字母順序</string>
+    <string name="draw_mode">繪圖模式</string>
+    <string name="erase_mode">擦除模式</string>
+    <string name="modified">修改日期</string>
+    <string name="size_rev">大小（倒序）</string>
+    <string name="naming_pattern_desc">%d: 日期, %t: 時間, %s: 紀元秒, %m: 紀元毫秒</string>
+    <string name="amoled_dark">黑色</string>
+    <string name="audio_visualizer_timestamps_description">在音訊視覺化時間線上顯示時間戳記。</string>
+    <string name="trim_failed">剪輯失敗</string>
+    <string name="trimming">剪輯中…</string>
+    <string name="trim_successful">剪輯成功</string>
+    <string name="start_timestamp">起始點：</string>
+    <string name="select_trim_range">選擇剪輯範圍</string>
+    <string name="default_sort">預設</string>
+    <string name="screen_recorder_annotation">錄影畫面註釋</string>
+    <string name="screen_recorder_annotation_desc">在錄影畫面期間顯示註釋工具</string>
+    <string name="modified_rev">修改日期（倒序）</string>
+    <string name="alphabetic_rev">首字母（倒序）</string>
+    <string name="size">大小</string>
+    <string name="lossless_audio">無損錄音（WAV）</string>
+    <string name="lossless_audio_desc">請注意，使用此選項時將不會套用其他音訊設定。</string>
+    <string name="naming_pattern">檔案命名模式</string>
+    <string name="audio_visualizer_timestamps">音訊視覺化時間戳</string>
+    <string name="start_trimming">開始剪輯</string>
+    <string name="trim">剪輯</string>
+    <string name="stop_timestamp">結束點：</string>
+    <string name="not_set">未設定</string>
+    <string name="cant_access_selected_folder">已選的資料夾無法存取！</string>
 </resources>

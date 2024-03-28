@@ -76,4 +76,6 @@
     <string name="screen_recorder_annotation">Adnotacja nagrania ekranu</string>
     <string name="draw_mode">Tryb rysowania</string>
     <string name="erase_mode">Tryb wymazywania</string>
+    <string name="modified">Zmodyfikowany</string>
+    <string name="modified_rev">Zmodyfikowany (odwrócony)</string>
 </resources>
