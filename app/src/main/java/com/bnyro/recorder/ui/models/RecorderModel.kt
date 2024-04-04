@@ -154,7 +154,7 @@ class RecorderModel : ViewModel() {
     fun hasScreenRecordingPermissions(context: Context): Boolean {
         val overlayEnabled = Preferences.prefs.getBoolean(
             Preferences.showOverlayAnnotationToolKey,
-            true
+            false
         )
         if (supportsOverlay && overlayEnabled && !Settings.canDrawOverlays(context)) {
             val intent = Intent(
