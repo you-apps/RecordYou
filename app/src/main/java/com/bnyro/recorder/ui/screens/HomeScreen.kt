@@ -43,7 +43,8 @@ fun HomeScreen(
     onNavigate: (Destination) -> Unit,
     recorderModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
 ) {
-    val pagerState = rememberPagerState { 2 }
+    val pagerState =
+        rememberPagerState(initialPage = if (initialRecorder == RecorderType.VIDEO) 1 else 0) { 2 }
     val scope = rememberCoroutineScope()
     val view = LocalView.current
     Scaffold(modifier = Modifier.fillMaxSize(), topBar = {
@@ -114,7 +115,7 @@ fun HomeScreen(
                 state = pagerState,
                 modifier = Modifier.fillMaxSize()
             ) { index ->
-                RecorderView(initialRecorder = initialRecorder, recordScreenMode = (index == 1))
+                RecorderView(recordScreenMode = (index == 1))
             }
         }
     }
