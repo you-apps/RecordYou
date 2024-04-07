@@ -2,6 +2,7 @@ package com.bnyro.recorder.services
 
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Build
 import android.service.quicksettings.TileService
 import androidx.annotation.RequiresApi
@@ -14,6 +15,9 @@ class AudioRecorderTile : TileService() {
         super.onClick()
         val intent = Intent(this, MainActivity::class.java)
             .putExtra(MainActivity.EXTRA_ACTION_KEY, RecorderType.AUDIO.name)
+            .apply {
+                flags = FLAG_ACTIVITY_NEW_TASK
+            }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startActivityAndCollapse(
                 PendingIntent.getActivity(

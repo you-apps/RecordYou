@@ -81,7 +81,9 @@ class MainActivity : ComponentActivity() {
         if (initialRecorderType == RecorderType.AUDIO) {
             recorderModel.startAudioRecorder(this)
         } else if (initialRecorderType == RecorderType.VIDEO) {
-            launcher.launch(mProjectionManager.createScreenCaptureIntent())
+            if (recorderModel.hasScreenRecordingPermissions(this)) {
+                launcher.launch(mProjectionManager.createScreenCaptureIntent())
+            }
         }
         intent.removeExtra(EXTRA_ACTION_KEY)
     }
