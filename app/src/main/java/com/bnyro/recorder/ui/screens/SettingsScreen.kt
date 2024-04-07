@@ -173,7 +173,8 @@ fun SettingsScreen() {
                     R.string.default_audio,
                     R.string.microphone,
                     R.string.camcorder,
-                    R.string.unprocessed
+                    R.string.unprocessed,
+                    R.string.internal_audio
                 ).map {
                     stringResource(it)
                 },

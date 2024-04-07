@@ -85,4 +85,6 @@
     <string name="cant_access_selected_folder">Can\'t access selected folder!</string>
     <string name="draw_mode">Draw Mode</string>
     <string name="erase_mode">Erase Mode</string>
+    <string name="internal_audio">Internal Audio (Root)</string>
+    <string name="no_enough_permissions">No enough permissions to start recording</string>
 </resources>
