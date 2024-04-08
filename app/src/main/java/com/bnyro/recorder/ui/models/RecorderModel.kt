@@ -6,12 +6,10 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.provider.Settings
 import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
@@ -31,7 +29,6 @@ import com.bnyro.recorder.util.PermissionHelper
 import com.bnyro.recorder.util.Preferences
 
 class RecorderModel : ViewModel() {
-    private val audioPermission = arrayOf(Manifest.permission.RECORD_AUDIO)
     private val supportsOverlay = Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
 
     var recorderState by mutableStateOf(RecorderState.IDLE)
@@ -52,6 +49,7 @@ class RecorderModel : ViewModel() {
                 recorderState = it
             }
             (recorderService as? ScreenRecorderService)?.prepare(activityResult!!)
+            if (supportsOverlay) canvasOverlay?.show()
             recorderService?.start()
         }
 
@@ -73,7 +71,12 @@ class RecorderModel : ViewModel() {
 
     @SuppressLint("NewApi")
     fun startAudioRecorder(context: Context) {
-        if (!PermissionHelper.checkPermissions(context, audioPermission)) return
+        val audioPermission = mutableListOf(Manifest.permission.RECORD_AUDIO)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            audioPermission.add(Manifest.permission.POST_NOTIFICATIONS)
+        }
+
+        if (!PermissionHelper.checkPermissions(context, audioPermission.toTypedArray())) return
 
         val serviceIntent =
             if (Preferences.prefs.getBoolean(Preferences.losslessRecorderKey, false)) {
@@ -152,19 +155,6 @@ class RecorderModel : ViewModel() {
 
     @SuppressLint("NewApi")
     fun hasScreenRecordingPermissions(context: Context): Boolean {
-        val overlayEnabled = Preferences.prefs.getBoolean(
-            Preferences.showOverlayAnnotationToolKey,
-            false
-        )
-        if (supportsOverlay && overlayEnabled && !Settings.canDrawOverlays(context)) {
-            val intent = Intent(
-                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                Uri.parse("package:" + context.packageName)
-            )
-            context.startActivity(intent)
-            return false
-        }
-
         val requiredPermissions = arrayListOf<String>()
 
         val recordAudio =
