@@ -94,7 +94,7 @@ class CanvasOverlay(context: Context) {
             y = 0
         }
 
-    init {
+    fun show() {
         hideCanvas()
         try {
             if (canvasView.windowToken == null && canvasView.parent == null) {

@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.enums.RecorderState
-import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.ui.common.ResponsiveRecordScreenLayout
 import com.bnyro.recorder.ui.components.RecorderController
 import com.bnyro.recorder.ui.components.RecorderPreview
@@ -18,7 +17,6 @@ import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
 fun RecorderView(
-    initialRecorder: RecorderType,
     recordScreenMode: Boolean
 ) {
     val recorderModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
@@ -39,7 +37,7 @@ fun RecorderView(
                 RecorderPreview(recordScreenMode)
             },
             PaneTwo = {
-                RecorderController(recordScreenMode, initialRecorder)
+                RecorderController(recordScreenMode)
             }
         )
     }

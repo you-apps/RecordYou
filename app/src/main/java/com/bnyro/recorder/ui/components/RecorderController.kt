@@ -31,7 +31,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,14 +43,12 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bnyro.recorder.R
 import com.bnyro.recorder.enums.RecorderState
-import com.bnyro.recorder.enums.RecorderType
 import com.bnyro.recorder.ui.common.ClickableIcon
 import com.bnyro.recorder.ui.models.RecorderModel
 
 @Composable
 fun RecorderController(
-    recordScreenMode: Boolean,
-    initialRecorder: RecorderType
+    recordScreenMode: Boolean
 ) {
     val recorderModel: RecorderModel = viewModel(LocalContext.current as ComponentActivity)
     val context = LocalContext.current
@@ -70,19 +67,6 @@ fun RecorderController(
         requestRecording.launch(
             mProjectionManager.createScreenCaptureIntent()
         )
-    }
-    LaunchedEffect(Unit) {
-        when (initialRecorder) {
-            RecorderType.AUDIO -> {
-                recorderModel.startAudioRecorder(context)
-            }
-
-            RecorderType.VIDEO -> {
-                requestScreenRecording()
-            }
-
-            RecorderType.NONE -> {}
-        }
     }
     Column(
         modifier = Modifier.wrapContentSize(),
