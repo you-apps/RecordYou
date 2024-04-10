@@ -10,7 +10,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
-import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
@@ -90,7 +89,7 @@ class RecorderModel : ViewModel() {
         if (!PermissionHelper.checkPermissions(context, audioPermission.toTypedArray())) {
             Toast.makeText(
                 context,
-                context.getString(R.string.no_enough_permissions), Toast.LENGTH_SHORT
+                context.getString(R.string.no_sufficient_permissions), Toast.LENGTH_SHORT
             )
                 .show()
             return
@@ -193,15 +192,13 @@ class RecorderModel : ViewModel() {
         if (requiredPermissions.isEmpty()) return true
 
         val granted = PermissionHelper.checkPermissions(context, requiredPermissions.toTypedArray())
-        if (granted) {
-            return true
-        } else {
+        if (!granted) {
             Toast.makeText(
                 context,
-                context.getString(R.string.no_enough_permissions), Toast.LENGTH_SHORT
+                context.getString(R.string.no_sufficient_permissions), Toast.LENGTH_SHORT
             )
                 .show()
-            return false
         }
+        return granted
     }
 }
