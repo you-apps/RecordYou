@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.os.Looper
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.getValue
@@ -18,7 +19,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
+import com.bnyro.recorder.R
 import com.bnyro.recorder.canvas_overlay.CanvasOverlay
+import com.bnyro.recorder.enums.AudioDeviceSource
 import com.bnyro.recorder.enums.AudioSource
 import com.bnyro.recorder.enums.RecorderState
 import com.bnyro.recorder.services.AudioRecorderService
@@ -75,8 +78,22 @@ class RecorderModel : ViewModel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             audioPermission.add(Manifest.permission.POST_NOTIFICATIONS)
         }
+        val internalAudio = Preferences.prefs.getInt(
+            Preferences.audioDeviceSourceKey,
+            0
+        ) == AudioDeviceSource.REMOTE_SUBMIX.value
+        if (internalAudio) {
+            audioPermission.add(Manifest.permission.CAPTURE_AUDIO_OUTPUT)
+        }
 
-        if (!PermissionHelper.checkPermissions(context, audioPermission.toTypedArray())) return
+        if (!PermissionHelper.checkPermissions(context, audioPermission.toTypedArray())) {
+            Toast.makeText(
+                context,
+                context.getString(R.string.no_sufficient_permissions), Toast.LENGTH_SHORT
+            )
+                .show()
+            return
+        }
 
         val serviceIntent =
             if (Preferences.prefs.getBoolean(Preferences.losslessRecorderKey, false)) {
@@ -161,12 +178,27 @@ class RecorderModel : ViewModel() {
             Preferences.prefs.getInt(Preferences.audioSourceKey, 0) == AudioSource.MICROPHONE.value
 
         if (recordAudio) requiredPermissions.add(Manifest.permission.RECORD_AUDIO)
+
+        val internalAudio = Preferences.prefs.getInt(
+            Preferences.audioDeviceSourceKey,
+            0
+        ) == AudioDeviceSource.REMOTE_SUBMIX.value
+        if (internalAudio) requiredPermissions.add(Manifest.permission.CAPTURE_AUDIO_OUTPUT)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             requiredPermissions.add(Manifest.permission.POST_NOTIFICATIONS)
         }
 
         if (requiredPermissions.isEmpty()) return true
 
-        return PermissionHelper.checkPermissions(context, requiredPermissions.toTypedArray())
+        val granted = PermissionHelper.checkPermissions(context, requiredPermissions.toTypedArray())
+        if (!granted) {
+            Toast.makeText(
+                context,
+                context.getString(R.string.no_sufficient_permissions), Toast.LENGTH_SHORT
+            )
+                .show()
+        }
+        return granted
     }
 }
