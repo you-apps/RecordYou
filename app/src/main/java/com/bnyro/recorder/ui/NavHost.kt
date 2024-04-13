@@ -1,5 +1,8 @@
 package com.bnyro.recorder.ui
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
@@ -21,17 +24,46 @@ fun AppNavHost(
         startDestination = Destination.Home.route,
         modifier = modifier
     ) {
-        composable(route = Destination.Home.route) {
+        composable(route = Destination.Home.route,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Down,
+                    initialOffset = { it / 4 }
+                ) + fadeIn()
+            },
+            exitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Up,
+                    targetOffset = { it / 4 }) + fadeOut()
+            }) {
             HomeScreen(initialRecorder, onNavigate = { destination ->
                 navController.navigateTo(destination.route)
             })
         }
 
-        composable(route = Destination.Settings.route) {
+        composable(route = Destination.Settings.route,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Up,
+                    initialOffset = { it / 4 }) + fadeIn()
+            },
+            exitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Down,
+                    targetOffset = { it / 4 }) + fadeOut()
+            }
+        ) {
             SettingsScreen()
         }
 
-        composable(route = Destination.RecordingPlayer.route) {
+        composable(route = Destination.RecordingPlayer.route,
+            enterTransition = {
+                slideIntoContainer(
+                    AnimatedContentTransitionScope.SlideDirection.Up,
+                    initialOffset = { it / 4 }) + fadeIn()
+            },
+            exitTransition = {
+                slideOutOfContainer(AnimatedContentTransitionScope.SlideDirection.Down,
+                    targetOffset = { it / 4 }) + fadeOut()
+            }) {
             PlayerScreen(showVideoModeInitially = false)
         }
     }
