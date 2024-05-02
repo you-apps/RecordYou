@@ -78,4 +78,6 @@
     <string name="draw_mode">Piirtotila</string>
     <string name="erase_mode">Pyyhkimistila</string>
     <string name="auto">Auto</string>
+    <string name="internal_audio">Sisäinen ääni (Root)</string>
+    <string name="no_sufficient_permissions">Ei riittäviä käyttöoikeuksia tallentamisen aloittamiseksi</string>
 </resources>
