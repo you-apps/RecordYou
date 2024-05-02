@@ -62,4 +62,6 @@
     <string name="screen_recorder_annotation_desc">Afișare instrument adnotare în timpul înregistrării ecranului</string>
     <string name="amoled_dark">Negru</string>
     <string name="default_sort">Implicit</string>
+    <string name="modified">Modificat</string>
+    <string name="modified_rev">Modificat (inversat)</string>
 </resources>
