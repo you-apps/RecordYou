@@ -75,4 +75,7 @@
     <string name="lossless_audio">Häviötön äänitallennin (WAV)</string>
     <string name="modified_rev">Muokattu (käänteinen)</string>
     <string name="modified">Muokattu</string>
+    <string name="draw_mode">Piirtotila</string>
+    <string name="erase_mode">Pyyhkimistila</string>
+    <string name="auto">Auto</string>
 </resources>
