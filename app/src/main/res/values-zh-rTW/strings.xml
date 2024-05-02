@@ -37,14 +37,14 @@
     <string name="system">系統</string>
     <string name="dark">暗黑風格</string>
     <string name="light">亮堂風格</string>
-    <string name="record_sound">開始錄音</string>
+    <string name="record_sound">開始錄製</string>
     <string name="delete">刪除</string>
-    <string name="recording_audio">正在錄音中…</string>
+    <string name="recording_audio">正在錄製中…</string>
     <string name="share">分享</string>
     <string name="open">開啟</string>
     <string name="recording_screen">正在進行螢幕錄製</string>
     <string name="choose_dir">選擇檔案目錄</string>
-    <string name="recording_finished">已完成錄音</string>
+    <string name="recording_finished">已完成錄製</string>
     <string name="author">創作者</string>
     <string name="auto">自動</string>
     <string name="default_audio">預設</string>
@@ -78,4 +78,6 @@
     <string name="stop_timestamp">結束點：</string>
     <string name="not_set">未設定</string>
     <string name="cant_access_selected_folder">已選的資料夾無法存取！</string>
+    <string name="internal_audio">內部音訊（Root）</string>
+    <string name="no_sufficient_permissions">沒有相應的權限，無法開始錄製</string>
 </resources>
