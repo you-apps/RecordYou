@@ -78,4 +78,6 @@
     <string name="erase_mode">Modo de borrado</string>
     <string name="modified_rev">Modificado (inverso)</string>
     <string name="modified">Modificado</string>
+    <string name="internal_audio">Audio interno (Root)</string>
+    <string name="no_sufficient_permissions">No hay permisos suficientes para iniciar la grabación</string>
 </resources>
