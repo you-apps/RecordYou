@@ -78,4 +78,6 @@
     <string name="cant_access_selected_folder">चयनित फोल्डर तक नहीं पहुंच सकते!</string>
     <string name="modified">संशोधित</string>
     <string name="modified_rev">संशोधित (उलटा हुआ)</string>
+    <string name="internal_audio">आंतरिक ऑडियो (रूट)</string>
+    <string name="no_sufficient_permissions">रिकॉर्डिंग प्रारंभ करने के लिए पर्याप्त अनुमतियाँ नहीं</string>
 </resources>
