@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Record You</string>
     <string name="file_name">Nom de fichier</string>
     <string name="delete">Supprimer</string>
     <string name="irreversible">Êtes-vous sûr ? Cela ne peut pas être annulé !</string>
