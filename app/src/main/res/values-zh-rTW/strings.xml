@@ -7,7 +7,7 @@
     <string name="rename">重新</string>
     <string name="file_name">檔名</string>
     <string name="irreversible">確定刪除？刪掉後救不回喔！</string>
-    <string name="nothing_here">空空沒半項</string>
+    <string name="nothing_here">這裏甚麼都沒有。</string>
     <string name="screen_recorder">螢幕錄製</string>
     <string name="stop">停止</string>
     <string name="audio">音檔</string>
@@ -42,7 +42,7 @@
     <string name="recording_audio">正在錄製中…</string>
     <string name="share">分享</string>
     <string name="open">開啟</string>
-    <string name="recording_screen">正在進行螢幕錄製</string>
+    <string name="recording_screen">正在錄製螢幕…</string>
     <string name="choose_dir">選擇檔案目錄</string>
     <string name="recording_finished">已完成錄製</string>
     <string name="author">創作者</string>
