@@ -78,4 +78,6 @@
     <string name="erase_mode">Režim gumy</string>
     <string name="modified_rev">Upraveno (obráceně)</string>
     <string name="modified">Upraveno</string>
+    <string name="internal_audio">Interní zvuk (root)</string>
+    <string name="no_sufficient_permissions">Nedostatečná oprávnění pro spuštění nahrávání</string>
 </resources>

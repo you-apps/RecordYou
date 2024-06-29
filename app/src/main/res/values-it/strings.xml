@@ -78,4 +78,6 @@
     <string name="cant_access_selected_folder">Impossibile accedere alla cartella selezionata!</string>
     <string name="modified">Modificato</string>
     <string name="modified_rev">Modificato (invertito)</string>
+    <string name="internal_audio">Audio interno (root)</string>
+    <string name="no_sufficient_permissions">Non ci sono autorizzazioni sufficienti per avviare la registrazione</string>
 </resources>

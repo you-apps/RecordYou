@@ -78,4 +78,6 @@
     <string name="erase_mode">Режим ластика</string>
     <string name="modified_rev">По дате изменения (наоборот)</string>
     <string name="modified">По дате изменения</string>
+    <string name="internal_audio">Звук системы (Root)</string>
+    <string name="no_sufficient_permissions">Нет необходимых разрешений для записи</string>
 </resources>

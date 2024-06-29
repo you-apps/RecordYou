@@ -78,4 +78,6 @@
     <string name="trim_failed">Aparar Falhou</string>
     <string name="modified">Modificada</string>
     <string name="modified_rev">Modificada (invertida)</string>
+    <string name="internal_audio">Áudio Interno (Root)</string>
+    <string name="no_sufficient_permissions">Sem permissões suficientes para iniciar a gravação</string>
 </resources>

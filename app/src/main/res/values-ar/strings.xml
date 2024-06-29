@@ -78,4 +78,6 @@
     <string name="erase_mode">وضع الممحاة</string>
     <string name="modified">تم تعديله</string>
     <string name="modified_rev">تم تعديله(معكوس)</string>
+    <string name="internal_audio">الصوت الداخلي (الجذر)</string>
+    <string name="no_sufficient_permissions">لا توجد أذونات كافية لبدء التسجيل</string>
 </resources>

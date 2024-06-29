@@ -78,4 +78,6 @@
     <string name="trim_failed">Kırpma Başarısız</string>
     <string name="modified">Değiştirildi</string>
     <string name="modified_rev">Değiştirildi (ters)</string>
+    <string name="internal_audio">Dahili Ses (Root)</string>
+    <string name="no_sufficient_permissions">Kaydı başlatmak için yeterli izin yok</string>
 </resources>

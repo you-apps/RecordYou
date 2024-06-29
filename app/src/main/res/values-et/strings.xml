@@ -78,4 +78,6 @@
     <string name="size">Suuruse alusel</string>
     <string name="modified_rev">Muudetud (tagasi pööratud)</string>
     <string name="modified">Muudetud</string>
+    <string name="internal_audio">Süsteemne heli (juurkasutajana)</string>
+    <string name="no_sufficient_permissions">Salvestamise alustamiseks pole piisavalt õigusi</string>
 </resources>

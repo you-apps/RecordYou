@@ -78,4 +78,6 @@
     <string name="erase_mode">Режим стирання</string>
     <string name="modified">Змінено</string>
     <string name="modified_rev">Змінено (навпаки)</string>
+    <string name="internal_audio">Внутрішній звук системи (Root)</string>
+    <string name="no_sufficient_permissions">Немає достатніх дозволів для початку запису</string>
 </resources>

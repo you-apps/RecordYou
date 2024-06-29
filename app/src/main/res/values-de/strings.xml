@@ -56,11 +56,26 @@
     <string name="sample_rate">Samplerate</string>
     <string name="naming_pattern_desc">%d: Datum, %t: Zeit, %s: Sekunden, %m: Millisekunden</string>
     <string name="camcorder">Camcorder</string>
-    <string name="amoled_dark">Amoled Dark</string>
+    <string name="amoled_dark">Dunkel</string>
     <string name="translation">Übersetzung</string>
     <string name="delete_all">Alle löschen</string>
     <string name="screen_recorder_annotation">Bildschirmaufnahmeanmerkungen</string>
     <string name="screen_recorder_annotation_desc">Zeige Anmerkungenwerkzeug während Bildschirmaufnahme</string>
     <string name="audio_visualizer_timestamps">Audiovisualisierungs-Zeitstempel</string>
     <string name="audio_visualizer_timestamps_description">Zeige Zeitstempel in der Audiovisualisierungs-Zeitleiste.</string>
+    <string name="erase_mode">Radiermodus</string>
+    <string name="draw_mode">Zeichenmodus</string>
+    <string name="trim">Kürzen</string>
+    <string name="stop_timestamp">Ende:</string>
+    <string name="select_trim_range">Zeitspanne auswählen</string>
+    <string name="trim_successful">Kürzung erfolgreich</string>
+    <string name="no_sufficient_permissions">Nicht genug Berechtigungen zum Starten der Aufnahme</string>
+    <string name="default_sort">Standard</string>
+    <string name="start_trimming">Kürzung starten</string>
+    <string name="not_set">Nicht gesetzt</string>
+    <string name="start_timestamp">Anfang:</string>
+    <string name="modified">Bearbeitet</string>
+    <string name="trim_failed">Kürzung fehlgeschlagen</string>
+    <string name="trimming">Kürzen…</string>
+    <string name="cant_access_selected_folder">Auf den ausgewählten Ordner kann nicht zugegriffen werden!</string>
 </resources>

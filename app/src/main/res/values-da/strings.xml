@@ -78,4 +78,6 @@
     <string name="erase_mode">Viske-tilstand</string>
     <string name="screen_recorder_annotation_desc">Vis annoteringsværktøj under skærmoptagelse</string>
     <string name="size">Størrelse</string>
+    <string name="internal_audio">Intern Lyd (Root)</string>
+    <string name="no_sufficient_permissions">Ingen tilstrækkelige tilladelser til at optage</string>
 </resources>
