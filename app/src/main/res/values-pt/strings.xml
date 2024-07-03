@@ -58,7 +58,7 @@
     <string name="alphabetic_rev">Alfabética (invertida)</string>
     <string name="size_rev">Tamanho (invertido)</string>
     <string name="naming_pattern_desc">%d: Data, %t: Hora, %s: Segundos, %m: Minutos</string>
-    <string name="amoled_dark">Amoled Escuro</string>
+    <string name="amoled_dark">Escuro</string>
     <string name="screen_recorder_annotation">Anotação de gravação de ecrã</string>
     <string name="screen_recorder_annotation_desc">Mostrar ferramenta de anotação durante a gravação de ecrã</string>
     <string name="default_sort">Padrão</string>
@@ -71,4 +71,10 @@
     <string name="not_set">Não definido</string>
     <string name="start_trimming">Iniciar recorte</string>
     <string name="trim_failed">Falha ao recortar</string>
+    <string name="modified_rev">Alterado (invertido)</string>
+    <string name="trimming">A aparar…</string>
+    <string name="cant_access_selected_folder">Não pode acessar a pasta selecionada!</string>
+    <string name="draw_mode">Modo de desenho</string>
+    <string name="erase_mode">Modo de apagar</string>
+    <string name="modified">Alterado</string>
 </resources>

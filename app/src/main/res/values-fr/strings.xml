@@ -3,7 +3,7 @@
     <string name="file_name">Nom de fichier</string>
     <string name="delete">Supprimer</string>
     <string name="irreversible">Êtes-vous sûr ? Cela ne peut pas être annulé !</string>
-    <string name="nothing_here">C\'est vide ici.</string>
+    <string name="nothing_here">Rien ici.</string>
     <string name="record_sound">Enregistrer le son</string>
     <string name="directory">Répertoire</string>
     <string name="choose_dir">Choisissez un répertoire</string>
@@ -69,4 +69,15 @@
     <string name="stop_timestamp">Arrêter:</string>
     <string name="not_set">Non défini</string>
     <string name="default_sort">Par Défaut</string>
+    <string name="trimming">Découpage…</string>
+    <string name="select_trim_range">Sélectionnez la plage de coupe</string>
+    <string name="trim_failed">Échec du découpage</string>
+    <string name="trim_successful">Découpage réussi</string>
+    <string name="internal_audio">Audio interne (Root)</string>
+    <string name="no_sufficient_permissions">Pas d\'autorisation suffisante pour démarrer l\'enregistrement</string>
+    <string name="modified">Modifié</string>
+    <string name="modified_rev">Modifié (inversé)</string>
+    <string name="trim">Découper</string>
+    <string name="start_trimming">Commencer à découper</string>
+    <string name="erase_mode">Mode d\'effacement</string>
 </resources>

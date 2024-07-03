@@ -78,4 +78,6 @@
     <string name="screen_recorder_annotation">Annotation de registro de schermo</string>
     <string name="modified">Modificate</string>
     <string name="modified_rev">Modificate (invertite)</string>
+    <string name="internal_audio">Audio interne (Root)</string>
+    <string name="no_sufficient_permissions">Non il ha permissiones sufficiente pro initiar le registration</string>
 </resources>

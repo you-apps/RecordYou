@@ -78,4 +78,6 @@
     <string name="okay">Oke</string>
     <string name="modified">Terakhir diubah</string>
     <string name="modified_rev">Terakhir diubah (terbalik)</string>
+    <string name="internal_audio">Audio Internal (Root)</string>
+    <string name="no_sufficient_permissions">Tidak ada perizinan yang cukup untuk merekam</string>
 </resources>
